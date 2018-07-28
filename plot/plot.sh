@@ -13,7 +13,7 @@ case $t in
 -T300S|-T300s)		exec t300s "$@";;
 -Tver)			exec lpr -Pversatec -g "$@";;
 -Tvar)			exec lpr -Pvarian -g "$@";;
--Ttek|-T4014|-T)	exec tek "$@" ;;
+-Ttek4014|-Ttek|-T4014|-T)	exec tek "$@" ;;
 -T4013)			exec t4013 "$@" ;;
 -Tbitgraph|-Tbg)	exec bgplot "$@";;
 -Tgigi|-Tvt125)		exec gigiplot "$@";;
