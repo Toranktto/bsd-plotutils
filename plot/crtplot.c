@@ -17,6 +17,7 @@ because some function names conflicted with the curses library.
 #include <curses.h>
 #include <math.h>
 #include <signal.h>
+#include <term.h>
 
 
 /*  These map from plot routine coordinates to screen coordinates.  */
@@ -32,15 +33,14 @@ static int lastX, lastY;	/* last point plotted */
 
 
 char *getenv();
-extern char _putchar(); 
 
 /* This routine just moves the cursor. */
 screen_move(y, x)
 int x,y;
 {
 	/* must check for automatic wrap at last col */
-	if (!AM || (y < LINES -1) || (x < COLS -1)) {
-		mvcur(lastY, lastX, y, x);
+	if (!tgetflag("am") || (y < LINES -1) || (x < COLS -1)) {
+		move(y, x);
 		lastY = y;
 		lastX = x;
 		}
@@ -51,9 +51,9 @@ int x,y;
 plot_addch(ch)
 char ch;
 {
-	putchar(ch);
+	addch(ch);
 	if (++lastX >= COLS) {
-		if (AM) {
+		if (tgetflag("am")) {
 			lastX = 0;
 			lastY++;
 		} else {
@@ -68,12 +68,9 @@ char ch;
 /* See the curses manual for what is been done and why. */
 openpl()
 {
-char *sp;
 int closepl();
 
-gettmode();
-if (sp=getenv("TERM"))
-	setterm(sp);
+initscr();
 signal(SIGINT, closepl);
 
 }
@@ -85,7 +82,10 @@ closepl()
 {
 signal(SIGINT, SIG_IGN);
 /* Leave cursor at top of screen. */
-mvcur(LINES-1, COLS-1, 0, 0);
+move(0, 0);
+/* Wait for quit */
+for(;getch() != 'q';);
+
 endwin();
 exit(0);
 }
@@ -103,6 +103,8 @@ screen_move(scaleY(y), scaleX(x));
 line(x0, y0, x1, y1)
 int x0, y0, x1, y1;
 {
+void dda_line();
+
 plot_movech(y0, x0, '*');
 dda_line('*', scaleX(x0), scaleY(y0), scaleX(x1), scaleY(y1));
 }
@@ -110,7 +112,7 @@ dda_line('*', scaleX(x0), scaleY(y0), scaleX(x1), scaleY(y1));
 label(str)
 char *str;
 {
-	reg i, length;
+	register i, length;
 	int strlen();
 
 	if ( (length=strlen(str)) > (COLS-lastX) )
@@ -129,13 +131,13 @@ the driver calls openpl before doing anything.  This is actually
 wrong, but it is what whoever originally wrote the driver decided
 to do.  (openpl() in libplot does nothing -- that is the main problem!)
 */
-_puts(TI);
-_puts(VS);
+putp(enter_ca_mode);
+putp(cursor_visible);
 
 noecho();
 nonl();
-tputs(CL, LINES, _putchar);
-mvcur(0, COLS-1, LINES-1, 0);
+tputs(clear_screen, LINES, putchar);
+move(LINES-1, 0);
 lastX = 0;
 lastY = LINES-1;
 }
@@ -174,7 +176,7 @@ char *string;
 
 /* See Neuman & Sproul for explanation and rationale. */
 /* Does not plot first point -- assumed that it is already plotted */
-dda_line(ch, x0, y0, x1, y1)
+void dda_line(ch, x0, y0, x1, y1)
 char ch;
 int x0, y0, x1, y1;	/* already transformed to screen coords */
 {
@@ -210,6 +212,8 @@ for (i=0; i < length; ++i)
 circle (xc,yc,r)
 int xc,yc,r;
 {
+	void arc();
+
 	arc(xc,yc, xc+r,yc, xc-r,yc);
 	arc(xc,yc, xc-r,yc, xc+r,yc);
 }
@@ -218,7 +222,7 @@ int xc,yc,r;
 /* should include test for equality? */
 #define side(x,y)	(a*(x)+b*(y)+c > 0.0 ? 1 : -1)
 
-arc(xc,yc,xbeg,ybeg,xend,yend)
+void arc(xc,yc,xbeg,ybeg,xend,yend)
 int xc,yc,xbeg,ybeg,xend,yend;
 {
 	double r, radius, costheta, sintheta;

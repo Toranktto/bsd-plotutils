@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)scale.c	5.1 (Berkeley) 9/21/85";
 extern float scalex;
 extern float scaley;
 extern int scaleflag;
-scale(i,x,y)
+void scale(i,x,y)
 char i;
 float x,y;
 {

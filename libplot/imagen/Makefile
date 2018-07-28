@@ -1,6 +1,7 @@
 #	@(#)Makefile	5.6 (Berkeley) 5/11/90
 
 LIB=	plotimagen
+LIBDIR=	/usr/local/lib
 # DEFRES == default printer resolution dpi
 CFLAGS+=-DDEFRES=240
 SRCS=	arc.c box.c charset.c circle.c close.c cont.c dot.c \

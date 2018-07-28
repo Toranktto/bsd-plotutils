@@ -27,8 +27,8 @@ struct val {
 	int lblptr;
 } *xx;
 
-char *labs;
-int labsiz;
+char *labs_;
+int labs_iz;
 
 int tick = 50;
 int top = 4000;
@@ -67,6 +67,11 @@ double x;
 	return(x);
 }
 
+void axes();
+void transpose();
+void readin();
+void limread();
+
 main(argc,argv)
 char *argv[];
 {
@@ -76,8 +81,8 @@ char *argv[];
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
 	xx = (struct val *)malloc((unsigned)sizeof(struct val));
-	labs = malloc(1);
-	labs[labsiz++] = 0;
+	labs_ = malloc(1);
+	labs_[labs_iz++] = 0;
 	setopt(argc,argv);
 	if(erasf)
 		erase();
@@ -199,7 +204,7 @@ again:		switch(argv[0][0]) {
 	}
 }
 
-limread(p, argcp, argvp)
+void limread(p, argcp, argvp)
 register struct xy *p;
 int *argcp;
 char ***argvp;
@@ -239,7 +244,7 @@ register char ***argvp;
 	return(1);
 }
 
-readin()
+void readin()
 {
 	register t;
 	struct val *temp;
@@ -273,7 +278,7 @@ readin()
 	}
 }
 
-transpose()
+void transpose()
 {
 	register i;
 	float f;
@@ -292,13 +297,13 @@ copystring(k)
 	register i;
 	int q;
 
-	temp = realloc(labs,(unsigned)(labsiz+1+k));
+	temp = realloc(labs_,(unsigned)(labs_iz+1+k));
 	if(temp==0)
 		return(0);
-	labs = temp;
-	q = labsiz;
+	labs_ = temp;
+	q = labs_iz;
 	for(i=0;i<=k;i++)
-		labs[labsiz++] = labbuf[i];
+		labs_[labs_iz++] = labbuf[i];
 	return(q);
 }
 
@@ -339,7 +344,7 @@ struct z {
 	float lb,ub,mult,quant;
 } setloglim(), setlinlim();
 
-setlim(p)
+void setlim(p)
 register struct xy *p;
 {
 	float t,delta,sign;
@@ -498,7 +503,7 @@ struct val *v;
 	p->xb = p->xbot - (*p->xf)(p->xlb)*p->xa + .5;
 }
 
-axes()
+void axes()
 {
 	register i;
 	int mark[50];
@@ -660,7 +665,7 @@ symbol(ix,iy,k)
 	} 
 	else {
 		move(ix,iy);
-		label(k>=0?labs+k:plotsymb);
+		label(k>=0?labs_+k:plotsymb);
 		move(ix,iy);
 		return(!brkf|k<0);
 	}

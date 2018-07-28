@@ -10,7 +10,7 @@ static char sccsid[] = "@(#)linemod.c	5.1 (Berkeley) 5/7/85";
 
 #include "gigi.h"
 
-linemod( line )
+void linemod( line )
 char	*line;
 {
 	/*

@@ -6,7 +6,7 @@ int del = 20;
 step(d){
 	del = d;
 }
-arc(x,y,x0,y0,x1,y1){
+void arc(x,y,x0,y0,x1,y1){
 	double pc;
 	double sqrt();
 	int flg,m,xc,yc,xs,ys,qs,qf;

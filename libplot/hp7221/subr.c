@@ -10,7 +10,7 @@ static char sccsid[] = "@(#)subr.c	5.1 (Berkeley) 5/7/85";
 
 #include "hp7221.h"
 
-putMBP( x, y )
+void putMBP( x, y )
     int		x,	y;
 {
     int		chr;
@@ -42,7 +42,7 @@ putMBP( x, y )
     return;
 }
 
-putMBN( i )
+void putMBN( i )
     int		i;
 {
     int		chr;
@@ -63,7 +63,7 @@ putMBN( i )
     return;
 }
 
-putSBN( i )
+void putSBN( i )
     int		i;
 {
     i &= 077;

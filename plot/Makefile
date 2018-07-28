@@ -1,107 +1,66 @@
 #	@(#)Makefile	4.17 (Berkeley) 6/24/90
 
-PROGS=	tek t4013 t300 t300s t450 aedplot bgplot crtplot dumbplot gigiplot \
-	hpplot hp7221plot implot atoplot plottoa grnplot
+PROGS=	tek t4013 bgplot crtplot dumbplot gigiplot \
+	hp7221plot implot atoplot plottoa grnplot
+SCRIPTS=	plot.sh
 SRCS=	atoplot.c chrtab.c crtdriver.c crtplot.c debug.c driver.c plottoa.c
-BINDIR=	/usr/bin
-MAN1=	plot.0
+BINDIR=	/usr/local/bin
+MANDIR=	/usr/local/man/man
+MAN=	plot.1
 
-LIB300=		/usr/lib/lib300.a
-LIB300s=	/usr/lib/lib300s.a
-LIB4013=	/usr/lib/lib4013.a
-LIB4014=	/usr/lib/lib4014.a
-LIB450=		/usr/lib/lib450.a
-LIBCOMPAT=	/usr/lib/libcompat.a
-LIBCURSES=	/usr/lib/libcurses.a
-LIBM=		/usr/lib/libm.a
-LIBPLOT2648=	/usr/lib/libplot2648.a
-LIBPLOT7221=	/usr/lib/libplot7221.a
-LIBPLOT=	/usr/lib/libplot.a
-LIBPLOTAED=	/usr/lib/libplotaed.a
-LIBPLOTBG=	/usr/lib/libplotbg.a
-LIBPLOTDUMB=	/usr/lib/libplotdumb.a
-LIBPLOTGIGI=	/usr/lib/libplotgigi.a
-LIBPLOTGRN=	/usr/lib/libplotgrn.a
-LIBPLOTIMAGEN=	/usr/lib/libplotimagen.a
-LIBTERMCAP=	/usr/lib/libtermcap.a
+LDFLAGS= -L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
+		-L../libplot/hp7221/ -L../libplot/grn -L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
+		-L../libplot/plot
 
-all: ${PROGS} ${MAN1}
+all: ${PROGS} ${MAN}
 
-aedplot: driver.o ${LIBPLOTAED} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -lplotaed -lcompat
+atoplot: atoplot.c
+	${CC} ${CFLAGS} -o ${.TARGET} ${.CURDIR}/atoplot.c ${LDFLAGS} -lplot -lm -lcompat
 
-atoplot: atoplot.c ${LIBPLOT} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} ${.CURDIR}/atoplot.c -lplot -lm -lcompat
+bgplot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} -lplotbg -lm -lcompat
 
-bgplot: driver.o ${LIBPLOTBG} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -lplotbg -lm -lcompat
-
-crtplot: crtdriver.o crtplot.o ${LIBCURSES} ${LIBTERMCAP} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} crtdriver.o crtplot.o -lcurses \
+crtplot: crtdriver.o crtplot.o
+	${CC} ${CFLAGS} -o ${.TARGET} crtdriver.o crtplot.o ${LDFLAGS} -lcurses \
 	    -ltermcap -lm -lcompat
 
 debug:
-	${CC} ${CFLAGS} -o ${.TARGET} ${.CURDIR}/debug.c
+	${CC} ${CFLAGS} -o ${.TARGET} debug.c
 
-dumbplot: driver.o ${LIBPLOTDUMB} ${LIBTERMCAP} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -lplotdumb -ltermcap \
+dumbplot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} -lplotdumb -ltermcap \
 	    -lm -lcompat
 
-gigiplot: driver.o ${LIBPLOTGIGI} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -lplotgigi -lm -lcompat
+gigiplot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} -lplotgigi -lm -lcompat
 
-grnplot: driver.o ${LIBPLOTGRN} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -lplotgrn -lm -lcompat
+grnplot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} -lplotgrn -lm -lcompat
 
-hp7221plot: driver.o ${LIBPLOT7221} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -lplot7221 -lm -lcompat
+hp7221plot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} -lplot7221 -lm -lcompat
 
-hpplot: driver.o ${LIBPLOT2648} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -lplot2648 -lm -lcompat
-
-implot: driver.o ${LIBPLOTIMAGEN} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -lplotimagen -lm -lcompat
+implot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} -lplotimagen -lm -lcompat
 
 plottoa: plottoa.c
-	${CC} ${CFLAGS} -o ${.TARGET} ${.CURDIR}/plottoa.c
+	${CC} ${CFLAGS} -o ${.TARGET} ${.CURDIR}/plottoa.c -Llib
 
-t300: driver.o  ${LIB300} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -l300 -lm -lcompat
+t4013: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} -l4013 -lm -lcompat
 
-t300s: driver.o ${LIB300S} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -l300s -lm -lcompat
-
-t4013: driver.o ${LIB4013} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -l4013 -lm -lcompat
-
-t450: driver.o  ${LIB450} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -l450 -lm -lcompat
-
-tek: driver.o ${LIB4014} ${LIBM} ${LIBCOMPAT}
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o -l4014 -lm -lcompat
+tek: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} -l4014 -lm -lcompat
 
 clean:
-	rm -f a.out Errs errs mklog core ${PROGS} ${SRCS:.c=.o} debug
-
-cleandir: clean
-	rm -f ${MAN1} ${.CURDIR}/tags .depend
-
-depend: .depend
-.depend: ${SRCS}
-	mkdep ${CFLAGS:M-[ID]*} ${.ALLSRC}
+	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} debug
 
 install: maninstall
+	mkdir -p /usr/local/libexec/plot
+
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
-	    ${DESTDIR}/usr/libexec/plot
+	    /usr/local/libexec/plot
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.CURDIR}/plot.sh \
 	    ${DESTDIR}${BINDIR}/plot
-
-lint: ${SRCS}
-	lint ${LINTFLAGS} ${CFLAGS} ${.ALLSRC}
-
-tags: ${SRCS}
-	ctags -f ${.CURDIR}/tags ${.ALLSRC}
-
-${PROGS}: ${LIBC}
 
 .include <bsd.prog.mk>

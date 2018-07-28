@@ -10,7 +10,7 @@ static char sccsid[] = "@(#)circle.c	5.1 (Berkeley) 5/7/85";
 
 #include "hp7221.h"
 
-circle (xc,yc,r)
+void circle (xc,yc,r)
     int	xc,yc,r;
 {
     if( r < 1 ) {

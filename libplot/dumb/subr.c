@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)subr.c	5.1 (Berkeley) 5/7/85";
 #include "dumb.h"
 
 /* Does not plot first point -- assumed that it is already plotted */
-dda_line(ch, x0, y0, x1, y1)
+void dda_line(ch, x0, y0, x1, y1)
 	char ch;
 	int x0, y0;	/* already transformed to screen coords */
 	int x1, y1;	/* untransformed */

@@ -37,7 +37,7 @@ outcurxy()
 	outxy(curx,cury);
 }
 
-startvector()
+void startvector()
 {
 	if (!ingrnfile) erase();
 	if (invector) return;
@@ -46,7 +46,7 @@ startvector()
 	outcurxy();
 }
 
-endvector()
+void endvector()
 {
 	if (!invector) return;
 	invector = 0;
