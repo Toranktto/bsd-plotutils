@@ -53,6 +53,8 @@ main(argc,argv)  char **argv; {
 
 
 fplt(fin)  FILE *fin; {
+	int endwin(void);
+
 	int c;
 	char s[256];
 	int xi,yi,x0,y0,x1,y1,r/*,dx,n,i*/;
@@ -117,7 +119,9 @@ fplt(fin)  FILE *fin; {
 			linemod(s);
 			break;
 		default:
+			endwin();
 			fprintf(stderr, "Unknown command %c (%o)\n", c, c);
+			exit(1);
 			break;
 			}
 		}
