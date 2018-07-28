@@ -76,7 +76,6 @@ main(argc,argv)
 char *argv[];
 {
 
-	space(0,0,4096,4096);
 	init(&xd);
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
@@ -84,6 +83,7 @@ char *argv[];
 	labs_ = malloc(1);
 	labs_[labs_iz++] = 0;
 	setopt(argc,argv);
+	space(0,0,4096,4096);
 	if(erasf)
 		erase();
 	readin();
