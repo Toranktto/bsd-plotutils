@@ -83,9 +83,18 @@ char *argv[];
 	labs_ = malloc(1);
 	labs_[labs_iz++] = 0;
 	setopt(argc,argv);
+
+	if(isatty(fileno(stdout))) {
+		fprintf(stderr, "stdout cannot be used - please redirect to file\n");
+		exit(1);
+	}
+
 	space(0,0,4096,4096);
+
+	/*
 	if(erasf)
 		erase();
+	*/
 	readin();
 	transpose();
 	scale(&xd,(struct val *)&xx->xv);

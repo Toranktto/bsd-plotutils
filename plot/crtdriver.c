@@ -45,7 +45,7 @@ main(argc,argv)  char **argv; {
 		}
 	if (std) {
 		/* fplt( stdin ); */
-		fprintf(stderr, "stdin can't be used with CRT driver\n");
+		fprintf(stderr, "stdin cannot be used with CRT driver\n");
 		exit(1);
 	}
 	exit(0);
