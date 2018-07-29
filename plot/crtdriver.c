@@ -16,6 +16,7 @@ static char sccsid[] = "@(#)crtdriver.c	4.2 (Berkeley) 1/9/85";
 #include <stdio.h>
 #include <stdlib.h>
 #include <curses.h>
+#include <unistd.h>
 
 float deltx;
 float delty;
@@ -43,6 +44,11 @@ main(int argc, char **argv)
 	int std=1;
 	FILE *fin;
 
+	if (!isatty(fileno(stdout))) {
+		fprintf(stderr, "output of crtplot must be terminal\n");
+		exit(1);
+	}
+
 	while(argc-- > 1) {
 		if(*argv[1] == '-')
 			switch(argv[1][1]) {
@@ -65,9 +71,7 @@ main(int argc, char **argv)
 	}
 
 	if (std) {
-		/* fplt( stdin ); */
-		fprintf(stderr, "stdin cannot be used with CRT driver\n");
-		exit(1);
+		fplt( stdin );
 	}
 
 	exit(0);

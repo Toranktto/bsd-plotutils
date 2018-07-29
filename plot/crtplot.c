@@ -80,9 +80,8 @@ closepl(void)
 	signal(SIGINT, SIG_IGN);
 	/* Leave cursor at top of screen. */
 	move(0, 0);
-	/* Wait for quit */
-	while(getch() != 'q');
 
+	refresh();
 	endwin();
 	exit(0);
 }
@@ -124,15 +123,14 @@ plot_erase(void)
 	wrong, but it is what whoever originally wrote the driver decided
 	to do.  (openpl() in libplot does nothing -- that is the main problem!)
 	*/
-	putp(enter_ca_mode);
-	putp(cursor_visible);
 
 	noecho();
 	nonl();
-	tputs(clear_screen, LINES, putchar);
+	clear();
 	move(LINES-1, 0);
 	lastX = 0;
 	lastY = LINES-1;
+	refresh();
 }
 
 void

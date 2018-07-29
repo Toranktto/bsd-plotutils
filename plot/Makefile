@@ -1,8 +1,7 @@
 #	@(#)Makefile	4.17 (Berkeley) 6/24/90
 
 PROGS=	tek t4013 bgplot crtplot dumbplot gigiplot \
-	hp7221plot implot atoplot plottoa grnplot
-SCRIPTS=	plot.sh
+	hp7221plot implot grnplot
 SRCS=	atoplot.c chrtab.c crtdriver.c crtplot.c debug.c driver.c plottoa.c
 MAN=	plot.1
 LDADD= -L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
@@ -17,7 +16,7 @@ MANDIR=	${PREFIX}/man/man
 FILESDIR=	${PREFIX}/share/misc
 INCLUDEDIR=	${PREFIX}/include
 
-all: ${PROGS} ${MAN}
+all: ${PROGS} atoplot plottoa ${MAN}
 
 atoplot: atoplot.c
 	${CC} ${CFLAGS} -o ${.TARGET} atoplot.c ${LDFLAGS} ${LDADD} -lplot -lm
@@ -56,13 +55,18 @@ tek: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -l4014 -lm
 
 clean:
-	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} debug
+	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} debug atoplot plottoa
 
 install: maninstall
 	mkdir -p /usr/local/libexec/plot
 
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
 	    ${DESTDIR}/usr/local/libexec/plot
+
+	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plottoa \
+	    ${DESTDIR}${BINDIR}/plottoa
+	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \
+	    ${DESTDIR}${BINDIR}/atoplot
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \
 	    ${DESTDIR}${BINDIR}/plot
 
