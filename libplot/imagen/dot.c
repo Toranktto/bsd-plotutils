@@ -8,5 +8,7 @@
 static char sccsid[] = "@(#)dot.c	5.1 (Berkeley) 9/21/85";
 #endif not lint
 
-dot(){
+void
+dot(void)
+{
 }

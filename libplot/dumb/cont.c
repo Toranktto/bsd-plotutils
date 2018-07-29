@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 5/7/85";
 
 #include "dumb.h"
 
-cont(x, y)
-	int x,y;
+void
+cont(int x, int y)
 {
 	int x1, y1;
 	x1 = x;

@@ -2,6 +2,7 @@
 
 PROG=	graph
 LDADD=	-L../libplot/plot -lplot -lm
+CFLAGS+=	-I../libplot/plot
 BINDIR=	/usr/local/bin
 MANDIR=	/usr/local/man/man
 

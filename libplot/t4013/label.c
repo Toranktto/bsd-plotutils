@@ -8,8 +8,8 @@
 static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 6/7/85";
 #endif not lint
 
-label(s)
-char *s;
+void
+label(char *s)
 {
 	register i,c;
 	putch(037);	/* alpha mode */

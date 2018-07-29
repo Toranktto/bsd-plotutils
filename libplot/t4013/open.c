@@ -8,8 +8,12 @@
 static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 6/7/85";
 #endif not lint
 
-openvt ()
+void
+openvt(void)
 {
 }
-openpl(){
+
+void
+openpl(void)
+{
 }

@@ -15,6 +15,8 @@ static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
 #include <signal.h>
 #include "gigi.h"
 
+extern void closepl(void);
+
 int currentx = 0;
 int currenty = 0;
 double lowx = 0.0;
@@ -22,10 +24,9 @@ double lowy = 0.0;
 double scalex = 1.0;
 double scaley = 1.0;
 
-openpl()
+void
+openpl(void)
 {
-	int closepl();
-
 	/* catch interupts */
 	signal(SIGINT, closepl);
 	currentx = 0;

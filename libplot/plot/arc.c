@@ -3,7 +3,12 @@ static char sccsid[] = "@(#)arc.c	4.1 (Berkeley) 6/27/83";
 #endif
 
 #include <stdio.h>
-arc(xi,yi,x0,y0,x1,y1){
+
+extern void putsi(int a);
+
+void
+arc(int xi, int yi, int x0, int y0, int x1, int y1)
+{
 	putc('a',stdout);
 	putsi(xi);
 	putsi(yi);

@@ -11,10 +11,12 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 9/21/85";
 #include "imPcodes.h"
 #include "imp.h"
 extern imPcsize;
-label(s)
-char *s;
+
+void
+label(char *s)
 {
-	register i,c;
+	register int i,c;
+
 	putch(imP_SET_ABS_H);
 	putwd((int)((imPx-obotx)*scalex+botx)-imPcsize/2);
 	putch(imP_SET_ABS_V);

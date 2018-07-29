@@ -11,7 +11,10 @@ static char sccsid[] = "@(#)erase.c	5.1 (Berkeley) 6/7/85";
 extern int ohiy;
 extern int ohix;
 extern int oloy;
-void erase(){
+
+void
+erase(void)
+{
 	int i;
 		putch(033);
 		putch(014);

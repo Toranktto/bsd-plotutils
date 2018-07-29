@@ -8,6 +8,8 @@
 static char sccsid[] = "@(#)point.c	5.1 (Berkeley) 9/21/85";
 #endif not lint
 
-point(xi,yi){
+void
+point(int xi, int yi)
+{
 	line(xi,yi,xi,yi);
 }

@@ -8,7 +8,9 @@
 static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 6/7/85";
 #endif not lint
 
-move(xi,yi){
+void
+move(int xi, int yi)
+{
 	putch(035);
 	cont(xi,yi);
 }

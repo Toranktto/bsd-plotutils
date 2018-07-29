@@ -6,7 +6,10 @@ extern int ohiy;
 extern int ohix;
 extern int oloy;
 extern int oextra;
-void erase(){
+
+void
+erase(void)
+{
 	int i;
 		putch(033);
 		putch(014);

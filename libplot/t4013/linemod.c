@@ -8,8 +8,8 @@
 static char sccsid[] = "@(#)linemod.c	5.1 (Berkeley) 6/7/85";
 #endif not lint
 
-linemod(s)
-char *s;
+void
+linemod(char *s)
 {
 	/* ignored on 4013 */
 }

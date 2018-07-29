@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)linemod.c	5.1 (Berkeley) 5/7/85";
 
 #include "gigi.h"
 
-void linemod( line )
-char	*line;
+void
+linemod(char *line)
 {
 	/*
 	 * Note that the bit patterns could be compacted using the

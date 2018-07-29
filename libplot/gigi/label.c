@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 5/7/85";
 
 #include "gigi.h"
 
-label(s)
-char *s;
+void
+label(char *s)
 {
 	printf("T(S0 H2 D0 I0) \"");
 	for(;*s!='\0';s++) {

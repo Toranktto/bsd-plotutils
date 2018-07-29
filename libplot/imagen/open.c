@@ -11,8 +11,21 @@ static char sccsid[] = "@(#)open.c	5.2 (Berkeley) 9/21/85";
 #include "imPcodes.h"
 #include "imp.h"
 
-openpl(){
+void
+setfont(char *c, int sz)
+{
+	imPcsize = sz;
+	putch(imP_CREATE_FAMILY_TABLE);
+	  putch(2);
+	  putch(1);
+	  putch(0);
+	  fprintf(stdout, c);
+	  putch(0);
+}
 
+void
+openpl(void)
+{
 	putch(imP_SET_HV_SYSTEM);
 	  putch((3<<3)|5);
 	putch(imP_SET_FAMILY);
@@ -28,14 +41,4 @@ openpl(){
 	  putwd(0);
 	putch(imP_SET_ABS_V);
 	  putwd(0);
-}
-setfont(c, sz) char *c; int sz;
-{
-	imPcsize = sz;
-	putch(imP_CREATE_FAMILY_TABLE);
-	  putch(2);
-	  putch(1);
-	  putch(0);
-	  fprintf(stdout, c);
-	  putch(0);
 }

@@ -10,7 +10,10 @@ extern float scalex;
 extern float scaley;
 float deltx = 4095.;
 float delty = 4095.;
-space(x0,y0,x1,y1){
+
+void
+space(int x0, int y0, int x1, int y1)
+{
 	botx = -2047.;
 	boty = -2047;
 	obotx = x0;

@@ -16,7 +16,22 @@ float botx = 2.;
 float boty = 2.;
 float scalex = 1.;
 float scaley = 1.;
-line(x0,y0,x1,y1)
+
+void
+putch(int c)
+{
+	putc(c, stdout);
+}
+
+void
+putwd(int w)
+{
+	putch(w>>8);
+	putch(w);
+}
+
+void
+line(int x0, int y0, int x1, int y1)
 {
 	putch(imP_CREATE_PATH);
 	putwd(2);		/* two coordinates follow */
@@ -28,13 +43,4 @@ line(x0,y0,x1,y1)
 	putch(15);		/* "black" lines */
 	imPx = x1;
 	imPy = y1;
-}
-putch(c)
-{
-	putc(c, stdout);
-}
-putwd(w)
-{
-	putch(w>>8);
-	putch(w);
 }

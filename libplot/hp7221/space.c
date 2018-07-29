@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)space.c	5.1 (Berkeley) 5/7/85";
 
 #include "hp7221.h"
 
-space(x0,y0,x1,y1)
-int x0,y0,x1,y1;
+void
+space(int x0, int y0, int x1, int y1)
 {
 	double scalex, scaley;
 	lowx = x0;

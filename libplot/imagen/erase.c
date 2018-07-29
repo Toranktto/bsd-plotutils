@@ -10,7 +10,10 @@ static char sccsid[] = "@(#)erase.c	5.1 (Berkeley) 9/21/85";
 
 #include "imPcodes.h"
 #include "imp.h"
-void erase(){
+
+void
+erase(void)
+{
 	int i;
 		putch(imP_ENDPAGE);
 		imPx = imPy = 0;

@@ -12,12 +12,15 @@ float scalex = 1.;
 float scaley = 1.;
 int vti = -1;
 
-void openvt ()
+void
+openvt(void)
 {
 		vti = open("/dev/vt0",1);
 		return;
 }
-void openpl()
+
+void
+openpl(void)
 {
 	vti = open("/dev/vt0",1);
 	return;

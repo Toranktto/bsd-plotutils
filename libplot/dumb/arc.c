@@ -10,7 +10,7 @@ static char sccsid[] = "@(#)arc.c	5.1 (Berkeley) 5/7/85";
 
 #include "dumb.h"
 
-arc(xc,yc,xbeg,ybeg,xend,yend)
-int xc,yc,xbeg,ybeg,xend,yend;
+void
+arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 {
 }

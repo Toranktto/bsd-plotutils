@@ -15,8 +15,8 @@ static char sccsid[] = "@(#)arc.c	5.2 (Berkeley) 4/30/85";
 #define side(x,y)	(a*(x)+b*(y)+c > 0.0 ? 1 : -1)
 
 /* The beginning and ending points must be distinct. */
-void arc(xc,yc,xbeg,ybeg,xend,yend)
-int xc,yc,xbeg,ybeg,xend,yend;
+void
+arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 {
 	double r, radius, costheta, sintheta;
 	double a, b, c, x, y, tempX;
@@ -49,7 +49,7 @@ int xc,yc,xbeg,ybeg,xend,yend;
 		/* radius is mapped to length < 1*/
 		point(xc,yc);
 		return;
-		}
+	}
 
 	radius = sqrt(r*r + 1.0);
 	sintheta = 1.0/radius;

@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)point.c	5.1 (Berkeley) 5/7/85";
 
 #include "dumb.h"
 
-point(x, y)
-	int x,y;
+void
+point(int x, int y)
 {
 	scale(x, y);
 	currentx = x;

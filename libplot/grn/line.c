@@ -19,8 +19,8 @@ static char sccsid[] = "@(#)line.c	6.1 (Berkeley) 8/29/86";
  *	A line is drawn on the screen between (x1, y1) and (x2, y2).
  *---------------------------------------------------------
  */
-line(x1, y1, x2, y2)
-int x1, y1, x2, y2;
+void
+line(int x1, int y1, int x2, int y2)
 {
 	move(x1,y1);
 	cont(x2,y2);

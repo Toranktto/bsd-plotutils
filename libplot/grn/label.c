@@ -22,8 +22,8 @@ static char sccsid[] = "@(#)label.c	6.1 (Berkeley) 8/29/86";
  *	The current position is NOT updated.
  *---------------------------------------------------------
  */
-label(s)
-char *s;
+void
+label(char *s)
 {
 	if (!ingrnfile) erase();
 	endvector();

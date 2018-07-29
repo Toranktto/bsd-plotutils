@@ -10,7 +10,8 @@ static char sccsid[] = "@(#)erase.c	5.1 (Berkeley) 5/7/85";
 
 #include "gigi.h"
 
-erase()
+void
+erase(void)
 {
 	printf("S(E)");
 }

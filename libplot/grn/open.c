@@ -35,5 +35,7 @@ int	invector = 0;
  *	Errors:		None.
  *---------------------------------------------------------
  */
-openpl()
-{}
+void
+openpl(void)
+{
+}

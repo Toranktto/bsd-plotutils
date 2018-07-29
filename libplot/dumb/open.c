@@ -17,21 +17,24 @@ static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
  */
 
 #include <signal.h>
+#include <stdlib.h>
 #include "dumb.h"
 
 int minX, rangeX;	/* min and range of x */
 int minY, rangeY;	/* min and range of y */
-int currentx,currenty;
-int COLS,LINES;
+int currentx, currenty;
+int COLS, LINES;
 
 /* A very large screen! (probably should use malloc) */
 char screenmat[MAXCOLS][MAXLINES];
 
-openpl()
+extern void closepl(void);
+
+void
+openpl(void)
 {
-	int closepl();
 	int i, j;
-	char *term, *getenv();
+	char *term;
 	char bp[1024];
 
 	term = getenv("TERM");

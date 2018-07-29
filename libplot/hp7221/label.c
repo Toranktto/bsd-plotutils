@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 5/7/85";
 
 #include "hp7221.h"
 
-label(s)
-char *s;
+void
+label(char *s)
 {
 	printf("~'%s", s);
 	putchar( ENDOFSTRING );

@@ -11,7 +11,8 @@ static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
 #include <signal.h>
 #include "hp7221.h"
 
-closepl()
+void
+closepl(void)
 {
 	/* receive interupts */
 	signal(SIGINT, SIG_IGN);

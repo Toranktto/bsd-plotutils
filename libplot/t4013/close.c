@@ -9,11 +9,17 @@ static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 6/7/85";
 #endif not lint
 
 #include <stdio.h>
-closevt(){
+
+void
+closevt(void)
+{
 	putch(037);
 	fflush(stdout);
 }
-closepl(){
+
+void
+closepl(void)
+{
 	putch(037);
 	fflush(stdout);
 }

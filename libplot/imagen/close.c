@@ -11,7 +11,9 @@ static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 9/21/85";
 #include "imp.h"
 #include "imPcodes.h"
 
-closepl(){
+void
+closepl(void)
+{
 	putch(imP_ENDPAGE);
 	fflush(stdout);
 }

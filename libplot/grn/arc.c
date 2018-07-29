@@ -9,12 +9,12 @@ static char sccsid[] = "@(#)arc.c	6.1 (Berkeley) 8/29/86";
 #endif not lint
 
 #include "grnplot.h"
+#include <math.h>
 
 
-arc(x,y,x0,y0,x1,y1)
+void
+arc(int x, int y, int x0, int y0, int x1, int y1)
 {
-	extern double atan2();
-
 	if (!ingrnfile) erase();
 	endvector();
 	printf("ARC\n");

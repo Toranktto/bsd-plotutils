@@ -19,10 +19,11 @@ char lbl_mv[] = {
 char lbl_umv[] = {
 	036,040,N,N,N,N,N,N,NE,NE,NE,NE,NE,NE,NE,NE,NE,NE,037,0
 };
-label(s)
-char *s;
+
+void
+label(char *s)
 {
-	register i,c;
+	register int i,c;
 	for(i=0; c=lbl_mv[i]; i++)
 		putch(c);
 	for(i=0; c=s[i]; i++)

@@ -22,8 +22,8 @@ static char sccsid[] = "@(#)linemod.c	6.1 (Berkeley) 8/29/86";
  *	or "dotdashed".  If s isn't recognized, then "solid" is used.
  *---------------------------------------------------------
  */
-linemod(s)
-char *s;
+void
+linemod(char *s)
 {
     endvector();
     if (strcmp(s, "dotted") == 0)

@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 5/7/85";
 
 #include "dumb.h"
 
-move(x,y)
-int x,y;
+void
+move(int x, int y)
 {
 	scale(x, y);
 	currentx = x;

@@ -3,7 +3,12 @@ static char sccsid[] = "@(#)move.c	4.1 (Berkeley) 6/27/83";
 #endif
 
 #include <stdio.h>
-move(xi,yi){
+
+extern void putsi(int a);
+
+void
+move(int xi, int yi)
+{
 	putc('m',stdout);
 	putsi(xi);
 	putsi(yi);

@@ -9,8 +9,8 @@ static char sccsid[] = "@(#)point.c	5.2 (Berkeley) 4/30/85";
 #endif not lint
 
 
-point(xi, yi)
-int xi, yi;
+void
+point(int xi, int yi)
 {
 	move(xi, yi);
 	label(".");

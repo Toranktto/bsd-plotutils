@@ -8,13 +8,20 @@
 static char sccsid[] = "@(#)arc.c	5.1 (Berkeley) 9/21/85";
 #endif not lint
 
+#include <math.h>
+
 int del = 20;
-step(d){
+
+void
+step(int d)
+{
 	del = d;
 }
-void arc(x,y,x0,y0,x1,y1){
+
+void
+arc(int x, int y, int x0, int y0, int x1, int y1)
+{
 	double pc;
-	double sqrt();
 	int flg,m,xc,yc,xs,ys,qs,qf;
 	float dx,dy,r;
 	char use;
@@ -103,7 +110,10 @@ void arc(x,y,x0,y0,x1,y1){
 		}
 	}
 }
-quad(x,y,xp,yp){
+
+int
+quad(int x, int y, int xp, int yp)
+{
 	if(x < xp)
 		if(y <= yp)return(1);
 		else return(4);
@@ -112,8 +122,4 @@ quad(x,y,xp,yp){
 		else return(3);
 	else if(y < yp)return(2);
 	else return(4);
-}
-abs(a){
-	if(a < 0)return(-a);
-	return(a);
 }

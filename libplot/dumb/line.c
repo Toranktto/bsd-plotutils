@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)line.c	5.1 (Berkeley) 5/7/85";
 
 #include "dumb.h"
 
-line(x0, y0, x1, y1)
-	int x0, y0, x1, y1;
+void
+line(int x0, int y0, int x1, int y1)
 {
 	int x,y;
 

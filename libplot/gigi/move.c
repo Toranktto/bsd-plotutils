@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 5/7/85";
 
 #include "gigi.h"
 
-move(xi,yi)
-int xi,yi;
+void
+move(int xi, int yi)
 {
 	currentx = xsc(xi);
 	currenty = ysc(yi);

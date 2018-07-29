@@ -9,7 +9,10 @@ static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 9/21/85";
 #endif not lint
 
 #include "imp.h"
-move(xi,yi){
+
+void
+move(int xi, int yi)
+{
         imPx = xi;
         imPy = yi;
 }

@@ -18,8 +18,8 @@ static char sccsid[] = "@(#)move.c	6.1 (Berkeley) 8/29/86";
  *	Side Effects:	If current line, close it.
  *---------------------------------------------------------
  */
-move(x, y)
-int x, y;
+void
+move(int x, int y)
 {
 	if (!ingrnfile) erase();
     if (invector) endvector();

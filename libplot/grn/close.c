@@ -19,7 +19,8 @@ static char sccsid[] = "@(#)close.c	6.1 (Berkeley) 8/29/86";
  *	Side Effects:
  *---------------------------------------------------------
  */
-void closepl()
+void
+closepl(void)
 {
     if (!ingrnfile) return;
     endvector();

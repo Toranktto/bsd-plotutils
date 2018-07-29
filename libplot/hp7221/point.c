@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)point.c	5.1 (Berkeley) 5/7/85";
 
 #include "hp7221.h"
 
-point(xi,yi)
-int xi,yi;
+void
+point(int xi, int yi)
 {
 	if(scaleX(xi)!=currentx || scaleY(yi)!=currenty)
 		move(xi,yi);

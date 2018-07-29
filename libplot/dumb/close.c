@@ -11,7 +11,8 @@ static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
 #include <signal.h>
 #include "dumb.h"
 
-closepl()
+void
+closepl(void)
 {
 	int i, j;
 

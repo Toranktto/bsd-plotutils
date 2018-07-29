@@ -11,7 +11,8 @@ static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 9/21/85";
 #include <stdio.h>
 #include "imp.h"
 
-cont(x,y){
+void
+cont(int x, int y)
+{
 	line(imPx, imPy, x, y);
-	
 }

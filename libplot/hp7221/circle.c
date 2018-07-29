@@ -10,12 +10,12 @@ static char sccsid[] = "@(#)circle.c	5.1 (Berkeley) 5/7/85";
 
 #include "hp7221.h"
 
-void circle (xc,yc,r)
-    int	xc,yc,r;
+void
+circle (int xc, int yc, int r)
 {
     if( r < 1 ) {
-	point( xc, yc );
-	return;
+		point( xc, yc );
+		return;
     }
     move( xc, yc );
     putchar( 't' );

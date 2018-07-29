@@ -13,8 +13,8 @@ static char sccsid[] = "@(#)linemod.c	5.3 (Berkeley) 9/21/85";
 /*
  * Hack to set font.
  */
-void linemod(s)
-char *s;
+void
+linemod(char *s)
 {
 	register char *tit;
 	register char *nam;

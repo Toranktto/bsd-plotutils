@@ -2,9 +2,12 @@
 static char sccsid[] = "@(#)move.c	4.1 (Berkeley) 6/27/83";
 #endif
 
-extern vti;
-extern xnow,ynow;
-move(xi,yi){
+extern int vti;
+extern int xnow,ynow;
+
+void
+move(int xi, int yi)
+{
 	struct {char pad,c; int x,y;} p;
 	p.c = 9;
 	p.x = xnow = xsc(xi);

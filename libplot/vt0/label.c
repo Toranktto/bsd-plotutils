@@ -2,10 +2,10 @@
 static char sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
 #endif
 
-extern vti;
+extern int vti;
 
-label(s)
-char *s;
+void
+label(char *s)
 {
 	int i, o;
 

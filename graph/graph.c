@@ -4,7 +4,10 @@ static char sccsid[] = "@(#)graph.c	4.2 3/30/83";
 
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include <math.h>
+#include <plot.h>
+#include <string.h>
 #define	INF	HUGE
 #define	F	.25
 
@@ -21,6 +24,7 @@ struct xy {
 	int	xbot,xtop;	/*screen coords of border*/	
 	float	xmult;	/*scaling constant*/
 } xd,yd;
+
 struct val {
 	float xv;
 	float yv;
@@ -28,7 +32,7 @@ struct val {
 } *xx;
 
 char *labs_;
-int labs_iz;
+int labsiz;
 
 int tick = 50;
 int top = 4000;
@@ -58,43 +62,47 @@ char *modes[] = {
 	"longdashed"
 };
 int mode = 1;
-char *realloc();
-char *malloc();
 
-double ident(x)
-double x;
+double
+ident(double x)
 {
 	return(x);
 }
 
-void axes();
-void transpose();
-void readin();
-void limread();
+void axes(void);
+void transpose(void);
+void readin(void);
+void plot(void);
+void limread(register struct xy *p, int *argcp, char ***argvp);
+void title(void);
+void badarg(void);
+void setopt(int argc, char *argv[]);
+void axlab(char c, struct xy *p);
+int conv(float xv, register struct xy *p, int *ip);
+void scale(register struct xy *p, struct val *v);
+int setmark(int *xmark, register struct xy *p);
+void submark(int *xmark, int *pxn, float x, struct xy *p);
+void init(struct xy *p);
+int copystring(int k);
+int symbol(int ix, int iy, int k);
+int getfloat(float *p);
+int getstring(void);
+int numb(float *np, int *argcp, register char ***argvp);
 
-main(argc,argv)
-char *argv[];
+int
+main(int argc, char *argv[])
 {
 
+	space(0,0,4096,4096);
 	init(&xd);
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
 	xx = (struct val *)malloc((unsigned)sizeof(struct val));
 	labs_ = malloc(1);
-	labs_[labs_iz++] = 0;
+	labs_[labsiz++] = 0;
 	setopt(argc,argv);
-
-	if(isatty(fileno(stdout))) {
-		fprintf(stderr, "stdout cannot be used - please redirect to file\n");
-		exit(1);
-	}
-
-	space(0,0,4096,4096);
-
-	/*
 	if(erasf)
 		erase();
-	*/
 	readin();
 	transpose();
 	scale(&xd,(struct val *)&xx->xv);
@@ -107,15 +115,15 @@ char *argv[];
 	return(0);
 }
 
-init(p)
-struct xy *p;
+void
+init(struct xy *p)
 {
 	p->xf = ident;
 	p->xmult = 1;
 }
 
-setopt(argc,argv)
-char *argv[];
+void
+setopt(int argc, char *argv[])
 {
 	char *p1, *p2;
 	float temp;
@@ -134,7 +142,7 @@ again:		switch(argv[0][0]) {
 				argv++;
 				argc--;
 				p2 = argv[0];
-				while (*p1++ = *p2++);
+				while ((*p1++ = *p2++));
 			}
 			break;
 
@@ -213,10 +221,8 @@ again:		switch(argv[0][0]) {
 	}
 }
 
-void limread(p, argcp, argvp)
-register struct xy *p;
-int *argcp;
-char ***argvp;
+void
+limread(register struct xy *p, int *argcp, char ***argvp)
 {
 	if(*argcp>1 && (*argvp)[1][0]=='l') {
 		(*argcp)--;
@@ -234,10 +240,8 @@ char ***argvp;
 	p->xqf = 1;
 }
 
-numb(np, argcp, argvp)
-int *argcp;
-float *np;
-register char ***argvp;
+int
+numb(float *np, int *argcp, register char ***argvp)
 {
 	register char c;
 
@@ -245,7 +249,7 @@ register char ***argvp;
 		return(0);
 	while((c=(*argvp)[1][0]) == '+')
 		(*argvp)[1]++;
-	if(!(isdigit(c) || c=='-'&&(*argvp)[1][1]<'A' || c=='.'))
+	if(!(isdigit(c) || (c == '-' && (*argvp)[1][1] < 'A') || c=='.'))
 		return(0);
 	*np = atof((*argvp)[1]);
 	(*argcp)--;
@@ -253,9 +257,10 @@ register char ***argvp;
 	return(1);
 }
 
-void readin()
+void
+readin(void)
 {
-	register t;
+	register int t;
 	struct val *temp;
 
 	if(absf==1) {
@@ -287,9 +292,10 @@ void readin()
 	}
 }
 
-void transpose()
+void
+transpose(void)
 {
-	register i;
+	register int i;
 	float f;
 	struct xy t;
 	if(!transf)
@@ -300,25 +306,25 @@ void transpose()
 	}
 }
 
-copystring(k)
+int
+copystring(int k)
 {
 	register char *temp;
-	register i;
+	register int i;
 	int q;
 
-	temp = realloc(labs_,(unsigned)(labs_iz+1+k));
+	temp = realloc(labs_,(unsigned)(labsiz+1+k));
 	if(temp==0)
 		return(0);
 	labs_ = temp;
-	q = labs_iz;
+	q = labsiz;
 	for(i=0;i<=k;i++)
-		labs_[labs_iz++] = labbuf[i];
+		labs_[labsiz++] = labbuf[i];
 	return(q);
 }
 
 float
-modceil(f,t)
-float f,t;
+modceil(float f, float t)
 {
 
 	t = fabs(t);
@@ -326,18 +332,16 @@ float f,t;
 }
 
 float
-modfloor(f,t)
-float f,t;
+modfloor(float f, float t)
 {
 	t = fabs(t);
 	return(floor(f/t)*t);
 }
 
-getlim(p,v)
-register struct xy *p;
-struct val *v;
+void
+getlim(register struct xy *p, struct val *v)
 {
-	register i;
+	register int i;
 
 	i = 0;
 	do {
@@ -351,10 +355,10 @@ struct val *v;
 
 struct z {
 	float lb,ub,mult,quant;
-} setloglim(), setlinlim();
+} setloglim(int lbf, int ubf, float lb, float ub), setlinlim(int lbf, int ubf, float xlb, float xub);
 
-void setlim(p)
-register struct xy *p;
+void
+setlim(register struct xy *p)
 {
 	float t,delta,sign;
 	struct z z;
@@ -422,8 +426,7 @@ register struct xy *p;
 }
 
 struct z
-setloglim(lbf,ubf,lb,ub)
-float lb,ub;
+setloglim(int lbf, int ubf, float lb, float ub)
 {
 	float r,s,t;
 	struct z z;
@@ -455,9 +458,7 @@ float lb,ub;
 }
 
 struct z
-setlinlim(lbf,ubf,xlb,xub)
-int lbf,ubf;
-float xlb,xub;
+setlinlim(int lbf, int ubf, float xlb, float xub)
 {
 	struct z z;
 	float r,s,delta;
@@ -497,9 +498,8 @@ loop:
 	return(z);
 }
 
-scale(p,v)
-register struct xy *p;
-struct val *v;
+void
+scale(register struct xy *p, struct val *v)
 {
 	float edge;
 
@@ -512,9 +512,10 @@ struct val *v;
 	p->xb = p->xbot - (*p->xf)(p->xlb)*p->xa + .5;
 }
 
-void axes()
+void
+axes(void)
 {
-	register i;
+	register int i;
 	int mark[50];
 	int xn, yn;
 	if(gridf==0)
@@ -545,9 +546,8 @@ void axes()
 	}
 }
 
-setmark(xmark,p)
-int *xmark;
-register struct xy *p;
+int
+setmark(int *xmark, register struct xy *p)
 {
 	int xn = 0;
 	float x,xl,xu;
@@ -575,17 +575,16 @@ register struct xy *p;
 	}
 	return(xn);
 }
-submark(xmark,pxn,x,p)
-int *xmark;
-int *pxn;
-float x;
-struct xy *p;
+
+void
+submark(int *xmark, int *pxn, float x, struct xy *p)
 {
 	if(1.001*p->xlb < x && .999*p->xub > x)
 		xmark[(*pxn)++] = log10(x)*p->xa + p->xb;
 }
 
-plot()
+void
+plot(void)
 {
 	int ix,iy;
 	int i;
@@ -612,10 +611,8 @@ plot()
 	linemod(modes[1]);
 }
 
-conv(xv,p,ip)
-float xv;
-register struct xy *p;
-int *ip;
+int
+conv(float xv, register struct xy *p, int *ip)
 {
 	long ix;
 	ix = p->xa*(*p->xf)(xv*p->xmult) + p->xb;
@@ -625,18 +622,19 @@ int *ip;
 	return(1);
 }
 
-getfloat(p)
-float *p;
+int
+getfloat(float *p)
 {
-	register i;
+	register int i;
 
 	i = scanf("%f",p);
 	return(i==1);
 }
 
-getstring()
+int
+getstring(void)
 {
-	register i;
+	register int i;
 	char junk[20];
 	i = scanf("%1s",labbuf);
 	if(i==-1)
@@ -663,8 +661,8 @@ getstring()
 	return(strlen(labbuf));
 }
 
-
-symbol(ix,iy,k)
+int
+symbol(int ix, int iy, int k)
 {
 
 	if(symbf==0&&k<0) {
@@ -676,11 +674,12 @@ symbol(ix,iy,k)
 		move(ix,iy);
 		label(k>=0?labs_+k:plotsymb);
 		move(ix,iy);
-		return(!brkf|k<0);
+		return(!brkf|(k<0));
 	}
 }
 
-title()
+void
+title(void)
 {
 	move(xd.xbot,yd.xbot-60);
 	if (titlebuf[0]) {
@@ -694,9 +693,8 @@ title()
 	}
 }
 
-axlab(c,p)
-char c;
-struct xy *p;
+void
+axlab(char c, struct xy *p)
 {
 	char buf[50];
 	sprintf(buf,"%g -%s%c- %g", p->xlb/p->xmult,
@@ -704,7 +702,8 @@ struct xy *p;
 	label(buf);
 }
 
-badarg()
+void
+badarg(void)
 {
 	fprintf(stderr,"graph: error in arguments\n");
 	exit(1);

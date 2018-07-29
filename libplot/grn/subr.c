@@ -23,21 +23,25 @@ static char sccsid[] = "@(#)subr.c	6.1 (Berkeley) 8/29/86";
  *	Errors:		None.
  *---------------------------------------------------------
  */
-outxy(x, y)
-int x, y;			/* The coordinates to be output.  Note:
-				 * these are world coordinates, not screen
-				 * ones.  We scale in this routine.
-				 */
+
+/* The coordinates to be output.  Note:
+ * these are world coordinates, not screen
+ * ones.  We scale in this routine.
+ */
+void
+outxy(int x, int y)
 {
     printf("%.2f %.2f\n", (x - xbot)*scale,(y - ybot)*scale);
 }
 
-outcurxy()
+void
+outcurxy(void)
 {
 	outxy(curx,cury);
 }
 
-void startvector()
+void
+startvector(void)
 {
 	if (!ingrnfile) erase();
 	if (invector) return;
@@ -46,7 +50,8 @@ void startvector()
 	outcurxy();
 }
 
-void endvector()
+void
+endvector(void)
 {
 	if (!invector) return;
 	invector = 0;

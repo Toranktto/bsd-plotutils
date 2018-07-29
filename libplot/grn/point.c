@@ -21,8 +21,8 @@ static char sccsid[] = "@(#)point.c	6.1 (Berkeley) 8/29/86";
  *	The point is made the current point.
  *---------------------------------------------------------
  */
-point(x, y)
-int x, y;
+void
+point(int x, int y)
 {
 	move(x,y);
 	label(POINTSTRING);

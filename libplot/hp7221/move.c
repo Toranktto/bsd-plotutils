@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 5/7/85";
 
 #include "hp7221.h"
 
-move(xi,yi)
-int xi,yi;
+void
+move(int xi, int yi)
 {
 	currentx = scaleX(xi);
 	currenty = scaleY(yi);

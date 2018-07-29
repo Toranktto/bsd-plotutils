@@ -2,10 +2,11 @@
 static char sccsid[] = "@(#)linemod.c	4.1 (Berkeley) 6/27/83";
 #endif
 
-linemod(s)
-char *s;
+void
+linemod(char *s)
 {
 	char c;
+
 	putch(033);
 	switch(s[0]){
 	case 'l':	

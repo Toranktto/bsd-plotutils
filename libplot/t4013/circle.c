@@ -8,6 +8,8 @@
 static char sccsid[] = "@(#)circle.c	5.1 (Berkeley) 6/7/85";
 #endif not lint
 
-circle(x,y,r){
+void
+circle(int x, int y, int r)
+{
 	arc(x,y,x+r,y,x+r,y);
 }

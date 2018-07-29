@@ -10,13 +10,14 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 5/7/85";
 
 #include "dumb.h"
 
-label(string)
-	char *string;
+void
+label(char *string)
 {
 	while(*string != '\0' && currentx < COLS){
 		screenmat[currentx][currenty] = *string++;
 		currentx++;
 	}
+
 	if(currentx == COLS)
 		currentx = currentx-1;
 

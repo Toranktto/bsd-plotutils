@@ -10,8 +10,8 @@ static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 5/7/85";
 
 #include "gigi.h"
 
-cont(xi,yi)
-int xi,yi;
+void
+cont(int xi, int yi)
 {
 	currentx = xsc(xi);
 	currenty = ysc(yi);

@@ -2,7 +2,8 @@
 static char sccsid[] = "@(#)box.c	4.1 (Berkeley) 6/27/83";
 #endif
 
-box(x0, y0, x1, y1)
+void
+box(int x0, int y0, int x1, int y1)
 {
 	move(x0, y0);
 	cont(x0, y1);

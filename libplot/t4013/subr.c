@@ -20,7 +20,16 @@ int scaleflag;
 int oloy = -1;
 int ohiy = -1;
 int ohix = -1;
-cont(x,y){
+
+void
+putch(int c)
+{
+	putc(c,stdout);
+}
+
+void
+cont(int x, int y)
+{
 	int hix,hiy,lox,loy;
 	int n;
 	x = (x-obotx)*scalex + botx;
@@ -47,8 +56,4 @@ cont(x,y){
 	putch(lox|0100);
 	while(n--)
 		putch(0);
-}
-
-putch(c){
-	putc(c,stdout);
 }

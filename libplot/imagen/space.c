@@ -18,7 +18,10 @@ extern float scaley;
 int PlotRes = DEFRES;
 
 int scaleflag;
-void space(x0,y0,x1,y1){
+
+void
+space(int x0, int y0, int x1, int y1)
+{
 	botx = 2.;
 	boty = 2.;
 	obotx = x0;
