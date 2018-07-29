@@ -4,7 +4,7 @@ LIB=	f77plot
 SRCS=	arc.c box.c circle.c clospl.c cont.c dot.c erase.c label.c \
 	line.c linemd.c move.c open.c point.c space.c
 CFLAGS+=	-I../plot
-CSTD=c89
+CSTD=c99
 PREFIX=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib
