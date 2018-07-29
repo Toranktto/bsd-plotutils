@@ -3,34 +3,34 @@
 .TH PLOT 3X  "November 24, 1987"
 .AT 3
 .SH NAME
-plot: openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, closepl \- graphics interface
+openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, closepl \- graphics interface
 .SH SYNOPSIS
 .nf
-.B openpl()
+.B #include <plot.h>
 .PP
-.B erase()
+.B void openpl(void);
 .PP
-.B label(s)
-.B char s[];
+.B void erase(void);
 .PP
-.B line(x1, y1, x2, y2)
+.B void label(char *s);
 .PP
-.B circle(x, y, r)
+.B void line(int x1, int y1, int x2, int y2);
 .PP
-.B arc(x, y, x0, y0, x1, y1)
+.B void circle(int x, int y, int r);
 .PP
-.B move(x, y)
+.B void arc(int x, int y, int x0, int y0, int x1, int y1);
 .PP
-.B cont(x, y)
+.B void move(int x, int y);
 .PP
-.B point(x, y)
+.B void cont(int x, int y);
 .PP
-.B linemod(s)
-.B char s[];
+.B void point(int x, int y);
 .PP
-.B space(x0, y0, x1, y1)
+.B void linemod(char *s);
 .PP
-.B closepl()
+.B void space(int x0, int y0, int x1, int y1);
+.PP
+.B void closepl(void);
 .fi
 .PP
 .ft R

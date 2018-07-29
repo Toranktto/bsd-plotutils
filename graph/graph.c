@@ -48,7 +48,6 @@ int	brkf;
 float	dx;
 char	*plotsymb;
 
-double	atof();
 #define BSIZ 80
 char	labbuf[BSIZ];
 char	titlebuf[BSIZ];
