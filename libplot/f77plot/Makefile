@@ -1,0 +1,15 @@
+#	@(#)Makefile	5.3 (Berkeley) 5/11/90
+
+LIB=	f77plot
+SRCS=	arc.c box.c circle.c clospl.c cont.c dot.c erase.c label.c \
+	line.c linemd.c move.c open.c point.c space.c
+CFLAGS+=	-I../plot
+CSTD=c89
+PREFIX=	/usr/local
+BINDIR=	${PREFIX}/bin
+LIBDIR=	${PREFIX}/lib
+MANDIR=	${PREFIX}/man/man
+FILESDIR=	${PREFIX}/share/misc
+INCLUDEDIR=	${PREFIX}/include
+
+.include <bsd.lib.mk>

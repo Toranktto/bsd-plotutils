@@ -7,6 +7,7 @@ INCS=	plot.h
 CSTD=c99
 CFLAGS+=	-I.
 MAN=	plot.3
+MLINKS+=	plot.3 f77plot.3
 PREFIX=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib

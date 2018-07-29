@@ -3,7 +3,7 @@
 .TH PLOT 3X  "November 24, 1987"
 .AT 3
 .SH NAME
-openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, closepl, dot \- graphics interface
+openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, closepl, dot, box \- graphics interface
 .SH SYNOPSIS
 .nf
 .B #include <plot.h>
@@ -33,6 +33,8 @@ openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, clos
 .B void closepl(void);
 .PP
 .B void dot(int xi, int yi, int dx, int n, int pat[]);
+.PP
+.B void box(int x0, int y0, int x1, int y1);
 .fi
 .PP
 .ft R
@@ -55,7 +57,7 @@ are null-terminated, and do not contain newlines.
 Various flavors of these functions exist for different output devices. 
 They are obtained by the following
 .IR ld (1)
-options:
+options (when linking with FORTRAN program, use also -lf77plot before any other):
 .TP 8n
 .B \-lplot
 device-independent graphics stream on standard output for 
