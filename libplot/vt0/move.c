@@ -2,8 +2,13 @@
 static char sccsid[] = "@(#)move.c	4.1 (Berkeley) 6/27/83";
 #endif
 
+#include <plot.h>
+#include <unistd.h>
+
 extern int vti;
 extern int xnow,ynow;
+extern int xsc(int xi);
+extern int ysc(int yi);
 
 void
 move(int xi, int yi)

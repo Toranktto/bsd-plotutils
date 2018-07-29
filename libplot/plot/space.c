@@ -3,6 +3,7 @@ static char sccsid[] = "@(#)space.c	4.1 (Berkeley) 6/27/83";
 #endif
 
 #include <stdio.h>
+#include <plot.h>
 
 extern void putsi(int a);
 

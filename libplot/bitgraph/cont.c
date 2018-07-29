@@ -6,13 +6,13 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)cont.c	5.2 (Berkeley) 4/30/85";
-#endif not lint
+#endif /* not lint */
 
 
 #include "bg.h"
 
-cont(xi,yi)
-int xi,yi;
+void
+cont(int xi, int yi)
 {
 	currentx = scaleX(xi);
 	currenty = scaleY(yi);

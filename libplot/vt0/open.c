@@ -2,6 +2,9 @@
 static char sccsid[] = "@(#)open.c	4.2 (Berkeley) 11/10/83";
 #endif
 
+#include <plot.h>
+#include <fcntl.h>
+
 int xnow;
 int ynow;
 float boty = 0.;

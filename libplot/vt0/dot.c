@@ -2,10 +2,14 @@
 static char sccsid[] = "@(#)dot.c	4.1 (Berkeley) 6/27/83";
 #endif
 
+#include <unistd.h>
+
 extern int vti;
+extern int xsc(int xi);
+extern int ysc(int yi);
 
 void
-dot(int xi, int yi, int dx, int n, pat[])
+dot(int xi, int yi, int dx, int n, int pat[])
 {
 	struct {char pad,c; int xi,yi,dx;} p;
 	p.c = 7;

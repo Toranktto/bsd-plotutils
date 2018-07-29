@@ -2,6 +2,9 @@
 static char sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
 #endif
 
+#include <plot.h>
+#include <unistd.h>
+
 extern int vti;
 
 void

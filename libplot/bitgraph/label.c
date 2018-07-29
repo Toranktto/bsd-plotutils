@@ -6,11 +6,12 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)label.c	5.2 (Berkeley) 4/30/85";
-#endif not lint
+#endif /* not lint */
 
+#include "bg.h"
 
-label(s)
-char *s;
+void
+label(char *s)
 {
 	printf("%s", s);
 }

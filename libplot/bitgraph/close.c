@@ -6,13 +6,14 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)close.c	5.2 (Berkeley) 4/30/85";
-#endif not lint
+#endif /* not lint */
 
 
 #include <signal.h>
 #include "bg.h"
 
-closepl()
+void
+closepl(void)
 {
 	/* recieve interupts */
 	signal(SIGINT, SIG_IGN);

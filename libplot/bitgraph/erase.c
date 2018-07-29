@@ -6,12 +6,13 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)erase.c	5.2 (Berkeley) 4/30/85";
-#endif not lint
+#endif /* not lint */
 
 
 #include "bg.h"
 
-erase()
+void
+erase(void)
 {
 	putchar( ESC );
 	printf("[H");

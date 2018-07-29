@@ -2,7 +2,10 @@
 static char sccsid[] = "@(#)circle.c	4.1 (Berkeley) 6/27/83";
 #endif
 
-extern vti;
+#include <plot.h>
+#include <unistd.h>
+
+extern int vti;
 
 void
 circle(int x, int y, int r)

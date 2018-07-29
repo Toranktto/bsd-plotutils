@@ -6,7 +6,7 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)open.c	5.2 (Berkeley) 4/30/85";
-#endif not lint
+#endif /* not lint */
 
 
 /*
@@ -14,6 +14,7 @@ static char sccsid[] = "@(#)open.c	5.2 (Berkeley) 4/30/85";
  */
 
 #include <signal.h>
+#include <plot.h>
 #include "bg.h"
 
 int currentx = 0;
@@ -22,12 +23,11 @@ double lowx = 0.0;
 double lowy = 0.0;
 double scale = 1.0;
 
-openpl()
+void
+openpl(void)
 {
-	int closepl();
-
 	/* catch interupts */
-	signal(SIGINT, closepl);
+	signal(SIGINT, (__sighandler_t *) closepl);
 	currentx = 0;
 	currenty = 0;
 

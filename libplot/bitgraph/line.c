@@ -6,13 +6,12 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)line.c	5.2 (Berkeley) 4/30/85";
-#endif not lint
-
+#endif /* not lint */
 
 #include "bg.h"
 
-line(x0,y0,x1,y1)
-int x0,y0,x1,y1;
+void
+line(int x0, int y0, int x1, int y1)
 {
 	if(scaleX(x0)==currentx && scaleY(y0)==currenty)
 		cont(x1,y1);

@@ -6,8 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)linemod.c	5.2 (Berkeley) 4/30/85";
-#endif not lint
+#endif /* not lint */
 
+#include "bg.h"
 
-linemod(){
+void
+linemod(char *s)
+{
 }

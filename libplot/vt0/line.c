@@ -2,8 +2,13 @@
 static char sccsid[] = "@(#)line.c	4.1 (Berkeley) 6/27/83";
 #endif
 
+#include <plot.h>
+#include <unistd.h>
+
 extern int vti;
 extern int xnow,ynow;
+extern int xsc(int xi);
+extern int ysc(int yi);
 
 void
 line(int x0, int y0, int x1, int y1)

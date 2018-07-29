@@ -1,8 +1,7 @@
-#	@(#)Makefile	4.6 (Berkeley) 5/11/90
+#	@(#)Makefile	5.2 (Berkeley) 5/11/90
 
-PROG=	graph
-LDADD=	-L../libplot/plot -lplot -lm
-CFLAGS+=	-I../libplot/plot
+PROG=	spline
+MAN=	spline.1
 PREFIX=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib
@@ -12,6 +11,6 @@ INCLUDEDIR=	${PREFIX}/include
 
 install: maninstall
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROG} \
-	    ${DESTDIR}${BINDIR}/graph
+	    ${DESTDIR}${BINDIR}/spline
 
 .include <bsd.prog.mk>

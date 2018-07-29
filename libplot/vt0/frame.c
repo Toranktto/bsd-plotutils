@@ -2,6 +2,8 @@
 static char sccsid[] = "@(#)frame.c	4.1 (Berkeley) 6/27/83";
 #endif
 
+#include <unistd.h>
+
 extern int vti;
 
 void

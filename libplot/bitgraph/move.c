@@ -6,13 +6,13 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)move.c	5.2 (Berkeley) 4/30/85";
-#endif not lint
+#endif /* not lint */
 
 
 #include "bg.h"
 
-move(xi,yi)
-int xi,yi;
+void
+move(int xi, int yi)
 {
 	currentx = scaleX(xi);
 	currenty = scaleY(yi);
