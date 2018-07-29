@@ -3,6 +3,7 @@
 PROG=	graph
 LDADD=	-L../libplot/plot -lplot -lm
 CFLAGS+=	-I../libplot/plot
+CSTD=c99
 PREFIX=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib

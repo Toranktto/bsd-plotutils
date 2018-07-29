@@ -6,9 +6,10 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "dumb.h"
+#include <plot.h>
 
 void
 move(int x, int y)

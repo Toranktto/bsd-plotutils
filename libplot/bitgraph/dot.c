@@ -8,7 +8,9 @@
 static char sccsid[] = "@(#)dot.c	5.2 (Berkeley) 4/30/85";
 #endif /* not lint */
 
+#include <plot.h>
+
 void
-dot(void)
+dot(int xi, int yi, int dx, int n, int pat[])
 {
 }

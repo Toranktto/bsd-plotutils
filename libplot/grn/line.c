@@ -6,9 +6,10 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)line.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
 #include "grnplot.h"
+#include <plot.h>
 
 /*---------------------------------------------------------
  *	Line draws a line between two points.

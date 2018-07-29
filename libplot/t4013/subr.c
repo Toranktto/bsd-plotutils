@@ -6,9 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)subr.c	5.1 (Berkeley) 6/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include <stdio.h>
+#include <stdlib.h>
+
 float obotx = 0.;
 float oboty = 0.;
 float botx = 0.;

@@ -6,9 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)dot.c	5.1 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
+
+#include <plot.h>
 
 void
-dot(void)
+dot(int xi, int yi, int dx, int n, int pat[])
 {
 }

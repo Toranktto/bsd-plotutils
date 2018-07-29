@@ -3,6 +3,8 @@ static char sccsid[] = "@(#)subr.c	4.2 (Berkeley) 7/15/87";
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
+
 float obotx = 0.;
 float oboty = 0.;
 float botx = 0.;

@@ -6,9 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include <signal.h>
+#include <stdlib.h>
+#include <plot.h>
 #include "gigi.h"
 
 void

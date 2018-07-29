@@ -3,6 +3,6 @@
 SUBDIR=	bitgraph dumb gigi grn hp7221 imagen plot \
 	t4013 t4014 vt0
 
-# hp2648, t300, t300s, t450, and aed are broken.
+# hp2648, t300, t300s, t450, and aed are depend on sgtty.h which is no longer exist in many modern OSes.
 
 .include <bsd.subdir.mk>

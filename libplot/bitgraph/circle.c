@@ -9,6 +9,7 @@ static char sccsid[] = "@(#)circle.c	5.2 (Berkeley) 4/30/85";
 #endif /* not lint */
 
 #include "bg.h"
+#include <plot.h>
 
 void
 circle(int xc, int yc, int r)

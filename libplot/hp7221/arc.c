@@ -6,9 +6,10 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)arc.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "hp7221.h"
+#include <plot.h>
 
 /* 
  * 7221 requires knowing the anlge of arc.  To do this, the triangle formula
@@ -27,25 +28,25 @@ static char sccsid[] = "@(#)arc.c	5.1 (Berkeley) 5/7/85";
 #define side(x,y)	(a*(x)+b*(y)+c > 0.0 ? 1 : -1)
 
 void
-arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend)
+arc(int x, int y, int x0, int y0, int x1, int y1)
 {
 	double radius2, c2;
 	double a,b,c;
 	int angle;
 
 	/* Probably should check that this is really a circular arc.  */
-	radius2 = (xcent-xbeg)*(xcent-xbeg) + (ycent-ybeg)*(ycent-ybeg);
-	c2 = (xend-xbeg)*(xend-xbeg) + (yend-ybeg)*(yend-ybeg);
+	radius2 = (x-x0)*(x-x0) + (y-y0)*(y-y0);
+	c2 = (x1-x0)*(x1-x0) + (y1-y0)*(y1-y0);
 	angle = (int) ( 180.0/PI * acos(1.0 - c2/(2.0*radius2)) + 0.5 );
 
-	a = (double) (ycent - ybeg);
-	b = (double) (xcent - xbeg);
-	c = (double) (ycent*xbeg - xcent*ybeg);
-	if (side(xbeg + (ycent-ybeg), ybeg - (xcent-xbeg)) != side(xend,yend))
+	a = (double) (y - y0);
+	b = (double) (x - x0);
+	c = (double) (y*x0 - x*y0);
+	if (side(x0 + (y-y0), y0 - (x-x0)) != side(x1,y1))
 		angle += 180;
 	
-	move(xcent, ycent);
+	move(x, y);
 	/* Not quite implemented...
-	printf("C(A%d c)[%d,%d]", angle, xbeg, ybeg);
+	printf("C(A%d c)[%d,%d]", angle, x0, y0);
 	*/
 }

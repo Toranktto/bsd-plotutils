@@ -13,5 +13,6 @@ void point(int x, int y);
 void linemod(char *s);
 void space(int x0, int y0, int x1, int y1);
 void closepl(void);
+void dot(int xi, int yi, int dx, int n, int pat[]);
 
 #endif

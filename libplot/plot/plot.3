@@ -3,7 +3,7 @@
 .TH PLOT 3X  "November 24, 1987"
 .AT 3
 .SH NAME
-openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, closepl \- graphics interface
+openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, closepl, dot \- graphics interface
 .SH SYNOPSIS
 .nf
 .B #include <plot.h>
@@ -31,6 +31,8 @@ openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, clos
 .B void space(int x0, int y0, int x1, int y1);
 .PP
 .B void closepl(void);
+.PP
+.B void dot(int xi, int yi, int dx, int n, int pat[]);
 .fi
 .PP
 .ft R

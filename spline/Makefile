@@ -2,6 +2,8 @@
 
 PROG=	spline
 MAN=	spline.1
+CFLAGS+=	-I../libplot/plot
+CSTD=c99
 PREFIX=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib

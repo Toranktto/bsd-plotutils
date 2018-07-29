@@ -6,7 +6,7 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)charset.c	1.1 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
 
 #include "imp.h"
 char *imP_charset = "cour07";

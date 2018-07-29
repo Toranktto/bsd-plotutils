@@ -6,7 +6,7 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)scale.c	5.1 (Berkeley) 6/7/85";
-#endif not lint
+#endif /* not lint */
 
 extern float scalex;
 extern float scaley;

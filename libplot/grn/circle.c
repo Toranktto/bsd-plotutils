@@ -6,10 +6,13 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)circle.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
-
+#include <plot.h>
 #include "grnplot.h"
+
+extern void outxy(int x, int y);
+extern void endvector(void);
 
 /*---------------------------------------------------------
  *	Circle draws a circle.
@@ -21,8 +24,8 @@ static char sccsid[] = "@(#)circle.c	6.1 (Berkeley) 8/29/86";
  *	The current position is set to (x,y);
  *---------------------------------------------------------
  */
-circle(x, y, r)
-int x, y, r;
+void
+circle(int x, int y, int r)
 {
 	if (!ingrnfile) erase();
 	endvector();

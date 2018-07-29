@@ -6,10 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)point.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
 
 #include "grnplot.h"
+#include <plot.h>
 
 /*---------------------------------------------------------
  *	This routine plots a single point.

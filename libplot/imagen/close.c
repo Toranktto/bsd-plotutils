@@ -6,10 +6,14 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
 
 #include "imp.h"
 #include "imPcodes.h"
+
+#include <plot.h>
+
+extern void putch(int c);
 
 void
 closepl(void)

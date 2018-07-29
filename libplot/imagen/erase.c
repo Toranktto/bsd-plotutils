@@ -6,10 +6,14 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)erase.c	5.1 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
 
 #include "imPcodes.h"
 #include "imp.h"
+
+#include <plot.h>
+
+extern void putch(int c);
 
 void
 erase(void)

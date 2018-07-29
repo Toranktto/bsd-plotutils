@@ -9,6 +9,7 @@ static char sccsid[] = "@(#)line.c	5.2 (Berkeley) 4/30/85";
 #endif /* not lint */
 
 #include "bg.h"
+#include <plot.h>
 
 void
 line(int x0, int y0, int x1, int y1)

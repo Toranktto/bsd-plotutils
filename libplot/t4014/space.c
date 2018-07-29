@@ -2,6 +2,8 @@
 static char sccsid[] = "@(#)space.c	4.1 (Berkeley) 6/27/83";
 #endif
 
+#include <plot.h>
+
 extern float botx;
 extern float boty;
 extern float obotx;

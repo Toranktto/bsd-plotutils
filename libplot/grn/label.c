@@ -6,10 +6,14 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)label.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
-
+#include <plot.h>
 #include "grnplot.h"
+#include <string.h>
+
+extern void outcurxy(void);
+extern void endvector(void);
 
 /*---------------------------------------------------------
  *	This routine places a label starting at the current
@@ -29,5 +33,5 @@ label(char *s)
 	endvector();
 	printf("BOTLEFT\n");
 	outcurxy();
-	printf("*\n%d %d\n%d %s\n",FONTSTYLE,FONTSIZE,strlen(s)-1,s);
+	printf("*\n%d %d\n%lu %s\n",FONTSTYLE,FONTSIZE,strlen(s)-1,s);
 }

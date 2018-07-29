@@ -6,10 +6,13 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)close.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
 
 #include "grnplot.h"
+#include <plot.h>
+
+extern void endvector(void);
 
 /*---------------------------------------------------------
  *	Closepl ends the gremlin file

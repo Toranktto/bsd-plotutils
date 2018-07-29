@@ -10,6 +10,7 @@ static char sccsid[] = "@(#)cont.c	5.2 (Berkeley) 4/30/85";
 
 
 #include "bg.h"
+#include <plot.h>
 
 void
 cont(int xi, int yi)

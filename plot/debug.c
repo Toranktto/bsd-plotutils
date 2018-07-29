@@ -7,7 +7,9 @@ static char sccsid[] = "@(#)debug.c	4.2 (Berkeley) 1/9/85";
 float deltx;
 float delty;
 
-main(argc,argv)  char **argv; {
+int
+main(int argc, char **argv)
+{
 	int std=1;
 	FILE *fin;
 
@@ -20,32 +22,35 @@ main(argc,argv)  char **argv; {
 				case 'w':
 					delty = atoi(&argv[1][2]) - 1;
 					break;
-				}
-
+			}
 		else {
 			std = 0;
 			if ((fin = fopen(argv[1], "r")) == NULL) {
 				fprintf(stderr, "can't open %s\n", argv[1]);
 				exit(1);
-				}
-			fplt(fin);
 			}
-		argv++;
+			fplt(fin);
 		}
-	if (std)
-		fplt( stdin );
-	exit(0);
+		argv++;
 	}
 
+	if (std)
+		fplt( stdin );
 
-fplt(fin)  FILE *fin; {
+	exit(0);
+}
+
+void
+fplt(FILE *fin)
+{
 	int c;
 	char s[256];
 	int xi,yi,x0,y0,x1,y1,r/*,dx,n,i*/;
 
 	printf("openpl\n");
-	while((c=getc(fin)) != EOF){
-		switch(c){
+
+	while((c=getc(fin)) != EOF) {
+		switch(c) {
 		case 'm':
 			xi = getsi(fin);
 			yi = getsi(fin);
@@ -104,11 +109,16 @@ fplt(fin)  FILE *fin; {
 		default:
 			fprintf(stderr, "Unknown command %c (%o)\n", c, c);
 			break;
-			}
 		}
-	printf("closepl\n");
 	}
-getsi(fin)  FILE *fin; {	/* get an integer stored in 2 ascii bytes. */
+
+	printf("closepl\n");
+}
+
+/* get an integer stored in 2 ascii bytes. */
+int
+getsi(FILE *fin)
+{
 	short a, b;
 	if((b = getc(fin)) == EOF)
 		return(EOF);
@@ -117,7 +127,10 @@ getsi(fin)  FILE *fin; {	/* get an integer stored in 2 ascii bytes. */
 	a = a<<8;
 	return(a|b);
 }
-getstr(s,fin)  char *s;  FILE *fin; {
+
+void
+getstr(char *s, FILE *fin)
+{
 	for( ; *s = getc(fin); s++)
 		if(*s == '\n')
 			break;

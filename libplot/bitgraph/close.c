@@ -10,6 +10,8 @@ static char sccsid[] = "@(#)close.c	5.2 (Berkeley) 4/30/85";
 
 
 #include <signal.h>
+#include <plot.h>
+#include <stdlib.h>
 #include "bg.h"
 
 void

@@ -15,10 +15,11 @@ because some function names conflicted with the curses library.
 
 
 #include <curses.h>
+#include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include <signal.h>
 #include <term.h>
-
 
 /*  These map from plot routine coordinates to screen coordinates.  */
 #define scaleX(x)		(int) ((x-lowX)*rangeX + 0.5)
@@ -26,30 +27,31 @@ because some function names conflicted with the curses library.
 
 #define plot_movech(y, x, ch)	{ plot_move(x, y); plot_addch(ch); }
 
+void arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend);
+void dda_line(char ch, int x0, int y0, int x1, int y1);
+void closepl(void);
+
 
 static double lowX, rangeX;	/* min and range of x */
 static double lowY, rangeY;	/* min and range of y */
 static int lastX, lastY;	/* last point plotted */
 
-
-char *getenv();
-
 /* This routine just moves the cursor. */
-screen_move(y, x)
-int x,y;
+void
+screen_move(int y, int x)
 {
 	/* must check for automatic wrap at last col */
 	if (!tgetflag("am") || (y < LINES -1) || (x < COLS -1)) {
 		move(y, x);
 		lastY = y;
 		lastX = x;
-		}
+	}
 }
 
 
 /* This routine assumes the cursor is positioned correctly. */
-plot_addch(ch)
-char ch;
+void
+plot_addch(char ch)
 {
 	addch(ch);
 	if (++lastX >= COLS) {
@@ -58,62 +60,52 @@ char ch;
 			lastY++;
 		} else {
 			lastX = COLS - 1;
-			}
 		}
+	}
 }		
 
 
-
-
 /* See the curses manual for what is been done and why. */
-openpl()
+void
+openpl(void)
 {
-int closepl();
-
-initscr();
-signal(SIGINT, closepl);
-
+	initscr();
+	signal(SIGINT, (__sighandler_t *) closepl);
 }
 
 
-
-
-closepl()
+void
+closepl(void)
 {
-signal(SIGINT, SIG_IGN);
-/* Leave cursor at top of screen. */
-move(0, 0);
-/* Wait for quit */
-for(;getch() != 'q';);
+	signal(SIGINT, SIG_IGN);
+	/* Leave cursor at top of screen. */
+	move(0, 0);
+	/* Wait for quit */
+	while(getch() != 'q');
 
-endwin();
-exit(0);
+	endwin();
+	exit(0);
 }
 
 
-
-plot_move(x,y)
-int x, y;
+void
+plot_move(int x, int y)
 {
-screen_move(scaleY(y), scaleX(x));
+	screen_move(scaleY(y), scaleX(x));
 }
 
 
-
-line(x0, y0, x1, y1)
-int x0, y0, x1, y1;
+void
+line(int x0, int y0, int x1, int y1)
 {
-void dda_line();
-
-plot_movech(y0, x0, '*');
-dda_line('*', scaleX(x0), scaleY(y0), scaleX(x1), scaleY(y1));
+	plot_movech(y0, x0, '*');
+	dda_line('*', scaleX(x0), scaleY(y0), scaleX(x1), scaleY(y1));
 }
 
-label(str)
-char *str;
+void
+label(char *str)
 {
-	register i, length;
-	int strlen();
+	register int i, length;
 
 	if ( (length=strlen(str)) > (COLS-lastX) )
 		length = COLS - lastX;
@@ -121,109 +113,98 @@ char *str;
 		plot_addch(str[i]);
 }
 
-plot_erase()
+void
+plot_erase(void)
 {
-/*
-Some of these functions probably belong in openpl().  However, if the
-input is being typed in, putting them in openpl would not work
-since "noecho", etc would prevent (sort of) input.  Notice that
-the driver calls openpl before doing anything.  This is actually
-wrong, but it is what whoever originally wrote the driver decided
-to do.  (openpl() in libplot does nothing -- that is the main problem!)
-*/
-putp(enter_ca_mode);
-putp(cursor_visible);
+	/*
+	Some of these functions probably belong in openpl().  However, if the
+	input is being typed in, putting them in openpl would not work
+	since "noecho", etc would prevent (sort of) input.  Notice that
+	the driver calls openpl before doing anything.  This is actually
+	wrong, but it is what whoever originally wrote the driver decided
+	to do.  (openpl() in libplot does nothing -- that is the main problem!)
+	*/
+	putp(enter_ca_mode);
+	putp(cursor_visible);
 
-noecho();
-nonl();
-tputs(clear_screen, LINES, putchar);
-move(LINES-1, 0);
-lastX = 0;
-lastY = LINES-1;
+	noecho();
+	nonl();
+	tputs(clear_screen, LINES, putchar);
+	move(LINES-1, 0);
+	lastX = 0;
+	lastY = LINES-1;
 }
 
-
-point(x, y)
-int x,y;
+void
+point(int x, int y)
 {
-plot_movech(y, x, '*');
+	plot_movech(y, x, '*');
 }
 
-
-cont(x, y)
-int x,y;
+void
+cont(int x, int y)
 {
-dda_line('*', lastX-1, lastY, scaleX(x), scaleY(y));
+	dda_line('*', lastX-1, lastY, scaleX(x), scaleY(y));
 }
 
-
-space(x0, y0, x1, y1)
-int x0, y0, x1, y1;
+void
+space(int x0, int y0, int x1, int y1)
 {
-lowX = (double) x0;
-lowY = (double) y0;
-rangeX = COLS/(double) (x1 - x0);
-rangeY = LINES/(double) (y1 - y0);
+	lowX = (double) x0;
+	lowY = (double) y0;
+	rangeX = COLS/(double) (x1 - x0);
+	rangeY = LINES/(double) (y1 - y0);
 }
 
-
-linemod(string)
-char *string;
+void
+linemod(char *string)
 {
 }
-
 
 
 /* See Neuman & Sproul for explanation and rationale. */
 /* Does not plot first point -- assumed that it is already plotted */
-void dda_line(ch, x0, y0, x1, y1)
-char ch;
-int x0, y0, x1, y1;	/* already transformed to screen coords */
+/* x0, y0, x1, y1 - already transformed to screen coords */
+void
+dda_line(char ch, int x0, int y0, int x1, int y1)
 {
 	int length, i;
 	double deltaX, deltaY;
 	double x, y;
-	double floor();
-	int abs();
 
-length = abs(x1 - x0);
-if (abs(y1 -y0) > length)
-	length = abs(y1 - y0);
+	length = abs(x1 - x0);
+	if (abs(y1 -y0) > length)
+		length = abs(y1 - y0);
 
-if (length == 0)
-	return;
+	if (length == 0)
+		return;
 
-deltaX = (double) (x1 - x0)/(double) length;
-deltaY = (double) (y1 - y0)/(double) length;
+	deltaX = (double) (x1 - x0)/(double) length;
+	deltaY = (double) (y1 - y0)/(double) length;
 
-x = (double) x0 + 0.5;
-y = (double) y0 + 0.5;
+	x = (double) x0 + 0.5;
+	y = (double) y0 + 0.5;
 
-for (i=0; i < length; ++i)
-	{
-	x += deltaX;
-	y += deltaY;
-	screen_move((int) floor(y), (int) floor(x));
-	plot_addch(ch);
+	for (i=0; i < length; ++i) {
+		x += deltaX;
+		y += deltaY;
+		screen_move((int) floor(y), (int) floor(x));
+		plot_addch(ch);
 	}
 }
 
-
-circle (xc,yc,r)
-int xc,yc,r;
+void
+circle(int xc, int yc,int r)
 {
-	void arc();
-
 	arc(xc,yc, xc+r,yc, xc-r,yc);
 	arc(xc,yc, xc-r,yc, xc+r,yc);
 }
 
-
 /* should include test for equality? */
 #define side(x,y)	(a*(x)+b*(y)+c > 0.0 ? 1 : -1)
 
-void arc(xc,yc,xbeg,ybeg,xend,yend)
-int xc,yc,xbeg,ybeg,xend,yend;
+void
+arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 {
 	double r, radius, costheta, sintheta;
 	double a, b, c, x, y, tempX;

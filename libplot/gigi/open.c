@@ -6,7 +6,7 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 /*
  * Displays plot files on a gigi "graphics" terminal.
@@ -14,8 +14,7 @@ static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
 
 #include <signal.h>
 #include "gigi.h"
-
-extern void closepl(void);
+#include <plot.h>
 
 int currentx = 0;
 int currenty = 0;
@@ -28,7 +27,7 @@ void
 openpl(void)
 {
 	/* catch interupts */
-	signal(SIGINT, closepl);
+	signal(SIGINT, (__sighandler_t *) closepl);
 	currentx = 0;
 	currenty = 0;
 	/* enter grapics mode */

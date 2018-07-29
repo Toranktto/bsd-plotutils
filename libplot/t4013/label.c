@@ -6,13 +6,18 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 6/7/85";
-#endif not lint
+#endif /* not lint */
+
+#include <plot.h>
+
+extern void putch(int c);
 
 void
 label(char *s)
 {
-	register i,c;
+	register int i,c;
+
 	putch(037);	/* alpha mode */
-	for(i=0; c=s[i]; i++)
+	for(i=0; (c=s[i]); i++)
 		putch(c);
 }

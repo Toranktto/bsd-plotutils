@@ -3,14 +3,19 @@ static char sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <plot.h>
 
 float deltx;
 float delty;
 int PlotRes;
 
-main(argc,argv)
-	int argc;
-	char *argv[];
+void fplt(FILE *fin);
+int getsi(register FILE *fin);
+void getstr(register char *s, register FILE *fin);
+
+int
+main(int argc, char *argv[])
 {
 	int std = 1;
 	char *progname;
@@ -39,16 +44,19 @@ main(argc,argv)
 			    argv[0]);
 			exit(1);
 		}
+
 		fplt(fin);
 		fclose(fin);
 	}
+
 	if (std)
 		fplt(stdin);
+
 	exit(0);
 }
 
-fplt(fin)
-	FILE *fin;
+void
+fplt(FILE *fin)
 {
 	register int c;
 	char s[256];
@@ -128,8 +136,8 @@ fplt(fin)
 }
 
 /* get an integer stored in 2 ascii bytes. */
-getsi(fin)
-	register FILE *fin;
+int
+getsi(register FILE *fin)
 {
 	short a, b;
 
@@ -141,12 +149,10 @@ getsi(fin)
 	return(a|b);
 }
 
-getstr(s, fin)
-	register char *s;
-	register FILE *fin;
+void
+getstr(register char *s, register FILE *fin)
 {
-
-	for( ; *s = getc(fin); s++)
+	for( ; (*s = getc(fin)); s++)
 		if(*s == '\n')
 			break;
 	*s = '\0';

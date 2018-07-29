@@ -6,10 +6,14 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)cont.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
 
 #include "grnplot.h"
+#include <plot.h>
+
+void startvector(void);
+void outcurxy(void);
 
 /*---------------------------------------------------------
  *	Cont plots a line between (curx, cury) and (x, y).
@@ -18,8 +22,8 @@ static char sccsid[] = "@(#)cont.c	6.1 (Berkeley) 8/29/86";
  *	Side Effects:	As above.
  *---------------------------------------------------------
  */
-cont(x, y)
-int x, y;
+void
+cont(int x, int y)
 {
     startvector();
     curx = x;

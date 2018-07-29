@@ -6,10 +6,13 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
+#include <stdlib.h>
 #include <signal.h>
+#include <stdio.h>
 #include "dumb.h"
+#include <plot.h>
 
 void
 closepl(void)

@@ -6,10 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)subr.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "dumb.h"
 #include <math.h>
+#include <stdlib.h>
 
 /* Does not plot first point -- assumed that it is already plotted */
 /* x0, y0 - already transformed to screen coords */

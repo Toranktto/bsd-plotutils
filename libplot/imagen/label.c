@@ -6,11 +6,16 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
 
 #include "imPcodes.h"
 #include "imp.h"
-extern imPcsize;
+#include <plot.h>
+
+extern int imPcsize;
+
+extern void putwd(int w);
+extern void putch(int c);
 
 void
 label(char *s)
@@ -21,7 +26,7 @@ label(char *s)
 	putwd((int)((imPx-obotx)*scalex+botx)-imPcsize/2);
 	putch(imP_SET_ABS_V);
 	putwd((int)((imPy-oboty)*scaley+boty-(imPcsize/1.6)));
-	for(i=0; c=s[i]; i++)
+	for(i=0; (c=s[i]); i++)
 	{
 		imPx += imPcsize/scalex;
 		putch((c == ' ')?imP_SP:c);

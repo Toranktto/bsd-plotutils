@@ -6,7 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 6/7/85";
-#endif not lint
+#endif /* not lint */
+
+#include <plot.h>
+
+extern void putch(int c);
 
 void
 move(int xi, int yi)

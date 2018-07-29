@@ -6,7 +6,7 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)open.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
 
 /*
@@ -14,6 +14,7 @@ static char sccsid[] = "@(#)open.c	6.1 (Berkeley) 8/29/86";
  */
 
 #include "grnplot.h"
+#include <plot.h>
 
 int curx, cury;		/* Current world position */
 int xbot=0, ybot=0;	/* Coordinates of screen lower-left corner */

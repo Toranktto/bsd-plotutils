@@ -68,6 +68,8 @@ ident(double x)
 	return(x);
 }
 
+extern void closevt(void);
+
 void axes(void);
 void transpose(void);
 void readin(void);
@@ -92,7 +94,6 @@ int
 main(int argc, char *argv[])
 {
 
-	space(0,0,4096,4096);
 	init(&xd);
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
@@ -100,10 +101,11 @@ main(int argc, char *argv[])
 	labs_ = malloc(1);
 	labs_[labsiz++] = 0;
 	setopt(argc,argv);
-	if(erasf)
-		erase();
 	readin();
 	transpose();
+	if(erasf)
+		erase();
+	space(0,0,4096,4096);
 	scale(&xd,(struct val *)&xx->xv);
 	scale(&yd,(struct val *)&xx->yv);
 	axes();

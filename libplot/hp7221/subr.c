@@ -6,7 +6,7 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)subr.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "hp7221.h"
 

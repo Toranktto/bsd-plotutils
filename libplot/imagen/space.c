@@ -6,7 +6,9 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)space.c	5.2 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
+
+#include <plot.h>
 
 extern float botx;
 extern float boty;

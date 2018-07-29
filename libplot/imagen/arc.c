@@ -6,9 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)arc.c	5.1 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
 
 #include <math.h>
+#include <stdlib.h>
+#include <plot.h>
 
 int del = 20;
 
@@ -17,6 +19,8 @@ step(int d)
 {
 	del = d;
 }
+
+int quad(int x, int y, int xp, int yp);
 
 void
 arc(int x, int y, int x0, int y0, int x1, int y1)

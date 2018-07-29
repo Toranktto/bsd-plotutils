@@ -6,9 +6,10 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)line.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "gigi.h"
+#include <plot.h>
 
 void
 line(int x0, int y0, int x1, int y1)

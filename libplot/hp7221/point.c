@@ -6,9 +6,10 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)point.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "hp7221.h"
+#include <plot.h>
 
 void
 point(int xi, int yi)

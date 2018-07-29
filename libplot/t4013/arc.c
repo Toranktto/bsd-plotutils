@@ -6,9 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)arc.c	5.2 (Berkeley) 6/23/85";
-#endif not lint
+#endif /* not lint */
 
 #include <math.h>
+#include <plot.h>
+#include <stdlib.h>
 
 int del = 20;
 
@@ -18,11 +20,12 @@ step(int d)
 	del = d;
 }
 
+int quad(int x, int y, int xp, int yp);
+
 void
 arc(int x, int y, int x0, int y0, int x1, int y1)
 {
 	double pc;
-	double sqrt();
 	int flg,m,xc,yc,xs,ys,qs,qf;
 	float dx,dy,r;
 	char use;
@@ -113,7 +116,8 @@ arc(int x, int y, int x0, int y0, int x1, int y1)
 }
 
 int
-quad(int x, int y, int xp, int yp){
+quad(int x, int y, int xp, int yp)
+{
 	if(x < xp)
 		if(y <= yp)return(1);
 		else return(4);

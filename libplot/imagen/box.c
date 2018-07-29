@@ -6,7 +6,9 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)box.c	5.1 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
+
+#include <plot.h>
 
 void
 box(int x0, int y0, int x1, int y1)

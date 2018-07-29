@@ -3,6 +3,7 @@ static char sccsid[] = "@(#)dot.c	4.1 (Berkeley) 6/27/83";
 #endif
 
 #include <unistd.h>
+#include <plot.h>
 
 extern int vti;
 extern int xsc(int xi);

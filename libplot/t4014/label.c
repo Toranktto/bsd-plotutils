@@ -2,6 +2,8 @@
 static char sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
 #endif
 
+#include <plot.h>
+
 #define N 0104
 #define E 0101
 #define NE 0105
@@ -20,14 +22,16 @@ char lbl_umv[] = {
 	036,040,N,N,N,N,N,N,NE,NE,NE,NE,NE,NE,NE,NE,NE,NE,037,0
 };
 
+extern void putch(int c);
+
 void
 label(char *s)
 {
 	register int i,c;
-	for(i=0; c=lbl_mv[i]; i++)
+	for(i=0; (c=lbl_mv[i]); i++)
 		putch(c);
-	for(i=0; c=s[i]; i++)
+	for(i=0; (c=s[i]); i++)
 		putch(c);
-	for(i=0; c=lbl_umv[i]; i++)
+	for(i=0; (c=lbl_umv[i]); i++)
 		putch(c);
 }

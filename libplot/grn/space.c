@@ -6,10 +6,11 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)space.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
 
 #include "grnplot.h"
+#include <plot.h>
 
 /*---------------------------------------------------------
  *	Space sets up the world-to-screen transformation so
@@ -31,7 +32,7 @@ space(int x0, int y0, int x1, int y1)
     if (y1>y0)
 	    yscale = GRYMAX/(double)(y1-y0);
     scale = (xscale > yscale && yscale > 0)? yscale : xscale;
-    if (scale == 0.0) scale == 1.0;
+    if (scale == 0.0) /* scale == 1.0; */ scale = 1.0;
     xbot = x0;
     ybot = y0;
 }

@@ -6,7 +6,7 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 /*
  * This accepts plot file formats and produces the appropriate plots
@@ -18,6 +18,8 @@ static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
 
 #include <signal.h>
 #include <stdlib.h>
+#include <plot.h>
+#include <term.h>
 #include "dumb.h"
 
 int minX, rangeX;	/* min and range of x */
@@ -27,8 +29,6 @@ int COLS, LINES;
 
 /* A very large screen! (probably should use malloc) */
 char screenmat[MAXCOLS][MAXLINES];
-
-extern void closepl(void);
 
 void
 openpl(void)
@@ -57,6 +57,6 @@ openpl(void)
 		for(j=0; j<LINES; j++)
 			screenmat[i][j] = ' ';
 
-	signal(SIGINT, closepl);
+	signal(SIGINT, (__sighandler_t *) closepl);
 	currentx = currenty = 0;
 }

@@ -6,10 +6,12 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
 
 #include <stdio.h>
 #include "imp.h"
+
+#include <plot.h>
 
 void
 cont(int x, int y)

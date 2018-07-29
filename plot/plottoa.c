@@ -7,12 +7,31 @@ static char sccsid[] = "@(#)plottoa.c	4.2 (Berkeley) 1/9/85";
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 float deltx;
 float delty;
 
-main(argc, argv)
-char **argv;
+void fplt(FILE *fin);
+int getsi(FILE *fin);
+void getstr(char *s, FILE *fin);
+void space(int x0, int y0, int x1, int y1);
+void openpl(void);
+void closepl(void);
+void erase(void);
+void move(int xi, int yi);
+void cont(int xi, int yi);
+void line(int x0, int y0, int x1, int y1);
+void point(int xi, int yi);
+void label(char *s);
+void arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend);
+void circle(int xc, int yc, int r);
+void linemod( char *line );
+void dot(int xi, int yi, int dx, int n, int pat[]);
+
+
+int
+main(int argc, char **argv)
 {
 	int std=1;
 	FILE *fin;
@@ -33,19 +52,21 @@ char **argv;
 				fprintf(stderr, "can't open %s\n", argv[1]);
 				exit(1);
 			}
+
 			fplt(fin);
 			fclose(fin);
 		}
 		argv++;
 	}
+
 	if (std)
 		fplt( stdin );
+
 	exit(0);
 }
 
-
-fplt(fin)
-FILE *fin;
+void
+fplt(FILE *fin)
 {
 	int c;
 	char s[256];
@@ -53,8 +74,8 @@ FILE *fin;
 	int pat[256];
 
 	openpl();
-	while((c = getc(fin)) != EOF){
-		switch(c){
+	while((c = getc(fin)) != EOF) {
+		switch(c) {
 		case 'm':
 			xi = getsi(fin);
 			yi = getsi(fin);
@@ -120,12 +141,13 @@ FILE *fin;
 			break;
 		}
 	}
+
 	closepl();
 }
 
 /* get an integer stored in 2 ascii bytes. */
-getsi(fin)
-FILE *fin;
+int
+getsi(FILE *fin)
 {
 	short a, b;
 	if((b = getc(fin)) == EOF)
@@ -136,11 +158,10 @@ FILE *fin;
 	return(a|b);
 }
 
-getstr(s,fin)
-char *s;
-FILE *fin;
+void
+getstr(char *s, FILE *fin)
 {
-	for( ; *s = getc(fin); s++)
+	for( ; (*s = getc(fin)); s++)
 		if(*s == '\n')
 			break;
 	*s = '\0';
@@ -148,78 +169,90 @@ FILE *fin;
 
 /* Print out the arguments to plot routines. */
 
-space(x0,y0,x1,y1)
-int x0,y0,x1,y1;
+void
+space(int x0, int y0, int x1, int y1)
 {
 	printf( "s %d %d %d %d\n", x0, y0, x1, y1 );
 }
 
-openpl()
+void
+openpl(void)
 {
 }
 
-closepl()
+void
+closepl(void)
 {
 }
 
-erase()
+void
+erase(void)
 {
 	printf( "e\n" );
 }
 
-move(xi,yi)
-int xi,yi;
+void
+move(int xi, int yi)
 {
 	printf( "m %d %d\n", xi, yi );
 }
 
-cont(xi,yi)
-int xi,yi;
+void
+cont(int xi, int yi)
 {
 	printf( "n %d %d\n", xi, yi );
 }
 
-line(x0,y0,x1,y1)
-int x0,y0,x1,y1;
+void
+line(int x0, int y0, int x1, int y1)
 {
 	printf( "l %d %d %d %d\n", x0, y0, x1, y1 );
 }
 
-point(xi,yi)
-int xi,yi;
+void
+point(int xi, int yi)
 {
 	printf( "p %d %d\n", xi, yi );
 }
 
-label(s)
-char *s;
+void
+label(char *s)
 {
 	printf( "t%s\n\n", s );
 }
 
-
-arc(xcent,ycent,xbeg,ybeg,xend,yend)
-int xcent,ycent,xbeg,ybeg,xend,yend;
+void
+arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend)
 {
 	printf( "a %d %d %d %d %d %d\n", xcent, ycent, xbeg, ybeg, xend, yend );
 }
 
-circle (xc,yc,r)
-int xc,yc,r;
+void
+circle(int xc, int yc, int r)
 {
 	printf( "c %d %d %d\n", xc, yc, r );
 }
 
-linemod( line )
-char	*line;
+void
+linemod( char *line )
 {
 	printf( "f%s\n\n", line );
 }
 
 /* don't know what this should do */
-dot(xi,yi,dx,n,pat)
-int xi,yi,dx,n;
-char *pat;
+void
+dot(int xi, int yi, int dx, int n, int pat[])
 {
-	printf("d %d %d %d %d %s\n\n", xi, yi, dx, n, pat);
+	register int i;
+
+	/* printf("d %d %d %d %d %s\n\n", xi, yi, dx, n, pat); */
+	printf("d %d %d %d %d ", xi, yi, dx, n);
+
+	for(i = 0;i < n;++i) {
+		printf("%d", pat[i]);
+		if (i != n - 1)
+			printf(",");
+	}
+
+	puts("");
 }

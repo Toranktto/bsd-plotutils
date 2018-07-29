@@ -2,6 +2,10 @@
 static char sccsid[] = "@(#)linemod.c	4.1 (Berkeley) 6/27/83";
 #endif
 
+#include <plot.h>
+
+extern void putch(int c);
+
 void
 linemod(char *s)
 {

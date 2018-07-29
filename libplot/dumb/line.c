@@ -6,9 +6,12 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)line.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "dumb.h"
+#include <plot.h>
+
+extern void dda_line(char ch, int x0, int y0, int x1, int y1);
 
 void
 line(int x0, int y0, int x1, int y1)

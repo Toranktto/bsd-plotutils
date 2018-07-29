@@ -8,6 +8,8 @@ MAN=	plot.1
 LDADD= -L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
 		-L../libplot/hp7221/ -L../libplot/grn -L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
 		-L../libplot/plot
+CFLAGS+=	-I../libplot/plot
+CSTD=c99
 PREFIX=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib
@@ -18,7 +20,7 @@ INCLUDEDIR=	${PREFIX}/include
 all: ${PROGS} ${MAN}
 
 atoplot: atoplot.c
-	${CC} ${CFLAGS} -o ${.TARGET} ${.CURDIR}/atoplot.c ${LDFLAGS} ${LDADD} -lplot -lm
+	${CC} ${CFLAGS} -o ${.TARGET} atoplot.c ${LDFLAGS} ${LDADD} -lplot -lm
 
 bgplot: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotbg -lm
@@ -45,7 +47,7 @@ implot: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotimagen -lm
 
 plottoa: plottoa.c
-	${CC} ${CFLAGS} -o ${.TARGET} ${.CURDIR}/plottoa.c ${LDFLAGS} ${LDADD}
+	${CC} ${CFLAGS} -o ${.TARGET} plottoa.c ${LDFLAGS} ${LDADD}
 
 t4013: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -l4013 -lm

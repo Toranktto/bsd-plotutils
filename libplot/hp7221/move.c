@@ -6,9 +6,12 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "hp7221.h"
+#include <plot.h>
+
+extern void putMBP(int x, int y);
 
 void
 move(int xi, int yi)

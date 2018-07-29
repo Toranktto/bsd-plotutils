@@ -10,6 +10,7 @@ static char sccsid[] = "@(#)arc.c	5.2 (Berkeley) 4/30/85";
 
 
 #include "bg.h"
+#include <plot.h>
 
 /* should include test for equality? */
 #define side(x,y)	(a*(x)+b*(y)+c > 0.0 ? 1 : -1)

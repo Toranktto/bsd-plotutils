@@ -6,11 +6,14 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)arc.c	6.1 (Berkeley) 8/29/86";
-#endif not lint
+#endif /* not lint */
 
 #include "grnplot.h"
 #include <math.h>
+#include <plot.h>
 
+extern void outxy(int x, int y);
+extern void endvector(void);
 
 void
 arc(int x, int y, int x0, int y0, int x1, int y1)

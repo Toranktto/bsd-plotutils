@@ -6,9 +6,10 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)circle.c	5.1 (Berkeley) 5/7/85";
-#endif not lint
+#endif /* not lint */
 
 #include "gigi.h"
+#include <plot.h>
 
 void
 circle(int xc, int yc, int r)

@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 
-extern curx, cury;		/* Current screen position */
+extern int curx, cury;		/* Current screen position */
 extern int xbot, ybot;		/* Coordinates of screen lower-left corner */
 extern double scale;		/* The number of pixels per 2**12 units
 				 * of world coordinates.

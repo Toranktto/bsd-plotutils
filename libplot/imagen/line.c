@@ -6,10 +6,12 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)line.c	5.2 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
 
 #include "imp.h"
 #include "imPcodes.h"
+#include <plot.h>
+
 float obotx = 0.;
 float oboty = 0.;
 float botx = 2.;

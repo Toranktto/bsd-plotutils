@@ -3,13 +3,21 @@ static char sccsid[] = "@(#)atoplot.c	4.2 (Berkeley) 1/9/85";
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <plot.h>
 
 float deltx;
 float delty;
 
-char	*mapLineType();
+char	*mapLineType(char *cp);
+void fplt(FILE *fin);
+void getstr(char *s, FILE *fin);
+int getsi(FILE *fin);
 
-main(argc,argv)  char **argv; {
+
+int
+main(int argc, char **argv)
+{
 	int std=1;
 	FILE *fin;
 
@@ -40,8 +48,9 @@ main(argc,argv)  char **argv; {
 	exit(0);
 	}
 
-
-fplt(fin)  FILE *fin; {
+void
+fplt(FILE *fin)
+{
 	int c;
 	char s[256];
 	int xi,yi,x0,y0,x1,y1,r,dx,n,i;
@@ -123,7 +132,11 @@ fplt(fin)  FILE *fin; {
 		}
 	closepl();
 	}
-getsi(fin)  FILE *fin; {	/* get an integer stored in 2 ascii bytes. */
+
+/* get an integer stored in 2 ascii bytes. */
+int
+getsi(FILE *fin)
+{
 	int	i;
 
 	if ( fscanf(fin, " %d", & i) != 1 ) {
@@ -131,8 +144,11 @@ getsi(fin)  FILE *fin; {	/* get an integer stored in 2 ascii bytes. */
 	}
 	return( i );
 }
-getstr(s,fin)  char *s;  FILE *fin; {
-	for( ; *s = getc(fin); s++)
+
+void
+getstr(char *s, FILE *fin)
+{
+	for( ; (*s = getc(fin)); s++)
 		if(*s == '\n')
 			break;
 	*s = '\0';
@@ -151,8 +167,7 @@ char	*lineMap[] = {
 }	;
 
 char *
-mapLineType( cp )
-    char	*cp;
+mapLineType( char *cp )
 {
     int		i;
 

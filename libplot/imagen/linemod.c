@@ -6,9 +6,13 @@
 
 #ifndef lint
 static char sccsid[] = "@(#)linemod.c	5.3 (Berkeley) 9/21/85";
-#endif not lint
+#endif /* not lint */
 
 #include "imp.h"
+#include <stdlib.h>
+#include <plot.h>
+
+extern void setfont(char *c, int sz);
 
 /*
  * Hack to set font.
