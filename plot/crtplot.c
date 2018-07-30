@@ -79,6 +79,7 @@ void
 closepl(void)
 {
 	FILE *ctty;
+	char ctty_path[L_ctermid];
 	register char c;
 
 	signal(SIGINT, SIG_IGN);
@@ -87,7 +88,7 @@ closepl(void)
 	refresh();
 
 	/* wait for 'q' from controlling terminal, because stdin or stdscr can be redirected */
-	if ((ctty = fopen(ctermid(NULL), "rb")) != NULL) {
+	if (ctermid(ctty_path) != NULL && (ctty = fopen(ctty_path, "rb")) != NULL) {
 		while((c = fgetc(ctty)) != EOF)
 			if (c == 'q') break;
 
