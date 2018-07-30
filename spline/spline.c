@@ -170,7 +170,7 @@ spline(void)
 	d = 1;
 	r[0] = 0;
 	s = periodic?-1:0;
-	for(i=0;++i<n-!periodic;){	/* triangularize */
+	for(i=0;++i<n-!periodic;) {	/* triangularize */
 		hi = x.val[i]-x.val[i-1];
 		hi1 = i==n-1?x.val[1]-x.val[0]:
 			x.val[i+1]-x.val[i];
@@ -184,52 +184,59 @@ spline(void)
 		if(i==n-2) a += konst*hi1;
 		diag[i] = d = i==1? a:
 		    a - hi*hi/d; 
-		}
+	}
 	D2yi = D2yn1 = 0;
-	for(i=n-!periodic;--i>=0;){	/* back substitute */
+	for(i=n-!periodic;--i>=0;) {	/* back substitute */
 		end = i==n-1;
 		hi1 = end?x.val[1]-x.val[0]:
 			x.val[i+1]-x.val[i];
 		D2yi1 = D2yi;
-		if(i>0){
+		if(i>0) {
 			hi = x.val[i]-x.val[i-1];
 			corr = end?2*s+u:zero;
 			D2yi = (end*v+r[i]-hi1*D2yi1-s*D2yn1)/
 				(diag[i]+corr);
-			if(end) D2yn1 = D2yi;
+			if(end)
+				D2yn1 = D2yi;
 			if(i>1){
 				a = 2*(hi+hi1);
 				if(i==1) a += konst*hi;
 				if(i==n-2) a += konst*hi1;
 				d = diag[i-1];
 				s = -s*d/hi; 
-			}}
-		else D2yi = D2yn1;
+			}
+		}
+		else
+			D2yi = D2yn1;
+
 		if(!periodic) {
 			if(i==0) D2yi = konst*D2yi1;
 			if(i==n-2) D2yi1 = konst*D2yi;
-			}
+		}
+
 		if(end) continue;
+
 		m = hi1>0?ni:-ni;
 		m = 1.001*m*hi1/(x.ub-x.lb);
 		if(m<=0) m = 1;
 		h = hi1/m;
-		for(j=m;j > 0 || (i == 0 && j == 0);j--){	/* interpolate */
+		for(j=m;j > 0 || (i == 0 && j == 0);j--) {	/* interpolate */
 			x0 = (m-j)*h/hi1;
 			x1 = j*h/hi1;
 			yy = D2yi*(x0-x0*x0*x0)+D2yi1*(x1-x1*x1*x1);
 			yy = y.val[i]*x0+y.val[i+1]*x1 -hi1*hi1*yy/6;
 			printf("%f ",x.val[i]+j*h);
 			printf("%f\n",yy);
-			}
 		}
+	}
+
 	return(1);
 }
 
 void
 readin(void)
 {
-	for(n=0;n<NP;n++){
+	for(n=0;n<NP;n++) {
 		if(auta) x.val[n] = n*dx+x.lb;
 		else if(!getfloat(&x.val[n])) break;
 		if(!getfloat(&y.val[n])) break;
@@ -243,14 +250,14 @@ getfloat(float *p)
 	register int c;
 	int i;
 
-	for(;;){
+	for(;;) {
 		c = getchar();
 		if (c==EOF) {
 			*buf = '\0';
 			return(0);
 		}
 		*buf = c;
-		switch(*buf){
+		switch(*buf) {
 			case ' ':
 			case '\t':
 			case '\n':
@@ -258,7 +265,7 @@ getfloat(float *p)
 		}
 		break;
 	}
-	for(i=1;i<30;i++){
+	for(i=1;i<30;i++) {
 		c = getchar();
 		if (c==EOF) {
 			buf[i] = '\0';
@@ -276,6 +283,7 @@ getfloat(float *p)
 		}
 		break;
 	}
+
 	buf[i] = ' ';
 	*p = atof(buf);
 	return(1);
@@ -330,6 +338,7 @@ again:		switch(argv[0][0]) {
 			exit(1);
 		}
 	}
+
 	if(auta&&!x.lbf) x.lb = 0;
 	readin();
 	getlim(&x);
@@ -337,9 +346,11 @@ again:		switch(argv[0][0]) {
 	i = (n+1)*sizeof(dx);
 	diag = (float *)malloc((unsigned)i);
 	r = (float *)malloc((unsigned)i);
-	if(r==NULL||!spline()) for(i=0;i<n;i++){
+	if(r==NULL||!spline()) for(i=0;i<n;i++) {
 		printf("%f ",x.val[i]);
-		printf("%f\n",y.val[i]); }
+		printf("%f\n",y.val[i]);
+	}
+
 	exit(0);
 }
 

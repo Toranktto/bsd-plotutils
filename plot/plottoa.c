@@ -27,7 +27,7 @@ void label(char *s);
 void arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend);
 void circle(int xc, int yc, int r);
 void linemod( char *line );
-void dot(int xi, int yi, int dx, int n, char *pat);
+void dot(int xi, int yi, int dx, int n, int pat[]);
 
 
 int
@@ -137,7 +137,7 @@ fplt(FILE *fin)
 			dx = getsi(fin);
 			n = getsi(fin);
 			for(i=0; i<n; i++)pat[i] = getsi(fin);
-			dot(xi,yi,dx,n,(char*) pat);
+			dot(xi,yi,dx,n,pat);
 			break;
 		}
 	}
@@ -239,9 +239,12 @@ linemod( char *line )
 	printf( "f%s\n\n", line );
 }
 
-/* don't know what this should do */
 void
-dot(int xi, int yi, int dx, int n, char *pat)
+dot(int xi, int yi, int dx, int n, int pat[])
 {
-	printf("d %d %d %d %d %s\n\n", xi, yi, dx, n, pat);
+	register int i;
+
+	printf("d %d %d %d %d", xi, yi, dx, n);
+	for(i=0;i<n;i++) printf(" %d", pat[i]);
+	printf("\n\n");
 }

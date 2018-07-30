@@ -45,7 +45,7 @@ main(int argc, char **argv)
 	FILE *fin;
 
 	if (!isatty(fileno(stdout))) {
-		fprintf(stderr, "output of crtplot must be terminal\n");
+		fprintf(stderr, "crtplot output must be a terminal\n");
 		exit(1);
 	}
 

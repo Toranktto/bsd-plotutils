@@ -9,7 +9,7 @@ static char sccsid[] = "@(#)atoplot.c	4.2 (Berkeley) 1/9/85";
 float deltx;
 float delty;
 
-char	*mapLineType(char *cp);
+char *mapLineType(char *cp);
 void fplt(FILE *fin);
 void getstr(char *s, FILE *fin);
 int getsi(FILE *fin);
@@ -37,16 +37,20 @@ main(int argc, char **argv)
 			if ((fin = fopen(argv[1], "r")) == NULL) {
 				fprintf(stderr, "can't open %s\n", argv[1]);
 				exit(1);
-				}
+			}
+
 			fplt(fin);
 			fclose(fin);
-			}
-		argv++;
 		}
+
+		argv++;
+	}
+
 	if (std)
 		fplt( stdin );
+
 	exit(0);
-	}
+}
 
 void
 fplt(FILE *fin)
@@ -57,8 +61,8 @@ fplt(FILE *fin)
 	int pat[256];
 
 	openpl();
-	while((c=getc(fin)) != EOF){
-		switch(c){
+	while((c=getc(fin)) != EOF) {
+		switch(c) {
 		case 'm':
 			xi = getsi(fin);
 			yi = getsi(fin);
@@ -122,16 +126,18 @@ fplt(FILE *fin)
 			for(i=0; i<n; i++)pat[i] = getsi(fin);
 			dot(xi,yi,dx,n,pat);
 			break;
-			}
+		}
+
 		/* scan to newline */
 		while( (c = getc( fin )) != '\n' ) {
 			if ( c == EOF ) {
 				break;
 			}
-		    }
 		}
-	closepl();
 	}
+
+	closepl();
+}
 
 /* get an integer stored in 2 ascii bytes. */
 int
@@ -154,7 +160,7 @@ getstr(char *s, FILE *fin)
 	*s = '\0';
 }
 
-char	*lineMap[] = {
+char *lineMap[] = {
     "solid",		/* line type 0 */
     "solid",		/* line type 1 */
     "dotted",		/* line type 2 */
@@ -164,20 +170,20 @@ char	*lineMap[] = {
     "dotlongdash",	/* line type 6 */
     "dotshortdash",	/* line type 7 */
     "dotdotdash",	/* line type 8 */
-}	;
+};
 
 char *
 mapLineType( char *cp )
 {
-    int		i;
+    int i;
 
     if ( sscanf(cp, "%d", &i) == 1 ) {
-	if ( i < 0 || i > sizeof(lineMap)/sizeof(char *) ) {
-	    i = 1;
-	}
-	return( lineMap[i] );
+		if ( i < 0 || i > sizeof(lineMap)/sizeof(char *) ) {
+	    	i = 1;
+		}
+		return( lineMap[i] );
     }
     else {
-	return( cp );
+		return( cp );
     }
 }

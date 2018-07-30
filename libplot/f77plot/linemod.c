@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)linemd.c	5.1 (Berkeley) 6/7/85";
 #include <plot.h>
 
 void
-linemd_(register char *s, long len)
+linemod_(register char *s, long len)
 {
 	char buf[256];
 	register char *cp, *cend;

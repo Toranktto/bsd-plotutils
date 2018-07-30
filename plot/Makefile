@@ -65,7 +65,7 @@ install: maninstall
 
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plottoa \
 	    ${DESTDIR}${BINDIR}/plottoa
-	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \
+	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} atoplot \
 	    ${DESTDIR}${BINDIR}/atoplot
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \
 	    ${DESTDIR}${BINDIR}/plot
