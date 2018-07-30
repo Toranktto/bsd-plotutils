@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-cont(int xi, int yi)
+pl_cont(int xi, int yi)
 {
 	currentx = xsc(xi);
 	currenty = ysc(yi);

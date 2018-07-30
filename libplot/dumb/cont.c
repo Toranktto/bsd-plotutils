@@ -14,7 +14,7 @@ static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 5/7/85";
 extern void dda_line(char ch, int x0, int y0, int x1, int y1);
 
 void
-cont(int x, int y)
+pl_cont(int x, int y)
 {
 	int x1, y1;
 	x1 = x;

@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)space.c	5.2 (Berkeley) 4/30/85";
 #include "bg.h"
 
 void
-space(int x0, int y0, int x1, int y1)
+pl_space(int x0, int y0, int x1, int y1)
 {
 	double scalex, scaley;
 	lowx = x0;

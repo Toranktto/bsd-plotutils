@@ -15,7 +15,7 @@ static char sccsid[] = "@(#)close.c	5.2 (Berkeley) 4/30/85";
 #include "bg.h"
 
 void
-closepl(void)
+pl_closepl(void)
 {
 	/* recieve interupts */
 	signal(SIGINT, SIG_IGN);

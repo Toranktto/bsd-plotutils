@@ -24,7 +24,7 @@ static char sccsid[] = "@(#)space.c	6.1 (Berkeley) 8/29/86";
  *---------------------------------------------------------
  */
 void
-space(int x0, int y0, int x1, int y1)
+pl_space(int x0, int y0, int x1, int y1)
 {
     double xscale=0.0, yscale=0.0;
     if (x1>x0)

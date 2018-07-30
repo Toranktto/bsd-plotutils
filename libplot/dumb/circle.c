@@ -9,6 +9,6 @@ static char sccsid[] = "@(#)circle.c	5.1 (Berkeley) 5/7/85";
 #endif
 
 void
-circle(void)
+pl_circle(void)
 {
 }

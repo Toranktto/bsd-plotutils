@@ -17,7 +17,7 @@ static char sccsid[] = "@(#)arc.c	5.2 (Berkeley) 4/30/85";
 
 /* The beginning and ending points must be distinct. */
 void
-arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
+pl_arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 {
 	double r, radius, costheta, sintheta;
 	double a, b, c, x, y, tempX;
@@ -48,7 +48,7 @@ arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 	*/
 	if (r <= 1.0) {
 		/* radius is mapped to length < 1*/
-		point(xc,yc);
+		pl_point(xc,yc);
 		return;
 	}
 
@@ -84,7 +84,7 @@ arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 
 	x = screen_xbeg;
 	y = screen_ybeg;
-	move(xbeg, ybeg);
+	pl_move(xbeg, ybeg);
 	do {
 		currentx = screen_xc + (int) (x + 0.5);
 		currenty = screen_yc + (int) (y + 0.5);

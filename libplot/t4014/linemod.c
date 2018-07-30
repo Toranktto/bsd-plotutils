@@ -7,7 +7,7 @@ static char sccsid[] = "@(#)linemod.c	4.1 (Berkeley) 6/27/83";
 extern void putch(int c);
 
 void
-linemod(char *s)
+pl_linemod(char *s)
 {
 	char c;
 

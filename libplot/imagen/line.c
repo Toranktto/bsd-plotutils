@@ -33,7 +33,7 @@ putwd(int w)
 }
 
 void
-line(int x0, int y0, int x1, int y1)
+pl_line(int x0, int y0, int x1, int y1)
 {
 	putch(imP_CREATE_PATH);
 	putwd(2);		/* two coordinates follow */

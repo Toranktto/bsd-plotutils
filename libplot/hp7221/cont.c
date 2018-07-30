@@ -14,7 +14,7 @@ static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 5/7/85";
 extern void putMBP(int x, int y);
 
 void
-cont(int xi, int yi)
+pl_cont(int xi, int yi)
 {
 	currentx = scaleX(xi);
 	currenty = scaleY(yi);

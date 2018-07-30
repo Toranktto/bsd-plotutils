@@ -12,12 +12,12 @@ static char sccsid[] = "@(#)circle.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-circle(int xc, int yc, int r)
+pl_circle(int xc, int yc, int r)
 {
 	if(r < 1){
-		point(xc, yc);
+		pl_point(xc, yc);
 		return;
 	}
-	move(xc, yc);
+	pl_move(xc, yc);
 	printf("C[%d]", r);
 }

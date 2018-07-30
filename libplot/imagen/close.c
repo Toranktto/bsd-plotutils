@@ -16,7 +16,7 @@ static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 9/21/85";
 extern void putch(int c);
 
 void
-closepl(void)
+pl_closepl(void)
 {
 	putch(imP_ENDPAGE);
 	fflush(stdout);

@@ -23,7 +23,7 @@ extern void endvector(void);
  *---------------------------------------------------------
  */
 void
-closepl(void)
+pl_closepl(void)
 {
     if (!ingrnfile) return;
     endvector();

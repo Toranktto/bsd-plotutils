@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)linemod.c	5.1 (Berkeley) 6/7/85";
 #include <plot.h>
 
 void
-linemod(char *s)
+pl_linemod(char *s)
 {
 	/* ignored on 4013 */
 }

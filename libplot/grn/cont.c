@@ -23,7 +23,7 @@ void outcurxy(void);
  *---------------------------------------------------------
  */
 void
-cont(int x, int y)
+pl_cont(int x, int y)
 {
     startvector();
     curx = x;

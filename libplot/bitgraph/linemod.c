@@ -11,6 +11,6 @@ static char sccsid[] = "@(#)linemod.c	5.2 (Berkeley) 4/30/85";
 #include "bg.h"
 
 void
-linemod(char *s)
+pl_linemod(char *s)
 {
 }

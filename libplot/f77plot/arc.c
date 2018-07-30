@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)arc.c	5.1 (Berkeley) 6/7/85";
 #include <plot.h>
 
 void
-arc_(int *x, int *y, int *x0, int *y0, int *x1, int *y1)
+pl_arc_(int *x, int *y, int *x0, int *y0, int *x1, int *y1)
 {
-	arc(*x, *y, *x0, *y0, *x1, *y1);
+	pl_arc(*x, *y, *x0, *y0, *x1, *y1);
 }

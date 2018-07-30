@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)move.c	5.2 (Berkeley) 4/30/85";
 #include "bg.h"
 
 void
-move(int xi, int yi)
+pl_move(int xi, int yi)
 {
 	currentx = scaleX(xi);
 	currenty = scaleY(yi);

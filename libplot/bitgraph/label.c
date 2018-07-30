@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)label.c	5.2 (Berkeley) 4/30/85";
 #include "bg.h"
 
 void
-label(char *s)
+pl_label(char *s)
 {
 	printf("%s", s);
 }

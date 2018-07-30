@@ -63,44 +63,44 @@ fplt(FILE *fin)
 	int xi,yi,x0,y0,x1,y1,r,dx,n,i;
 	int pat[256];
 
-	openpl();
+	pl_openpl();
 	while((c = getc(fin)) != EOF) {
 		switch(c) {
 		case 'm':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			move(xi,yi);
+			pl_move(xi,yi);
 			break;
 		case 'l':
 			x0 = getsi(fin);
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			line(x0,y0,x1,y1);
+			pl_line(x0,y0,x1,y1);
 			break;
 		case 't':
 			getstr(s,fin);
-			label(s);
+			pl_label(s);
 			break;
 		case 'e':
-			erase();
+			pl_erase();
 			break;
 		case 'p':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			point(xi,yi);
+			pl_point(xi,yi);
 			break;
 		case 'n':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			cont(xi,yi);
+			pl_cont(xi,yi);
 			break;
 		case 's':
 			x0 = getsi(fin);
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			space(x0,y0,x1,y1);
+			pl_space(x0,y0,x1,y1);
 			break;
 		case 'a':
 			xi = getsi(fin);
@@ -109,17 +109,17 @@ fplt(FILE *fin)
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			arc(xi,yi,x0,y0,x1,y1);
+			pl_arc(xi,yi,x0,y0,x1,y1);
 			break;
 		case 'c':
 			xi = getsi(fin);
 			yi = getsi(fin);
 			r = getsi(fin);
-			circle(xi,yi,r);
+			pl_circle(xi,yi,r);
 			break;
 		case 'f':
 			getstr(s,fin);
-			linemod(s);
+			pl_linemod(s);
 			break;
 		case 'd':
 			xi = getsi(fin);
@@ -128,11 +128,11 @@ fplt(FILE *fin)
 			n = getsi(fin);
 			for(i=0; i<n; i++)
 				pat[i] = getsi(fin);
-			dot(xi,yi,dx,n,pat);
+			pl_dot(xi,yi,dx,n,pat);
 			break;
 		}
 	}
-	closepl();
+	pl_closepl();
 }
 
 /* get an integer stored in 2 ascii bytes. */

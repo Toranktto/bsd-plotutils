@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-label(char *s)
+pl_label(char *s)
 {
 	printf("~'%s", s);
 	putchar( ENDOFSTRING );

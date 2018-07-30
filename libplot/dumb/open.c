@@ -31,7 +31,7 @@ int COLS, LINES;
 char screenmat[MAXCOLS][MAXLINES];
 
 void
-openpl(void)
+pl_openpl(void)
 {
 	int i, j;
 	char *term;
@@ -57,6 +57,6 @@ openpl(void)
 		for(j=0; j<LINES; j++)
 			screenmat[i][j] = ' ';
 
-	signal(SIGINT, (__sighandler_t *) closepl);
+	signal(SIGINT, (__sighandler_t *) pl_closepl);
 	currentx = currenty = 0;
 }

@@ -24,10 +24,10 @@ double scalex = 1.0;
 double scaley = 1.0;
 
 void
-openpl(void)
+pl_openpl(void)
 {
 	/* catch interupts */
-	signal(SIGINT, (__sighandler_t *) closepl);
+	signal(SIGINT, (__sighandler_t *) pl_closepl);
 	currentx = 0;
 	currenty = 0;
 	/* enter grapics mode */
@@ -36,5 +36,5 @@ openpl(void)
 	/* set some parameters */
 	printf("S(I0 T0 [0,0])");
 
-	space(0, 0, XMAX, YMAX);
+	pl_space(0, 0, XMAX, YMAX);
 }

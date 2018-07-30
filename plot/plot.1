@@ -42,71 +42,41 @@ is used.
 Known
 .Ar terminals
 are:
-.Tw Cm
-.Tp Cm 4013
+.Pp
+.Cm 4013
+.Tp
 Tektronix 4013 storage scope.
-.Tp Cx Cm 4014
-.Ws
-.Cx or
-.Ws
-.Cm tek
-.Cx
-Tektronix 4014 or 4015 storage scope with Enhanced Graphics Module.
-(Use 4013 for Tektronix 4014 or 4015 without the Enhanced Graphics Module).
-.Tp Cm 450
-DASI Hyterm 450 terminal (Diablo mechanism).
-.Tp Cm 300
-DASI 300 or GSI terminal (Diablo mechanism).
-.Tp Cm 300S
-DASI 300S terminal (Diablo mechanism).
-.Tp Cm aed
-AED 512 color graphics terminal.
-.Tp Cx Cm bitgraph
-.Ws
-.Cx or
-.Ws
-.Cm bg
-.Cx
-BBN bitgraph graphics terminal.
-.Tp Cx Cm imagen
-.Ws
-.Cx or
-.Ws
-.Cm ip
-.Cx
-Imagen laser printer (default 240 dots-per-inch resolution).
-.Tp Cm crt
-Any crt terminal capable of running
-.Xr vi  1  .
-.Tp Cm dumb
-Dumb terminals without cursor addressing or line printers.
-.Tp Cm vt125
-DEC vt125 terminal.
-.Tp Cx Cm hp2648
-.Ws
-.Cx or
-.Ws
-.Cm hp
-.Ws
-.Cx or
-.Ws
-.Cm hp8
-.Cx
-Hewlett Packard 2648 graphics terminal.
-.Tp Cm ver
-Versatec D1200A printer-plotter.
-.Tp Cm var
-Benson Varian printer-plotter.
 .Tp
 .Pp
-These versions of
-.Nm plot
-use the
-.Fl g
-option of
-.Xr lpr  1
-to send the result directly to the plotter device rather than to
-the standard output.
+.Cm 4014, tek or tek4014
+.Tp
+Tektronix 4014 or 4015 storage scope with Enhanced Graphics Module.
+(Use 4013 for Tektronix 4014 or 4015 without the Enhanced Graphics Module).
+.Tp
+.Pp
+.Cm bitgraph
+.Tp
+BBN bitgraph graphics terminal.
+.Tp
+.Pp
+.Cm imagen or ip
+.Tp
+Imagen laser printer (default 240 dots-per-inch resolution).
+.Cm crt
+.Tp
+Any crt terminal capable of running
+.Tp
+.Pp
+.Cm dumb
+.Tp
+Dumb terminals without cursor addressing or line printers.
+.Tp
+.Pp
+.Cm vt125
+.Tp
+DEC vt125 terminal.
+.Tp
+.Pp
 .Sh ENVIRONMENT
 TERM - Used to determine the terminal type if not given as an argument.
 .Tp
@@ -117,9 +87,6 @@ TERM - Used to determine the terminal type if not given as an argument.
 .Xr plot 3 ,
 .Xr plot 5 ,
 .Xr lpr 1
-.Sh BUGS
-Drivers for aed, hp2648, t300, t300s, and t450 terminals are not ported yet.
-.Tp
 .Sh HISTORY
 .Nm Plot
-appeared in Version 6 AT&T UNIX. This version include patches from 4.3BSD.
+appeared in Version 6 AT&T UNIX. This version include improvements from 4.3BSD and BSD plotutils project.

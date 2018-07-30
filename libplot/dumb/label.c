@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-label(char *string)
+pl_label(char *string)
 {
 	while(*string != '\0' && currentx < COLS){
 		screenmat[currentx][currenty] = *string++;

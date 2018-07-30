@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)erase.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-erase(void)
+pl_erase(void)
 {
 	register int i, j;
 

@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)space.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-space(int x0, int y0, int x1, int y1)
+pl_space(int x0, int y0, int x1, int y1)
 {
 	lowx = x0;
 	lowy = y0;

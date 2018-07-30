@@ -11,7 +11,7 @@ extern int xsc(int xi);
 extern int ysc(int yi);
 
 void
-line(int x0, int y0, int x1, int y1)
+pl_line(int x0, int y0, int x1, int y1)
 {
 	struct{char x,c; int x0,y0,x1,y1;} p;
 	p.c = 3;
@@ -23,8 +23,7 @@ line(int x0, int y0, int x1, int y1)
 }
 
 void
-cont(int x0, int y0)
+pl_cont(int x0, int y0)
 {
-	line(xnow,ynow,xsc(x0),ysc(y0));
-	return;
+	pl_line(xnow,ynow,xsc(x0),ysc(y0));
 }

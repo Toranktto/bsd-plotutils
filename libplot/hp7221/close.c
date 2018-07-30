@@ -13,7 +13,7 @@ static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-closepl(void)
+pl_closepl(void)
 {
 	/* receive interupts */
 	signal(SIGINT, SIG_IGN);

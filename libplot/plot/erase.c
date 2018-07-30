@@ -6,7 +6,7 @@ static char sccsid[] = "@(#)erase.c	4.1 (Berkeley) 6/27/83";
 #include <plot.h>
 
 void
-erase(void)
+pl_erase(void)
 {
 	putc('e',stdout);
 }

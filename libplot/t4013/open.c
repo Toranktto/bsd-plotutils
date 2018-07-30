@@ -11,11 +11,11 @@ static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 6/7/85";
 #include <plot.h>
 
 void
-openvt(void)
+pl_openvt(void)
 {
 }
 
 void
-openpl(void)
+pl_openpl(void)
 {
 }

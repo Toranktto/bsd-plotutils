@@ -21,11 +21,11 @@ static char sccsid[] = "@(#)erase.c	6.1 (Berkeley) 8/29/86";
  *---------------------------------------------------------
  */
 void
-erase(void)
+pl_erase(void)
 {
 	if (ingrnfile)
 	{
-		closepl();
+		pl_closepl();
 		fputs("multiple grn files in output must be separated by hand!\n",stderr);
 	}
     printf("sungremlinfile\n0.00 0.00\n");

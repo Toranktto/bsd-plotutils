@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 6/7/85";
 #include <plot.h>
 
 void
-cont_(int *x, int *y)
+pl_cont_(int *x, int *y)
 {
-	cont(*x, *y);
+	pl_cont(*x, *y);
 }

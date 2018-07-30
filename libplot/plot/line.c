@@ -8,7 +8,7 @@ static char sccsid[] = "@(#)line.c	4.1 (Berkeley) 6/27/83";
 extern void putsi(int a);
 
 void
-line(int x0, int y0, int x1, int y1)
+pl_line(int x0, int y0, int x1, int y1)
 {
 	putc('l',stdout);
 	putsi(x0);

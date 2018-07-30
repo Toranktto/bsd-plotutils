@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-move(int x, int y)
+pl_move(int x, int y)
 {
 	scale(x, y);
 	currentx = x;

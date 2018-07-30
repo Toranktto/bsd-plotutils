@@ -18,7 +18,7 @@ extern void setfont(char *c, int sz);
  * Hack to set font.
  */
 void
-linemod(char *s)
+pl_linemod(char *s)
 {
 	register char *tit;
 	register char *nam;

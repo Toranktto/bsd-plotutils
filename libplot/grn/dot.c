@@ -11,6 +11,6 @@ static char sccsid[] = "@(#)dot.c	6.1 (Berkeley) 8/29/86";
 #include <plot.h>
 
 void
-dot(int xi, int yi, int dx, int n, int pat[])
+pl_dot(int xi, int yi, int dx, int n, int pat[])
 {
 }

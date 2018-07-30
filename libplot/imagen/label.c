@@ -18,7 +18,7 @@ extern void putwd(int w);
 extern void putch(int c);
 
 void
-label(char *s)
+pl_label(char *s)
 {
 	register int i,c;
 
@@ -26,8 +26,7 @@ label(char *s)
 	putwd((int)((imPx-obotx)*scalex+botx)-imPcsize/2);
 	putch(imP_SET_ABS_V);
 	putwd((int)((imPy-oboty)*scaley+boty-(imPcsize/1.6)));
-	for(i=0; (c=s[i]); i++)
-	{
+	for(i=0; (c=s[i]); i++) {
 		imPx += imPcsize/scalex;
 		putch((c == ' ')?imP_SP:c);
 	}

@@ -10,7 +10,7 @@ extern int xsc(int xi);
 extern int ysc(int yi);
 
 void
-dot(int xi, int yi, int dx, int n, int pat[])
+pl_dot(int xi, int yi, int dx, int n, int pat[])
 {
 	struct {char pad,c; int xi,yi,dx;} p;
 	p.c = 7;

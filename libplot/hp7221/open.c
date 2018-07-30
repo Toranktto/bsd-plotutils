@@ -29,10 +29,10 @@ double scale = 1.0;
 extern void putMBP(int x, int y);
 
 void
-openpl(void)
+pl_openpl(void)
 {
 	/* catch interupts */
-	signal(SIGINT, (__sighandler_t *) closepl);
+	signal(SIGINT, (__sighandler_t *) pl_closepl);
 	currentx = 0;
 	currenty = 0;
 	printf( "~VR~W" );
@@ -42,5 +42,5 @@ openpl(void)
 	putMBP( XMAX, YMAX );
 	printf( "vA~*z" );
 
-	space(0,0,XMAX,YMAX);
+	pl_space(0,0,XMAX,YMAX);
 }

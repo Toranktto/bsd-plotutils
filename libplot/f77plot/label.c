@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 6/7/85";
 #include <plot.h>
 
 void
-label_(register char *s, long len)
+pl_label_(register char *s, long len)
 {
 	char buf[260];
 	register char *cp, *cend;
@@ -21,5 +21,5 @@ label_(register char *s, long len)
 	while ( cp < cend ) 
 		*cp++ = *s++;
 	*cp = 0;
-	label( buf );
+	pl_label( buf );
 }

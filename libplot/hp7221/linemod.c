@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)linemod.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-linemod(char *line)
+pl_linemod(char *line)
 {
 	/*
 	 * Note that the bit patterns could be compacted using the

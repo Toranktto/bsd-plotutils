@@ -7,7 +7,7 @@ extern float scaley;
 extern int scaleflag;
 
 void
-scale(char i, float x, float y)
+pl_scale(char i, float x, float y)
 {
 	switch(i) {
 	default:

@@ -27,7 +27,7 @@ extern void endvector(void);
  *---------------------------------------------------------
  */
 void
-linemod(char *s)
+pl_linemod(char *s)
 {
     endvector();
     if (strcmp(s, "dotted") == 0)

@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)erase.c	5.1 (Berkeley) 6/7/85";
 #include <plot.h>
 
 void
-erase_(void)
+pl_erase_(void)
 {
-	erase();
+	pl_erase();
 }

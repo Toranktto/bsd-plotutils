@@ -5,8 +5,8 @@ static char sccsid[] = "@(#)point.c	4.1 (Berkeley) 6/27/83";
 #include <plot.h>
 
 void
-point(int xi, int yi)
+pl_point(int xi, int yi)
 {
-	move(xi,yi);
-	cont(xi,yi);
+	pl_move(xi,yi);
+	pl_cont(xi,yi);
 }

@@ -25,7 +25,7 @@ char lbl_umv[] = {
 extern void putch(int c);
 
 void
-label(char *s)
+pl_label(char *s)
 {
 	register int i,c;
 	for(i=0; (c=lbl_mv[i]); i++)

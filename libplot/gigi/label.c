@@ -12,7 +12,7 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-label(char *s)
+pl_label(char *s)
 {
 	printf("T(S0 H2 D0 I0) \"");
 	for(;*s!='\0';s++) {

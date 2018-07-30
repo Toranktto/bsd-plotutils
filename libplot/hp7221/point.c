@@ -12,9 +12,9 @@ static char sccsid[] = "@(#)point.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-point(int xi, int yi)
+pl_point(int xi, int yi)
 {
 	if(scaleX(xi)!=currentx || scaleY(yi)!=currenty)
-		move(xi,yi);
-	cont(xi, yi);
+		pl_move(xi,yi);
+	pl_cont(xi, yi);
 }

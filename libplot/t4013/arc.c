@@ -23,7 +23,7 @@ step(int d)
 int quad(int x, int y, int xp, int yp);
 
 void
-arc(int x, int y, int x0, int y0, int x1, int y1)
+pl_arc(int x, int y, int x0, int y0, int x1, int y1)
 {
 	double pc;
 	int flg,m,xc,yc,xs,ys,qs,qf;
@@ -39,7 +39,7 @@ arc(int x, int y, int x0, int y0, int x1, int y1)
 	else if(flg < del)step(flg);
 	xc = xs = x0;
 	yc = ys = y0;
-	move(xs,ys);
+	pl_move(xs,ys);
 	if(x0 == x1 && y0 == y1)flg=0;
 	else flg=1;
 	qs = quad(x,y,x0,y0);
@@ -70,7 +70,7 @@ arc(int x, int y, int x0, int y0, int x1, int y1)
 				else m=1;
 				flg=1;
 			}
-			cont(xc,yc);
+			pl_cont(xc,yc);
 			xs = xc; 
 			ys = yc;
 			if(qs == qf && flg == 1)
@@ -98,7 +98,7 @@ arc(int x, int y, int x0, int y0, int x1, int y1)
 				else m = 1;
 				flg=1;
 			}
-			cont(xc,yc);
+			pl_cont(xc,yc);
 			xs = xc; 
 			ys = yc;
 			if(qs == qf && flg == 1)

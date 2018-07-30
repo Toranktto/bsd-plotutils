@@ -30,7 +30,7 @@ putch(int c)
 }
 
 void
-cont(int x, int y)
+pl_cont(int x, int y)
 {
 	int hix,hiy,lox,loy;
 	int n;

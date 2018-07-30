@@ -8,7 +8,7 @@ static char sccsid[] = "@(#)circle.c	4.1 (Berkeley) 6/27/83";
 extern void putsi(int a);
 
 void
-circle(int x, int y, int r)
+pl_circle(int x, int y, int r)
 {
 	putc('c',stdout);
 	putsi(x);

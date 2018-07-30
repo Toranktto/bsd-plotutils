@@ -24,12 +24,12 @@ double lowy = 0.0;
 double scale = 1.0;
 
 void
-openpl(void)
+pl_openpl(void)
 {
 	/* catch interupts */
-	signal(SIGINT, (__sighandler_t *) closepl);
+	signal(SIGINT, (__sighandler_t *) pl_closepl);
 	currentx = 0;
 	currenty = 0;
 
-	space(0, 0, XMAX, YMAX);
+	pl_space(0, 0, XMAX, YMAX);
 }

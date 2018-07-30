@@ -29,7 +29,7 @@ static char sccsid[] = "@(#)arc.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 void
-arc(int x, int y, int x0, int y0, int x1, int y1)
+pl_arc(int x, int y, int x0, int y0, int x1, int y1)
 {
 	double radius2, c2;
 	double a,b,c;
@@ -46,6 +46,6 @@ arc(int x, int y, int x0, int y0, int x1, int y1)
 	if (side(x0 + (y-y0), y0 - (x-x0)) != side(x1,y1))
 		angle += 180;
 	
-	move(x, y);
+	pl_move(x, y);
 	printf("C(A%d c)[%d,%d]", angle, x0, y0);
 }

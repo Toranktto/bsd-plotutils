@@ -8,13 +8,13 @@ static char sccsid[] = "@(#)close.c	4.1 (Berkeley) 6/27/83";
 extern int vti;
 
 void
-closevt(void)
+pl_closevt(void)
 {
 	close(vti);
 }
 
 void
-closepl(void)
+pl_closepl(void)
 {
 	close(vti);
 }

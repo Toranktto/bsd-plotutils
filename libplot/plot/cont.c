@@ -8,7 +8,7 @@ static char sccsid[] = "@(#)cont.c	4.1 (Berkeley) 6/27/83";
 extern void putsi(int a);
 
 void
-cont(int xi, int yi)
+pl_cont(int xi, int yi)
 {
 	putc('n',stdout);
 	putsi(xi);

@@ -16,10 +16,9 @@ static char sccsid[] = "@(#)erase.c	5.1 (Berkeley) 9/21/85";
 extern void putch(int c);
 
 void
-erase(void)
+pl_erase(void)
 {
 	int i;
-		putch(imP_ENDPAGE);
-		imPx = imPy = 0;
-		return;
+	putch(imP_ENDPAGE);
+	imPx = imPy = 0;
 }

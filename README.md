@@ -5,8 +5,7 @@ Port of ancient plotting utilities and libraries (for C and FORTRAN 77) from 4.3
 ## Installation
 
 ```
-$ make
-# make install
+# make && make install && make cleandir
 ```
 
 ![tektronix4014](https://i.imgur.com/jZnM27M.png)

@@ -2,11 +2,11 @@
 
 PROGS=	tek t4013 bgplot crtplot dumbplot gigiplot \
 	hp7221plot implot grnplot
-SRCS=	atoplot.c chrtab.c crtdriver.c crtplot.c debug.c driver.c plottoa.c
+SRCS=	atoplot.c chrtab.c debug.c driver.c plottoa.c
 MAN=	plot.1
 LDADD= -L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
 		-L../libplot/hp7221/ -L../libplot/grn -L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
-		-L../libplot/plot
+		-L../libplot/plot -L../libplot/crt
 CFLAGS+=	-I../libplot/plot
 CSTD=c99
 PREFIX=	/usr/local
@@ -24,8 +24,8 @@ atoplot: atoplot.c
 bgplot: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotbg -lm
 
-crtplot: crtdriver.o crtplot.o
-	${CC} ${CFLAGS} -o ${.TARGET} crtdriver.o crtplot.o ${LDFLAGS} ${LDADD} -lcurses -ltermcap -lm
+crtplot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lcurses -ltermcap -lm -lplotcrt
 
 debug:
 	${CC} ${CFLAGS} -o ${.TARGET} debug.c
@@ -58,10 +58,10 @@ clean:
 	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} debug atoplot plottoa
 
 install: maninstall
-	mkdir -p /usr/local/libexec/plot
+	mkdir -p ${DESTDIR}${PREFIX}/libexec/plot
 
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
-	    ${DESTDIR}/usr/local/libexec/plot
+	    ${DESTDIR}${PREFIX}/libexec/plot
 
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plottoa \
 	    ${DESTDIR}${BINDIR}/plottoa

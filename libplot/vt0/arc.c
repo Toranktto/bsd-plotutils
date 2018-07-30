@@ -8,7 +8,7 @@ static char sccsid[] = "@(#)arc.c	4.1 (Berkeley) 6/27/83";
 extern int vti;
 
 void
-arc(int xi, int yi, int x0, int y0, int x1, int y1)
+pl_arc(int xi, int yi, int x0, int y0, int x1, int y1)
 {
 	char c;
 

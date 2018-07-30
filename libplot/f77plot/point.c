@@ -11,7 +11,7 @@ static char sccsid[] = "@(#)point.c	5.1 (Berkeley) 6/7/85";
 #include <plot.h>
 
 void
-point_(int *xi, int *yi)
+pl_point_(int *xi, int *yi)
 {
-	point(*xi,*yi);
+	pl_point(*xi,*yi);
 }

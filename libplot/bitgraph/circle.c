@@ -12,8 +12,8 @@ static char sccsid[] = "@(#)circle.c	5.2 (Berkeley) 4/30/85";
 #include <plot.h>
 
 void
-circle(int xc, int yc, int r)
+pl_circle(int xc, int yc, int r)
 {
-	arc(xc,yc, xc+r,yc, xc-r,yc);
-	arc(xc,yc, xc-r,yc, xc+r,yc);
+	pl_arc(xc,yc, xc+r,yc, xc-r,yc);
+	pl_arc(xc,yc, xc-r,yc, xc+r,yc);
 }

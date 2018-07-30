@@ -44,7 +44,7 @@ outcurxy(void)
 void
 startvector(void)
 {
-	if (!ingrnfile) erase();
+	if (!ingrnfile) pl_erase();
 	if (invector) return;
 	invector = 1;
 	printf("VECTOR\n");

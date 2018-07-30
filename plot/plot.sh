@@ -8,17 +8,10 @@ case $1 in
 *)	t=-T$TERM
 esac
 case $t in
--T450)			exec t450 "$@";;
--T300)			exec t300 "$@";;
--T300S|-T300s)		exec t300s "$@";;
--Tver)			exec lpr -Pversatec -g "$@";;
--Tvar)			exec lpr -Pvarian -g "$@";;
 -Ttek4014|-Ttek|-T4014|-T)	exec tek "$@" ;;
 -T4013)			exec t4013 "$@" ;;
 -Tbitgraph|-Tbg)	exec bgplot "$@";;
 -Tgigi|-Tvt125)		exec gigiplot "$@";;
--Taed)			exec aedplot "$@";;
--Thp7221|-Thp7|-Th7)	exec hp7221plot "$@";;
 -Thp|-T2648|-T2648a|-Thp2648|-Thp2648a|h8)
 			exec hpplot "$@";;
 -Tip|-Timagen)		exec implot "$@";;

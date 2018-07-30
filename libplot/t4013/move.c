@@ -13,8 +13,8 @@ static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 6/7/85";
 extern void putch(int c);
 
 void
-move(int xi, int yi)
+pl_move(int xi, int yi)
 {
 	putch(035);
-	cont(xi,yi);
+	pl_cont(xi,yi);
 }

@@ -8,37 +8,39 @@ openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, clos
 .nf
 .B #include <plot.h>
 .PP
-.B void openpl(void);
+.B #define _COMPAT_OLD_LIBPLOT /* macros for plotting functions without pl_ prefix */
 .PP
-.B void erase(void);
+.B void pl_openpl(void);
 .PP
-.B void label(char *s);
+.B void pl_erase(void);
 .PP
-.B void line(int x1, int y1, int x2, int y2);
+.B void pl_label(char *s);
 .PP
-.B void circle(int x, int y, int r);
+.B void pl_line(int x1, int y1, int x2, int y2);
 .PP
-.B void arc(int x, int y, int x0, int y0, int x1, int y1);
+.B void pl_circle(int x, int y, int r);
 .PP
-.B void move(int x, int y);
+.B void pl_arc(int x, int y, int x0, int y0, int x1, int y1);
 .PP
-.B void cont(int x, int y);
+.B void pl_move(int x, int y);
 .PP
-.B void point(int x, int y);
+.B void pl_cont(int x, int y);
 .PP
-.B void linemod(char *s);
+.B void pl_point(int x, int y);
 .PP
-.B void space(int x0, int y0, int x1, int y1);
+.B void pl_linemod(char *s);
 .PP
-.B void closepl(void);
+.B void pl_space(int x0, int y0, int x1, int y1);
 .PP
-.B void dot(int xi, int yi, int dx, int n, int *pat);
+.B void pl_closepl(void);
 .PP
-.B void box(int x0, int y0, int x1, int y1);
+.B void pl_dot(int xi, int yi, int dx, int n, int *pat);
 .PP
-.B void openvt(void);
+.B void pl_box(int x0, int y0, int x1, int y1);
 .PP
-.B void closevt(void);
+.B void pl_openvt(void);
+.PP
+.B void pl_closevt(void);
 .fi
 .PP
 .ft R
@@ -47,41 +49,26 @@ These subroutines generate graphic output in a relatively
 device-independent manner.  See
 .IR  plot (5)
 for a description of their effect.
-.I Openpl
+.I pl_openpl
 must be used before any of the others to open the device for writing.
-.I Closepl
+.I pl_closepl
 flushes the output.
 .PP
 String arguments to
-.I label
+.I pl_label
 and
-.I linemod
+.I pl_linemod
 are null-terminated, and do not contain newlines.
 .PP
 Various flavors of these functions exist for different output devices. 
 They are obtained by the following
 .IR ld (1)
-options (when linking with FORTRAN program, use also -lf77plot before any other):
+options (when linking with FORTRAN 77 program, use also -lf77plot before any other):
 .TP 8n
 .B \-lplot
 device-independent graphics stream on standard output for 
 .IR plot (1)
 filters
-.br
-.ns
-.TP
-.B \-l300
-GSI 300 terminal (not ported yet)
-.br
-.ns
-.TP
-.B \-l300s
-GSI 300S terminal (not ported yet)
-.br
-.ns
-.TP
-.B \-l450
-GSI 450 terminal (not ported yet)
 .br
 .ns
 .TP
@@ -94,11 +81,6 @@ Tektronix 4013 terminal
 Tektronix 4014 and 4015 terminals with the Enhanced Graphics Module (Use
 .B \-l4013
 for 4014's or 4015's without the Enhanced Graphics Module)
-.br
-.ns
-.TP
-.B \-lplotaed
-AED 512 color graphics terminal (not ported yet)
 .br
 .ns
 .TP
@@ -122,11 +104,6 @@ DEC vt100 terminals
 .br
 .ns
 .TP
-.B \-lplot2648
-Hewlett Packard 2648 graphics terminal (not ported yet)
-.br
-.ns
-.TP
 .B \-lplot7221
 Hewlett Packard 7221 graphics terminal
 .br
@@ -136,7 +113,7 @@ Hewlett Packard 7221 graphics terminal
 Imagen laser printer (default 240 dots-per-inch resolution).
 .PP
 On many devices, it is necessary to pause after
-.IR erase (),
+.IR pl_erase (),
 otherwise plotting commands are lost.
 The pause is normally done by the tty driver if at login time,
 .I tset
@@ -154,6 +131,6 @@ sleep(1);
 .fi
 .RE
 after each
-.IR erase ().
+.IR pl_erase ().
 .SH "SEE ALSO"
 plot(5), plot(1G), plot(3F), graph(1G)

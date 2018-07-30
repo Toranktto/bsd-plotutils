@@ -11,7 +11,7 @@ extern int xsc(int xi);
 extern int ysc(int yi);
 
 void
-move(int xi, int yi)
+pl_move(int xi, int yi)
 {
 	struct {char pad,c; int x,y;} p;
 	p.c = 9;

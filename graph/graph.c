@@ -104,15 +104,15 @@ main(int argc, char *argv[])
 	readin();
 	transpose();
 	if(erasf)
-		erase();
-	space(0,0,4096,4096);
+		pl_erase();
+	pl_space(0,0,4096,4096);
 	scale(&xd,(struct val *)&xx->xv);
 	scale(&yd,(struct val *)&xx->yv);
 	axes();
 	title();
 	plot();
-	move(1,1);
-	closevt();
+	pl_move(1,1);
+	pl_closevt();
 	return(0);
 }
 
@@ -522,27 +522,27 @@ axes(void)
 	if(gridf==0)
 		return;
 
-	line(xd.xbot,yd.xbot,xd.xtop,yd.xbot);
-	cont(xd.xtop,yd.xtop);
-	cont(xd.xbot,yd.xtop);
-	cont(xd.xbot,yd.xbot);
+	pl_line(xd.xbot,yd.xbot,xd.xtop,yd.xbot);
+	pl_cont(xd.xtop,yd.xtop);
+	pl_cont(xd.xbot,yd.xtop);
+	pl_cont(xd.xbot,yd.xbot);
 
 	xn = setmark(mark,&xd);
 	for(i=0; i<xn; i++) {
 		if(gridf==2)
-			line(mark[i],yd.xbot,mark[i],yd.xtop);
+			pl_line(mark[i],yd.xbot,mark[i],yd.xtop);
 		if(gridf==1) {
-			line(mark[i],yd.xbot,mark[i],yd.xbot+tick);
-			line(mark[i],yd.xtop-tick,mark[i],yd.xtop);
+			pl_line(mark[i],yd.xbot,mark[i],yd.xbot+tick);
+			pl_line(mark[i],yd.xtop-tick,mark[i],yd.xtop);
 		}
 	}
 	yn = setmark(mark,&yd);
 	for(i=0; i<yn; i++) {
 		if(gridf==2)
-			line(xd.xbot,mark[i],xd.xtop,mark[i]);
+			pl_line(xd.xbot,mark[i],xd.xtop,mark[i]);
 		if(gridf==1) {
-			line(xd.xbot,mark[i],xd.xbot+tick,mark[i]);
-			line(xd.xtop-tick,mark[i],xd.xtop,mark[i]);
+			pl_line(xd.xbot,mark[i],xd.xbot+tick,mark[i]);
+			pl_line(xd.xtop-tick,mark[i],xd.xtop,mark[i]);
 		}
 	}
 }
@@ -593,7 +593,7 @@ plot(void)
 
 	conn = 0;
 	if(mode!=0)
-		linemod(modes[mode]);
+		pl_linemod(modes[mode]);
 	for(i=0; i<n; i++) {
 		if(!conv(xx[i].xv,&xd,&ix) ||
 		   !conv(xx[i].yv,&yd,&iy)) {
@@ -602,14 +602,14 @@ plot(void)
 		}
 		if(mode!=0) {
 			if(conn != 0)
-				cont(ix,iy);
+				pl_cont(ix,iy);
 			else
-				move(ix,iy);
+				pl_move(ix,iy);
 			conn = 1;
 		}
 		conn &= symbol(ix,iy,xx[i].lblptr);
 	}
-	linemod(modes[1]);
+	pl_linemod(modes[1]);
 }
 
 int
@@ -668,13 +668,13 @@ symbol(int ix, int iy, int k)
 
 	if(symbf==0&&k<0) {
 		if(mode==0)
-			point(ix,iy);
+			pl_point(ix,iy);
 		return(1);
 	} 
 	else {
-		move(ix,iy);
-		label(k>=0?labs_+k:plotsymb);
-		move(ix,iy);
+		pl_move(ix,iy);
+		pl_label(k>=0?labs_+k:plotsymb);
+		pl_move(ix,iy);
 		return(!brkf|(k<0));
 	}
 }
@@ -682,14 +682,14 @@ symbol(int ix, int iy, int k)
 void
 title(void)
 {
-	move(xd.xbot,yd.xbot-60);
+	pl_move(xd.xbot,yd.xbot-60);
 	if (titlebuf[0]) {
-		label(titlebuf);
-		label("       ");
+		pl_label(titlebuf);
+		pl_label("       ");
 	}
 	if(gridf) {
 		axlab('x',&xd);
-		label("  ");
+		pl_label("  ");
 		axlab('y',&yd);
 	}
 }
@@ -700,7 +700,7 @@ axlab(char c, struct xy *p)
 	char buf[50];
 	sprintf(buf,"%g -%s%c- %g", p->xlb/p->xmult,
 		p->xf==log10?"log ":"", c, p->xub/p->xmult);
-	label(buf);
+	pl_label(buf);
 }
 
 void

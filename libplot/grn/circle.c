@@ -25,9 +25,9 @@ extern void endvector(void);
  *---------------------------------------------------------
  */
 void
-circle(int x, int y, int r)
+pl_circle(int x, int y, int r)
 {
-	if (!ingrnfile) erase();
+	if (!ingrnfile) pl_erase();
 	endvector();
 	printf("ARC\n");
 	outxy(x,y);

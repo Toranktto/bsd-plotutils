@@ -27,9 +27,9 @@ extern void endvector(void);
  *---------------------------------------------------------
  */
 void
-label(char *s)
+pl_label(char *s)
 {
-	if (!ingrnfile) erase();
+	if (!ingrnfile) pl_erase();
 	endvector();
 	printf("BOTLEFT\n");
 	outcurxy();

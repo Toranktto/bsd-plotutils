@@ -6,13 +6,13 @@ static char sccsid[] = "@(#)close.c	4.1 (Berkeley) 6/27/83";
 #include <plot.h>
 
 void
-closevt(void)
+pl_closevt(void)
 {
 	fflush(stdout);
 }
 
 void
-closepl(void)
+pl_closepl(void)
 {
 	fflush(stdout);
 }

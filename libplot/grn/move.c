@@ -22,9 +22,9 @@ extern void endvector(void);
  *---------------------------------------------------------
  */
 void
-move(int x, int y)
+pl_move(int x, int y)
 {
-	if (!ingrnfile) erase();
+	if (!ingrnfile) pl_erase();
     if (invector) endvector();
     curx = x;
     cury = y;

@@ -8,7 +8,7 @@ static char sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
 extern int vti;
 
 void
-label(char *s)
+pl_label(char *s)
 {
 	int i, o;
 

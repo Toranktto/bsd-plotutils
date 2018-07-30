@@ -16,14 +16,14 @@ float scaley = 1.;
 int vti = -1;
 
 void
-openvt(void)
+pl_openvt(void)
 {
 		vti = open("/dev/vt0",1);
 		return;
 }
 
 void
-openpl(void)
+pl_openpl(void)
 {
 	vti = open("/dev/vt0",1);
 	return;

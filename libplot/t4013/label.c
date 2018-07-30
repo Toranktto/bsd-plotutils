@@ -13,7 +13,7 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 6/7/85";
 extern void putch(int c);
 
 void
-label(char *s)
+pl_label(char *s)
 {
 	register int i,c;
 

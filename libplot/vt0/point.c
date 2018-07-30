@@ -11,7 +11,7 @@ extern int xsc(int xi);
 extern int ysc(int yi);
 
 void
-point(int xi, int yi)
+pl_point(int xi, int yi)
 {
 	struct {char pad,c; int x,y;} p;
 	p.c = 2;

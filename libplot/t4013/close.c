@@ -14,14 +14,14 @@ static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 6/7/85";
 extern void putch(int c);
 
 void
-closevt(void)
+pl_closevt(void)
 {
 	putch(037);
 	fflush(stdout);
 }
 
 void
-closepl(void)
+pl_closepl(void)
 {
 	putch(037);
 	fflush(stdout);

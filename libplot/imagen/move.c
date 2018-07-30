@@ -12,8 +12,8 @@ static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 9/21/85";
 #include <plot.h>
 
 void
-move(int xi, int yi)
+pl_move(int xi, int yi)
 {
-        imPx = xi;
-        imPy = yi;
+	imPx = xi;
+	imPy = yi;
 }

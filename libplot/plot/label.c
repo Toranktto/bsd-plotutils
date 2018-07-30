@@ -6,7 +6,7 @@ static char sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
 #include <plot.h>
 
 void
-label(char *s)
+pl_label(char *s)
 {
 	int i;
 	putc('t',stdout);
