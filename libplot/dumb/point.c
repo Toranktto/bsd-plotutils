@@ -11,13 +11,11 @@ static char sccsid[] = "@(#)point.c	5.1 (Berkeley) 5/7/85";
 #include "dumb.h"
 #include <plot.h>
 
-extern int plotChar;
-
 void
 point(int x, int y)
 {
 	scale(x, y);
 	currentx = x;
 	currenty = y;
-	screenmat[currentx][currenty] = plotChar;
+	screenmat[currentx][currenty] = '*';
 }

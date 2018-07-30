@@ -12,7 +12,6 @@ static char sccsid[] = "@(#)cont.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 
 extern void dda_line(char ch, int x0, int y0, int x1, int y1);
-extern int plotChar;
 
 void
 cont(int x, int y)
@@ -21,5 +20,5 @@ cont(int x, int y)
 	x1 = x;
 	y1 = y;
 	scale(x1, y1);
-	dda_line(plotChar, currentx, currenty, x, y);
+	dda_line('*', currentx, currenty, x, y);
 }

@@ -31,8 +31,6 @@ void arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend);
 void dda_line(char ch, int x0, int y0, int x1, int y1);
 void closepl(void);
 
-
-static int plotChar = '*'; /* used to drawing plots, by default in solid mode */
 static double lowX, rangeX;	/* min and range of x */
 static double lowY, rangeY;	/* min and range of y */
 static int lastX, lastY;	/* last point plotted */
@@ -80,11 +78,22 @@ openpl(void)
 void
 closepl(void)
 {
+	FILE *ctty;
+	register char c;
+
 	signal(SIGINT, SIG_IGN);
 	/* Leave cursor at top of screen. */
 	move(0, 0);
-
 	refresh();
+
+	/* wait for 'q' from controlling terminal, because stdin or stdscr can be redirected */
+	if ((ctty = fopen(ctermid(NULL), "rb")) != NULL) {
+		while((c = fgetc(ctty)) != EOF)
+			if (c == 'q') break;
+
+		fclose(ctty);
+	}
+
 	endwin();
 	exit(0);
 }
@@ -100,8 +109,8 @@ plot_move(int x, int y)
 void
 line(int x0, int y0, int x1, int y1)
 {
-	plot_movech(y0, x0, plotChar);
-	dda_line(plotChar, scaleX(x0), scaleY(y0), scaleX(x1), scaleY(y1));
+	plot_movech(y0, x0, '*');
+	dda_line('*', scaleX(x0), scaleY(y0), scaleX(x1), scaleY(y1));
 }
 
 void
@@ -128,13 +137,13 @@ plot_erase(void)
 void
 point(int x, int y)
 {
-	plot_movech(y, x, plotChar);
+	plot_movech(y, x, '*');
 }
 
 void
 cont(int x, int y)
 {
-	dda_line(plotChar, lastX-1, lastY, scaleX(x), scaleY(y));
+	dda_line('*', lastX-1, lastY, scaleX(x), scaleY(y));
 }
 
 void
@@ -149,14 +158,6 @@ space(int x0, int y0, int x1, int y1)
 void
 linemod(char *string)
 {
-	if (strcmp(string, "dotted") == 0) plotChar = '.';
-	else if (strcmp(string, "dotdashed") == 0) plotChar = '\\';
-	else if (strcmp(string, "shortdashed") == 0) plotChar = '/';
-	else if (strcmp(string, "longdashed") == 0) plotChar = '-';
-	else if (strcmp(string, "dotlongdash") == 0) plotChar = 'x';
-	else if (strcmp(string, "dotshortdash") == 0) plotChar = 's';
-	else if (strcmp(string, "dotdotdash") == 0) plotChar = ',';
-	else plotChar = '*';
 }
 
 
@@ -263,7 +264,7 @@ arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 	y = ybeg;
 	plot_move(xbeg+xc, ybeg+yc);
 	do {
-		dda_line(plotChar,lastX-1, lastY, scaleX(xc + x), scaleY(yc + y ));
+		dda_line('*',lastX-1, lastY, scaleX(xc + x), scaleY(yc + y ));
 		tempX = x;
 		x = x*costheta - y*sintheta;
 		y = tempX*sintheta + y*costheta;
