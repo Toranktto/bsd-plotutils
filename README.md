@@ -1,6 +1,6 @@
 # BSD plotutils
 
-Port of ancient plot utilities from 4.3BSD UNIX to modern BSD derivatives.
+Port of ancient plotting utilities and libraries (for C and FORTRAN 77) from 4.3BSD UNIX to modern BSD derivatives.
 
 ## Installation
 
