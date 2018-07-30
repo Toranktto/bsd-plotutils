@@ -63,9 +63,9 @@ install: maninstall
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
 	    ${DESTDIR}/usr/local/libexec/plot
 
-	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plottoa \
+	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plottoa \
 	    ${DESTDIR}${BINDIR}/plottoa
-	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} atoplot \
+	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} atoplot \
 	    ${DESTDIR}${BINDIR}/atoplot
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \
 	    ${DESTDIR}${BINDIR}/plot
