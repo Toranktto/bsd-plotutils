@@ -32,7 +32,7 @@ void dda_line(char ch, int x0, int y0, int x1, int y1);
 void closepl(void);
 
 
-static int plotChar = ' '; /* used to drawing plots */
+static int plotChar = '*'; /* used to drawing plots, by default in solid mode */
 static double lowX, rangeX;	/* min and range of x */
 static double lowY, rangeY;	/* min and range of y */
 static int lastX, lastY;	/* last point plotted */
@@ -149,33 +149,14 @@ space(int x0, int y0, int x1, int y1)
 void
 linemod(char *string)
 {
-	if (strcmp(string, "solid") == 0) {
-		plotChar = '*';
-	}
-	else if (strcmp(string, "dotted") == 0) {
-		plotChar = '.';
-	}
-	else if (strcmp(string, "dotdashed") == 0) {
-		plotChar = '\\';
-	}
-	else if (strcmp(string, "shortdashed") == 0) {
-		plotChar = '/';
-	}
-	else if (strcmp(string, "longdashed") == 0) {
-		plotChar = '-';
-	}
-	else if (strcmp(string, "dotlongdash") == 0) {
-		plotChar = 'x';
-	}
-	else if (strcmp(string, "dotshortdash") == 0) {
-		plotChar = 'v';
-	}
-	else if (strcmp(string, "dotdotdash") == 0) {
-		plotChar = ',';
-	}
-	else {
-		plotChar = '*';
-	}
+	if (strcmp(string, "dotted") == 0) plotChar = '.';
+	else if (strcmp(string, "dotdashed") == 0) plotChar = '\\';
+	else if (strcmp(string, "shortdashed") == 0) plotChar = '/';
+	else if (strcmp(string, "longdashed") == 0) plotChar = '-';
+	else if (strcmp(string, "dotlongdash") == 0) plotChar = 'x';
+	else if (strcmp(string, "dotshortdash") == 0) plotChar = 's';
+	else if (strcmp(string, "dotdotdash") == 0) plotChar = ',';
+	else plotChar = '*';
 }
 
 
@@ -283,10 +264,6 @@ arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 	plot_move(xbeg+xc, ybeg+yc);
 	do {
 		dda_line(plotChar,lastX-1, lastY, scaleX(xc + x), scaleY(yc + y ));
-		/*
-		screen_move( scaleY(yc + y), scaleX(xc + x) );
-		plot_addch(plotChar);
-		*/
 		tempX = x;
 		x = x*costheta - y*sintheta;
 		y = tempX*sintheta + y*costheta;
