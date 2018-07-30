@@ -32,6 +32,7 @@ void dda_line(char ch, int x0, int y0, int x1, int y1);
 void closepl(void);
 
 
+static int plotChar = ' '; /* used to drawing plots */
 static double lowX, rangeX;	/* min and range of x */
 static double lowY, rangeY;	/* min and range of y */
 static int lastX, lastY;	/* last point plotted */
@@ -70,6 +71,8 @@ void
 openpl(void)
 {
 	initscr();
+	noecho();
+	nonl();
 	signal(SIGINT, (__sighandler_t *) closepl);
 }
 
@@ -97,8 +100,8 @@ plot_move(int x, int y)
 void
 line(int x0, int y0, int x1, int y1)
 {
-	plot_movech(y0, x0, '*');
-	dda_line('*', scaleX(x0), scaleY(y0), scaleX(x1), scaleY(y1));
+	plot_movech(y0, x0, plotChar);
+	dda_line(plotChar, scaleX(x0), scaleY(y0), scaleX(x1), scaleY(y1));
 }
 
 void
@@ -115,17 +118,6 @@ label(char *str)
 void
 plot_erase(void)
 {
-	/*
-	Some of these functions probably belong in openpl().  However, if the
-	input is being typed in, putting them in openpl would not work
-	since "noecho", etc would prevent (sort of) input.  Notice that
-	the driver calls openpl before doing anything.  This is actually
-	wrong, but it is what whoever originally wrote the driver decided
-	to do.  (openpl() in libplot does nothing -- that is the main problem!)
-	*/
-
-	noecho();
-	nonl();
 	clear();
 	move(LINES-1, 0);
 	lastX = 0;
@@ -136,13 +128,13 @@ plot_erase(void)
 void
 point(int x, int y)
 {
-	plot_movech(y, x, '*');
+	plot_movech(y, x, plotChar);
 }
 
 void
 cont(int x, int y)
 {
-	dda_line('*', lastX-1, lastY, scaleX(x), scaleY(y));
+	dda_line(plotChar, lastX-1, lastY, scaleX(x), scaleY(y));
 }
 
 void
@@ -157,6 +149,33 @@ space(int x0, int y0, int x1, int y1)
 void
 linemod(char *string)
 {
+	if (strcmp(string, "solid") == 0) {
+		plotChar = '*';
+	}
+	else if (strcmp(string, "dotted") == 0) {
+		plotChar = '.';
+	}
+	else if (strcmp(string, "dotdashed") == 0) {
+		plotChar = '\\';
+	}
+	else if (strcmp(string, "shortdashed") == 0) {
+		plotChar = '/';
+	}
+	else if (strcmp(string, "longdashed") == 0) {
+		plotChar = '-';
+	}
+	else if (strcmp(string, "dotlongdash") == 0) {
+		plotChar = 'x';
+	}
+	else if (strcmp(string, "dotshortdash") == 0) {
+		plotChar = 'v';
+	}
+	else if (strcmp(string, "dotdotdash") == 0) {
+		plotChar = ',';
+	}
+	else {
+		plotChar = '*';
+	}
 }
 
 
@@ -263,10 +282,10 @@ arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend)
 	y = ybeg;
 	plot_move(xbeg+xc, ybeg+yc);
 	do {
-		dda_line('*',lastX-1, lastY, scaleX(xc + x), scaleY(yc + y ));
+		dda_line(plotChar,lastX-1, lastY, scaleX(xc + x), scaleY(yc + y ));
 		/*
 		screen_move( scaleY(yc + y), scaleX(xc + x) );
-		plot_addch('*');
+		plot_addch(plotChar);
 		*/
 		tempX = x;
 		x = x*costheta - y*sintheta;

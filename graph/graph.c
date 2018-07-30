@@ -687,7 +687,7 @@ title(void)
 		label(titlebuf);
 		label("       ");
 	}
-	if(erasf&&gridf) {
+	if(gridf) {
 		axlab('x',&xd);
 		label("  ");
 		axlab('y',&yd);

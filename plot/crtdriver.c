@@ -71,6 +71,11 @@ main(int argc, char **argv)
 	}
 
 	if (std) {
+		if (isatty(fileno(stdin))) {
+			fprintf(stderr, "crtplot input cannot be a terminal\n");
+			exit(1);
+		}
+
 		fplt( stdin );
 	}
 
@@ -86,7 +91,7 @@ fplt(FILE *fin)
 	/*int pat[256];*/
 
 	openpl();
-	while((c=getc(fin)) != EOF) {
+	while((fin == stdin ? (c=getch()) : (c=getc(fin))) != EOF) {
 		switch(c) {
 		case 'm':
 			xi = getsi(fin);
@@ -154,9 +159,9 @@ int
 getsi(FILE *fin)
 {
 	short a, b;
-	if((b = getc(fin)) == EOF)
+	if((fin == stdin ? (b = getch()) : (b = getc(fin))) == EOF)
 		return(EOF);
-	if((a = getc(fin)) == EOF)
+	if((fin == stdin ? (a = getch()) : (a = getc(fin))) == EOF)
 		return(EOF);
 	a = a<<8;
 	return(a|b);
@@ -165,7 +170,7 @@ getsi(FILE *fin)
 void
 getstr_(char *s, FILE *fin)
 {
-	for( ; (*s = getc(fin)); s++)
+	for( ; (fin == stdin ? (*s = getch()) : (*s = getc(fin))); s++)
 		if(*s == '\n')
 			break;
 	*s = '\0';
