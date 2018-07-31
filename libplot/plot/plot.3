@@ -9,7 +9,7 @@ pl_space, pl_closepl, pl_dot, pl_box, pl_openvt, pl_closevt \- plotting interfac
 .nf
 .B #include <plot.h>
 .PP
-.B #define _COMPAT_OLD_LIBPLOT /* macros for plotting functions without pl_ prefix */
+.B #include <plotcompat.h> /* compatibility with original libplot */
 .PP
 .B void pl_openpl(void);
 .PP

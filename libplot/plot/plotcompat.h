@@ -25,29 +25,31 @@
  *
  */
 
-#ifndef _PLOT_H
-#define _PLOT_H
+#ifndef _PLOTCOMPAT_H
+#define _PLOTCOMPAT_H
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
-extern void pl_openpl(void);
-extern void pl_closevt(void);
-extern void pl_openvt(void);
-extern void pl_erase(void);
-extern void pl_label(char*);
-extern void pl_line(int, int, int, int);
-extern void pl_circle(int, int, int);
-extern void pl_arc(int, int, int, int, int, int);
-extern void pl_move(int, int);
-extern void pl_cont(int, int);
-extern void pl_point(int, int);
-extern void pl_linemod(char *);
-extern void pl_space(int, int, int, int);
-extern void pl_closepl(void);
-extern void pl_dot(int, int, int, int, int*);
-extern void pl_box(int, int, int, int);
+#include <plot.h>
+
+#define openpl() pl_openpl()
+#define closevt() pl_closevt()
+#define openvt() pl_openvt()
+#define erase() pl_erase()
+#define label(s) pl_label(s)
+#define line(x0, y0, x1, y1) pl_line(x0, y0, x1, y1)
+#define circle(x, y, r) pl_circle(x, y, r)
+#define arc(x, y, x0, y0, x1, y1) pl_arc(x, y, x0, y0, x1, y1)
+#define move(xi, yi) pl_move(xi, yi)
+#define cont(x, y) pl_cont(x, y)
+#define point(xi, yi) pl_point(xi, yi)
+#define linemod(s) pl_linemod(s)
+#define space(x0, y0, x1, y1) pl_space(x0, y0, x1, y1)
+#define closepl() pl_closepl()
+#define dot(xi, yi, dx, n, pat) pl_dot(xi, yi, dx, n, pat)
+#define box(x0, y0, x1, y1) pl_box(x0, y0, x1, y1)
 
 #ifdef	__cplusplus
 }
