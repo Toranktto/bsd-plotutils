@@ -61,7 +61,7 @@ main(int argc, char **argv)
 		else {
 			std = 0;
 			if ((fin = fopen(argv[1], "r")) == NULL) {
-				fprintf(stderr, "can't open %s\n", argv[1]);
+				fprintf(stderr, "plottoc: can't open %s\n", argv[1]);
 				exit(1);
 			}
 
