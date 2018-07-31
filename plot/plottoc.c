@@ -264,8 +264,7 @@ dot(int xi, int yi, int dx, int n, int pat[])
 	printf("\tpl_dot(%d, %d, %d, %d, {", xi, yi, dx, n);
 	for(i=0;i<n;i++) {
 		printf("%d", pat[i]);
-		if (i != i - 1)
-			printf(", ");
+		if (i != n - 1) printf(", ");
 	}
 	printf("});\n");
 }
