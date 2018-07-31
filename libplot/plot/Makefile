@@ -7,8 +7,7 @@ INCS=	plot.h plotcompat.h
 CSTD=c99
 CFLAGS+=	-I.
 MAN=	plot.3 plot.5
-MLINKS=plot.3 f77plot.3 \
-		plot.3 pl_openvt.3 \
+MLINKS=plot.3 pl_openvt.3 \
 		plot.3 pl_openpl.3 \
 		plot.3 pl_closepl.3 \
 		plot.3 pl_closevt.3 \

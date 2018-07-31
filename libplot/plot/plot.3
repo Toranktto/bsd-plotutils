@@ -1,6 +1,6 @@
 .\"	@(#)plot.3	6.3 (Berkeley) 11/24/87
 .\"
-.TH PLOT 3X  "July 31, 2018"
+.TH PLOT 3  "July 31, 2018"
 .AT 3
 .SH NAME
 pl_openpl, pl_erase, pl_label, pl_line, pl_circle, pl_arc, pl_move, pl_cont, pl_point, pl_linemod, \
@@ -68,9 +68,7 @@ are null-terminated, and do not contain newlines.
 Various flavors of these functions exist for different output devices. 
 They are obtained by the following
 .IR ld (1)
-options (when linking with FORTRAN 77 program, use also 
-.B \-lf77plot
-before any other):
+options:
 .TP 8n
 .B \-lplot
 device-independent graphics stream on standard output for 
@@ -145,4 +143,4 @@ sleep(1);
 after each
 .IR pl_erase().
 .SH "SEE ALSO"
-plot(5), plot(1G), plot(3F), graph(1G)
+plot(5), plot(1), f77plot(3), graph(1)

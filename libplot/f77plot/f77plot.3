@@ -1,0 +1,94 @@
+.\" Copyright (c) 1985 Regents of the University of California.
+.\" All rights reserved.  The Berkeley software License Agreement
+.\" specifies the terms and conditions for redistribution.
+.\"
+.\"	@(#)plot.3f	6.3 (Berkeley) 4/30/86
+.\"
+.TH F77PLOT 3 "July 31, 2018"
+.UC 6
+.SH NAME
+pl_openpl, pl_erase, pl_label, pl_line, pl_circle, pl_arc, pl_move, pl_cont, pl_point, pl_linemod, \
+pl_space, pl_closepl, pl_dot, pl_box, pl_openvt, pl_closevt \- FORTRAN 77 interface for plotting interface
+.SH SYNOPSIS
+.nf
+.B subroutine pl_openpl()
+.PP
+.B subroutine pl_erase()
+.PP
+.B subroutine pl_label(str)
+.B character pl_str*(*)
+.PP
+.B subroutine pl_line(ix1, iy1, ix2, iy2)
+.PP
+.B subroutine pl_box(ix1, iy1, ix2, iy2)
+.fi
+Draw a rectangle and leave the cursor at (ix2, iy2).
+.PP
+.B subroutine pl_circle(ix, iy, ir)
+.PP
+.B
+subroutine pl_arc(ix, iy, ix0, iy0, ix1, iy1)
+.PP
+.B subroutine pl_move(ix, iy)
+.PP
+.B subroutine pl_cont(ix, iy)
+.PP
+.B subroutine pl_point(ix, iy)
+.PP
+.B subroutine pl_linemod(str)
+.B character str*(*)
+.PP
+.B subroutine pl_space(ix0, iy0, ix1, iy1)
+.PP
+.B subroutine pl_closepl()
+.fi
+.PP
+.ft R
+.SH DESCRIPTION
+These are interface subroutines, in the library
+.IR -lf77plot ,
+allowing
+.I f77
+users to call the 
+.IR plot (3X)
+graphics routines
+which generate graphic output in a relatively
+device-independent manner.
+The
+.I f77
+subroutine names are the same as the
+.I C
+function names.
+See
+.IR  plot (5)
+and
+.IR  plot (3)
+for a description
+of their effect.
+.PP
+Only the first 255 character in string arguments to
+.I pl_label
+and
+.I pl_linemod
+are used.
+.PP
+This library must be specified in the
+.IR f77 (1)
+command before the device specific graphics library;
+for example, to compile and load a FORTRAN program in
+.I prog.f
+using
+.IR gfortran6 (1)
+on FreeBSD to run on any CRT terminal:
+.br
+.RS
+
+.B gfortran6 -Wl,-rpath=/usr/local/lib/gcc6 -L/usr/local/lib prog.f -lf77plot -lplotcrt
+
+.RE
+.br
+See
+.IR plot(3)
+for a complete list of device specific plotting libraries.
+.SH "SEE ALSO"
+plot(5), plot(1), plot(3), graph(1)
