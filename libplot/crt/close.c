@@ -34,6 +34,13 @@ pl_closepl(void)
 		fclose(ctty);
 	}
 
+	pl_closevt();
+}
+
+void
+pl_closevt(void)
+{
+	erase();
+	refresh();
 	endwin();
-	exit(0);
 }

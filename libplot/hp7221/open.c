@@ -42,5 +42,22 @@ pl_openpl(void)
 	putMBP( XMAX, YMAX );
 	printf( "vA~*z" );
 
-	pl_space(0,0,XMAX,YMAX);
+	/* pl_space(0,0,XMAX,YMAX); */
+}
+
+void
+pl_openvt(void)
+{
+	/* catch interupts */
+	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	currentx = 0;
+	currenty = 0;
+	printf( "~VR~W" );
+	putMBP( 800, 2000 );
+	putMBP( 7600, 9600 );
+	printf( "~S" );
+	putMBP( XMAX, YMAX );
+	printf( "vA~*z" );
+
+	/* pl_space(0,0,XMAX,YMAX); */
 }

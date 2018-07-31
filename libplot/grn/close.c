@@ -30,3 +30,12 @@ pl_closepl(void)
     printf("-1\n");
     ingrnfile = 0;
 }
+
+void
+pl_closevt(void)
+{
+    if (!ingrnfile) return;
+    endvector();
+    printf("-1\n");
+    ingrnfile = 0;
+}

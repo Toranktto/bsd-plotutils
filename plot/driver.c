@@ -5,10 +5,10 @@ static char sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
 #include <stdio.h>
 #include <stdlib.h>
 #include <plot.h>
+#include <unistd.h>
 
 float deltx;
 float delty;
-int PlotRes;
 
 void fplt(FILE *fin);
 int getsi(register FILE *fin);
@@ -21,6 +21,13 @@ main(int argc, char *argv[])
 	char *progname;
 	FILE *fin;
 
+#ifdef __crtplot
+	if (!isatty(fileno(stdout))) {
+		fprintf(stderr, "crtplot: output must be a terminal\n");
+		exit(1);
+	}
+#endif
+
 	progname = argv[0];
 	for (argc--, argv++; argc > 0; argc--, argv++) {
 		if (argv[0][0] == '-') {
@@ -30,9 +37,6 @@ main(int argc, char *argv[])
 				break;
 			case 'w':
 				delty = atoi(&argv[0][2]) - 1;
-				break;
-			case 'r':
-				PlotRes = atoi(&argv[0][2]);
 				break;
 			}
 			continue;
@@ -49,8 +53,15 @@ main(int argc, char *argv[])
 		fclose(fin);
 	}
 
-	if (std)
+	if (std) {
+#ifdef __crtplot
+		if (isatty(fileno(stdin))) {
+			fprintf(stderr, "crtplot: input cannot be a terminal\n");
+			exit(1);
+		}
+#endif
 		fplt(stdin);
+	}
 
 	exit(0);
 }
@@ -60,8 +71,11 @@ fplt(FILE *fin)
 {
 	register int c;
 	char s[256];
-	int xi,yi,x0,y0,x1,y1,r,dx,n,i;
+	int xi,yi,x0,y0,x1,y1,r;
+#ifndef __crtplot
+	int dx,n,i;
 	int pat[256];
+#endif
 
 	pl_openpl();
 	while((c = getc(fin)) != EOF) {
@@ -121,6 +135,7 @@ fplt(FILE *fin)
 			getstr(s,fin);
 			pl_linemod(s);
 			break;
+#ifndef __crtplot
 		case 'd':
 			xi = getsi(fin);
 			yi = getsi(fin);
@@ -130,6 +145,7 @@ fplt(FILE *fin)
 				pat[i] = getsi(fin);
 			pl_dot(xi,yi,dx,n,pat);
 			break;
+#endif
 		}
 	}
 	pl_closepl();

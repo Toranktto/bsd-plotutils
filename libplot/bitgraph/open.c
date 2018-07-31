@@ -31,5 +31,16 @@ pl_openpl(void)
 	currentx = 0;
 	currenty = 0;
 
-	pl_space(0, 0, XMAX, YMAX);
+	/* pl_space(0, 0, XMAX, YMAX); */
+}
+
+void
+pl_openvt(void)
+{
+	/* catch interupts */
+	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	currentx = 0;
+	currenty = 0;
+
+	/* pl_space(0, 0, XMAX, YMAX); */
 }

@@ -21,3 +21,10 @@ pl_closepl(void)
 	putch(imP_ENDPAGE);
 	fflush(stdout);
 }
+
+void
+pl_closevt(void)
+{
+	putch(imP_ENDPAGE);
+	fflush(stdout);
+}

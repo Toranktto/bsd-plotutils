@@ -19,12 +19,31 @@ pl_closepl(void)
 {
 	int i, j;
 
+	signal(SIGINT, SIG_IGN);
+
 	for(j=0; j<LINES; j++){
 		for(i=0; i<COLS; i++){
 			printf("%c", screenmat[i][j]);
 		}
 		printf("\n");
 	}
+
+	/* exit(0); */
+}
+
+void
+pl_closevt(void)
+{
+	int i, j;
+
 	signal(SIGINT, SIG_IGN);
-	exit(0);
+
+	for(j=0; j<LINES; j++){
+		for(i=0; i<COLS; i++){
+			printf("%c", screenmat[i][j]);
+		}
+		printf("\n");
+	}
+
+	/* exit(0); */
 }

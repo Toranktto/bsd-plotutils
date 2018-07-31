@@ -6,8 +6,23 @@ SRCS=	arc.c box.c circle.c close.c cont.c dot.c erase.c label.c \
 INCS=	plot.h
 CSTD=c99
 CFLAGS+=	-I.
-MAN=	plot.3
-MLINKS+=	plot.3 f77plot.3
+MAN=	plot.3 plot.5
+MLINKS=plot.3 f77plot.3 \
+		plot.3 pl_openvt.3 \
+		plot.3 pl_openpl.3 \
+		plot.3 pl_closepl.3 \
+		plot.3 pl_closevt.3 \
+		plot.3 pl_erase.3 \
+		plot.3 pl_line.3 \
+		plot.3 pl_circle.3 \
+		plot.3 pl_arc.3 \
+		plot.3 pl_move.3 \
+		plot.3 pl_cont.3 \
+		plot.3 pl_point.3 \
+		plot.3 pl_linemod.3 \
+		plot.3 pl_space.3 \
+		plot.3 pl_dot.3 \
+		plot.3 pl_box.3
 PREFIX=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib

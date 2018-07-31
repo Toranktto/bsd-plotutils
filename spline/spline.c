@@ -334,7 +334,7 @@ again:		switch(argv[0][0]) {
 			x.ubf = 1;
 			break;
 		default:
-			fprintf(stderr, "Bad agrument\n");
+			fprintf(stderr, "spline: bad argument\n");
 			exit(1);
 		}
 	}

@@ -18,13 +18,11 @@ int vti = -1;
 void
 pl_openvt(void)
 {
-		vti = open("/dev/vt0",1);
-		return;
+	vti = open("/dev/vt0",1);
 }
 
 void
 pl_openpl(void)
 {
 	vti = open("/dev/vt0",1);
-	return;
 }

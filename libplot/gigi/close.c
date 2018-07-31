@@ -23,5 +23,18 @@ pl_closepl(void)
 	putchar( ESC );
 	putchar('\\');
 
-	exit(0);
+	/* exit(0); */
+}
+
+void
+pl_closevt(void)
+{
+	/* recieve interupts */
+	signal(SIGINT, SIG_IGN);
+
+	/* exit graphics mode */
+	putchar( ESC );
+	putchar('\\');
+
+	/* exit(0); */
 }

@@ -15,3 +15,9 @@ pl_closepl_(void)
 {
 	pl_closepl();
 }
+
+void
+pl_closevt_(void)
+{
+	pl_closevt();
+}

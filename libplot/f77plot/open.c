@@ -15,3 +15,9 @@ pl_openpl_(void)
 {
 	pl_openpl();
 }
+
+void
+pl_openvt_(void)
+{
+	pl_openvt();
+}

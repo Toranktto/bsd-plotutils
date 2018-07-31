@@ -18,10 +18,28 @@ double lowY, rangeY;	/* min and range of y */
 int lastX, lastY;	/* last point plotted */
 
 void
+winresize(int size)
+{
+	pl_closevt();
+	exit(0);
+}
+
+void
 pl_openpl(void)
 {
 	initscr();
 	noecho();
 	nonl();
 	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	signal(SIGWINCH, (__sighandler_t *) winresize);
+}
+
+void
+pl_openvt(void)
+{
+	initscr();
+	noecho();
+	nonl();
+	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	signal(SIGWINCH, (__sighandler_t *) winresize);
 }

@@ -20,3 +20,12 @@ pl_closepl(void)
 	printf( "v@}" );			/* Put pen away. */
 	fflush( stdout );
 }
+
+void
+pl_closevt(void)
+{
+	/* receive interupts */
+	signal(SIGINT, SIG_IGN);
+	printf( "v@}" );			/* Put pen away. */
+	fflush( stdout );
+}

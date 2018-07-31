@@ -40,3 +40,8 @@ void
 pl_openpl(void)
 {
 }
+
+void
+pl_openvt(void)
+{
+}

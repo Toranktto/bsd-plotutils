@@ -1,9 +1,10 @@
 .\"	@(#)plot.3	6.3 (Berkeley) 11/24/87
 .\"
-.TH PLOT 3X  "July 30, 2018"
+.TH PLOT 3X  "July 31, 2018"
 .AT 3
 .SH NAME
-openpl, erase, label, line, circle, arc, move, cont, point, linemod, space, closepl, dot, box, openvt, closevt \- graphics interface
+pl_openpl, pl_erase, pl_label, pl_line, pl_circle, pl_arc, pl_move, pl_cont, pl_point, pl_linemod, \
+pl_space, pl_closepl, pl_dot, pl_box, pl_openvt, pl_closevt \- plotting interface
 .SH SYNOPSIS
 .nf
 .B #include <plot.h>
@@ -49,21 +50,27 @@ These subroutines generate graphic output in a relatively
 device-independent manner.  See
 .IR  plot (5)
 for a description of their effect.
-.I pl_openpl
+.I pl_openpl()
+or
+.I pl_openvt()
 must be used before any of the others to open the device for writing.
-.I pl_closepl
+.I pl_closepl()
+and
+.I pl_closevt()
 flushes the output.
 .PP
 String arguments to
-.I pl_label
+.I pl_label()
 and
-.I pl_linemod
+.I pl_linemod()
 are null-terminated, and do not contain newlines.
 .PP
 Various flavors of these functions exist for different output devices. 
 They are obtained by the following
 .IR ld (1)
-options (when linking with FORTRAN 77 program, use also -lf77plot before any other):
+options (when linking with FORTRAN 77 program, use also 
+.B \-lf77plot
+before any other):
 .TP 8n
 .B \-lplot
 device-independent graphics stream on standard output for 
@@ -109,11 +116,16 @@ Hewlett Packard 7221 graphics terminal
 .br
 .ns
 .TP
+.B \-lplotcrt
+Any crt terminal capable of running vi.
+.br
+.ns
+.TP
 .B \-lplotimagen
 Imagen laser printer (default 240 dots-per-inch resolution).
 .PP
 On many devices, it is necessary to pause after
-.IR pl_erase (),
+.IR pl_erase(),
 otherwise plotting commands are lost.
 The pause is normally done by the tty driver if at login time,
 .I tset
@@ -131,6 +143,6 @@ sleep(1);
 .fi
 .RE
 after each
-.IR pl_erase ().
+.IR pl_erase().
 .SH "SEE ALSO"
 plot(5), plot(1G), plot(3F), graph(1G)

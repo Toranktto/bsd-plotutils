@@ -23,5 +23,5 @@ pl_closepl(void)
 	/* exit graphics mode */
 	putchar( ESC );
 	printf("[H");
-	exit(0);
+	/* exit(0); */
 }
