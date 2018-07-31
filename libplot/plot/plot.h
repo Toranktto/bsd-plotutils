@@ -51,7 +51,7 @@ extern void pl_box(int, int, int, int);
 
 #ifdef _COMPAT_OLD_LIBPLOT /* macros for plotting functions without pl_ prefix */
 #define openpl() pl_openpl()
-#define closevt() pl_closevt
+#define closevt() pl_closevt()
 #define openvt() pl_openvt()
 #define erase() pl_erase()
 #define label(s) pl_label(s)
