@@ -199,7 +199,8 @@ void
 closepl(void)
 {
 	printf("\tpl_closepl();\n");
-	printf( "\texit(0);\n" );
+	printf("\n");
+	printf( "\treturn 0;\n" );
 	printf("}\n");
 }
 
