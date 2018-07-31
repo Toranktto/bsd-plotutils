@@ -6,13 +6,14 @@ static char sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
 #include <stdlib.h>
 #include <plot.h>
 #include <unistd.h>
+#include <string.h>
 
 float deltx;
 float delty;
 
 void fplt(FILE *fin);
 int getsi(register FILE *fin);
-void getstr(register char *s, register FILE *fin);
+void getstr(register char *s, register FILE *fin, int len);
 
 int
 main(int argc, char *argv[])
@@ -74,7 +75,10 @@ fplt(FILE *fin)
 	int xi,yi,x0,y0,x1,y1,r;
 #ifndef __crtplot
 	int dx,n,i;
-	int pat[256];
+	int *pat;
+	unsigned int pat_size = 256;
+
+	pat = malloc(pat_size);
 #endif
 
 	pl_openpl();
@@ -93,7 +97,7 @@ fplt(FILE *fin)
 			pl_line(x0,y0,x1,y1);
 			break;
 		case 't':
-			getstr(s,fin);
+			getstr(s,fin,256);
 			pl_label(s);
 			break;
 		case 'e':
@@ -132,23 +136,30 @@ fplt(FILE *fin)
 			pl_circle(xi,yi,r);
 			break;
 		case 'f':
-			getstr(s,fin);
+			getstr(s,fin,256);
 			pl_linemod(s);
 			break;
-#ifndef __crtplot
 		case 'd':
+#ifndef __crtplot
 			xi = getsi(fin);
 			yi = getsi(fin);
 			dx = getsi(fin);
 			n = getsi(fin);
+			if (n > pat_size) {
+				pat_size *= 2;
+				pat = realloc(pat, pat_size);
+			}
 			for(i=0; i<n; i++)
 				pat[i] = getsi(fin);
 			pl_dot(xi,yi,dx,n,pat);
-			break;
 #endif
+			break;
 		}
 	}
 	pl_closepl();
+#ifndef __crtplot
+	free(pat);
+#endif
 }
 
 /* get an integer stored in 2 ascii bytes. */
@@ -166,10 +177,8 @@ getsi(register FILE *fin)
 }
 
 void
-getstr(register char *s, register FILE *fin)
+getstr(register char *s, register FILE *fin, int len)
 {
-	for( ; (*s = getc(fin)); s++)
-		if(*s == '\n')
-			break;
-	*s = '\0';
+	fgets(s, len, fin);
+	s[strnlen(s, len) - 1] = '\0'; /* remove newline */
 }

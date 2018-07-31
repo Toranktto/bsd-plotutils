@@ -5,15 +5,15 @@ static char sccsid[] = "@(#)atoplot.c	4.2 (Berkeley) 1/9/85";
 #include <stdio.h>
 #include <stdlib.h>
 #include <plot.h>
+#include <string.h>
 
 float deltx;
 float delty;
 
 char *mapLineType(char *cp);
 void fplt(FILE *fin);
-void getstr(char *s, FILE *fin);
 int getsi(FILE *fin);
-
+void getstr(register char *s, register FILE *fin, int len);
 
 int
 main(int argc, char **argv)
@@ -58,7 +58,10 @@ fplt(FILE *fin)
 	int c;
 	char s[256];
 	int xi,yi,x0,y0,x1,y1,r,dx,n,i;
-	int pat[256];
+	int *pat;
+	unsigned int pat_size = 256;
+
+	pat = malloc(pat_size);
 
 	pl_openpl();
 	while((c=getc(fin)) != EOF) {
@@ -76,7 +79,7 @@ fplt(FILE *fin)
 			pl_line(x0,y0,x1,y1);
 			break;
 		case 't':
-			getstr(s,fin);
+			getstr(s,fin,256);
 			pl_label(s);
 			break;
 		case 'e':
@@ -115,7 +118,7 @@ fplt(FILE *fin)
 			pl_circle(xi,yi,r);
 			break;
 		case 'f':
-			getstr(s,fin);
+			getstr(s,fin,256);
 			pl_linemod( mapLineType(s) );
 			break;
 		case 'd':
@@ -123,7 +126,12 @@ fplt(FILE *fin)
 			yi = getsi(fin);
 			dx = getsi(fin);
 			n = getsi(fin);
-			for(i=0; i<n; i++)pat[i] = getsi(fin);
+			if (n > pat_size) {
+				pat_size *= 2;
+				pat = realloc(pat, pat_size);
+			}
+			for(i=0; i<n; i++)
+				pat[i] = getsi(fin);
 			pl_dot(xi,yi,dx,n,pat);
 			break;
 		}
@@ -137,6 +145,7 @@ fplt(FILE *fin)
 	}
 
 	pl_closepl();
+	free(pat);
 }
 
 /* get an integer stored in 2 ascii bytes. */
@@ -149,15 +158,6 @@ getsi(FILE *fin)
 		return(EOF);
 	}
 	return( i );
-}
-
-void
-getstr(char *s, FILE *fin)
-{
-	for( ; (*s = getc(fin)); s++)
-		if(*s == '\n')
-			break;
-	*s = '\0';
 }
 
 char *lineMap[] = {
@@ -186,4 +186,11 @@ mapLineType( char *cp )
     else {
 		return( cp );
     }
+}
+
+void
+getstr(register char *s, register FILE *fin, int len)
+{
+	fgets(s, len, fin);
+	s[strnlen(s, len) - 1] = '\0'; /* remove newline */
 }

@@ -2,7 +2,7 @@
 
 PROGS=	tek t4013 bgplot crtplot dumbplot gigiplot \
 	hp7221plot implot grnplot plottoa atoplot plottoc
-SRCS=	atoplot.c chrtab.c debug.c driver.c plottoa.c plottoc.c
+SRCS=	atoplot.c chrtab.c driver.c plottoa.c plottoc.c
 MAN=	plot.1
 MLINKS=plot.1 bgplot.1 \
 		plot.1 crtplot.1 \
@@ -42,9 +42,6 @@ crtdriver.o:
 crtplot: crtdriver.o
 	${CC} ${CFLAGS} -o ${.TARGET} crtdriver.o ${LDFLAGS} ${LDADD} -lcurses -ltermcap -lm -lplotcrt
 
-debug:
-	${CC} ${CFLAGS} -o ${.TARGET} debug.c
-
 dumbplot: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotdumb -ltermcap -lm
 
@@ -73,7 +70,7 @@ tek: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -l4014 -lm
 
 clean:
-	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} debug crtdriver.o
+	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} crtdriver.o
 
 install: maninstall
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \

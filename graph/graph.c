@@ -147,10 +147,7 @@ again:		switch(argv[0][0]) {
 			}
 			break;
 
-		case 'd':	/*disconnected,obsolete option*/
-			fprintf(stderr, "graph: -d option is no longer supported\n");
-			exit(1);
-
+		case 'd': /*disconnected,obsolete option*/
 		case 'm': /*line mode*/
 			mode = 0;
 			if(!numb(&temp,&argc,&argv))
