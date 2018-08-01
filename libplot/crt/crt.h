@@ -4,9 +4,6 @@ intelligent terminals (ie, terminals with clear screen and cursor
 addressability.  It uses the curses library.  It should be compiled
 as follows:
 	cc crtdriver.c crtplot.c -lcurses -ltermcap -lm
-Note:  This requires as slightly modified driver from the standard driver
-because some function names conflicted with the curses library.
-(That's what you get when you have a flat name space!)
 */
 
 #include <math.h>

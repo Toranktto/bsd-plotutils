@@ -83,7 +83,7 @@ on FreeBSD to run on any CRT terminal:
 .br
 .RS
 
-.B gfortran6 -Wl,-rpath=/usr/local/lib/gcc6 -L/usr/local/lib prog.f -lf77plot -lplotcrt
+.B gfortran6 -Wl,-rpath=/usr/local/lib/gcc6 -L/usr/local/lib prog.f -lcurses -ltermcap -lm -lf77plot -lplotcrt
 
 .RE
 .br
