@@ -16,6 +16,6 @@ case $t in
 			exec hpplot "$@";;
 -Tip|-Timagen)		exec implot "$@";;
 -Tgrn)			exec grnplot "$@";;
--Tdumb|un|unknown)	exec dumbplot "$@";;
+-Tdumb|-Tun|-Tunknown)	exec dumbplot "$@";;
 *)  			exec crtplot "$@";;
 esac

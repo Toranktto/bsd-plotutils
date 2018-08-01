@@ -4,7 +4,7 @@ PROGS=	tek t4013 bgplot crtplot dumbplot gigiplot \
 	hp7221plot implot grnplot plottoa atoplot plottoc
 SRCS=	atoplot.c chrtab.c driver.c plottoa.c plottoc.c
 MAN=	plot.1
-MLINKS=plot.1 bgplot.1 \
+MLINKS=	plot.1 bgplot.1 \
 		plot.1 crtplot.1 \
 		plot.1 dumbplot.1 \
 		plot.1 gigiplot.1 \
@@ -16,10 +16,10 @@ MLINKS=plot.1 bgplot.1 \
 		plot.1 plottoa.1 \
 		plot.1 atoplot.1 \
 		plot.1 plottoc.1
-LDADD= -L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
+LDADD=	-L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
 		-L../libplot/hp7221/ -L../libplot/grn -L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
-		-L../libplot/plot -L../libplot/crt
-CFLAGS+=	-I../libplot/plot
+		-L../libplot/plot -L../libplot/crt -L/usr/local/lib
+CFLAGS+=	-I../libplot/plot -I/usr/local/include
 CSTD=c99
 PREFIX=	/usr/local
 BINDIR=	${PREFIX}/bin
