@@ -253,7 +253,7 @@ dot(int xi, int yi, int dx, int n, int pat[])
 {
 	register int i;
 
-	printf("d %d %d %d %d", xi, yi, dx, n);
-	for(i=0;i<n;i++) printf(" %d", pat[i]);
+	printf("d %d %d %d %d ", xi, yi, dx, n);
+	for(i=0;i<n;i++) printf("%d ", pat[i]);
 	printf("\n\n");
 }
