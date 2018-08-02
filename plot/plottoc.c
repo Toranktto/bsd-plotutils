@@ -29,19 +29,19 @@ void point(int xi, int yi);
 void label(char *s);
 void arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend);
 void circle(int xc, int yc, int r);
-void linemod( char *line );
+void linemod(char *line);
 void dot(int xi, int yi, int dx, int n, int pat[]);
 
 
 int
 main(int argc, char **argv)
 {
-	int std=1;
+	int std = 1;
 	FILE *fin;
 
-	while(argc-- > 1) {
-		if(*argv[1] == '-')
-			switch(argv[1][1]) {
+	while (argc-- > 1) {
+		if (*argv[1] == '-')
+			switch (argv[1][1]) {
 			case 'l':
 				deltx = atoi(&argv[1][2]) - 1;
 				break;
@@ -63,7 +63,7 @@ main(int argc, char **argv)
 	}
 
 	if (std)
-		fplt( stdin );
+		fplt(stdin);
 
 	exit(0);
 }
@@ -73,29 +73,29 @@ fplt(FILE *fin)
 {
 	int c;
 	char s[256];
-	int xi,yi,x0,y0,x1,y1,r,dx,n,i;
+	int xi, yi, x0, y0, x1, y1, r, dx, n, i;
 	int *pat;
 	unsigned int pat_size = 256;
 
 	pat = malloc(pat_size);
 
 	openpl();
-	while((c = getc(fin)) != EOF) {
-		switch(c) {
+	while ((c = getc(fin)) != EOF) {
+		switch (c) {
 		case 'm':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			move(xi,yi);
+			move(xi, yi);
 			break;
 		case 'l':
 			x0 = getsi(fin);
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			line(x0,y0,x1,y1);
+			line(x0, y0, x1, y1);
 			break;
 		case 't':
-			getstr(s,fin,256);
+			getstr(s, fin, 256);
 			label(s);
 			break;
 		case 'e':
@@ -104,19 +104,19 @@ fplt(FILE *fin)
 		case 'p':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			point(xi,yi);
+			point(xi, yi);
 			break;
 		case 'n':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			cont(xi,yi);
+			cont(xi, yi);
 			break;
 		case 's':
 			x0 = getsi(fin);
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			space(x0,y0,x1,y1);
+			space(x0, y0, x1, y1);
 			break;
 		case 'a':
 			xi = getsi(fin);
@@ -125,16 +125,16 @@ fplt(FILE *fin)
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			arc(xi,yi,x0,y0,x1,y1);
+			arc(xi, yi, x0, y0, x1, y1);
 			break;
 		case 'c':
 			xi = getsi(fin);
 			yi = getsi(fin);
 			r = getsi(fin);
-			circle(xi,yi,r);
+			circle(xi, yi, r);
 			break;
 		case 'f':
-			getstr(s,fin,256);
+			getstr(s, fin, 256);
 			linemod(s);
 			break;
 		case 'd':
@@ -146,9 +146,9 @@ fplt(FILE *fin)
 				pat_size *= 2;
 				pat = realloc(pat, pat_size);
 			}
-			for(i=0; i<n; i++)
+			for (i = 0; i < n; i++)
 				pat[i] = getsi(fin);
-			dot(xi,yi,dx,n,pat);
+			dot(xi, yi, dx, n, pat);
 			break;
 		}
 	}
@@ -162,12 +162,12 @@ int
 getsi(FILE *fin)
 {
 	short a, b;
-	if((b = getc(fin)) == EOF)
+	if ((b = getc(fin)) == EOF)
 		return(EOF);
-	if((a = getc(fin)) == EOF)
+	if ((a = getc(fin)) == EOF)
 		return(EOF);
-	a = a<<8;
-	return(a|b);
+	a = a << 8;
+	return(a | b);
 }
 
 void
@@ -182,7 +182,7 @@ getstr(register char *s, register FILE *fin, int len)
 void
 space(int x0, int y0, int x1, int y1)
 {
-	printf( "\tpl_space(%d, %d, %d, %d);\n", x0, y0, x1, y1 );
+	printf("\tpl_space(%d, %d, %d, %d);\n", x0, y0, x1, y1);
 }
 
 void
@@ -199,7 +199,7 @@ openpl(void)
 		"int\n"
 		"main(int argc, char **argv)\n"
 		"{\n"
-	);
+		);
 	printf("\tpl_openpl();\n");
 }
 
@@ -208,62 +208,62 @@ closepl(void)
 {
 	printf("\tpl_closepl();\n");
 	printf("\n");
-	printf( "\treturn 0;\n" );
+	printf("\treturn 0;\n");
 	printf("}\n");
 }
 
 void
 erase(void)
 {
-	printf( "\tpl_erase();\n" );
+	printf("\tpl_erase();\n");
 }
 
 void
 move(int xi, int yi)
 {
-	printf( "\tpl_move(%d, %d);\n", xi, yi );
+	printf("\tpl_move(%d, %d);\n", xi, yi);
 }
 
 void
 cont(int xi, int yi)
 {
-	printf( "\tpl_cont(%d, %d);\n", xi, yi );
+	printf("\tpl_cont(%d, %d);\n", xi, yi);
 }
 
 void
 line(int x0, int y0, int x1, int y1)
 {
-	printf( "\tpl_line(%d, %d, %d, %d);\n", x0, y0, x1, y1 );
+	printf("\tpl_line(%d, %d, %d, %d);\n", x0, y0, x1, y1);
 }
 
 void
 point(int xi, int yi)
 {
-	printf( "\tpl_point(%d, %d);\n", xi, yi );
+	printf("\tpl_point(%d, %d);\n", xi, yi);
 }
 
 void
 label(char *s)
 {
-	printf( "\tpl_label(\"%s\");\n", s );
+	printf("\tpl_label(\"%s\");\n", s);
 }
 
 void
 arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend)
 {
-	printf( "\tpl_arc(%d, %d, %d, %d, %d, %d);\n", xcent, ycent, xbeg, ybeg, xend, yend );
+	printf("\tpl_arc(%d, %d, %d, %d, %d, %d);\n", xcent, ycent, xbeg, ybeg, xend, yend);
 }
 
 void
 circle(int xc, int yc, int r)
 {
-	printf( "\tpl_circle(%d, %d, %d);\n", xc, yc, r );
+	printf("\tpl_circle(%d, %d, %d);\n", xc, yc, r);
 }
 
 void
-linemod( char *line )
+linemod(char *line)
 {
-	printf( "\tpl_linemod(\"%s\");\n", line );
+	printf("\tpl_linemod(\"%s\");\n", line);
 }
 
 void
@@ -272,7 +272,7 @@ dot(int xi, int yi, int dx, int n, int pat[])
 	register int i;
 
 	printf("\tpl_dot(%d, %d, %d, %d, {", xi, yi, dx, n);
-	for(i=0;i<n;i++) {
+	for (i = 0; i < n; i++) {
 		printf("%d", pat[i]);
 		if (i != n - 1) printf(", ");
 	}

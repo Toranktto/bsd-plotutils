@@ -9,6 +9,6 @@ extern int vti;
 void
 frame(int n)
 {
-	n=n&0377 | 02000;
-	write(vti,&n,2);
+	n = n & 0377 | 02000;
+	write(vti, &n, 2);
 }

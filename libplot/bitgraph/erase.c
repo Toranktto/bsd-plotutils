@@ -15,8 +15,8 @@ static char sccsid[] = "@(#)erase.c	5.2 (Berkeley) 4/30/85";
 void
 pl_erase(void)
 {
-	putchar( ESC );
+	putchar(ESC);
 	printf("[H");
-	putchar( ESC );
+	putchar(ESC);
 	printf("[J");
 }

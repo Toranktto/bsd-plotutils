@@ -21,10 +21,10 @@ pl_arc(int x, int y, int x0, int y0, int x1, int y1)
 	if (!ingrnfile) pl_erase();
 	endvector();
 	printf("ARC\n");
-	outxy(x,y);
-	outxy(x0,y0);
-	outxy(x1,y1);
-	printf("*\n%d %d\n0\n",linestyle,(int) (atan2(x1-x,y1-y)-atan2(x0-x,y0-y)));
-	curx =x;
-	cury =y;
+	outxy(x, y);
+	outxy(x0, y0);
+	outxy(x1, y1);
+	printf("*\n%d %d\n0\n", linestyle, (int)(atan2(x1 - x, y1 - y) - atan2(x0 - x, y0 - y)));
+	curx = x;
+	cury = y;
 }

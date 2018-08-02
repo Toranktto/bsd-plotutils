@@ -23,14 +23,13 @@ static char sccsid[] = "@(#)erase.c	6.1 (Berkeley) 8/29/86";
 void
 pl_erase(void)
 {
-	if (ingrnfile)
-	{
+	if (ingrnfile) {
 		pl_closepl();
-		fputs("multiple grn files in output must be separated by hand!\n",stderr);
+		fputs("multiple grn files in output must be separated by hand!\n", stderr);
 	}
-    printf("sungremlinfile\n0.00 0.00\n");
-    ingrnfile = 1;
-    invector = 0;
-    scale = 1;
-    curx = cury = xbot = ybot = 0;
+	printf("sungremlinfile\n0.00 0.00\n");
+	ingrnfile = 1;
+	invector = 0;
+	scale = 1;
+	curx = cury = xbot = ybot = 0;
 }

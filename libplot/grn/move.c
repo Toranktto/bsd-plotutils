@@ -25,7 +25,7 @@ void
 pl_move(int x, int y)
 {
 	if (!ingrnfile) pl_erase();
-    if (invector) endvector();
-    curx = x;
-    cury = y;
+	if (invector) endvector();
+	curx = x;
+	cury = y;
 }

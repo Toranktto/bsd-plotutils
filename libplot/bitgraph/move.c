@@ -16,6 +16,6 @@ pl_move(int xi, int yi)
 {
 	currentx = scaleX(xi);
 	currenty = scaleY(yi);
-	putchar( ESC );
+	putchar(ESC);
 	printf(":%d;%dm", currentx, currenty);
 }

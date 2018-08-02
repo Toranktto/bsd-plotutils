@@ -21,7 +21,7 @@ pl_closepl(void)
 	signal(SIGINT, SIG_IGN);
 
 	/* exit graphics mode */
-	putchar( ESC );
+	putchar(ESC);
 	printf("[H");
 	/* exit(0); */
 }

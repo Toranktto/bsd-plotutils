@@ -18,19 +18,19 @@ void getstr(register char *s, register FILE *fin, int len);
 int
 main(int argc, char **argv)
 {
-	int std=1;
+	int std = 1;
 	FILE *fin;
 
-	while(argc-- > 1) {
-		if(*argv[1] == '-')
-			switch(argv[1][1]) {
-				case 'l':
-					deltx = atoi(&argv[1][2]) - 1;
-					break;
-				case 'w':
-					delty = atoi(&argv[1][2]) - 1;
-					break;
-				}
+	while (argc-- > 1) {
+		if (*argv[1] == '-')
+			switch (argv[1][1]) {
+			case 'l':
+				deltx = atoi(&argv[1][2]) - 1;
+				break;
+			case 'w':
+				delty = atoi(&argv[1][2]) - 1;
+				break;
+			}
 
 		else {
 			std = 0;
@@ -47,7 +47,7 @@ main(int argc, char **argv)
 	}
 
 	if (std)
-		fplt( stdin );
+		fplt(stdin);
 
 	exit(0);
 }
@@ -57,29 +57,29 @@ fplt(FILE *fin)
 {
 	int c;
 	char s[256];
-	int xi,yi,x0,y0,x1,y1,r,dx,n,i;
+	int xi, yi, x0, y0, x1, y1, r, dx, n, i;
 	int *pat;
 	unsigned int pat_size = 256;
 
 	pat = malloc(pat_size);
 
 	pl_openpl();
-	while((c=getc(fin)) != EOF) {
-		switch(c) {
+	while ((c = getc(fin)) != EOF) {
+		switch (c) {
 		case 'm':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			pl_move(xi,yi);
+			pl_move(xi, yi);
 			break;
 		case 'l':
 			x0 = getsi(fin);
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			pl_line(x0,y0,x1,y1);
+			pl_line(x0, y0, x1, y1);
 			break;
 		case 't':
-			getstr(s,fin,256);
+			getstr(s, fin, 256);
 			pl_label(s);
 			break;
 		case 'e':
@@ -88,19 +88,19 @@ fplt(FILE *fin)
 		case 'p':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			pl_point(xi,yi);
+			pl_point(xi, yi);
 			break;
 		case 'n':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			pl_cont(xi,yi);
+			pl_cont(xi, yi);
 			break;
 		case 's':
 			x0 = getsi(fin);
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			pl_space(x0,y0,x1,y1);
+			pl_space(x0, y0, x1, y1);
 			break;
 		case 'a':
 			xi = getsi(fin);
@@ -109,17 +109,17 @@ fplt(FILE *fin)
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			pl_arc(xi,yi,x0,y0,x1,y1);
+			pl_arc(xi, yi, x0, y0, x1, y1);
 			break;
 		case 'c':
 			xi = getsi(fin);
 			yi = getsi(fin);
 			r = getsi(fin);
-			pl_circle(xi,yi,r);
+			pl_circle(xi, yi, r);
 			break;
 		case 'f':
-			getstr(s,fin,256);
-			pl_linemod( mapLineType(s) );
+			getstr(s, fin, 256);
+			pl_linemod(mapLineType(s));
 			break;
 		case 'd':
 			xi = getsi(fin);
@@ -130,15 +130,15 @@ fplt(FILE *fin)
 				pat_size *= 2;
 				pat = realloc(pat, pat_size);
 			}
-			for(i=0; i<n; i++)
+			for (i = 0; i < n; i++)
 				pat[i] = getsi(fin);
-			pl_dot(xi,yi,dx,n,pat);
+			pl_dot(xi, yi, dx, n, pat);
 			break;
 		}
 
 		/* scan to newline */
-		while( (c = getc( fin )) != '\n' ) {
-			if ( c == EOF ) {
+		while ((c = getc(fin)) != '\n') {
+			if (c == EOF) {
 				break;
 			}
 		}
@@ -152,40 +152,39 @@ fplt(FILE *fin)
 int
 getsi(FILE *fin)
 {
-	int	i;
+	int i;
 
-	if ( fscanf(fin, " %d", & i) != 1 ) {
+	if (fscanf(fin, " %d", &i) != 1) {
 		return(EOF);
 	}
-	return( i );
+	return(i);
 }
 
 char *lineMap[] = {
-    "solid",		/* line type 0 */
-    "solid",		/* line type 1 */
-    "dotted",		/* line type 2 */
-    "dotdashed",	/* line type 3 */
-    "shortdashed",	/* line type 4 */
-    "longdashed",	/* line type 5 */
-    "dotlongdash",	/* line type 6 */
-    "dotshortdash",	/* line type 7 */
-    "dotdotdash",	/* line type 8 */
+	"solid",        /* line type 0 */
+	"solid",        /* line type 1 */
+	"dotted",       /* line type 2 */
+	"dotdashed",    /* line type 3 */
+	"shortdashed",  /* line type 4 */
+	"longdashed",   /* line type 5 */
+	"dotlongdash",  /* line type 6 */
+	"dotshortdash", /* line type 7 */
+	"dotdotdash",   /* line type 8 */
 };
 
 char *
-mapLineType( char *cp )
+mapLineType(char *cp)
 {
-    int i;
+	int i;
 
-    if ( sscanf(cp, "%d", &i) == 1 ) {
-		if ( i < 0 || i > sizeof(lineMap)/sizeof(char *) ) {
-	    	i = 1;
+	if (sscanf(cp, "%d", &i) == 1) {
+		if (i < 0 || i > sizeof(lineMap) / sizeof(char *)) {
+			i = 1;
 		}
-		return( lineMap[i] );
-    }
-    else {
-		return( cp );
-    }
+		return(lineMap[i]);
+	}else  {
+		return(cp);
+	}
 }
 
 void

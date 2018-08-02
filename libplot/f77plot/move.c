@@ -13,5 +13,5 @@ static char sccsid[] = "@(#)move.c	5.1 (Berkeley) 6/7/85";
 void
 pl_move_(int *xi, int *yi)
 {
-	pl_move(*xi,*yi);
+	pl_move(*xi, *yi);
 }

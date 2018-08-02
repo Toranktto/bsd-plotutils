@@ -13,5 +13,5 @@ static char sccsid[] = "@(#)space.c	5.1 (Berkeley) 6/7/85";
 void
 pl_space_(int *x0, int *y0, int *x1, int *y1)
 {
-	pl_space(*x0,*y0,*x1,*y1);
+	pl_space(*x0, *y0, *x1, *y1);
 }

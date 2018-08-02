@@ -10,7 +10,7 @@ extern void putsi(int a);
 void
 pl_space(int x0, int y0, int x1, int y1)
 {
-	putc('s',stdout);
+	putc('s', stdout);
 	putsi(x0);
 	putsi(y0);
 	putsi(x1);

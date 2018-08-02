@@ -11,8 +11,8 @@ pl_label(char *str)
 {
 	register int i, length;
 
-	if ( (length=strlen(str)) > (COLS-lastX) )
+	if ((length = strlen(str)) > (COLS - lastX))
 		length = COLS - lastX;
-	for (i=0; i<length; ++i)
+	for (i = 0; i < length; ++i)
 		plot_addch(str[i]);
 }

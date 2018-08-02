@@ -16,7 +16,7 @@ extern void dda_line(char ch, int x0, int y0, int x1, int y1);
 void
 pl_line(int x0, int y0, int x1, int y1)
 {
-	int x,y;
+	int x, y;
 
 	scale(x0, y0);
 	x = x1;

@@ -25,19 +25,19 @@ dda_line(char ch, int x0, int y0, int x1, int y1)
 	scale(x1, y1);
 
 	length = abs(x1 - x0);
-	if (abs(y1 -y0) > length)
+	if (abs(y1 - y0) > length)
 		length = abs(y1 - y0);
 
 	if (length == 0)
 		return;
 
-	deltaX = (double) (x1 - x0)/(double) length;
-	deltaY = (double) (y1 - y0)/(double) length;
+	deltaX = (double)(x1 - x0) / (double)length;
+	deltaY = (double)(y1 - y0) / (double)length;
 
-	x = (double) x0 + 0.5;
-	y = (double) y0 + 0.5;
+	x = (double)x0 + 0.5;
+	y = (double)y0 + 0.5;
 
-	for (i=0; i < length; ++i) {
+	for (i = 0; i < length; ++i) {
 		x += deltaX;
 		y += deltaY;
 		x0 = floor(x);

@@ -14,7 +14,7 @@ static char sccsid[] = "@(#)circle.c	5.1 (Berkeley) 5/7/85";
 void
 pl_circle(int xc, int yc, int r)
 {
-	if(r < 1){
+	if (r < 1) {
 		pl_point(xc, yc);
 		return;
 	}

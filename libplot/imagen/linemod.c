@@ -24,12 +24,12 @@ pl_linemod(char *s)
 	register char *nam;
 	int siz = 0;
 	nam = s;
-	for(tit = "charset="; *tit; )
+	for (tit = "charset="; *tit;)
 		if (*tit++ != *nam++)
 			return;
 	s = nam;
-	while(*nam) 
-		switch(*nam++) {
+	while (*nam)
+		switch (*nam++) {
 		case ',':
 		case '\n':
 			*--nam = 0;
@@ -38,7 +38,7 @@ pl_linemod(char *s)
 	if (siz == 0) {
 		while (*--nam >= '0' && *nam <= '9')
 			;
-		siz = (atoi(++nam)*4)/3;
+		siz = (atoi(++nam) * 4) / 3;
 	}
 	if (siz == 0)
 		siz = imPcsize;

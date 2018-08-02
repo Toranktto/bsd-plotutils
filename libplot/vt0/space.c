@@ -20,6 +20,6 @@ pl_space(int x0, int y0, int x1, int y1)
 	boty = -2047;
 	obotx = x0;
 	oboty = y0;
-	scalex = deltx/(x1-x0);
-	scaley = delty/(y1-y0);
+	scalex = deltx / (x1 - x0);
+	scaley = delty / (y1 - y0);
 }

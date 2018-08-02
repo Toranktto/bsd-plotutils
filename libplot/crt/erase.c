@@ -9,7 +9,7 @@ void
 pl_erase(void)
 {
 	clear();
-	move(LINES-1, 0);
+	move(LINES - 1, 0);
 	lastX = 0;
-	lastY = LINES-1;
+	lastY = LINES - 1;
 }

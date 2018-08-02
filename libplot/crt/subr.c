@@ -12,7 +12,7 @@ void
 screen_move(int y, int x)
 {
 	/* must check for automatic wrap at last col */
-	if (!tgetflag("am") || (y < LINES -1) || (x < COLS -1)) {
+	if (!tgetflag("am") || (y < LINES - 1) || (x < COLS - 1)) {
 		move(y, x);
 		lastY = y;
 		lastX = x;
@@ -46,22 +46,22 @@ dda_line(char ch, int x0, int y0, int x1, int y1)
 	double x, y;
 
 	length = abs(x1 - x0);
-	if (abs(y1 -y0) > length)
+	if (abs(y1 - y0) > length)
 		length = abs(y1 - y0);
 
 	if (length == 0)
 		return;
 
-	deltaX = (double) (x1 - x0)/(double) length;
-	deltaY = (double) (y1 - y0)/(double) length;
+	deltaX = (double)(x1 - x0) / (double)length;
+	deltaY = (double)(y1 - y0) / (double)length;
 
-	x = (double) x0 + 0.5;
-	y = (double) y0 + 0.5;
+	x = (double)x0 + 0.5;
+	y = (double)y0 + 0.5;
 
-	for (i=0; i < length; ++i) {
+	for (i = 0; i < length; ++i) {
 		x += deltaX;
 		y += deltaY;
-		screen_move((int) floor(y), (int) floor(x));
+		screen_move((int)floor(y), (int)floor(x));
 		plot_addch(ch);
 	}
 }

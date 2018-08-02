@@ -14,12 +14,11 @@ static char sccsid[] = "@(#)label.c	5.1 (Berkeley) 5/7/85";
 void
 pl_label(char *string)
 {
-	while(*string != '\0' && currentx < COLS){
+	while (*string != '\0' && currentx < COLS) {
 		screenmat[currentx][currenty] = *string++;
 		currentx++;
 	}
 
-	if(currentx == COLS)
-		currentx = currentx-1;
-
+	if (currentx == COLS)
+		currentx = currentx - 1;
 }

@@ -34,7 +34,7 @@ main(int argc, char *argv[])
 		exit(1);
 	}
 
-	signal(SIGWINCH, (__sighandler_t *) winresize);
+	signal(SIGWINCH, (__sighandler_t*)winresize);
 #endif
 
 	progname = argv[0];
@@ -54,7 +54,7 @@ main(int argc, char *argv[])
 		fin = fopen(argv[0], "r");
 		if (fin == NULL) {
 			fprintf(stderr, "%s: can't open %s\n", progname,
-			    argv[0]);
+				argv[0]);
 			exit(1);
 		}
 
@@ -80,9 +80,9 @@ fplt(FILE *fin)
 {
 	register int c;
 	char s[256];
-	int xi,yi,x0,y0,x1,y1,r;
+	int xi, yi, x0, y0, x1, y1, r;
 #ifndef __crtplot
-	int dx,n,i;
+	int dx, n, i;
 	int *pat;
 	unsigned int pat_size = 256;
 
@@ -90,22 +90,22 @@ fplt(FILE *fin)
 #endif
 
 	pl_openpl();
-	while((c = getc(fin)) != EOF) {
-		switch(c) {
+	while ((c = getc(fin)) != EOF) {
+		switch (c) {
 		case 'm':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			pl_move(xi,yi);
+			pl_move(xi, yi);
 			break;
 		case 'l':
 			x0 = getsi(fin);
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			pl_line(x0,y0,x1,y1);
+			pl_line(x0, y0, x1, y1);
 			break;
 		case 't':
-			getstr(s,fin,256);
+			getstr(s, fin, 256);
 			pl_label(s);
 			break;
 		case 'e':
@@ -114,19 +114,19 @@ fplt(FILE *fin)
 		case 'p':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			pl_point(xi,yi);
+			pl_point(xi, yi);
 			break;
 		case 'n':
 			xi = getsi(fin);
 			yi = getsi(fin);
-			pl_cont(xi,yi);
+			pl_cont(xi, yi);
 			break;
 		case 's':
 			x0 = getsi(fin);
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			pl_space(x0,y0,x1,y1);
+			pl_space(x0, y0, x1, y1);
 			break;
 		case 'a':
 			xi = getsi(fin);
@@ -135,16 +135,16 @@ fplt(FILE *fin)
 			y0 = getsi(fin);
 			x1 = getsi(fin);
 			y1 = getsi(fin);
-			pl_arc(xi,yi,x0,y0,x1,y1);
+			pl_arc(xi, yi, x0, y0, x1, y1);
 			break;
 		case 'c':
 			xi = getsi(fin);
 			yi = getsi(fin);
 			r = getsi(fin);
-			pl_circle(xi,yi,r);
+			pl_circle(xi, yi, r);
 			break;
 		case 'f':
-			getstr(s,fin,256);
+			getstr(s, fin, 256);
 			pl_linemod(s);
 			break;
 		case 'd':
@@ -157,9 +157,9 @@ fplt(FILE *fin)
 				pat_size *= 2;
 				pat = realloc(pat, pat_size);
 			}
-			for(i=0; i<n; i++)
+			for (i = 0; i < n; i++)
 				pat[i] = getsi(fin);
-			pl_dot(xi,yi,dx,n,pat);
+			pl_dot(xi, yi, dx, n, pat);
 #endif
 			break;
 		}
@@ -176,12 +176,12 @@ getsi(register FILE *fin)
 {
 	short a, b;
 
-	if((b = getc(fin)) == EOF)
+	if ((b = getc(fin)) == EOF)
 		return(EOF);
-	if((a = getc(fin)) == EOF)
+	if ((a = getc(fin)) == EOF)
 		return(EOF);
-	a = a<<8;
-	return(a|b);
+	a = a << 8;
+	return(a | b);
 }
 
 void

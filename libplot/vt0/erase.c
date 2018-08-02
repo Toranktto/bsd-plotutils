@@ -11,6 +11,6 @@ void
 pl_erase(void)
 {
 	int i;
-	i=0401;
-	write(vti,&i,2);
+	i = 0401;
+	write(vti, &i, 2);
 }

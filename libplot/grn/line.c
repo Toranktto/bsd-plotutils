@@ -23,6 +23,6 @@ static char sccsid[] = "@(#)line.c	6.1 (Berkeley) 8/29/86";
 void
 pl_line(int x1, int y1, int x2, int y2)
 {
-	pl_move(x1,y1);
-	pl_cont(x2,y2);
+	pl_move(x1, y1);
+	pl_cont(x2, y2);
 }

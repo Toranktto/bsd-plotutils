@@ -13,5 +13,5 @@ static char sccsid[] = "@(#)dot.c	5.1 (Berkeley) 6/7/85";
 void
 pl_dot_(int *xi, int *yi, int *dx, int *n, int *pat)
 {
-	pl_dot( *xi, *yi, *dx, *n, pat);
+	pl_dot(*xi, *yi, *dx, *n, pat);
 }

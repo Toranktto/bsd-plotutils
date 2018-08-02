@@ -26,13 +26,13 @@ static char sccsid[] = "@(#)space.c	6.1 (Berkeley) 8/29/86";
 void
 pl_space(int x0, int y0, int x1, int y1)
 {
-    double xscale=0.0, yscale=0.0;
-    if (x1>x0)
-	    xscale = GRXMAX/(double)(x1-x0);
-    if (y1>y0)
-	    yscale = GRYMAX/(double)(y1-y0);
-    scale = (xscale > yscale && yscale > 0)? yscale : xscale;
-    if (scale == 0.0) /* scale == 1.0; */ scale = 1.0;
-    xbot = x0;
-    ybot = y0;
+	double xscale = 0.0, yscale = 0.0;
+	if (x1 > x0)
+		xscale = GRXMAX / (double)(x1 - x0);
+	if (y1 > y0)
+		yscale = GRYMAX / (double)(y1 - y0);
+	scale = (xscale > yscale && yscale > 0) ? yscale : xscale;
+	if (scale == 0.0) /* scale == 1.0; */ scale = 1.0;
+	xbot = x0;
+	ybot = y0;
 }

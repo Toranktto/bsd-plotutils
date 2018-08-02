@@ -17,9 +17,9 @@ pl_label_(register char *s, long len)
 	register char *cp, *cend;
 
 	cp = buf;
-	cend = cp + (len < 255 ? len : 255 );
-	while ( cp < cend ) 
+	cend = cp + (len < 255 ? len : 255);
+	while (cp < cend)
 		*cp++ = *s++;
 	*cp = 0;
-	pl_label( buf );
+	pl_label(buf);
 }

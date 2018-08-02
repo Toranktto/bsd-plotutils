@@ -25,8 +25,8 @@ pl_space(int x0, int y0, int x1, int y1)
 	boty = 0.;
 	obotx = x0;
 	oboty = y0;
-	if(scaleflag)
+	if (scaleflag)
 		return;
-	scalex = 780./(x1-x0);
-	scaley = 780./(y1-y0);
+	scalex = 780. / (x1 - x0);
+	scaley = 780. / (y1 - y0);
 }

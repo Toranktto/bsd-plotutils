@@ -13,5 +13,5 @@ static char sccsid[] = "@(#)line.c	5.1 (Berkeley) 6/7/85";
 void
 pl_line_(int *x0, int *y0, int *x1, int *y1)
 {
-	pl_line(*x0,*y0,*x1,*y1);
+	pl_line(*x0, *y0, *x1, *y1);
 }

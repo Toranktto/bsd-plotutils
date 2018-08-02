@@ -25,8 +25,8 @@ void outcurxy(void);
 void
 pl_cont(int x, int y)
 {
-    startvector();
-    curx = x;
-    cury = y;
-    outcurxy();
+	startvector();
+	curx = x;
+	cury = y;
+	outcurxy();
 }

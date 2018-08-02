@@ -10,7 +10,7 @@ extern void putsi(int a);
 void
 pl_cont(int xi, int yi)
 {
-	putc('n',stdout);
+	putc('n', stdout);
 	putsi(xi);
 	putsi(yi);
 }

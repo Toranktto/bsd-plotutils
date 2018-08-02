@@ -22,8 +22,8 @@ static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
 #include <term.h>
 #include "dumb.h"
 
-int minX, rangeX;	/* min and range of x */
-int minY, rangeY;	/* min and range of y */
+int minX, rangeX;       /* min and range of x */
+int minY, rangeY;       /* min and range of y */
 int currentx, currenty;
 int COLS, LINES;
 
@@ -44,20 +44,20 @@ pl_openpl(void)
 	if (COLS > MAXCOLS)
 		COLS = MAXCOLS;
 	if (COLS < 0)
-		COLS = 48;	/* lower bound on # of cols? */
-	COLS--;				/* prevent auto wrap */
+		COLS = 48;      /* lower bound on # of cols? */
+	COLS--;                         /* prevent auto wrap */
 
 	LINES = tgetnum("li");
 	if (LINES > MAXLINES)
 		LINES = MAXLINES;
 	if (LINES < 0)
-		LINES = 20;	/* lower bound on # of lines? */
+		LINES = 20;     /* lower bound on # of lines? */
 
-	for(i=0; i<COLS; i++)
-		for(j=0; j<LINES; j++)
+	for (i = 0; i < COLS; i++)
+		for (j = 0; j < LINES; j++)
 			screenmat[i][j] = ' ';
 
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	signal(SIGINT, (__sighandler_t*)pl_closepl);
 	currentx = currenty = 0;
 }
 
@@ -75,19 +75,19 @@ pl_openvt(void)
 	if (COLS > MAXCOLS)
 		COLS = MAXCOLS;
 	if (COLS < 0)
-		COLS = 48;	/* lower bound on # of cols? */
-	COLS--;				/* prevent auto wrap */
+		COLS = 48;      /* lower bound on # of cols? */
+	COLS--;                         /* prevent auto wrap */
 
 	LINES = tgetnum("li");
 	if (LINES > MAXLINES)
 		LINES = MAXLINES;
 	if (LINES < 0)
-		LINES = 20;	/* lower bound on # of lines? */
+		LINES = 20;     /* lower bound on # of lines? */
 
-	for(i=0; i<COLS; i++)
-		for(j=0; j<LINES; j++)
+	for (i = 0; i < COLS; i++)
+		for (j = 0; j < LINES; j++)
 			screenmat[i][j] = ' ';
 
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	signal(SIGINT, (__sighandler_t*)pl_closepl);
 	currentx = currenty = 0;
 }

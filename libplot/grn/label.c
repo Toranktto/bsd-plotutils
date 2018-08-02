@@ -33,5 +33,5 @@ pl_label(char *s)
 	endvector();
 	printf("BOTLEFT\n");
 	outcurxy();
-	printf("*\n%d %d\n%lu %s\n",FONTSTYLE,FONTSIZE,strlen(s)-1,s);
+	printf("*\n%d %d\n%lu %s\n", FONTSTYLE, FONTSIZE, strlen(s) - 1, s);
 }

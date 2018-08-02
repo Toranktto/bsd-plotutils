@@ -22,50 +22,46 @@ pl_linemod(char *line)
 	 *  If linemod is changed really often, a ~15% savings
 	 *  could be achieved.
 	 */
-	if ( *(line) == 's' ) {
-		if ( *(++line) == 'o' ) {
+	if (*(line) == 's') {
+		if (*(++line) == 'o') {
 			/*
 			 * solid mode 1
 			 */
-			printf( "vA" );
+			printf("vA");
 			return;
-		}
-		else if ( *(line) == 'h' ) {
+		}else if (*(line) == 'h') {
 			/*
 			 * shortdashed mode 4
 			 */
-			printf( "vD" );
+			printf("vD");
 			return;
 		}
-	}
-	else if ( *(line) == 'd' ) {
-		if ( *(++line) == 'o' && *(++line) == 't' ) {
-			if ( *(++line) == 't' ) {
+	}else if (*(line) == 'd') {
+		if (*(++line) == 'o' && *(++line) == 't') {
+			if (*(++line) == 't') {
 				/*
 				 * dotted mode 2
 				 *  printf( "W(P00001)" );
 				 */
-				printf( "vB" );
+				printf("vB");
 				return;
-			}
-			else if ( *(line) == 'd' ) {
+			}else if (*(line) == 'd') {
 				/*
 				 * dotdashed mode 3
 				 *  printf( "W(P0110010)" );
 				 */
-				printf( "vC" );
+				printf("vC");
 				return;
 			}
 		}
-	}
-	else if ( *(line) == 'l' ) {
+	}else if (*(line) == 'l') {
 		/*
 		 * longdashed mode 5
 		 *  printf( "W(P11100)" );
 		 */
-		printf( "vE" );
+		printf("vE");
 		return;
 	}
-	printf( "vA" );
+	printf("vA");
 	return;
 }

@@ -13,9 +13,9 @@ static char sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
 #include <plot.h>
 #include "crt.h"
 
-double lowX, rangeX;	/* min and range of x */
-double lowY, rangeY;	/* min and range of y */
-int lastX, lastY;	/* last point plotted */
+double lowX, rangeX;    /* min and range of x */
+double lowY, rangeY;    /* min and range of y */
+int lastX, lastY;       /* last point plotted */
 
 void
 pl_openpl(void)
@@ -23,7 +23,7 @@ pl_openpl(void)
 	initscr();
 	noecho();
 	nonl();
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	signal(SIGINT, (__sighandler_t*)pl_closepl);
 }
 
 void
@@ -32,5 +32,5 @@ pl_openvt(void)
 	initscr();
 	noecho();
 	nonl();
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	signal(SIGINT, (__sighandler_t*)pl_closepl);
 }

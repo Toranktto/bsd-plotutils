@@ -29,14 +29,14 @@ extern void endvector(void);
 void
 pl_linemod(char *s)
 {
-    endvector();
-    if (strcmp(s, "dotted") == 0)
-	linestyle = 1;
-    else if (strcmp(s, "longdashed") == 0)
-	linestyle = 4;
-    else if (strcmp(s, "shortdashed") == 0)
-	linestyle = 4;
-    else if (strcmp(s, "dotdashed") == 0)
-	linestyle = 2;
-    else linestyle = DEFAULTLINE;
+	endvector();
+	if (strcmp(s, "dotted") == 0)
+		linestyle = 1;
+	else if (strcmp(s, "longdashed") == 0)
+		linestyle = 4;
+	else if (strcmp(s, "shortdashed") == 0)
+		linestyle = 4;
+	else if (strcmp(s, "dotdashed") == 0)
+		linestyle = 2;
+	else linestyle = DEFAULTLINE;
 }

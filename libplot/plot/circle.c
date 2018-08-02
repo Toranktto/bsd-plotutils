@@ -10,7 +10,7 @@ extern void putsi(int a);
 void
 pl_circle(int x, int y, int r)
 {
-	putc('c',stdout);
+	putc('c', stdout);
 	putsi(x);
 	putsi(y);
 	putsi(r);

@@ -18,7 +18,7 @@ static char sccsid[] = "@(#)subr.c	6.1 (Berkeley) 8/29/86";
  *	format required by the grn file.
  *
  *	Results:	None.
- *	
+ *
  *	Side Effects:
  *
  *	Errors:		None.
@@ -32,13 +32,13 @@ static char sccsid[] = "@(#)subr.c	6.1 (Berkeley) 8/29/86";
 void
 outxy(int x, int y)
 {
-    printf("%.2f %.2f\n", (x - xbot)*scale,(y - ybot)*scale);
+	printf("%.2f %.2f\n", (x - xbot) * scale, (y - ybot) * scale);
 }
 
 void
 outcurxy(void)
 {
-	outxy(curx,cury);
+	outxy(curx, cury);
 }
 
 void
@@ -56,5 +56,5 @@ endvector(void)
 {
 	if (!invector) return;
 	invector = 0;
-	printf("*\n%d 0\n0\n",linestyle);
+	printf("*\n%d 0\n0\n", linestyle);
 }

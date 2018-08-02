@@ -15,7 +15,7 @@ extern int scaleflag;
 void
 pl_scale(char i, float x, float y)
 {
-	switch(i) {
+	switch (i) {
 	default:
 		return;
 	case 'c':
@@ -25,8 +25,8 @@ pl_scale(char i, float x, float y)
 		x /= 200;
 		y /= 200;
 	case 'u':
-		scalex = 1/x;
-		scaley = 1/y;
+		scalex = 1 / x;
+		scaley = 1 / y;
 	}
 	scaleflag = 1;
 }

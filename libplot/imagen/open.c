@@ -31,12 +31,12 @@ void
 pl_openpl(void)
 {
 	putch(imP_SET_HV_SYSTEM);
-	putch((3<<3)|5);
+	putch((3 << 3) | 5);
 	putch(imP_SET_FAMILY);
 	putch(2);
-	setfont(imP_charset,imPcsize);
+	setfont(imP_charset, imPcsize);
 	putch(imP_SET_IL);
-	putwd(imPcsize+3);
+	putwd(imPcsize + 3);
 	putch(imP_SET_SP);
 	putwd(imPcsize);
 	putch(imP_SET_PEN);
@@ -51,12 +51,12 @@ void
 pl_openvt(void)
 {
 	putch(imP_SET_HV_SYSTEM);
-	putch((3<<3)|5);
+	putch((3 << 3) | 5);
 	putch(imP_SET_FAMILY);
 	putch(2);
-	setfont(imP_charset,imPcsize);
+	setfont(imP_charset, imPcsize);
 	putch(imP_SET_IL);
-	putwd(imPcsize+3);
+	putwd(imPcsize + 3);
 	putch(imP_SET_SP);
 	putwd(imPcsize);
 	putch(imP_SET_PEN);

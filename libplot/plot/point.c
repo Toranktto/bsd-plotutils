@@ -10,7 +10,7 @@ extern void putsi(int a);
 void
 pl_point(int xi, int yi)
 {
-	putc('p',stdout);
+	putc('p', stdout);
 	putsi(xi);
 	putsi(yi);
 }

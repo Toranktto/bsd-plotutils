@@ -13,6 +13,6 @@ static char sccsid[] = "@(#)point.c	5.1 (Berkeley) 6/7/85";
 void
 pl_point(int xi, int yi)
 {
-	pl_move(xi,yi);
-	pl_cont(xi,yi);
+	pl_move(xi, yi);
+	pl_cont(xi, yi);
 }

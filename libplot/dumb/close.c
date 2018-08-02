@@ -21,8 +21,8 @@ pl_closepl(void)
 
 	signal(SIGINT, SIG_IGN);
 
-	for(j=0; j<LINES; j++){
-		for(i=0; i<COLS; i++){
+	for (j = 0; j < LINES; j++) {
+		for (i = 0; i < COLS; i++) {
 			printf("%c", screenmat[i][j]);
 		}
 		printf("\n");
@@ -38,8 +38,8 @@ pl_closevt(void)
 
 	signal(SIGINT, SIG_IGN);
 
-	for(j=0; j<LINES; j++){
-		for(i=0; i<COLS; i++){
+	for (j = 0; j < LINES; j++) {
+		for (i = 0; i < COLS; i++) {
 			printf("%c", screenmat[i][j]);
 		}
 		printf("\n");

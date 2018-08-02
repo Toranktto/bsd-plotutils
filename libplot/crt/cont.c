@@ -16,5 +16,5 @@ extern void dda_line(char ch, int x0, int y0, int x1, int y1);
 void
 pl_cont(int x, int y)
 {
-	dda_line('*', lastX-1, lastY, scaleX(x), scaleY(y));
+	dda_line('*', lastX - 1, lastY, scaleX(x), scaleY(y));
 }

@@ -16,10 +16,10 @@ static char sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
  *	labels will fall properly in place
  */
 char lbl_mv[] = {
-	036,040,S,S,S,S,S,S,SW,SW,SW,SW,SW,SW,SW,SW,SW,SW,037,0
+	036, 040, S, S, S, S, S, S, SW, SW, SW, SW, SW, SW, SW, SW, SW, SW, 037, 0
 };
 char lbl_umv[] = {
-	036,040,N,N,N,N,N,N,NE,NE,NE,NE,NE,NE,NE,NE,NE,NE,037,0
+	036, 040, N, N, N, N, N, N, NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, 037, 0
 };
 
 extern void putch(int c);
@@ -27,11 +27,11 @@ extern void putch(int c);
 void
 pl_label(char *s)
 {
-	register int i,c;
-	for(i=0; (c=lbl_mv[i]); i++)
+	register int i, c;
+	for (i = 0; (c = lbl_mv[i]); i++)
 		putch(c);
-	for(i=0; (c=s[i]); i++)
+	for (i = 0; (c = s[i]); i++)
 		putch(c);
-	for(i=0; (c=lbl_umv[i]); i++)
+	for (i = 0; (c = lbl_umv[i]); i++)
 		putch(c);
 }

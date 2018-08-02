@@ -27,7 +27,7 @@ void
 pl_openpl(void)
 {
 	/* catch interupts */
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	signal(SIGINT, (__sighandler_t*)pl_closepl);
 	currentx = 0;
 	currenty = 0;
 	/* enter grapics mode */
@@ -43,7 +43,7 @@ void
 pl_openvt(void)
 {
 	/* catch interupts */
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
+	signal(SIGINT, (__sighandler_t*)pl_closepl);
 	currentx = 0;
 	currenty = 0;
 	/* enter grapics mode */

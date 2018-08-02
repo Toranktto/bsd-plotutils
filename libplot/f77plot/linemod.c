@@ -17,9 +17,9 @@ pl_linemod_(register char *s, long len)
 	register char *cp, *cend;
 
 	cp = buf;
-	cend = cp + (len < 255 ? len : 255 );
-	while ( cp < cend  && *s != ' ') 
+	cend = cp + (len < 255 ? len : 255);
+	while (cp < cend && *s != ' ')
 		*cp++ = *s++;
 	*cp = 0;
-	pl_linemod( buf );
+	pl_linemod(buf);
 }
