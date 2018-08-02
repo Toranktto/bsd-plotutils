@@ -7,6 +7,9 @@ static char sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
 #include <plot.h>
 #include <unistd.h>
 #include <string.h>
+#ifdef __crtplot
+#include <signal.h>
+#endif
 
 float deltx;
 float delty;
@@ -14,6 +17,9 @@ float delty;
 void fplt(FILE *fin);
 int getsi(register FILE *fin);
 void getstr(register char *s, register FILE *fin, int len);
+#ifdef __crtplot
+void winresize(void);
+#endif
 
 int
 main(int argc, char *argv[])
@@ -27,6 +33,8 @@ main(int argc, char *argv[])
 		fprintf(stderr, "crtplot: output must be a terminal\n");
 		exit(1);
 	}
+
+	signal(SIGWINCH, (__sighandler_t *) winresize);
 #endif
 
 	progname = argv[0];
@@ -182,3 +190,14 @@ getstr(register char *s, register FILE *fin, int len)
 	fgets(s, len, fin);
 	s[strnlen(s, len) - 1] = '\0'; /* remove newline */
 }
+
+#ifdef __crtplot
+void
+winresize(void)
+{
+	signal(SIGWINCH, SIG_IGN);
+
+	pl_closevt();
+	exit(1);
+}
+#endif

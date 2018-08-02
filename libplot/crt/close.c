@@ -26,7 +26,7 @@ pl_closepl(void)
 	move(0, 0);
 	refresh();
 
-	/* wait for 'q' from controlling terminal, because stdin or stdscr can be redirected */
+	/* Wait for 'q' from controlling terminal, because stdin or stdscr can be redirected. */
 	if (ctermid(ctty_path) != NULL && (ctty = fopen(ctty_path, "rb")) != NULL) {
 		while((c = fgetc(ctty)) != EOF)
 			if (c == 'q') break;

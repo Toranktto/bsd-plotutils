@@ -12,5 +12,4 @@ pl_erase(void)
 	move(LINES-1, 0);
 	lastX = 0;
 	lastY = LINES-1;
-	refresh();
 }

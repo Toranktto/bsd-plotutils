@@ -43,7 +43,7 @@ extern void pl_arc(int, int, int, int, int, int);
 extern void pl_move(int, int);
 extern void pl_cont(int, int);
 extern void pl_point(int, int);
-extern void pl_linemod(char *);
+extern void pl_linemod(char*);
 extern void pl_space(int, int, int, int);
 extern void pl_closepl(void);
 extern void pl_dot(int, int, int, int, int*);
