@@ -7,7 +7,7 @@ INCS=	plot.h plotcompat.h
 CSTD=c99
 CFLAGS+=	-I.
 MAN=	plot.3 plot.5
-MLINKS=plot.3 pl_openvt.3 \
+MLINKS=	plot.3 pl_openvt.3 \
 		plot.3 pl_openpl.3 \
 		plot.3 pl_closepl.3 \
 		plot.3 pl_closevt.3 \
@@ -22,7 +22,7 @@ MLINKS=plot.3 pl_openvt.3 \
 		plot.3 pl_space.3 \
 		plot.3 pl_dot.3 \
 		plot.3 pl_box.3
-PREFIX=	/usr/local
+PREFIX?=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib
 MANDIR=	${PREFIX}/man/man

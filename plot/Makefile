@@ -21,7 +21,7 @@ LDADD=	-L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt
 		-L../libplot/plot -L../libplot/crt -L/usr/local/lib
 CFLAGS+=	-I../libplot/plot -I/usr/local/include
 CSTD=c99
-PREFIX=	/usr/local
+PREFIX?=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib
 MANDIR=	${PREFIX}/man/man

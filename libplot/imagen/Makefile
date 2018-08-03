@@ -8,7 +8,7 @@ SRCS=	arc.c box.c charset.c circle.c close.c cont.c dot.c \
 	scale.c space.c
 CFLAGS+=	-I../plot
 CSTD=c99
-PREFIX=	/usr/local
+PREFIX?=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib
 MANDIR=	${PREFIX}/man/man
