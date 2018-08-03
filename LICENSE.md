@@ -1,4 +1,4 @@
-Some modifications to the original code, are licensed under above terms:
+Some modifications to the original code, are licensed under below terms:
 
 Copyright (c) 2018
 	Łukasz Derlatka. All rights reserved.
