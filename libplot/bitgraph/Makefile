@@ -5,6 +5,8 @@ SRCS=	box.c circle.c arc.c cont.c dot.c erase.c line.c linemod.c point.c \
 	label.c move.c open.c close.c space.c
 CFLAGS+=	-I../plot
 CSTD=c99
+SHLIB_MAJOR=	1
+SHLIB_MINOR=	0
 PREFIX?=	/usr/local
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib

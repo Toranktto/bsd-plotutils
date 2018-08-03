@@ -6,6 +6,8 @@ SRCS=	arc.c box.c circle.c close.c cont.c dot.c erase.c label.c \
 INCS=	plot.h plotcompat.h
 CSTD=c99
 CFLAGS+=	-I.
+SHLIB_MAJOR=	1
+SHLIB_MINOR=	0
 MAN=	plot.3 plot.5
 MLINKS=	plot.3 pl_openvt.3 \
 		plot.3 pl_openpl.3 \
