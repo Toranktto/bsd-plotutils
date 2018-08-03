@@ -8,8 +8,8 @@ case $1 in
 *)	t=-T$TERM
 esac
 case $t in
--Ttek4014|-Ttek|-T4014)	exec tek "$@" ;;
--T4013)			exec t4013 "$@" ;;
+-Ttek4014|-Ttek|-T4014)	exec tekplot "$@" ;;
+-T4013)			exec t4013plot "$@" ;;
 -Tbitgraph|-Tbg)	exec bgplot "$@" ;;
 -Tgigi|-Tvt125)		exec gigiplot "$@" ;;
 -Thp7221|-Thp7|-Th7)	exec hp7221plot "$@" ;;

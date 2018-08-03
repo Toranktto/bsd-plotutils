@@ -1,6 +1,6 @@
 #	@(#)Makefile	4.17 (Berkeley) 6/24/90
 
-PROGS=	tek t4013 bgplot crtplot dumbplot gigiplot \
+PROGS=	tekplot t4013plot bgplot crtplot dumbplot gigiplot \
 	hp7221plot implot grnplot plottoa atoplot plottoc
 SRCS=	atoplot.c driver.c plottoa.c plottoc.c
 MAN=	plot.1
@@ -11,8 +11,8 @@ MLINKS=	plot.1 bgplot.1 \
 		plot.1 grnplot.1 \
 		plot.1 hp7221plot.1 \
 		plot.1 implot.1 \
-		plot.1 t4013.1 \
-		plot.1 tek.1 \
+		plot.1 t4013plot.1 \
+		plot.1 tekplot.1 \
 		plot.1 plottoa.1 \
 		plot.1 atoplot.1 \
 		plot.1 plottoc.1
@@ -63,11 +63,11 @@ plottoa: plottoa.c
 plottoc: plottoc.c
 	${CC} ${CFLAGS} -o ${.TARGET} plottoc.c ${LDFLAGS} ${LDADD}
 
-t4013: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -l4013 -lm
+t4013plot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot4013 -lm
 
-tek: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -l4014 -lm
+tekplot: driver.o
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot4014 -lm
 
 clean:
 	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} crtdriver.o
@@ -75,7 +75,7 @@ clean:
 install: maninstall
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
 	    ${DESTDIR}${BINDIR}
-	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.CURDIR}/plot.sh \
+	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \
 	    ${DESTDIR}${BINDIR}/plot
 
 .include <bsd.prog.mk>
