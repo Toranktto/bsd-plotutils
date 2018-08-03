@@ -1,3 +1,5 @@
+Some modifications to the original code, are licensed under above terms:
+
 Copyright (c) 2018
 	Łukasz Derlatka. All rights reserved.
 
@@ -20,6 +22,8 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+--------------------------------------------------------------------------
 
 Copyright (c) 1980, 1993
 	The Regents of the University of California. All rights reserved.

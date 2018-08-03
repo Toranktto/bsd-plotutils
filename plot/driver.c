@@ -187,8 +187,13 @@ getsi(register FILE *fin)
 void
 getstr(register char *s, register FILE *fin, int len)
 {
+	unsigned int s_len;
+
 	fgets(s, len, fin);
-	s[strnlen(s, len) - 1] = '\0'; /* remove newline */
+	/* Strip newline */
+	s_len = strlen(s);
+	if (s[s_len - 1] == '\n')
+		s[s_len - 1] = '\0';
 }
 
 #ifdef __crtplot
