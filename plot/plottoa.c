@@ -74,9 +74,9 @@ fplt(FILE *fin)
 	char s[256];
 	int xi, yi, x0, y0, x1, y1, r, dx, n, i;
 	int *pat;
-	unsigned int pat_size = 256;
+	unsigned int pat_len = 256;
 
-	pat = malloc(pat_size);
+	pat = malloc(pat_len * sizeof(int));
 
 	openpl();
 	while ((c = getc(fin)) != EOF) {
@@ -141,9 +141,9 @@ fplt(FILE *fin)
 			yi = getsi(fin);
 			dx = getsi(fin);
 			n = getsi(fin);
-			if (n > pat_size) {
-				pat_size *= 2;
-				pat = realloc(pat, pat_size);
+			if (n > pat_len) {
+				pat_len *= 2;
+				pat = realloc(pat, pat_len * sizeof(int));
 			}
 			for (i = 0; i < n; i++)
 				pat[i] = getsi(fin);

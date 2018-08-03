@@ -2,7 +2,7 @@
 
 PROGS=	tek t4013 bgplot crtplot dumbplot gigiplot \
 	hp7221plot implot grnplot plottoa atoplot plottoc
-SRCS=	atoplot.c chrtab.c driver.c plottoa.c plottoc.c
+SRCS=	atoplot.c driver.c plottoa.c plottoc.c
 MAN=	plot.1
 MLINKS=	plot.1 bgplot.1 \
 		plot.1 crtplot.1 \
