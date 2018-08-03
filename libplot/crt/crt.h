@@ -1,9 +1,7 @@
 /*
 This plotting routine interprets plot commands and outputs them onto
 intelligent terminals (ie, terminals with clear screen and cursor
-addressability.  It uses the curses library.  It should be compiled
-as follows:
-	cc crtdriver.c crtplot.c -lcurses -ltermcap -lm
+addressability. It uses the curses library.
 */
 
 #include <math.h>
