@@ -1,6 +1,7 @@
 #	@(#)Makefile	5.3 (Berkeley) 5/11/90
 
 LIB=	py27plot
+SHLIB_NAME=	${LIB}.so.${SHLIB_MAJOR}
 SRCS=	arc.c box.c circle.c close.c cont.c dot.c erase.c label.c \
 	line.c linemod.c move.c open.c point.c space.c module.c
 CFLAGS+=	-I../../../plot -I${INCLUDEDIR} -I${INCLUDEDIR}/python2.7
@@ -18,7 +19,7 @@ INCLUDEDIR=	${PREFIX}/include
 
 install: maninstall
 	mkdir -p ${DESTDIR}${LIBDIR}
-	install ${STRIP} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} lib${LIB}.so \
+	install ${STRIP} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} ${SHLIB_NAME} \
 	    ${DESTDIR}${LIBDIR}/${LIB}.so
 
 .include <bsd.lib.mk>
