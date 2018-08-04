@@ -17,6 +17,7 @@ FILESDIR=	${PREFIX}/share/misc
 INCLUDEDIR=	${PREFIX}/include
 
 install: maninstall
+	mkdir -p ${DESTDIR}${LIBDIR}
 	install ${STRIP} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} lib${LIB}.so \
 	    ${DESTDIR}${LIBDIR}/${LIB}.so
 
