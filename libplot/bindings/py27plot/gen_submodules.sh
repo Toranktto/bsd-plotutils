@@ -27,13 +27,13 @@
 #
 
 if [ "$#" -eq 0 ]; then
-	echo "usage: $0 <submodules list>"
+	echo "usage: $0 <submodules>"
 	exit 1
 fi
 
-BACKENDS="$@"
+SUBMODULES="$@"
 
-for m in $BACKENDS; do
+for m in $SUBMODULES; do
 	echo "===> $m"
 
 	mkdir -p "$m"
