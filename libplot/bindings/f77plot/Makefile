@@ -3,7 +3,7 @@
 LIB=	f77plot
 SRCS=	arc.c box.c circle.c close.c cont.c dot.c erase.c label.c \
 	line.c linemod.c move.c open.c point.c space.c
-CFLAGS+=	-I../plot
+CFLAGS+=	-I../../plot -I${INCLUDEDIR}
 CSTD=c99
 MAN=	f77plot.3
 SHLIB_MAJOR=	1

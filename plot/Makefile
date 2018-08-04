@@ -18,8 +18,8 @@ MLINKS=	plot.1 bgplot.1 \
 		plot.1 plottoc.1
 LDADD=	-L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
 		-L../libplot/hp7221/ -L../libplot/grn -L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
-		-L../libplot/plot -L../libplot/crt -L/usr/local/lib
-CFLAGS+=	-I../libplot/plot -I/usr/local/include
+		-L../libplot/plot -L../libplot/crt -L${LIBDIR}
+CFLAGS+=	-I../libplot/plot -I${INCLUDEDIR}
 CSTD=c99
 PREFIX?=	/usr/local
 BINDIR=	${PREFIX}/bin
@@ -31,31 +31,31 @@ INCLUDEDIR=	${PREFIX}/include
 all: ${PROGS} ${MAN}
 
 atoplot: atoplot.c
-	${CC} ${CFLAGS} -o ${.TARGET} atoplot.c ${LDFLAGS} ${LDADD} -lplot -lm
+	${CC} ${CFLAGS} -o ${.TARGET} atoplot.c ${LDFLAGS} ${LDADD} -lplot
 
 bgplot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotbg -lm
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotbg
 
 crtdriver.o:
 	$(CC) $(CFLAGS) -D__crtplot -c driver.c -o crtdriver.o
 
 crtplot: crtdriver.o
-	${CC} ${CFLAGS} -o ${.TARGET} crtdriver.o ${LDFLAGS} ${LDADD} -lcurses -ltermcap -lm -lplotcrt
+	${CC} ${CFLAGS} -o ${.TARGET} crtdriver.o ${LDFLAGS} ${LDADD} -lplotcrt
 
 dumbplot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotdumb -ltermcap -lm
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotdumb
 
 gigiplot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotgigi -lm
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotgigi
 
 grnplot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotgrn -lm
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotgrn
 
 hp7221plot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot7221 -lm
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot7221
 
 implot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotimagen -lm
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotimagen
 
 plottoa: plottoa.c
 	${CC} ${CFLAGS} -o ${.TARGET} plottoa.c ${LDFLAGS} ${LDADD}
@@ -64,10 +64,10 @@ plottoc: plottoc.c
 	${CC} ${CFLAGS} -o ${.TARGET} plottoc.c ${LDFLAGS} ${LDADD}
 
 t4013plot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot4013 -lm
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot4013
 
 tekplot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot4014 -lm
+	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot4014
 
 clean:
 	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} crtdriver.o

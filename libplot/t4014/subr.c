@@ -50,7 +50,7 @@ pl_cont(int x, int y)
 		putch(hix | 040);
 		ohix = hix;
 		oloy = loy;
-	}else  {
+	}else {
 		if (extra != oextra) {
 			putch(extra | 0140);
 			putch(loy | 0140);

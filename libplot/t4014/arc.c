@@ -42,7 +42,7 @@ pl_arc(int x, int y, int x0, int y0, int x1, int y1)
 		use = 'x';
 		if (qs == 2 || qs == 3) m = -1;
 		else m = 1;
-	}else  {
+	}else {
 		use = 'y';
 		if (qs > 2) m = -1;
 		else m = 1;

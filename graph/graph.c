@@ -102,9 +102,9 @@ main(int argc, char *argv[])
 	setopt(argc, argv);
 	readin();
 	transpose();
+	pl_space(0, 0, 4096, 4096);
 	if (erasf)
 		pl_erase();
-	pl_space(0, 0, 4096, 4096);
 	scale(&xd, (struct val *)&xx->xv);
 	scale(&yd, (struct val *)&xx->yv);
 	axes();
@@ -392,7 +392,7 @@ setlim(register struct xy *p)
 		if (lb < 0) {
 			lb = 2 * lb;
 			ub = 0;
-		}else  {
+		}else {
 			ub = 1;
 			lb = -1;
 		}
@@ -663,7 +663,7 @@ symbol(int ix, int iy, int k)
 		if (mode == 0)
 			pl_point(ix, iy);
 		return(1);
-	}else  {
+	}else {
 		pl_move(ix, iy);
 		pl_label(k >= 0 ? labs_ + k : plotsymb);
 		pl_move(ix, iy);

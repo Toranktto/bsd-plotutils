@@ -1,6 +1,9 @@
 # BSD plotutils
 
-Port of ancient plotting utilities and libraries (for C and FORTRAN 77) from 4.3BSD to modern BSD derivatives.
+Port of ancient plotting utilities and libraries for various languages from 4.3BSD to modern BSD derivatives.
+Original libraries were written in C, but there are some wrappers to other languages:
+  * py27plot (Python 2.7)
+  * f77plot (FORTRAN 77)
 
 ## Installation
 

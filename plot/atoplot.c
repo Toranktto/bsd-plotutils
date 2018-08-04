@@ -182,7 +182,7 @@ mapLineType(char *cp)
 			i = 1;
 		}
 		return(lineMap[i]);
-	}else  {
+	}else {
 		return(cp);
 	}
 }
