@@ -8,8 +8,8 @@ addressability. It uses the curses library.
 #include <curses.h>
 
 /*  These map from plot routine coordinates to screen coordinates.  */
-#define scaleX(x)		(int) ((x-lowX)*rangeX + 0.5)
-#define scaleY(y)		(int) (LINES-0.5 - ((y-lowY)*rangeY))
+#define scaleX(x) (int) floor(((x - lowX) * rangeX))
+#define scaleY(y) (int) floor((LINES - ((y - lowY) * rangeY)))
 
 extern void plot_addch(char ch);
 #define plot_movech(y, x, ch)	{ pl_move(x, y); plot_addch(ch); }

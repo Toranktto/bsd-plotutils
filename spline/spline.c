@@ -6,10 +6,10 @@ static char *sccsid = "@(#)spline.c	4.5 (Berkeley) 12/2/87";
 #include <stdlib.h>
 #include <math.h>
 
-#define NP 1000
+#define NP 250
 #define INF HUGE
 
-struct proj { int lbf, ubf; float a, b, lb, ub, quant, mult, val[NP]; } x, y;
+struct proj { int lbf, ubf; float a, b, lb, ub, quant, mult, *val, val_len; } x, y;
 float *diag, *r;
 float dx = 1.;
 float ni = 100.;
@@ -235,7 +235,17 @@ spline(void)
 void
 readin(void)
 {
-	for (n = 0; n < NP; n++) {
+	for (n = 0;; n++) {
+		if (n > x.val_len) {
+			x.val_len *= 2;
+			x.val = realloc(x.val, x.val_len * sizeof(float));
+		}
+
+		if (n > y.val_len) {
+			y.val_len *= 2;
+			y.val = realloc(y.val, y.val_len * sizeof(float));
+		}
+
 		if (auta) x.val[n] = n * dx + x.lb;
 		else if (!getfloat(&x.val[n])) break;
 		if (!getfloat(&y.val[n])) break;
@@ -302,6 +312,11 @@ int
 main(int argc, char *argv[])
 {
 	int i;
+	x.val_len = NP;
+	x.val = malloc(x.val_len * sizeof(float));
+	y.val_len = NP;
+	y.val = malloc(y.val_len * sizeof(float));
+
 	x.lbf = x.ubf = y.lbf = y.ubf = 0;
 	x.lb = INF;
 	x.ub = -INF;
@@ -350,6 +365,8 @@ main(int argc, char *argv[])
 			printf("%f\n", y.val[i]);
 		}
 
+	free(x.val);
+	free(y.val);
 	exit(0);
 }
 
