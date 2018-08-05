@@ -26,12 +26,7 @@ double scale = 1.0;
 void
 pl_openpl(void)
 {
-	/* catch interupts */
-	signal(SIGINT, (__sighandler_t*)pl_closepl);
-	currentx = 0;
-	currenty = 0;
-
-	/* pl_space(0, 0, XMAX, YMAX); */
+	pl_openvt();
 }
 
 void

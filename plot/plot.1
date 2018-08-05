@@ -4,9 +4,9 @@
 .\"
 .\"     @(#)plot.1	6.6 (Berkeley) 7/24/90
 .\"
-.Dd August 3, 2018
+.Dd August 5, 2018
 .Dt PLOT 1
-.Os ATT 7th
+.Os
 .Sh NAME
 .Nm plot, bgplot, crtplot, dumbplot, gigiplot, grnplot, hp7221plot, implot, t4013plot, tekplot, plottoa, atoplot, plottoc
 .Nd graphics filters for various plotters
@@ -41,69 +41,40 @@ is used.
 Known
 .Ar terminals
 are:
-.Tw Cm
-.Tp Cm 4013
+.Bl -tag -width Ds
+.It Pa 4013
 Tektronix 4013 storage scope.
-.Tp Cx Cm 4014
-.Ws
-.Cx or
-.Ws
-.Cm tek
-.Ws
-.Cx or
-.Cm tek4014
-.Ws
-.Cx
+.It Pa 4014
 Tektronix 4014 or 4015 storage scope with Enhanced Graphics Module.
 (Use 4013 for Tektronix 4014 or 4015 without the Enhanced Graphics Module).
-.Tp Cx Cm bitgraph
-.Ws
-.Cx or
-.Ws
-.Cm bg
-.Cx
+.It Pa bitgraph
 BBN bitgraph graphics terminal.
-.Tp Cx Cm imagen
-.Ws
-.Cx or
-.Ws
-.Cm ip
-.Cx
+.It Pa imagen
 Imagen laser printer (default 240 dots-per-inch resolution).
-.Tp Cm crt
-Any crt terminal capable of running
-.Xr vi  1  .
-.Tp Cm dumb
+.It Pa crt
+Any crt terminal capable of running vi.
+.It Pa dumb
 Dumb terminals without cursor addressing or line printers.
-.Tp Cm vt125
-DEC vt125 terminal.
-.Tp Cx Cm hp2648
-.Ws
-.Cx or
-.Ws
-.Cm hp
-.Ws
-.Cx or
-.Ws
-.Cm hp8
-.Cx
+.It Pa vt0
+DEC vt100 terminal.
+.It Pa hp2648
 Hewlett Packard 2648 graphics terminal.
+.El
 .Sh ENVIRONMENT
-.Tw Fl
-.Tp Ev TERM
+.Bl -tag -width
+.It Ev TERM
 Used to determine the terminal type if not given as an argument.
+.El
 .Sh FILES
-.Dw /usr/local/bin/gigiplot
-.Di L
-.Dp Pa /usr/local/bin/t4013plot
-.Dp Pa /usr/local/bin/tekplot
-.Dp Pa /usr/local/bin/bgplot
-.Dp Pa /usr/local/bin/crtplot
-.Dp Pa /usr/local/bin/dumbplot
-.Dp Pa /usr/local/bin/gigiplot
-.Dp Pa /usr/local/bin/implot
-.Dp Pa /usr/bin/lpr
-.Dp
+.Bl -tag -width Ds
+.It Pa /usr/local/bin/t4013plot
+.It Pa /usr/local/bin/tekplot
+.It Pa /usr/local/bin/bgplot
+.It Pa /usr/local/bin/crtplot
+.It Pa /usr/local/bin/dumbplot
+.It Pa /usr/local/bin/gigiplot
+.It Pa /usr/local/bin/implot
+.El
 .Sh SEE ALSO
 .Xr plot 3 ,
 .Xr plot 5 ,

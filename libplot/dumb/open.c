@@ -33,32 +33,7 @@ char screenmat[MAXCOLS][MAXLINES];
 void
 pl_openpl(void)
 {
-	int i, j;
-	char *term;
-	char bp[1024];
-
-	term = getenv("TERM");
-	tgetent(bp, term);
-
-	COLS = tgetnum("co");
-	if (COLS > MAXCOLS)
-		COLS = MAXCOLS;
-	if (COLS < 0)
-		COLS = 48;      /* lower bound on # of cols? */
-	COLS--;                         /* prevent auto wrap */
-
-	LINES = tgetnum("li");
-	if (LINES > MAXLINES)
-		LINES = MAXLINES;
-	if (LINES < 0)
-		LINES = 20;     /* lower bound on # of lines? */
-
-	for (i = 0; i < COLS; i++)
-		for (j = 0; j < LINES; j++)
-			screenmat[i][j] = ' ';
-
-	signal(SIGINT, (__sighandler_t*)pl_closepl);
-	currentx = currenty = 0;
+	pl_openvt();
 }
 
 void

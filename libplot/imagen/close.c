@@ -18,8 +18,7 @@ extern void putch(int c);
 void
 pl_closepl(void)
 {
-	putch(imP_ENDPAGE);
-	fflush(stdout);
+	pl_closevt();
 }
 
 void

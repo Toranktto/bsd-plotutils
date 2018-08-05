@@ -23,6 +23,5 @@ pl_closevt(void)
 void
 pl_closepl(void)
 {
-	putch(037);
-	fflush(stdout);
+	pl_closevt();
 }

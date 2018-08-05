@@ -24,5 +24,5 @@ pl_openvt(void)
 void
 pl_openpl(void)
 {
-	vti = open("/dev/vt0", 1);
+	pl_openvt();
 }

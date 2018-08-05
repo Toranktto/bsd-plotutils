@@ -25,10 +25,7 @@ extern void endvector(void);
 void
 pl_closepl(void)
 {
-	if (!ingrnfile) return;
-	endvector();
-	printf("-1\n");
-	ingrnfile = 0;
+	pl_closevt();
 }
 
 void

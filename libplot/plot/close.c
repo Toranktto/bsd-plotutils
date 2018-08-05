@@ -14,5 +14,5 @@ pl_closevt(void)
 void
 pl_closepl(void)
 {
-	fflush(stdout);
+	pl_closevt();
 }

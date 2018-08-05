@@ -16,5 +16,5 @@ pl_closevt(void)
 void
 pl_closepl(void)
 {
-	close(vti);
+	pl_closevt();
 }
