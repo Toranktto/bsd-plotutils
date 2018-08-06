@@ -9,7 +9,7 @@ static char *sccsid = "@(#)spline.c	4.5 (Berkeley) 12/2/87";
 #define NP 250
 #define INF HUGE
 
-struct proj { int lbf, ubf; float a, b, lb, ub, quant, mult, *val, val_len; } x, y;
+struct proj { int lbf, ubf, val_len; float a, b, lb, ub, quant, mult, *val; } x, y;
 float *diag, *r;
 float dx = 1.;
 float ni = 100.;

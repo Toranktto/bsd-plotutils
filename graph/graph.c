@@ -31,9 +31,10 @@ struct val {
 	int lblptr;
 } *xx;
 
+int xx_len;
+
 char *labs_;
 int labsiz;
-
 int tick = 50;
 int top = 4000;
 int bot = 200;
@@ -46,7 +47,7 @@ int absf = 0;
 int transf;
 int brkf;
 float dx;
-char    *plotsymb;
+char *plotsymb;
 
 #define BSIZ 80
 char labbuf[BSIZ];
@@ -67,8 +68,6 @@ ident(double x)
 {
 	return(x);
 }
-
-extern void closevt(void);
 
 void axes(void);
 void transpose(void);
@@ -96,7 +95,8 @@ main(int argc, char *argv[])
 	init(&xd);
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
-	xx = (struct val *)malloc((unsigned)sizeof(struct val));
+	xx_len = 250;
+	xx = (struct val *)malloc(xx_len * sizeof(struct val));
 	labs_ = malloc(1);
 	labs_[labsiz++] = 0;
 	setopt(argc, argv);
@@ -112,6 +112,8 @@ main(int argc, char *argv[])
 	plot();
 	pl_move(1, 1);
 	pl_closevt();
+	free(xx);
+	free(labs_);
 	return(0);
 }
 
@@ -269,23 +271,31 @@ readin(void)
 		else if (xd.xf == log10)
 			absbot = 1;
 	}
+
 	for (;;) {
-		temp = (struct val *)realloc((char*)xx,
-					     (unsigned)(n + 1) * sizeof(struct val));
-		if (temp == 0)
-			return;
-		xx = temp;
+		if (n > xx_len) {
+			xx_len *= 2;
+			temp = (struct val *)realloc((char*)xx, xx_len * sizeof(struct val));
+			if (temp == 0)
+				return;
+			xx = temp;
+		}
+
 		if (absf)
 			xx[n].xv = n * dx + absbot;
 		else
-		if (!getfloat(&xx[n].xv))
-			return;
+			if (!getfloat(&xx[n].xv))
+				return;
+
 		if (!getfloat(&xx[n].yv))
 			return;
+
 		xx[n].lblptr = -1;
 		t = getstring();
+
 		if (t > 0)
 			xx[n].lblptr = copystring(t);
+
 		n++;
 		if (t < 0)
 			return;
