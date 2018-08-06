@@ -95,7 +95,7 @@ main(int argc, char *argv[])
 	init(&xd);
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
-	xx_len = 250;
+	xx_len = 1000;
 	xx = (struct val *)malloc(xx_len * sizeof(struct val));
 	labs_ = malloc(1);
 	labs_[labsiz++] = 0;

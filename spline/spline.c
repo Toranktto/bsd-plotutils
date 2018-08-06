@@ -6,7 +6,7 @@ static char *sccsid = "@(#)spline.c	4.5 (Berkeley) 12/2/87";
 #include <stdlib.h>
 #include <math.h>
 
-#define NP 250
+#define NP 1000
 #define INF HUGE
 
 struct proj { int lbf, ubf, val_len; float a, b, lb, ub, quant, mult, *val; } x, y;
