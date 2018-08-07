@@ -7,6 +7,7 @@ static char sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
 #include <plot.h>
 #include <unistd.h>
 #include <string.h>
+#include <netinet/in.h>
 #ifdef __crtplot
 #include <signal.h>
 #endif
@@ -170,18 +171,16 @@ fplt(FILE *fin)
 #endif
 }
 
-/* get an integer stored in 2 ascii bytes. */
+/* get an integer. */
 int
 getsi(register FILE *fin)
 {
-	short a, b;
+	int a;
 
-	if ((b = getc(fin)) == EOF)
-		return(EOF);
-	if ((a = getc(fin)) == EOF)
-		return(EOF);
-	a = a << 8;
-	return(a | b);
+	fread(&a, sizeof(a), 1, fin);
+	a = ntohl(a);
+
+	return a;
 }
 
 void

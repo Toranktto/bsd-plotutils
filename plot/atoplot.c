@@ -148,7 +148,7 @@ fplt(FILE *fin)
 	free(pat);
 }
 
-/* get an integer stored in 2 ascii bytes. */
+/* get an integer. */
 int
 getsi(FILE *fin)
 {

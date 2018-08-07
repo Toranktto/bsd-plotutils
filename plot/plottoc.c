@@ -10,6 +10,7 @@ static char sccsid[] = "@(#)plottoa.c	4.2 (Berkeley) 1/9/85";
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <netinet/in.h>
 
 float deltx;
 float delty;
@@ -157,17 +158,16 @@ fplt(FILE *fin)
 	free(pat);
 }
 
-/* get an integer stored in 2 ascii bytes. */
+/* get an integer. */
 int
-getsi(FILE *fin)
+getsi(register FILE *fin)
 {
-	short a, b;
-	if ((b = getc(fin)) == EOF)
-		return(EOF);
-	if ((a = getc(fin)) == EOF)
-		return(EOF);
-	a = a << 8;
-	return(a | b);
+	int a;
+
+	fread(&a, sizeof(a), 1, fin);
+	a = ntohl(a);
+
+	return a;
 }
 
 void
