@@ -162,9 +162,10 @@ int
 getsi(register FILE *fin)
 {
 	int a;
+	short b;
 
-	fread(&a, sizeof(a), 1, fin);
-	a = ntohl(a);
+	fread(&b, sizeof(b), 1, fin);
+	a = ntohs(b);
 
 	return a;
 }

@@ -2,8 +2,10 @@ SUBMODULES=	bitgraph dumb gigi grn hp7221 imagen t4013 t4014 vt0 crt
 
 .PHONY: all
 
-all:
+gen_submodules:
 	./gen_submodules.sh ${SUBMODULES}
+
+all: gen_submodules
 	for m in $(SUBMODULES); do \
 		$(MAKE) -C $$m; \
 	done

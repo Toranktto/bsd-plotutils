@@ -9,8 +9,8 @@ static char sccsid[] = "@(#)putsi.c	4.1 (Berkeley) 6/27/83";
 void
 putsi(int a)
 {
-	int b;
+	short b;
 
-	b = htonl(a);
+	b = htons(a);
 	fwrite(&b, sizeof(b), 1, stdout);
 }

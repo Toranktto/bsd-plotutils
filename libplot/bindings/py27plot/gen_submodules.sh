@@ -34,21 +34,25 @@ fi
 SUBMODULES="$@"
 
 for m in $SUBMODULES; do
-	echo "===> $m"
+	if [ -d "$m" ]; then
+		echo "===> $m (skipping)"
+		continue
+	elif [ -f "$m" ]; then
+		echo "===> $m"
+		rm -rf "$m"
+	else
+		echo "===> $m"
+	fi
 
 	mkdir -p "$m"
 	cd "$m"
 
 	for f in ../plot/*; do
-		if [ -d "$f" ]; then
-			continue
-		fi
-
 		if [ "`basename $f`" = "`basename $0`" ]; then
 			continue
 		fi
 
-		if [ "`basename $f`" = "module.c" ] || [ "`basename $f`" = "Makefile" ]; then
+		if [ -f "$f" ] && [ "`basename $f`" = "module.c" ] || [ "`basename $f`" = "Makefile" ]; then
 			data=""
 			case "$m" in
 				"bitgraph")
@@ -71,9 +75,10 @@ for m in $SUBMODULES; do
 			data=`echo "$data" | sed -e "s/-L..\/..\/..\/plot/-L..\/..\/..\/$m/g"`
 			echo "$data" > ./`basename $f`
 
-			echo "$f -> `basename $f`"
+			echo "$f -> ./`basename $f`"
 		else
-			cp -v $f ./`basename $f`
+			cp -r $f ./`basename $f`
+			echo "$f -> ./`basename $f`"
 		fi
 	done
 
