@@ -5,8 +5,15 @@ Original libraries were written in C, but there are bindings to other languages:
   * `py27plot` (Python 2.7)
   * `f77plot` (FORTRAN 77)
 
-It's **not** compatible with `libplot` from Version 7 Unix due to conflicts with curses library, but if
+It's **not** compatible with `libplot` from AT&T due to conflicts with curses library, but if
 compatibility is really needed, there is a `plotcompat.h` header.
+
+## Overview
+`libplot` is library that implements plotting routines in device-independent manner.  
+Except this, there are some other libraries (with `libplot` prefix, for example `libplotcrt`) that implements routines in manner
+specific to appropiate device. Device-independent file format is described in `plot(5)` and can be translated to machine-dependent plotting routines
+(using `plot(1)`), ASCII text (using `plottoa(1)`) and C source code (using `plottoc(1)`).  
+`graph(1)` is utility that converts pairs of numbers from standard input to device-independent plotting routines.
 
 ## Installation from source
 
@@ -24,10 +31,3 @@ Each release has *.txz file which is binary package. If you want to install, run
 ```
 pkg install <path_to_file.txz>
 ```
-
-## Overview
-`libplot` is main library that implements plotting routines in device-independent manner. 
-Except this, there are some other libraries (with `libplot` prefix, for example `libplotcrt`) that implements routines in manner
-specific to appropiate device. Device-independent file format is described in `plot(5)` and can be translated to machine-dependent plotting routines
-(using `plot(1)`), ASCII text (using `plottoa(1)`) and C source code (using `plottoc(1)`). 
-`graph(1)` is utility that converts pairs of numbers from standard input to device-independent plotting routines.
