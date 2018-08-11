@@ -49,7 +49,7 @@ int brkf;
 float dx;
 char *plotsymb;
 
-#define BSIZ 80
+#define BSIZ 256
 char labbuf[BSIZ];
 char titlebuf[BSIZ];
 
@@ -95,7 +95,7 @@ main(int argc, char *argv[])
 	init(&xd);
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
-	xx_len = 1000;
+	xx_len = 250;
 	xx = (struct val *)malloc(xx_len * sizeof(struct val));
 	labs_ = malloc(1);
 	labs_[labsiz++] = 0;
