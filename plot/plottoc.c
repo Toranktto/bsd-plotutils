@@ -205,6 +205,10 @@ openpl(void)
 		"int\n"
 		"main(int argc, char **argv)\n"
 		"{\n"
+		"\tint pat_n, *pat;\n"
+		"\tunsigned int pat_len = 256;\n"
+		"\n"
+		"\tpat = malloc(pat_len * sizeof(int));\n"
 		);
 	printf("\tpl_openpl();\n");
 }
@@ -213,7 +217,7 @@ void
 closepl(void)
 {
 	printf("\tpl_closepl();\n");
-	printf("\n");
+	printf("\tfree(pat);\n");
 	printf("\treturn 0;\n");
 	printf("}\n");
 }
@@ -277,10 +281,15 @@ dot(int xi, int yi, int dx, int n, int pat[])
 {
 	register int i;
 
-	printf("\tpl_dot(%d, %d, %d, %d, {", xi, yi, dx, n);
+	printf("\tpat_n = %d;\n", n);
+	printf("\tif (pat_n > pat_len) {\n");
+	printf("\t\tpat_len *= 2;\n");
+	printf("\t\tpat = realloc(pat, pat_len * sizeof(int));\n");
+	printf("\t}\n");
+
 	for (i = 0; i < n; i++) {
-		printf("%d", pat[i]);
-		if (i != n - 1) printf(", ");
+		printf("\tpat[%d] = %d;\n", i, pat[i]);
 	}
-	printf("});\n");
+
+	printf("\tpl_dot(%d, %d, %d, pat_n, pat);\n", xi, yi, dx);
 }
