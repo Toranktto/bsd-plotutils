@@ -6,8 +6,12 @@ PATH=/bin:/usr/bin:/usr/local/bin
 
 xplot() {
 	TMP=`mktemp /tmp/plot.XXXXXX`
-	dd if=/dev/stdin of="$TMP" status=none
-	xterm -t -e "env PATH=\"$PATH\" sh -c \"tekplot \"$@\" < \"$TMP\";while [ 1 ];do sleep 999;done\""
+	tekplot "$@" > "$TMP"
+
+	if [ "$?" -eq 0 ]; then
+		xterm -t -e "sh -c \"cat \"$TMP\";while [ 1 ];do sleep 1;done\""
+	fi
+
 	rm -f $TMP
 }
 
@@ -16,15 +20,16 @@ case $1 in
 	shift ;;
 *)	t=-T$TERM
 esac
+
 case $t in
 -Ttek4014|-Ttek|-T4014)	exec tekplot "$@" ;;
--T4013)			exec t4013plot "$@" ;;
+-T4013)				exec t4013plot "$@" ;;
 -Tbitgraph|-Tbg)	exec bgplot "$@" ;;
 -Tgigi|-Tvt125)		exec gigiplot "$@" ;;
 -Thp7221|-Thp7|-Th7)	exec hp7221plot "$@" ;;
 -Tip|-Timagen)		exec implot "$@" ;;
--Tgrn)			exec grnplot "$@" ;;
--Tdumb|-Tun|-Tunknown)	exec dumbplot "$@" ;;
--TX)		xplot "$@" ;;
-*)  			exec crtplot "$@" ;;
+-Tgrn)				exec grnplot "$@" ;;
+-Tcrt)				exec crtplot "$@" ;;
+-TX)	xplot "$@" ;;
+*)					exec dumbplot "$@" ;;
 esac
