@@ -76,6 +76,7 @@ void plot(void);
 void limread(register struct xy *p, int *argcp, char ***argvp);
 void title(void);
 void badarg(void);
+void badvalue(void);
 void setopt(int argc, char *argv[]);
 void axlab(char c, struct xy *p);
 int conv(float xv, register struct xy *p, int *ip);
@@ -287,10 +288,10 @@ readin(void)
 			xx[n].xv = n * dx + absbot;
 		else
 			if (!getfloat(&xx[n].xv))
-				return;
+				badvalue();
 
 		if (!getfloat(&xx[n].yv))
-			return;
+			badvalue();
 
 		xx[n].lblptr = -1;
 		t = getstring();
@@ -711,5 +712,12 @@ void
 badarg(void)
 {
 	fprintf(stderr, "%s: error in arguments\n", getprogname());
+	exit(1);
+}
+
+void
+badvalue(void)
+{
+	fprintf(stderr, "%s: malformed input\n", getprogname());
 	exit(1);
 }

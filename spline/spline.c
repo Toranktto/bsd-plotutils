@@ -20,6 +20,7 @@ float konst = 0.0;
 float zero = 0.;
 
 int getfloat(float *p);
+void badvalue(void);
 int numb(float *np, int *argcp, char ***argvp);
 
 /* Spline fit technique
@@ -247,8 +248,8 @@ readin(void)
 		}
 
 		if (auta) x.val[n] = n * dx + x.lb;
-		else if (!getfloat(&x.val[n])) break;
-		if (!getfloat(&y.val[n])) break;
+		else if (!getfloat(&x.val[n])) badvalue();
+		if (!getfloat(&y.val[n])) badvalue();
 	}
 }
 
@@ -383,4 +384,11 @@ numb(float *np, int *argcp, char ***argvp)
 	(*argcp)--;
 	(*argvp)++;
 	return(1);
+}
+
+void
+badvalue(void)
+{
+	fprintf(stderr, "%s: malformed input\n", getprogname());
+	exit(1);
 }
