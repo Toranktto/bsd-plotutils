@@ -10,11 +10,11 @@ extern int vti;
 void
 pl_closevt(void)
 {
-	close(vti);
+	pl_closepl();
 }
 
 void
 pl_closepl(void)
 {
-	pl_closevt();
+	close(vti);
 }

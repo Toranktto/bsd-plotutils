@@ -15,14 +15,14 @@ static char sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
 void
 pl_closepl(void)
 {
-	pl_closevt();
+	/* receive interupts */
+	signal(SIGINT, SIG_IGN);
+	printf("v@}"); /* Put pen away. */
+	fflush(stdout);
 }
 
 void
 pl_closevt(void)
 {
-	/* receive interupts */
-	signal(SIGINT, SIG_IGN);
-	printf("v@}"); /* Put pen away. */
-	fflush(stdout);
+	pl_closepl();
 }

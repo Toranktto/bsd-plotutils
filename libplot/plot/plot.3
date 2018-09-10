@@ -57,7 +57,7 @@ must be used before any of the others to open the device for writing.
 .I pl_closepl()
 and
 .I pl_closevt()
-flushes the output.
+flushes the output, but pl_closevt() is often used when error occurs.
 .PP
 String arguments to
 .I pl_label()

@@ -10,12 +10,12 @@ extern void putch(int c);
 void
 pl_closevt(void)
 {
-	putch(037);
-	fflush(stdout);
+	pl_closepl();
 }
 
 void
 pl_closepl(void)
 {
-	pl_closevt();
+	putch(037);
+	fflush(stdout);
 }

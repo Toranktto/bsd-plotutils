@@ -20,14 +20,14 @@ int lastX, lastY;       /* last point plotted */
 void
 pl_openpl(void)
 {
-	pl_openvt();
+	initscr();
+	noecho();
+	nonl();
+	signal(SIGINT, (__sighandler_t*)pl_closepl);
 }
 
 void
 pl_openvt(void)
 {
-	initscr();
-	noecho();
-	nonl();
-	signal(SIGINT, (__sighandler_t*)pl_closepl);
+	pl_openpl();
 }

@@ -18,12 +18,12 @@ extern void putch(int c);
 void
 pl_closepl(void)
 {
-	pl_closevt();
+	putch(imP_ENDPAGE);
+	fflush(stdout);
 }
 
 void
 pl_closevt(void)
 {
-	putch(imP_ENDPAGE);
-	fflush(stdout);
+	pl_closepl();
 }

@@ -17,6 +17,12 @@ static char sccsid[] = "@(#)close.c	5.2 (Berkeley) 4/30/85";
 void
 pl_closevt(void)
 {
+	pl_closepl();
+}
+
+void
+pl_closepl(void)
+{
 	/* recieve interupts */
 	signal(SIGINT, SIG_IGN);
 
@@ -24,10 +30,4 @@ pl_closevt(void)
 	putchar(ESC);
 	printf("[H");
 	/* exit(0); */
-}
-
-void
-pl_closepl(void)
-{
-	pl_closevt();
 }

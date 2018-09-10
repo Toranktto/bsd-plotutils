@@ -10,10 +10,10 @@ static char sccsid[] = "@(#)atoplot.c	4.2 (Berkeley) 1/9/85";
 float deltx;
 float delty;
 
-char *mapLineType(char *cp);
-void fplt(FILE *fin);
-int getsi(FILE *fin);
-void getstr(register char *s, register FILE *fin, int len);
+static char *map_line_type(char *cp);
+static void fplt(FILE *fin);
+static int getsi(FILE *fin);
+static void getstr(register char *s, register FILE *fin, int len);
 
 int
 main(int argc, char **argv)
@@ -21,6 +21,7 @@ main(int argc, char **argv)
 	int std = 1;
 	FILE *fin;
 
+	setprogname(argv[0]);
 	while (argc-- > 1) {
 		if (*argv[1] == '-')
 			switch (argv[1][1]) {
@@ -35,7 +36,7 @@ main(int argc, char **argv)
 		else {
 			std = 0;
 			if ((fin = fopen(argv[1], "r")) == NULL) {
-				fprintf(stderr, "atoplot: can't open %s\n", argv[1]);
+				fprintf(stderr, "%s: can't open %s\n", getprogname(), argv[1]);
 				exit(1);
 			}
 
@@ -52,7 +53,7 @@ main(int argc, char **argv)
 	exit(0);
 }
 
-void
+static void
 fplt(FILE *fin)
 {
 	int c;
@@ -119,7 +120,7 @@ fplt(FILE *fin)
 			break;
 		case 'f':
 			getstr(s, fin, 256);
-			pl_linemod(mapLineType(s));
+			pl_linemod(map_line_type(s));
 			break;
 		case 'd':
 			xi = getsi(fin);
@@ -134,6 +135,11 @@ fplt(FILE *fin)
 				pat[i] = getsi(fin);
 			pl_dot(xi, yi, dx, n, pat);
 			break;
+		default:
+			pl_closevt();
+			fprintf(stderr, "%s: malformed input\n", getprogname());
+			free(pat);
+			exit(1);
 		}
 
 		/* scan to newline */
@@ -149,7 +155,7 @@ fplt(FILE *fin)
 }
 
 /* get an integer. */
-int
+static int
 getsi(FILE *fin)
 {
 	int i;
@@ -160,7 +166,7 @@ getsi(FILE *fin)
 	return(i);
 }
 
-char *lineMap[] = {
+char *line_map[] = {
 	"solid",        /* line type 0 */
 	"solid",        /* line type 1 */
 	"dotted",       /* line type 2 */
@@ -172,29 +178,25 @@ char *lineMap[] = {
 	"dotdotdash",   /* line type 8 */
 };
 
-char *
-mapLineType(char *cp)
+static char *
+map_line_type(char *cp)
 {
 	int i;
 
 	if (sscanf(cp, "%d", &i) == 1) {
-		if (i < 0 || i > sizeof(lineMap) / sizeof(char *)) {
+		if (i < 0 || i > sizeof(line_map) / sizeof(char *)) {
 			i = 1;
 		}
-		return(lineMap[i]);
-	}else {
+
+		return(line_map[i]);
+	} else {
 		return(cp);
 	}
 }
 
-void
+static void
 getstr(register char *s, register FILE *fin, int len)
 {
-	unsigned int s_len;
-
 	fgets(s, len, fin);
-	/* Strip newline */
-	s_len = strlen(s);
-	if (s[s_len - 1] == '\n')
-		s[s_len - 1] = '\0';
+	s[strlen(s) - 1] = '\0';
 }

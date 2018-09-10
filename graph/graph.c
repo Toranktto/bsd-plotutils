@@ -92,6 +92,8 @@ int numb(float *np, int *argcp, register char ***argvp);
 int
 main(int argc, char *argv[])
 {
+	setprogname(argv[0]);
+
 	init(&xd);
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
@@ -111,7 +113,7 @@ main(int argc, char *argv[])
 	title();
 	plot();
 	pl_move(1, 1);
-	pl_closevt();
+	pl_closepl();
 	free(xx);
 	free(labs_);
 	return(0);
@@ -175,7 +177,7 @@ setopt(int argc, char *argv[])
 		case 'g': /*grid style 0 none, 1 ticks, 2 full*/
 			gridf = 0;
 			if (!numb(&temp, &argc, &argv))
-				temp = argv[0][1] - '0'; /*for caompatibility*/
+				temp = argv[0][1] - '0'; /*for compatibility*/
 			if (temp >= 0 && temp <= 2)
 				gridf = temp;
 			break;
@@ -708,6 +710,6 @@ axlab(char c, struct xy *p)
 void
 badarg(void)
 {
-	fprintf(stderr, "graph: error in arguments\n");
+	fprintf(stderr, "%s: error in arguments\n", getprogname());
 	exit(1);
 }

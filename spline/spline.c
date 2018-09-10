@@ -312,6 +312,8 @@ int
 main(int argc, char *argv[])
 {
 	int i;
+
+	setprogname(argv[0]);
 	x.val_len = NP;
 	x.val = malloc(x.val_len * sizeof(float));
 	y.val_len = NP;
@@ -324,7 +326,7 @@ main(int argc, char *argv[])
 	y.ub = -INF;
 	while (--argc > 0) {
 		argv++;
- again:         switch (argv[0][0]) {
+again:	switch (argv[0][0]) {
 		case '-':
 			argv[0]++;
 			goto again;
@@ -348,7 +350,7 @@ main(int argc, char *argv[])
 			x.ubf = 1;
 			break;
 		default:
-			fprintf(stderr, "spline: error in arguments\n");
+			fprintf(stderr, "%s: error in arguments\n", getprogname());
 			exit(1);
 		}
 	}

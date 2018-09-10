@@ -1,6 +1,14 @@
 #!/bin/sh
 #	@(#)plot.sh	4.6	(Berkeley)	7/24/89
 #
+
+xplot() {
+	TMP=`mktemp /tmp/plot.XXXXXX`
+	dd if=/dev/stdin of="$TMP" status=none
+	xterm -t -e "env PATH=\"$PATH\" sh -c \"tekplot \"$@\" < \"$TMP\";while [ 1 ];do sleep 1;done\""
+	rm -f $TMP
+}
+
 PATH=/bin:/usr/bin:/usr/local/bin
 case $1 in
 -T*)	t=$1
@@ -16,5 +24,6 @@ case $t in
 -Tip|-Timagen)		exec implot "$@" ;;
 -Tgrn)			exec grnplot "$@" ;;
 -Tdumb|-Tun|-Tunknown)	exec dumbplot "$@" ;;
+-Txterm|-Txterm-256color)		xplot ;;
 *)  			exec crtplot "$@" ;;
 esac

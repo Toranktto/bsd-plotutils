@@ -31,12 +31,6 @@ extern void putMBP(int x, int y);
 void
 pl_openpl(void)
 {
-	pl_openvt();
-}
-
-void
-pl_openvt(void)
-{
 	/* catch interupts */
 	signal(SIGINT, (__sighandler_t*)pl_closepl);
 	currentx = 0;
@@ -49,4 +43,10 @@ pl_openvt(void)
 	printf("vA~*z");
 
 	/* pl_space(0,0,XMAX,YMAX); */
+}
+
+void
+pl_openvt(void)
+{
+	pl_openpl();
 }

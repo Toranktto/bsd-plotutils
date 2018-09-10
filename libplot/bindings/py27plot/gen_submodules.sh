@@ -56,19 +56,19 @@ for m in $SUBMODULES; do
 			data=""
 			case "$m" in
 				"bitgraph")
-					data=`cat $f | sed -e "s/py27plot/py27plot_bg/g" | sed -e "s/-lplot/-lplotbg/g"`
+					data=`cat $f | sed -e "s/py27plot/py27plotbg/g" | sed -e "s/-lplot/-lplotbg/g"`
 					;;
 				"t4013")
-					data=`cat $f | sed -e "s/py27plot/py27plot_4013/g" | sed -e "s/-lplot/-lplot4013/g"`
+					data=`cat $f | sed -e "s/py27plot/py27plot4013/g" | sed -e "s/-lplot/-lplot4013/g"`
 					;;
 				"hp7221")
-					data=`cat $f | sed -e "s/py27plot/py27plot_7221/g" | sed -e "s/-lplot/-lplot7221/g"`
+					data=`cat $f | sed -e "s/py27plot/py27plot7221/g" | sed -e "s/-lplot/-lplot7221/g"`
 					;;
 				"t4014")
-					data=`cat $f | sed -e "s/py27plot/py27plot_4014/g" | sed -e "s/-lplot/-lplot4014/g"`
+					data=`cat $f | sed -e "s/py27plot/py27plot4014/g" | sed -e "s/-lplot/-lplot4014/g"`
 					;;
 				*)
-					data=`cat $f | sed -e "s/py27plot/py27plot_$m/g" | sed -e "s/-lplot/-lplot$m/g"`
+					data=`cat $f | sed -e "s/py27plot/py27plot$m/g" | sed -e "s/-lplot/-lplot$m/g"`
 					;;
 			esac
 
