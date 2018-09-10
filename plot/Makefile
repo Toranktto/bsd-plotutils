@@ -1,8 +1,8 @@
 #	@(#)Makefile	4.17 (Berkeley) 6/24/90
 
 PROGS=	tekplot t4013plot bgplot crtplot dumbplot gigiplot \
-	hp7221plot implot grnplot plottoa atoplot plottoc
-SRCS=	atoplot.c driver.c plottoa.c plottoc.c
+	hp7221plot implot grnplot plottoa atoplot
+SRCS=	atoplot.c driver.c plottoa.c
 MAN=	plot.1
 MLINKS=	plot.1 bgplot.1 \
 		plot.1 crtplot.1 \

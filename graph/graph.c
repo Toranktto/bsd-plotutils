@@ -676,7 +676,7 @@ symbol(int ix, int iy, int k)
 		if (mode == 0)
 			pl_point(ix, iy);
 		return(1);
-	}else {
+	} else {
 		pl_move(ix, iy);
 		pl_label(k >= 0 ? labs_ + k : plotsymb);
 		pl_move(ix, iy);

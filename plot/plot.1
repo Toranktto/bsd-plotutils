@@ -8,7 +8,7 @@
 .Dt PLOT 1
 .Os
 .Sh NAME
-.Nm plot, bgplot, crtplot, dumbplot, gigiplot, grnplot, hp7221plot, implot, t4013plot, tekplot, plottoa, atoplot, plottoc
+.Nm plot, bgplot, crtplot, dumbplot, gigiplot, grnplot, hp7221plot, implot, t4013plot, tekplot, plottoa, atoplot
 .Nd graphics filters for various plotters
 .Sh SYNOPSIS
 .Nm plot
@@ -55,6 +55,8 @@ Imagen laser printer (default 240 dots-per-inch resolution).
 Any crt terminal capable of running vi.
 .It Pa dumb
 Dumb terminals without cursor addressing or line printers.
+.It Pa X
+Any graphics workstation with XTerm that have support for Tektronix emulation.
 .It Pa vt0
 DEC vt100 terminal.
 .It Pa hp2648
@@ -74,6 +76,7 @@ Used to determine the terminal type if not given as an argument.
 .It Pa /usr/local/bin/dumbplot
 .It Pa /usr/local/bin/gigiplot
 .It Pa /usr/local/bin/implot
+.It Pa /usr/local/bin/plot
 .El
 .Sh SEE ALSO
 .Xr plot 3 ,

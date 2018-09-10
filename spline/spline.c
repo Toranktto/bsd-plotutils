@@ -236,6 +236,8 @@ spline(void)
 void
 readin(void)
 {
+	int xs, ys;
+
 	for (n = 0;; n++) {
 		if (n > x.val_len) {
 			x.val_len *= 2;
@@ -247,9 +249,18 @@ readin(void)
 			y.val = realloc(y.val, y.val_len * sizeof(float));
 		}
 
-		if (auta) x.val[n] = n * dx + x.lb;
-		else if (!getfloat(&x.val[n])) badvalue();
-		if (!getfloat(&y.val[n])) badvalue();
+		if (auta)
+			x.val[n] = n * dx + x.lb;
+		else
+			if ((xs = getfloat(&x.val[n])) == EOF)
+				return;
+			else if (!xs)
+				badvalue();
+
+		if ((ys = getfloat(&y.val[n])) == EOF)
+			return;
+		else if (!ys)
+			badvalue();
 	}
 }
 
@@ -264,7 +275,7 @@ getfloat(float *p)
 		c = getchar();
 		if (c == EOF) {
 			*buf = '\0';
-			return(0);
+			return(EOF);
 		}
 		*buf = c;
 		switch (*buf) {
@@ -275,6 +286,7 @@ getfloat(float *p)
 		}
 		break;
 	}
+
 	for (i = 1; i < 30; i++) {
 		c = getchar();
 		if (c == EOF) {
@@ -295,8 +307,9 @@ getfloat(float *p)
 	}
 
 	buf[i] = ' ';
-	*p = atof(buf);
-	return(1);
+
+	i = sscanf(buf, "%f", p);
+	return(i == 1);
 }
 
 void
