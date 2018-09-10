@@ -14,8 +14,7 @@ MLINKS=	plot.1 bgplot.1 \
 		plot.1 t4013plot.1 \
 		plot.1 tekplot.1 \
 		plot.1 plottoa.1 \
-		plot.1 atoplot.1 \
-		plot.1 plottoc.1
+		plot.1 atoplot.1
 LDADD=	-L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
 		-L../libplot/hp7221/ -L../libplot/grn -L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
 		-L../libplot/plot -L../libplot/crt -L${LIBDIR}
