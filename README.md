@@ -12,7 +12,7 @@ compatibility is really needed, there is a `plotcompat.h` header.
 `libplot` is library that implements plotting routines in device-independent manner.  
 Except this, there are some other libraries (with `libplot` prefix, for example `libplotcrt`) that implements routines in manner
 specific to appropiate device. Device-independent file format is described in `plot(5)` and can be translated to machine-dependent plotting routines
-(using `plot(1)`) and ASCII text (using `plottoa(1)`).
+(using `plot(1)`) and ASCII text (using `plottoa(1)`).  
 `graph(1)` is utility that converts pairs of numbers from standard input to device-independent plotting routines.
 
 ## Installation from source
