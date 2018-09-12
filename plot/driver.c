@@ -194,6 +194,7 @@ static void
 winresize(void)
 {
 	signal(SIGWINCH, SIG_IGN);
+
 	pl_closevt();
 	fprintf(stderr, "%s: terminal resized\n", getprogname());
 	exit(1);

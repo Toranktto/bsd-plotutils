@@ -4,17 +4,6 @@
 
 PATH=/bin:/usr/bin:/usr/local/bin
 
-xplot() {
-	TMP=`mktemp /tmp/plot.XXXXXX`
-	tekplot "$@" > "$TMP"
-
-	if [ "$?" -eq 0 ]; then
-		xterm -t -e "sh -c \"cat \"$TMP\";while [ 1 ];do sleep 1;done\""
-	fi
-
-	rm -f $TMP
-}
-
 case $1 in
 -T*)	t=$1
 	shift ;;
@@ -29,7 +18,6 @@ case $t in
 -Thp7221|-Thp7|-Th7)	exec hp7221plot "$@" ;;
 -Tip|-Timagen)		exec implot "$@" ;;
 -Tgrn)				exec grnplot "$@" ;;
--Tcrt)				exec crtplot "$@" ;;
--TX)	xplot "$@" ;;
-*)					exec dumbplot "$@" ;;
+-Tdumb|-Tunknown)	exec dumbplot "$@" ;;
+*)					exec crtplot "$@" ;;
 esac
