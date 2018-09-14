@@ -175,7 +175,7 @@ getsi(register FILE *fin)
 {
 	short b;
 
-	if (fread(&b, sizeof(b), 1, fin) < sizeof(b)) {
+	if (fread(&b, sizeof(b), 1, fin) < 1) {
 		pl_closevt();
 		fprintf(stderr, "%s: malformed input\n", getprogname());
 		exit(1);
