@@ -161,8 +161,11 @@ getsi(FILE *fin)
 	int i;
 
 	if (fscanf(fin, " %d", &i) != 1) {
-		return(EOF);
+		pl_closevt();
+		fprintf(stderr, "%s: malformed input\n", getprogname());
+		exit(1);
 	}
+
 	return(i);
 }
 
@@ -197,6 +200,11 @@ map_line_type(char *cp)
 static void
 getstr(register char *s, register FILE *fin, int len)
 {
-	fgets(s, len, fin);
+	if (fgets(s, len, fin) == NULL) {
+		pl_closevt();
+		fprintf(stderr, "%s: malformed input\n", getprogname());
+		exit(1);
+	}
+
 	s[strlen(s) - 1] = '\0';
 }

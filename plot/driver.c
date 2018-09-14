@@ -173,19 +173,26 @@ fplt(FILE *fin)
 static int
 getsi(register FILE *fin)
 {
-	int a;
 	short b;
 
-	fread(&b, sizeof(b), 1, fin);
-	a = ntohs(b);
+	if (fread(&b, sizeof(b), 1, fin) < sizeof(b)) {
+		pl_closevt();
+		fprintf(stderr, "%s: malformed input\n", getprogname());
+		exit(1);
+	}
 
-	return a;
+	return ntohs(b);
 }
 
 static void
 getstr(register char *s, register FILE *fin, int len)
 {
-	fgets(s, len, fin);
+	if (fgets(s, len, fin) == NULL) {
+		pl_closevt();
+		fprintf(stderr, "%s: malformed input\n", getprogname());
+		exit(1);
+	}
+
 	s[strlen(s) - 1] = '\0';
 }
 
