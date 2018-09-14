@@ -9,7 +9,7 @@ pl_space, pl_closepl, pl_dot, pl_box, pl_openvt, pl_closevt \- plotting interfac
 .nf
 .B #include <plot.h>
 .PP
-.B #include <plotcompat.h> /* compatibility with original libplot */
+.B #include <plotcompat.h> /* compatibility with old libplot */
 .PP
 .B void pl_openpl(void);
 .PP
@@ -100,12 +100,7 @@ Dumb terminals without cursor addressing or line printers
 .ns
 .TP
 .B \-lplotgigi
-DEC Gigi terminals
-.br
-.ns
-.TP
-.B \-lplotvt0
-DEC vt100 terminals
+DEC vt125 terminals
 .br
 .ns
 .TP

@@ -8,7 +8,7 @@
 .Dt PLOT 1
 .Os
 .Sh NAME
-.Nm plot, bgplot, crtplot, dumbplot, gigiplot, grnplot, hp7221plot, implot, t4013plot, tekplot, plottoa, atoplot
+.Nm plot, plottoa, atoplot
 .Nd graphics filters for various plotters
 .Sh SYNOPSIS
 .Nm plot
@@ -38,6 +38,7 @@ type is specified, the environment parameter
 (see
 .Xr environ  7  )
 is used.
+The default terminal is crt.
 Known
 .Ar terminals
 are:
@@ -49,14 +50,14 @@ Tektronix 4014 or 4015 storage scope with Enhanced Graphics Module.
 (Use 4013 for Tektronix 4014 or 4015 without the Enhanced Graphics Module).
 .It Pa bitgraph
 BBN bitgraph graphics terminal.
+.It Pa gigi
+DEC vt125 terminal.
 .It Pa imagen
 Imagen laser printer (default 240 dots-per-inch resolution).
 .It Pa crt
 Any crt terminal capable of running vi.
 .It Pa dumb
 Dumb terminals without cursor addressing or line printers.
-.It Pa vt0
-DEC vt100 terminal.
 .It Pa hp2648
 Hewlett Packard 2648 graphics terminal.
 .El
@@ -67,13 +68,15 @@ Used to determine the terminal type if not given as an argument.
 .El
 .Sh FILES
 .Bl -tag -width Ds
-.It Pa /usr/local/bin/t4013plot
-.It Pa /usr/local/bin/tekplot
-.It Pa /usr/local/bin/bgplot
-.It Pa /usr/local/bin/crtplot
-.It Pa /usr/local/bin/dumbplot
-.It Pa /usr/local/bin/gigiplot
-.It Pa /usr/local/bin/implot
+.It Pa /usr/local/libexec/t4013plot
+.It Pa /usr/local/libexec/tekplot
+.It Pa /usr/local/libexec/bgplot
+.It Pa /usr/local/libexec/crtplot
+.It Pa /usr/local/libexec/dumbplot
+.It Pa /usr/local/libexec/gigiplot
+.It Pa /usr/local/libexec/implot
+.It Pa /usr/local/bin/plottoa
+.It Pa /usr/local/bin/atoplot
 .It Pa /usr/local/bin/plot
 .El
 .Sh SEE ALSO

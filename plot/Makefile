@@ -1,22 +1,13 @@
 #	@(#)Makefile	4.17 (Berkeley) 6/24/90
 
-PROGS=	tekplot t4013plot bgplot crtplot dumbplot gigiplot \
-	hp7221plot implot grnplot plottoa atoplot
+PLOT_PROGS=	tekplot t4013plot bgplot crtplot dumbplot gigiplot hp7221plot implot
+PROGS=	plottoa atoplot
 SRCS=	atoplot.c driver.c plottoa.c
 MAN=	plot.1
-MLINKS=	plot.1 bgplot.1 \
-		plot.1 crtplot.1 \
-		plot.1 dumbplot.1 \
-		plot.1 gigiplot.1 \
-		plot.1 grnplot.1 \
-		plot.1 hp7221plot.1 \
-		plot.1 implot.1 \
-		plot.1 t4013plot.1 \
-		plot.1 tekplot.1 \
-		plot.1 plottoa.1 \
+MLINKS=	plot.1 plottoa.1 \
 		plot.1 atoplot.1
-LDADD=	-L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/vt0 \
-		-L../libplot/hp7221/ -L../libplot/grn -L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
+LDADD=	-L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/hp7221/ \
+		-L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
 		-L../libplot/plot -L../libplot/crt -L${LIBDIR}
 CFLAGS+=	-I../libplot/plot -I${INCLUDEDIR}
 CSTD=c99
@@ -26,8 +17,9 @@ LIBDIR=	${PREFIX}/lib
 MANDIR=	${PREFIX}/man/man
 FILESDIR=	${PREFIX}/share/misc
 INCLUDEDIR=	${PREFIX}/include
+LIBEXECDIR=	${PREFIX}/libexec
 
-all: ${PROGS} ${MAN}
+all: ${PLOT_PROGS} ${PROGS} ${MAN}
 
 atoplot: atoplot.c
 	${CC} ${CFLAGS} -o ${.TARGET} atoplot.c ${LDFLAGS} ${LDADD} -lplot
@@ -47,9 +39,6 @@ dumbplot: driver.o
 gigiplot: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotgigi
 
-grnplot: driver.o
-	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplotgrn
-
 hp7221plot: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot7221
 
@@ -59,9 +48,6 @@ implot: driver.o
 plottoa: plottoa.c
 	${CC} ${CFLAGS} -o ${.TARGET} plottoa.c ${LDFLAGS} ${LDADD}
 
-plottoc: plottoc.c
-	${CC} ${CFLAGS} -o ${.TARGET} plottoc.c ${LDFLAGS} ${LDADD}
-
 t4013plot: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot4013
 
@@ -69,9 +55,11 @@ tekplot: driver.o
 	${CC} ${CFLAGS} -o ${.TARGET} driver.o ${LDFLAGS} ${LDADD} -lplot4014
 
 clean:
-	rm -rf ${PROGS} ${SRCS:.c=.o} ${MAN:=.gz} crtdriver.o
+	rm -rf ${PROGS} ${PLOT_PROGS} ${SRCS:.c=.o} ${MAN:=.gz} crtdriver.o
 
 install: maninstall
+	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PLOT_PROGS} \
+	    ${DESTDIR}${LIBEXECDIR}
 	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
 	    ${DESTDIR}${BINDIR}
 	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \

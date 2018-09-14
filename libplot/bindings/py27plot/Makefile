@@ -1,4 +1,4 @@
-SUBMODULES=	bitgraph dumb gigi grn hp7221 imagen t4013 t4014 vt0 crt
+SUBMODULES=	bitgraph dumb gigi hp7221 imagen t4013 t4014 crt
 
 .PHONY: all
 
