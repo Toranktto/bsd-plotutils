@@ -1,10 +1,10 @@
 #ifndef lint
-static char sccsid[] = "@(#)scale.c	4.1 (Berkeley) 6/27/83";
+static char	sccsid[] = "@(#)scale.c	4.1 (Berkeley) 6/27/83";
 #endif
 
-extern float scalex;
-extern float scaley;
-extern int scaleflag;
+extern float	scalex;
+extern float	scaley;
+extern int	scaleflag;
 
 void
 pl_scale(char i, float x, float y)

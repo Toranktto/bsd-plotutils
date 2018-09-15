@@ -1,16 +1,16 @@
 #ifndef lint
-static char sccsid[] = "@(#)space.c	4.1 (Berkeley) 6/27/83";
+static char	sccsid[] = "@(#)space.c	4.1 (Berkeley) 6/27/83";
 #endif
 
 #include <plot.h>
 
-extern float botx;
-extern float boty;
-extern float obotx;
-extern float oboty;
-extern float scalex;
-extern float scaley;
-extern int scaleflag;
+extern float	botx;
+extern float	boty;
+extern float	obotx;
+extern float	oboty;
+extern float	scalex;
+extern float	scaley;
+extern int	scaleflag;
 
 void
 pl_space(int x0, int y0, int x1, int y1)

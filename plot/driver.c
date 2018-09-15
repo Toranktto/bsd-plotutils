@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
+static char	sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
 #endif
 
 #include <stdio.h>
@@ -10,21 +10,21 @@ static char sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
 #include <netinet/in.h>
 #include <signal.h>
 
-float deltx;
-float delty;
+float		deltx;
+float		delty;
 
-static void fplt(FILE *fin);
-static int getsi(register FILE *fin);
-static void getstr(register char *s, register FILE *fin, int len);
+static void	fplt(FILE * fin);
+static int	getsi(register FILE * fin);
+static void	getstr(register char *s, register FILE * fin, int len);
 #ifdef __crtplot
-static void winresize(void);
+static void	winresize(void);
 #endif
 
 int
 main(int argc, char *argv[])
 {
-	int std = 1;
-	FILE *fin;
+	int		std = 1;
+	FILE	       *fin;
 
 	setprogname(argv[0]);
 #ifdef __crtplot
@@ -32,8 +32,7 @@ main(int argc, char *argv[])
 		fprintf(stderr, "%s: output must be a terminal\n", getprogname());
 		exit(1);
 	}
-
-	signal(SIGWINCH, (__sighandler_t*)winresize);
+	signal(SIGWINCH, (__sighandler_t *) winresize);
 #endif
 
 	for (argc--, argv++; argc > 0; argc--, argv++) {
@@ -48,14 +47,12 @@ main(int argc, char *argv[])
 			}
 			continue;
 		}
-
 		std = 0;
 		fin = fopen(argv[0], "r");
 		if (fin == NULL) {
 			fprintf(stderr, "%s: can't open %s\n", getprogname(), argv[0]);
 			exit(1);
 		}
-
 		fplt(fin);
 		fclose(fin);
 	}
@@ -69,19 +66,18 @@ main(int argc, char *argv[])
 #endif
 		fplt(stdin);
 	}
-
 	exit(0);
 }
 
 static void
-fplt(FILE *fin)
+fplt(FILE * fin)
 {
-	register int c;
-	char s[256];
-	int xi, yi, x0, y0, x1, y1, r;
-	int dx, n, i;
-	int *pat;
-	unsigned int pat_len = 256;
+	register int	c;
+	char		s[256];
+	int		xi, yi, x0, y0, x1, y1, r;
+	int		dx, n, i;
+	int	       *pat;
+	unsigned int	pat_len = 256;
 
 	pat = malloc(pat_len * sizeof(int));
 
@@ -152,7 +148,6 @@ fplt(FILE *fin)
 				pat_len *= 2;
 				pat = realloc(pat, pat_len * sizeof(int));
 			}
-
 			for (i = 0; i < n; i++)
 				pat[i] = getsi(fin);
 
@@ -171,28 +166,26 @@ fplt(FILE *fin)
 
 /* get an integer. */
 static int
-getsi(register FILE *fin)
+getsi(register FILE * fin)
 {
-	short b;
+	short		b;
 
 	if (fread(&b, sizeof(b), 1, fin) < 1) {
 		pl_closevt();
 		fprintf(stderr, "%s: malformed input\n", getprogname());
 		exit(1);
 	}
-
 	return ntohs(b);
 }
 
 static void
-getstr(register char *s, register FILE *fin, int len)
+getstr(register char *s, register FILE * fin, int len)
 {
 	if (fgets(s, len, fin) == NULL) {
 		pl_closevt();
 		fprintf(stderr, "%s: malformed input\n", getprogname());
 		exit(1);
 	}
-
 	s[strlen(s) - 1] = '\0';
 }
 

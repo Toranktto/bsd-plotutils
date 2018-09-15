@@ -1,18 +1,18 @@
 /*
- * Copyright (c) 1985 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+ * Copyright (c) 1985 Regents of the University of California. All rights
+ * reserved.  The Berkeley software License Agreement specifies the terms and
+ * conditions for redistribution.
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)linemod.c	5.3 (Berkeley) 9/21/85";
-#endif /* not lint */
+static char	sccsid[] = "@(#)linemod.c	5.3 (Berkeley) 9/21/85";
+#endif				/* not lint */
 
 #include "imp.h"
 #include <stdlib.h>
 #include <plot.h>
 
-extern void setfont(char *c, int sz);
+extern void	setfont(char *c, int sz);
 
 /*
  * Hack to set font.
@@ -20,9 +20,9 @@ extern void setfont(char *c, int sz);
 void
 pl_linemod(char *s)
 {
-	register char *tit;
-	register char *nam;
-	int siz = 0;
+	register char  *tit;
+	register char  *nam;
+	int		siz = 0;
 	nam = s;
 	for (tit = "charset="; *tit;)
 		if (*tit++ != *nam++)
@@ -36,8 +36,7 @@ pl_linemod(char *s)
 		}
 	siz = atoi(++nam);
 	if (siz == 0) {
-		while (*--nam >= '0' && *nam <= '9')
-			;
+		while (*--nam >= '0' && *nam <= '9');
 		siz = (atoi(++nam) * 4) / 3;
 	}
 	if (siz == 0)

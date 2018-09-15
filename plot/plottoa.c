@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)plottoa.c	4.2 (Berkeley) 1/9/85";
+static char	sccsid[] = "@(#)plottoa.c	4.2 (Berkeley) 1/9/85";
 #endif
 
 /*
@@ -11,35 +11,35 @@ static char sccsid[] = "@(#)plottoa.c	4.2 (Berkeley) 1/9/85";
 #include <string.h>
 #include <netinet/in.h>
 
-float deltx;
-float delty;
+float		deltx;
+float		delty;
 
-static void fplt(FILE *fin);
-static int getsi(FILE *fin);
-static void getstr(register char *s, register FILE *fin, int len);
+static void	fplt(FILE * fin);
+static int	getsi(FILE * fin);
+static void	getstr(register char *s, register FILE * fin, int len);
 
-void pl_space(int x0, int y0, int x1, int y1);
-void pl_openpl(void);
-void pl_closepl(void);
-void pl_openvt(void);
-void pl_closevt(void);
-void pl_erase(void);
-void pl_move(int xi, int yi);
-void pl_cont(int xi, int yi);
-void pl_line(int x0, int y0, int x1, int y1);
-void pl_point(int xi, int yi);
-void pl_label(char *s);
-void pl_arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend);
-void pl_circle(int xc, int yc, int r);
-void pl_linemod(char *line);
-void pl_dot(int xi, int yi, int dx, int n, int *pat);
+void		pl_space(int x0, int y0, int x1, int y1);
+void		pl_openpl(void);
+void		pl_closepl(void);
+void		pl_openvt(void);
+void		pl_closevt(void);
+void		pl_erase(void);
+void		pl_move(int xi, int yi);
+void		pl_cont(int xi, int yi);
+void		pl_line(int x0, int y0, int x1, int y1);
+void		pl_point(int xi, int yi);
+void		pl_label(char *s);
+void		pl_arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend);
+void		pl_circle(int xc, int yc, int r);
+void		pl_linemod(char *line);
+void		pl_dot(int xi, int yi, int dx, int n, int *pat);
 
 
 int
 main(int argc, char **argv)
 {
-	int std = 1;
-	FILE *fin;
+	int		std = 1;
+	FILE	       *fin;
 
 	setprogname(argv[0]);
 	while (argc-- > 1) {
@@ -58,7 +58,6 @@ main(int argc, char **argv)
 				fprintf(stderr, "%s: can't open %s\n", getprogname(), argv[1]);
 				exit(1);
 			}
-
 			fplt(fin);
 			fclose(fin);
 		}
@@ -73,13 +72,13 @@ main(int argc, char **argv)
 }
 
 static void
-fplt(FILE *fin)
+fplt(FILE * fin)
 {
-	int c;
-	char s[256];
-	int xi, yi, x0, y0, x1, y1, r, dx, n, i;
-	int *pat;
-	unsigned int pat_len = 256;
+	int		c;
+	char		s[256];
+	int		xi, yi, x0, y0, x1, y1, r, dx, n, i;
+	int	       *pat;
+	unsigned int	pat_len = 256;
 
 	pat = malloc(pat_len * sizeof(int));
 
@@ -168,28 +167,26 @@ fplt(FILE *fin)
 
 /* get an integer. */
 static int
-getsi(register FILE *fin)
+getsi(register FILE * fin)
 {
-	short b;
+	short		b;
 
 	if (fread(&b, sizeof(b), 1, fin) < 1) {
 		pl_closevt();
 		fprintf(stderr, "%s: malformed input\n", getprogname());
 		exit(1);
 	}
-
 	return ntohs(b);
 }
 
 static void
-getstr(register char *s, register FILE *fin, int len)
+getstr(register char *s, register FILE * fin, int len)
 {
 	if (fgets(s, len, fin) == NULL) {
 		pl_closevt();
 		fprintf(stderr, "%s: malformed input\n", getprogname());
 		exit(1);
 	}
-
 	s[strlen(s) - 1] = '\0';
 }
 
@@ -278,9 +275,10 @@ pl_linemod(char *line)
 void
 pl_dot(int xi, int yi, int dx, int n, int pat[])
 {
-	register int i;
+	register int	i;
 
 	printf("d %d %d %d %d ", xi, yi, dx, n);
-	for (i = 0; i < n; i++) printf("%d ", pat[i]);
+	for (i = 0; i < n; i++)
+		printf("%d ", pat[i]);
 	printf("\n\n");
 }

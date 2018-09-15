@@ -1,6 +1,6 @@
 #ifndef lint
-static char sccsid[] = "@(#)crtplot.c	4.1 (Berkeley) 11/11/83";
-#endif /* not lint */
+static char	sccsid[] = "@(#)crtplot.c	4.1 (Berkeley) 11/11/83";
+#endif				/* not lint */
 
 #include "crt.h"
 #include <plot.h>
@@ -9,7 +9,7 @@ static char sccsid[] = "@(#)crtplot.c	4.1 (Berkeley) 11/11/83";
 void
 pl_label(char *str)
 {
-	register int i, length;
+	register int	i, length;
 
 	if ((length = strlen(str)) > (COLS - lastX))
 		length = COLS - lastX;

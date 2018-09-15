@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)crtplot.c	4.1 (Berkeley) 11/11/83";
+static char	sccsid[] = "@(#)crtplot.c	4.1 (Berkeley) 11/11/83";
 #endif
 
 #include <plot.h>

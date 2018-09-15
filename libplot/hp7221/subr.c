@@ -1,19 +1,19 @@
 /*
- * Copyright (c) 1980 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
+ * Copyright (c) 1980 Regents of the University of California. All rights
+ * reserved.  The Berkeley software License Agreement specifies the terms and
+ * conditions for redistribution.
  */
 
 #ifndef lint
-static char sccsid[] = "@(#)subr.c	5.1 (Berkeley) 5/7/85";
-#endif /* not lint */
+static char	sccsid[] = "@(#)subr.c	5.1 (Berkeley) 5/7/85";
+#endif				/* not lint */
 
 #include "hp7221.h"
 
 void
 putMBP(int x, int y)
 {
-	int chr;
+	int		chr;
 
 	chr = (x >> 10) & 017;
 	chr |= 0140;
@@ -45,7 +45,7 @@ putMBP(int x, int y)
 void
 putMBN(int i)
 {
-	int chr;
+	int		chr;
 
 	chr = (i >> 12) & 07;
 	chr |= 0140;

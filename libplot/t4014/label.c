@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
+static char	sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
 #endif
 
 #include <plot.h>
@@ -10,24 +10,24 @@ static char sccsid[] = "@(#)label.c	4.1 (Berkeley) 6/27/83";
 #define S 0110
 #define W 0102
 #define SW 0112
-/*	arrange by incremental plotting that an initial
- *	character such as +, X, *, etc will fall
- *	right on the point, and undo it so that further
- *	labels will fall properly in place
+/*
+ * arrange by incremental plotting that an initial character such as +, X, *,
+ * etc will fall right on the point, and undo it so that further labels will
+ * fall properly in place
  */
-char lbl_mv[] = {
+char		lbl_mv[] = {
 	036, 040, S, S, S, S, S, S, SW, SW, SW, SW, SW, SW, SW, SW, SW, SW, 037, 0
 };
-char lbl_umv[] = {
+char		lbl_umv[] = {
 	036, 040, N, N, N, N, N, N, NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, 037, 0
 };
 
-extern void putch(int c);
+extern void	putch(int c);
 
 void
 pl_label(char *s)
 {
-	register int i, c;
+	register int	i, c;
 	for (i = 0; (c = lbl_mv[i]); i++)
 		putch(c);
 	for (i = 0; (c = s[i]); i++)

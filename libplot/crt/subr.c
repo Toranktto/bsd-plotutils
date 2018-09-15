@@ -1,6 +1,6 @@
 #ifndef lint
-static char sccsid[] = "@(#)crtplot.c	4.1 (Berkeley) 11/11/83";
-#endif /* not lint */
+static char	sccsid[] = "@(#)crtplot.c	4.1 (Berkeley) 11/11/83";
+#endif				/* not lint */
 
 #include "crt.h"
 #include <math.h>
@@ -41,9 +41,9 @@ plot_addch(char ch)
 void
 dda_line(char ch, int x0, int y0, int x1, int y1)
 {
-	int length, i;
-	double deltaX, deltaY;
-	double x, y;
+	int		length, i;
+	double		deltaX, deltaY;
+	double		x, y;
 
 	length = abs(x1 - x0);
 	if (abs(y1 - y0) > length)

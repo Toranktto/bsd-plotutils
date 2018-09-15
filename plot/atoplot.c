@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)atoplot.c	4.2 (Berkeley) 1/9/85";
+static char	sccsid[] = "@(#)atoplot.c	4.2 (Berkeley) 1/9/85";
 #endif
 
 #include <stdio.h>
@@ -7,19 +7,19 @@ static char sccsid[] = "@(#)atoplot.c	4.2 (Berkeley) 1/9/85";
 #include <plot.h>
 #include <string.h>
 
-float deltx;
-float delty;
+float		deltx;
+float		delty;
 
-static char *map_line_type(char *cp);
-static void fplt(FILE *fin);
-static int getsi(FILE *fin);
-static void getstr(register char *s, register FILE *fin, int len);
+static char    *map_line_type(char *cp);
+static void	fplt(FILE * fin);
+static int	getsi(FILE * fin);
+static void	getstr(register char *s, register FILE * fin, int len);
 
 int
 main(int argc, char **argv)
 {
-	int std = 1;
-	FILE *fin;
+	int		std = 1;
+	FILE	       *fin;
 
 	setprogname(argv[0]);
 	while (argc-- > 1) {
@@ -39,7 +39,6 @@ main(int argc, char **argv)
 				fprintf(stderr, "%s: can't open %s\n", getprogname(), argv[1]);
 				exit(1);
 			}
-
 			fplt(fin);
 			fclose(fin);
 		}
@@ -54,13 +53,13 @@ main(int argc, char **argv)
 }
 
 static void
-fplt(FILE *fin)
+fplt(FILE * fin)
 {
-	int c;
-	char s[256];
-	int xi, yi, x0, y0, x1, y1, r, dx, n, i;
-	int *pat;
-	unsigned int pat_len = 256;
+	int		c;
+	char		s[256];
+	int		xi, yi, x0, y0, x1, y1, r, dx, n, i;
+	int	       *pat;
+	unsigned int	pat_len = 256;
 
 	pat = malloc(pat_len * sizeof(int));
 
@@ -156,55 +155,52 @@ fplt(FILE *fin)
 
 /* get an integer. */
 static int
-getsi(FILE *fin)
+getsi(FILE * fin)
 {
-	int i;
+	int		i;
 
 	if (fscanf(fin, " %d", &i) != 1) {
 		pl_closevt();
 		fprintf(stderr, "%s: malformed input\n", getprogname());
 		exit(1);
 	}
-
-	return(i);
+	return (i);
 }
 
-char *line_map[] = {
-	"solid",        /* line type 0 */
-	"solid",        /* line type 1 */
-	"dotted",       /* line type 2 */
-	"dotdashed",    /* line type 3 */
-	"shortdashed",  /* line type 4 */
-	"longdashed",   /* line type 5 */
-	"dotlongdash",  /* line type 6 */
-	"dotshortdash", /* line type 7 */
-	"dotdotdash",   /* line type 8 */
+char	       *line_map[] = {
+	"solid",		/* line type 0 */
+	"solid",		/* line type 1 */
+	"dotted",		/* line type 2 */
+	"dotdashed",		/* line type 3 */
+	"shortdashed",		/* line type 4 */
+	"longdashed",		/* line type 5 */
+	"dotlongdash",		/* line type 6 */
+	"dotshortdash",		/* line type 7 */
+	"dotdotdash",		/* line type 8 */
 };
 
-static char *
+static char    *
 map_line_type(char *cp)
 {
-	int i;
+	int		i;
 
 	if (sscanf(cp, "%d", &i) == 1) {
 		if (i < 0 || i > sizeof(line_map) / sizeof(char *)) {
 			i = 1;
 		}
-
-		return(line_map[i]);
+		return (line_map[i]);
 	} else {
-		return(cp);
+		return (cp);
 	}
 }
 
 static void
-getstr(register char *s, register FILE *fin, int len)
+getstr(register char *s, register FILE * fin, int len)
 {
 	if (fgets(s, len, fin) == NULL) {
 		pl_closevt();
 		fprintf(stderr, "%s: malformed input\n", getprogname());
 		exit(1);
 	}
-
 	s[strlen(s) - 1] = '\0';
 }

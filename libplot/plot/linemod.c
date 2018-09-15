@@ -1,5 +1,5 @@
 #ifndef lint
-static char sccsid[] = "@(#)linmod.c	4.1 (Berkeley) 6/27/83";
+static char	sccsid[] = "@(#)linmod.c	4.1 (Berkeley) 6/27/83";
 #endif
 
 #include <stdio.h>
@@ -8,8 +8,9 @@ static char sccsid[] = "@(#)linmod.c	4.1 (Berkeley) 6/27/83";
 void
 pl_linemod(char *s)
 {
-	int i;
+	int		i;
 	putc('f', stdout);
-	for (i = 0; s[i];) putc(s[i++], stdout);
+	for (i = 0; s[i];)
+		putc(s[i++], stdout);
 	putc('\n', stdout);
 }

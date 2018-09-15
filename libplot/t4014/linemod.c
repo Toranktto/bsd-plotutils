@@ -1,15 +1,15 @@
 #ifndef lint
-static char sccsid[] = "@(#)linemod.c	4.1 (Berkeley) 6/27/83";
+static char	sccsid[] = "@(#)linemod.c	4.1 (Berkeley) 6/27/83";
 #endif
 
 #include <plot.h>
 
-extern void putch(int c);
+extern void	putch(int c);
 
 void
 pl_linemod(char *s)
 {
-	char c;
+	char		c;
 
 	putch(033);
 	switch (s[0]) {
@@ -17,12 +17,16 @@ pl_linemod(char *s)
 		c = 'd';
 		break;
 	case 'd':
-		if (s[3] != 'd') c = 'a';
-		else c = 'b';
+		if (s[3] != 'd')
+			c = 'a';
+		else
+			c = 'b';
 		break;
 	case 's':
-		if (s[5] != '\0') c = 'c';
-		else c = '`';
+		if (s[5] != '\0')
+			c = 'c';
+		else
+			c = '`';
 	}
 	putch(c);
 }
