@@ -1,6 +1,4 @@
 #!/bin/sh
-#	@(#)plot.sh	4.6	(Berkeley)	7/24/89
-#
 
 PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/libexec:/usr/libexec
 

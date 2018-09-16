@@ -1,5 +1,3 @@
-#	@(#)Makefile	4.17 (Berkeley) 6/24/90
-
 PLOT_PROGS=	tekplot t4013plot bgplot crtplot dumbplot gigiplot hp7221plot implot
 PROGS=	plottoa atoplot
 SRCS=	atoplot.c driver.c plottoa.c

@@ -1,7 +1,3 @@
-#ifndef lint
-static char	sccsid[] = "@(#)graph.c	4.2 3/30/83";
-#endif
-
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -63,32 +59,32 @@ char	       *modes[] = {
 };
 int		mode = 1;
 
-double
+static double
 ident(double x)
 {
 	return (x);
 }
 
-void		axes(void);
-void		transpose(void);
-void		readin(void);
-void		plot(void);
-void		limread(register struct xy *p, int *argcp, char ***argvp);
-void		title(void);
-void		badarg(void);
-void		badvalue(void);
-void		setopt(int argc, char *argv[]);
-void		axlab(char c, struct xy *p);
-int		conv(float xv, register struct xy *p, int *ip);
-void		scale(register struct xy *p, struct val *v);
-int		setmark(int *xmark, register struct xy *p);
-void		submark(int *xmark, int *pxn, float x, struct xy *p);
-void		init(struct xy *p);
-int		copystring(int k);
-int		symbol(int ix, int iy, int k);
-int		getfloat(float *p);
-int		getstring(void);
-int		numb(float *np, int *argcp, register char ***argvp);
+static void	axes(void);
+static void	transpose(void);
+static void	readin(void);
+static void	plot(void);
+static void	limread(register struct xy *p, int *argcp, char ***argvp);
+static void	title(void);
+static void	badarg(void);
+static void	badvalue(void);
+static void	setopt(int argc, char *argv[]);
+static void	axlab(char c, struct xy *p);
+static int	conv(float xv, register struct xy *p, int *ip);
+static void	scale(register struct xy *p, struct val *v);
+static int	setmark(int *xmark, register struct xy *p);
+static void	submark(int *xmark, int *pxn, float x, struct xy *p);
+static void	init(struct xy *p);
+static int	copystring(int k);
+static int	symbol(int ix, int iy, int k);
+static int	getfloat(float *p);
+static int	getstring(void);
+static int	numb(float *np, int *argcp, register char ***argvp);
 
 int
 main(int argc, char *argv[])
@@ -102,12 +98,17 @@ main(int argc, char *argv[])
 	xx = (struct val *)malloc(xx_len * sizeof(struct val));
 	labs_ = malloc(1);
 	labs_[labsiz++] = 0;
+
 	setopt(argc, argv);
+
 	readin();
 	transpose();
+
 	pl_space(0, 0, 4096, 4096);
+
 	if (erasf)
 		pl_erase();
+
 	scale(&xd, (struct val *)&xx->xv);
 	scale(&yd, (struct val *)&xx->yv);
 	axes();
@@ -115,19 +116,20 @@ main(int argc, char *argv[])
 	plot();
 	pl_move(1, 1);
 	pl_closepl();
+
 	free(xx);
 	free(labs_);
 	return (0);
 }
 
-void
+static void
 init(struct xy *p)
 {
 	p->xf = ident;
 	p->xmult = 1;
 }
 
-void
+static void
 setopt(int argc, char *argv[])
 {
 	char	       *p1, *p2;
@@ -226,7 +228,7 @@ again:		switch (argv[0][0]) {
 	}
 }
 
-void
+static void
 limread(register struct xy *p, int *argcp, char ***argvp)
 {
 	if (*argcp > 1 && (*argvp)[1][0] == 'l') {
@@ -245,7 +247,7 @@ limread(register struct xy *p, int *argcp, char ***argvp)
 	p->xqf = 1;
 }
 
-int
+static int
 numb(float *np, int *argcp, register char ***argvp)
 {
 	register char	c;
@@ -262,7 +264,7 @@ numb(float *np, int *argcp, register char ***argvp)
 	return (1);
 }
 
-void
+static void
 readin(void)
 {
 	register int	t;
@@ -302,7 +304,7 @@ readin(void)
 	}
 }
 
-void
+static void
 transpose(void)
 {
 	register int	i;
@@ -320,7 +322,7 @@ transpose(void)
 	}
 }
 
-int
+static int
 copystring(int k)
 {
 	register char  *temp;
@@ -337,21 +339,21 @@ copystring(int k)
 	return (q);
 }
 
-float
+static float
 modceil(float f, float t)
 {
 	t = fabs(t);
 	return (ceil(f / t) * t);
 }
 
-float
+static float
 modfloor(float f, float t)
 {
 	t = fabs(t);
 	return (floor(f / t) * t);
 }
 
-void
+static void
 getlim(register struct xy *p, struct val *v)
 {
 	register int	i;
@@ -368,9 +370,12 @@ getlim(register struct xy *p, struct val *v)
 
 struct z {
 	float		lb, ub, mult, quant;
-}		setloglim(int lbf, int ubf, float lb, float ub), setlinlim(int lbf, int ubf, float xlb, float xub);
+};
 
-void
+static struct z	setloglim(int lbf, int ubf, float lb, float ub);
+static struct z	setlinlim(int lbf, int ubf, float xlb, float xub);
+
+static void
 setlim(register struct xy *p)
 {
 	float		t, delta, sign;
@@ -435,7 +440,7 @@ setlim(register struct xy *p)
 	p->xquant = sign * z.quant;
 }
 
-struct z
+static struct z
 setloglim(int lbf, int ubf, float lb, float ub)
 {
 	float		r, s, t;
@@ -467,7 +472,7 @@ setloglim(int lbf, int ubf, float lb, float ub)
 	return (z);
 }
 
-struct z
+static struct z
 setlinlim(int lbf, int ubf, float xlb, float xub)
 {
 	struct z	z;
@@ -507,7 +512,7 @@ loop:
 	return (z);
 }
 
-void
+static void
 scale(register struct xy *p, struct val *v)
 {
 	float		edge;
@@ -521,7 +526,7 @@ scale(register struct xy *p, struct val *v)
 	p->xb = p->xbot - (*p->xf) (p->xlb) * p->xa + .5;
 }
 
-void
+static void
 axes(void)
 {
 	register int	i;
@@ -585,14 +590,14 @@ setmark(int *xmark, register struct xy *p)
 	return (xn);
 }
 
-void
+static void
 submark(int *xmark, int *pxn, float x, struct xy *p)
 {
 	if (1.001 * p->xlb < x && .999 * p->xub > x)
 		xmark[(*pxn)++] = log10(x) * p->xa + p->xb;
 }
 
-void
+static void
 plot(void)
 {
 	int		ix, iy;
@@ -620,7 +625,7 @@ plot(void)
 	pl_linemod(modes[1]);
 }
 
-int
+static int
 conv(float xv, register struct xy *p, int *ip)
 {
 	long		ix;
@@ -631,7 +636,7 @@ conv(float xv, register struct xy *p, int *ip)
 	return (1);
 }
 
-int
+static int
 getfloat(float *p)
 {
 	register int	i;
@@ -640,7 +645,7 @@ getfloat(float *p)
 	return (i == 1);
 }
 
-int
+static int
 getstring(void)
 {
 	register int	i;
@@ -670,7 +675,7 @@ getstring(void)
 	return (strlen(labbuf));
 }
 
-int
+static int
 symbol(int ix, int iy, int k)
 {
 	if (symbf == 0 && k < 0) {
@@ -685,7 +690,7 @@ symbol(int ix, int iy, int k)
 	}
 }
 
-void
+static void
 title(void)
 {
 	pl_move(xd.xbot, yd.xbot - 60);
@@ -700,7 +705,7 @@ title(void)
 	}
 }
 
-void
+static void
 axlab(char c, struct xy *p)
 {
 	char		buf[50];
@@ -709,14 +714,14 @@ axlab(char c, struct xy *p)
 	pl_label(buf);
 }
 
-void
+static void
 badarg(void)
 {
 	fprintf(stderr, "%s: error in arguments\n", getprogname());
 	exit(1);
 }
 
-void
+static void
 badvalue(void)
 {
 	fprintf(stderr, "%s: malformed input\n", getprogname());

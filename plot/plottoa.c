@@ -1,7 +1,3 @@
-#ifndef lint
-static char	sccsid[] = "@(#)plottoa.c	4.2 (Berkeley) 1/9/85";
-#endif
-
 /*
  * Convert the standard plot input into a readable form for debugging.
  */

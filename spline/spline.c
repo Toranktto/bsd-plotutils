@@ -1,7 +1,3 @@
-#ifndef lint
-static char    *sccsid = "@(#)spline.c	4.5 (Berkeley) 12/2/87";
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -22,9 +18,9 @@ int		periodic;
 float		konst = 0.0;
 float		zero = 0.;
 
-int		getfloat(float *p);
-void		badvalue(void);
-int		numb(float *np, int *argcp, char ***argvp);
+static int	getfloat(float *p);
+static void	badvalue(void);
+static int	numb(float *np, int *argcp, char ***argvp);
 
 /*
  * Spline fit technique let x,y be vectors of abscissas and ordinates h   be
@@ -40,9 +36,9 @@ int		numb(float *np, int *argcp, char ***argvp);
  * | a1 h2               |  |y"1|      |b1| | h2 a2 h3            |  |y"2|
  * |b2| |    h3 a3 h4         |  |y"3|  =   |b3| |         .           |  |
  * .|      | .| |            .        |  | .|      | .| It can be
- * triangularized into | d1 h2               |  |y"1|      |r1| |    d2 h3
- * |  |y"2|      |r2| |       d3 h4         |  |y"3|  =   |r3| |          .
- * |  | .|      | .| |             .       |  | .|      | .| where d1 = a1
+ * triangularized into | d1 h2               |  |y"1|      |r1| |    d2 h3 |
+ * |y"2|      |r2| |       d3 h4         |  |y"3|  =   |r3| |          . |  |
+ * .|      | .| |             .       |  | .|      | .| where d1 = a1
  *
  * r0 = 0
  *
@@ -130,7 +126,7 @@ int		numb(float *np, int *argcp, char ***argvp);
  * x- = x-xi
  */
 
-float
+static float
 rhs(int i)
 {
 	int		i_;
@@ -140,7 +136,7 @@ rhs(int i)
 	return (6 * ((y.val[i_ + 1] - y.val[i_]) / (x.val[i + 1] - x.val[i]) - zz));
 }
 
-int
+static int
 spline(void)
 {
 	float		d, s, u, v, hi, hi1;
@@ -226,7 +222,7 @@ spline(void)
 	return (1);
 }
 
-void
+static void
 readin(void)
 {
 	int		xs, ys;
@@ -254,7 +250,7 @@ readin(void)
 	}
 }
 
-int
+static int
 getfloat(float *p)
 {
 	char		buf[30];
@@ -303,7 +299,7 @@ getfloat(float *p)
 	return (i == 1);
 }
 
-void
+static void
 getlim(struct proj *p)
 {
 	int		i;
@@ -383,7 +379,7 @@ again:		switch (argv[0][0]) {
 	exit(0);
 }
 
-int
+static int
 numb(float *np, int *argcp, char ***argvp)
 {
 	char		c;
@@ -398,7 +394,7 @@ numb(float *np, int *argcp, char ***argvp)
 	return (1);
 }
 
-void
+static void
 badvalue(void)
 {
 	fprintf(stderr, "%s: malformed input\n", getprogname());

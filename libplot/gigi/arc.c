@@ -19,9 +19,9 @@ static char	sccsid[] = "@(#)arc.c	5.1 (Berkeley) 5/7/85";
  * This gives us "angle" or angle - 180.  To find out which, draw a line from
  * beg to center.  This splits the plane in half.  All points on one side of
  * the plane will have the same sign when plugged into the equation for the
- * line. Pick a point on the "right side" of the line (see program below).
- * If "end" has the same sign as this point does, then they are both on the
- * same side of the line and so angle is < 180.  Otherwise, angle > 180.
+ * line. Pick a point on the "right side" of the line (see program below). If
+ * "end" has the same sign as this point does, then they are both on the same
+ * side of the line and so angle is < 180.  Otherwise, angle > 180.
  */
 
 #define side(x, y)       (a * (x) + b * (y) + c > 0.0 ? 1 : -1)

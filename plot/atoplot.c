@@ -1,7 +1,3 @@
-#ifndef lint
-static char	sccsid[] = "@(#)atoplot.c	4.2 (Berkeley) 1/9/85";
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <plot.h>

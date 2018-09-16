@@ -1,7 +1,3 @@
-#ifndef lint
-static char	sccsid[] = "@(#)driver.c	4.4 (Berkeley) 9/21/85";
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <plot.h>
