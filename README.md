@@ -1,6 +1,6 @@
 # BSD plotutils
 
-Traditional plotting utilities and libraries taken from 4.3BSD with some improvements. 
+Traditional plotting utilities and libraries taken from 4.3BSD with some improvements.  
 Original libraries were written in C, but there are bindings to other languages:
   * `py27plot` (Python 2.7)
   * `f77plot` (FORTRAN 77)
@@ -21,12 +21,13 @@ You need BSD make and makefile templates. If you have, just run:
 ```
 # make && make install && make cleandir
 ```
-as root. Default installation prefix is `/usr/local`. If some language bindings are not needed, remove right entries
+as root. Default installation prefix is `/usr/local`.  
+If some language bindings are not needed, remove right entries
 from Makefile in [libplot/bindings/](libplot/bindings/.) directory.
 
 ## Installation from binaries
 
-Currently only **FreeBSD 11.2 amd64** packages are provided. 
+Currently only **FreeBSD 11.2 amd64** packages are provided.  
 Each release has *.txz file which is binary package. If you want to install, run:
 ```
 pkg install <path_to_file.txz>
