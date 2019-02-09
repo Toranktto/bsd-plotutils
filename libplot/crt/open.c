@@ -11,6 +11,7 @@ static char	sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
 #include <signal.h>
 #include <stdlib.h>
 #include <plot.h>
+#include <string.h>
 #include "crt.h"
 
 double		lowX, rangeX;	/* min and range of x */
@@ -23,7 +24,6 @@ pl_openpl(void)
 	initscr();
 	noecho();
 	nonl();
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
 }
 
 void

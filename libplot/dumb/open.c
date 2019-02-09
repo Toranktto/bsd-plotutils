@@ -19,6 +19,7 @@ static char	sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
 #include <signal.h>
 #include <stdlib.h>
 #include <plot.h>
+#include <string.h>
 #include <term.h>
 #include "dumb.h"
 
@@ -36,6 +37,7 @@ pl_openpl(void)
 	int		i, j;
 	char	       *term;
 	char		bp[1024];
+	struct sigaction	act;
 
 	term = getenv("TERM");
 	tgetent(bp, term);
@@ -57,7 +59,6 @@ pl_openpl(void)
 		for (j = 0; j < LINES; j++)
 			screenmat[i][j] = ' ';
 
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
 	currentx = currenty = 0;
 }
 

@@ -15,6 +15,7 @@ static char	sccsid[] = "@(#)open.c	5.2 (Berkeley) 4/30/85";
 
 #include <signal.h>
 #include <plot.h>
+#include <string.h>
 #include "bg.h"
 
 int		currentx = 0;
@@ -26,12 +27,8 @@ double		scale = 1.0;
 void
 pl_openpl(void)
 {
-	/* catch interupts */
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
 	currentx = 0;
 	currenty = 0;
-
-	/* pl_space(0, 0, XMAX, YMAX); */
 }
 
 void

@@ -11,6 +11,7 @@ static char	sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
 #include <stdlib.h>
 #include <signal.h>
 #include <stdio.h>
+#include <string.h>
 #include "dumb.h"
 #include <plot.h>
 
@@ -18,8 +19,6 @@ void
 pl_closepl(void)
 {
 	int		i, j;
-
-	signal(SIGINT, SIG_IGN);
 
 	for (j = 0; j < LINES; j++) {
 		for (i = 0; i < COLS; i++) {
@@ -32,5 +31,4 @@ pl_closepl(void)
 void
 pl_closevt(void)
 {
-	signal(SIGINT, SIG_IGN);
 }

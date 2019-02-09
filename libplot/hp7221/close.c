@@ -10,13 +10,12 @@ static char	sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
 
 #include <signal.h>
 #include "hp7221.h"
+#include <string.h>
 #include <plot.h>
 
 void
 pl_closepl(void)
 {
-	/* receive interupts */
-	signal(SIGINT, SIG_IGN);
 	printf("v@}");		/* Put pen away. */
 	fflush(stdout);
 }

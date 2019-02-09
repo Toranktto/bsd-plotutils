@@ -16,10 +16,12 @@ LIBDIR=	${REAL_LIBDIR}/python2.7/site-packages
 MANDIR=	${PREFIX}/man/man
 FILESDIR=	${PREFIX}/share/misc
 INCLUDEDIR=	${PREFIX}/include
+INSTALL=	../../../../scripts/install-fakeroot.sh
+MINSTALL=	../../../../scripts/install-fakeroot.sh
 
 install: maninstall
 	mkdir -p ${DESTDIR}${LIBDIR}
-	install ${STRIP} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} ${SHLIB_NAME} \
+	${INSTALL} ${STRIP} -m ${LIBMODE} ${SHLIB_NAME} \
 	    ${DESTDIR}${LIBDIR}/${LIB}.so
 
 .include <bsd.lib.mk>

@@ -10,5 +10,7 @@ LIBDIR=	${PREFIX}/lib
 MANDIR=	${PREFIX}/man/man
 FILESDIR=	${PREFIX}/share/misc
 INCLUDEDIR=	${PREFIX}/include
+INSTALL=	../scripts/install-fakeroot.sh
+MINSTALL=	../scripts/install-fakeroot.sh
 
 .include <bsd.prog.mk>

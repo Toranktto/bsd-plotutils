@@ -7,6 +7,12 @@
 #include <string.h>
 #include <netinet/in.h>
 
+#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__bsdi__)
+char	*progname = NULL;
+#define setprogname(x) progname = x
+#define getprogname() progname
+#endif
+
 float		deltx;
 float		delty;
 

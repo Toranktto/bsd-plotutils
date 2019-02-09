@@ -2,8 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 
+#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__bsdi__)
+char	*progname = NULL;
+#define setprogname(x) progname = x
+#define getprogname() progname
+#endif
+
 #define NP 250
-#define INF HUGE
+#define INF INFINITY
 
 struct proj {
 	int		lbf, ubf, val_len;

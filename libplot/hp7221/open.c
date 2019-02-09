@@ -15,6 +15,7 @@ static char	sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
  */
 
 #include <signal.h>
+#include <string.h>
 #include "hp7221.h"
 #include <plot.h>
 
@@ -29,8 +30,6 @@ extern void	putMBP(int x, int y);
 void
 pl_openpl(void)
 {
-	/* catch interupts */
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
 	currentx = 0;
 	currenty = 0;
 	printf("~VR~W");
@@ -39,8 +38,6 @@ pl_openpl(void)
 	printf("~S");
 	putMBP(XMAX, YMAX);
 	printf("vA~*z");
-
-	/* pl_space(0,0,XMAX,YMAX); */
 }
 
 void

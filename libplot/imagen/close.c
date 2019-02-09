@@ -10,7 +10,7 @@ static char	sccsid[] = "@(#)close.c	5.1 (Berkeley) 9/21/85";
 
 #include "imp.h"
 #include "imPcodes.h"
-
+#include <string.h>
 #include <plot.h>
 
 extern void	putch(int c);

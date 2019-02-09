@@ -4,8 +4,14 @@
 #include <math.h>
 #include <plot.h>
 #include <string.h>
-#define INF     HUGE
+#define INF     INFINITY
 #define F       .25
+
+#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__bsdi__)
+char	*progname = NULL;
+#define setprogname(x) progname = x
+#define getprogname() progname
+#endif
 
 struct xy {
 	int		xlbf;	/* flag:explicit lower bound */
@@ -667,7 +673,14 @@ getstring(void)
 		return (0);
 	case '"':
 		i = scanf("%[^\"\n]", labbuf);
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+#endif
 		scanf("%[\"]", junk);
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 		break;
 	}
 	if (i == -1)

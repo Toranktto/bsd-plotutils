@@ -11,19 +11,15 @@ static char	sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
 #include <signal.h>
 #include <stdlib.h>
 #include <plot.h>
+#include <string.h>
 #include "gigi.h"
 
 void
 pl_closepl(void)
 {
-	/* recieve interupts */
-	signal(SIGINT, SIG_IGN);
-
 	/* exit graphics mode */
 	putchar(ESC);
 	putchar('\\');
-
-	/* exit(0); */
 }
 
 void

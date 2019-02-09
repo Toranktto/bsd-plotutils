@@ -11,6 +11,7 @@ static char	sccsid[] = "@(#)close.c	5.1 (Berkeley) 5/7/85";
 #include <stdlib.h>
 #include <signal.h>
 #include <stdio.h>
+#include <string.h>
 #include "crt.h"
 #include <plot.h>
 
@@ -21,7 +22,6 @@ pl_closepl(void)
 	char		ctty_path[L_ctermid];
 	register char	c;
 
-	signal(SIGINT, SIG_IGN);
 	/* Leave cursor at top of screen. */
 	move(0, 0);
 	refresh();
@@ -37,6 +37,7 @@ pl_closepl(void)
 
 		fclose(ctty);
 	}
+
 	pl_closevt();
 }
 

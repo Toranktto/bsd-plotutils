@@ -16,6 +16,8 @@ MANDIR=	${PREFIX}/man/man
 FILESDIR=	${PREFIX}/share/misc
 INCLUDEDIR=	${PREFIX}/include
 LIBEXECDIR=	${PREFIX}/libexec
+INSTALL=	../scripts/install-fakeroot.sh
+MINSTALL=	../scripts/install-fakeroot.sh
 
 all: ${PLOT_PROGS} ${PROGS} ${MAN}
 
@@ -56,11 +58,11 @@ clean:
 	rm -rf ${PROGS} ${PLOT_PROGS} ${SRCS:.c=.o} ${MAN:=.gz} crtdriver.o
 
 install: maninstall
-	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PLOT_PROGS} \
+	${INSTALL} ${STRIP} -m ${BINMODE} ${PLOT_PROGS} \
 	    ${DESTDIR}${LIBEXECDIR}
-	install ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
+	${INSTALL} ${STRIP} -m ${BINMODE} ${PROGS} \
 	    ${DESTDIR}${BINDIR}
-	install -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \
+	${INSTALL} -c -m ${BINMODE} plot.sh \
 	    ${DESTDIR}${BINDIR}/plot
 
 .include <bsd.prog.mk>

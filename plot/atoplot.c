@@ -3,12 +3,18 @@
 #include <plot.h>
 #include <string.h>
 
+#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__bsdi__)
+char	*progname = NULL;
+#define setprogname(x) progname = x
+#define getprogname() progname
+#endif
+
 float		deltx;
 float		delty;
 
 static char    *map_line_type(char *cp);
-static void	fplt(FILE * fin);
-static int	getsi(FILE * fin);
+static void	fplt(FILE *fin);
+static int	getsi(FILE *fin);
 static void	getstr(register char *s, register FILE * fin, int len);
 
 int
@@ -151,7 +157,7 @@ fplt(FILE * fin)
 
 /* get an integer. */
 static int
-getsi(FILE * fin)
+getsi(FILE *fin)
 {
 	int		i;
 

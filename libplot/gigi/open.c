@@ -13,6 +13,7 @@ static char	sccsid[] = "@(#)open.c	5.1 (Berkeley) 5/7/85";
  */
 
 #include <signal.h>
+#include <string.h>
 #include "gigi.h"
 #include <plot.h>
 
@@ -26,8 +27,6 @@ double		scaley = 1.0;
 void
 pl_openpl(void)
 {
-	/* catch interupts */
-	signal(SIGINT, (__sighandler_t *) pl_closepl);
 	currentx = 0;
 	currenty = 0;
 	/* enter grapics mode */
@@ -37,8 +36,6 @@ pl_openpl(void)
 
 	/* set some parameters */
 	printf("S(I0 T0 [0,0])");
-
-	/* pl_space(0, 0, XMAX, YMAX); */
 }
 
 void

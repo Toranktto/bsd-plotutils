@@ -6,12 +6,20 @@
 #include <netinet/in.h>
 #include <signal.h>
 
+#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__bsdi__)
+char	*progname = NULL;
+#define setprogname(x) progname = x
+#define getprogname() progname
+#endif
+
 float		deltx;
 float		delty;
 
-static void	fplt(FILE * fin);
-static int	getsi(register FILE * fin);
-static void	getstr(register char *s, register FILE * fin, int len);
+static void interrupt(void);
+static void	fplt(FILE *fin);
+static int	getsi(register FILE *fin);
+static void	getstr(register char *s, register FILE *fin, int len);
+
 #ifdef __crtplot
 static void	winresize(void);
 #endif
@@ -21,14 +29,23 @@ main(int argc, char *argv[])
 {
 	int		std = 1;
 	FILE	       *fin;
+	struct sigaction	act;
 
 	setprogname(argv[0]);
+
+	memset(&act, 0x00, sizeof(act));
+	act.sa_handler = (void(*)(int)) interrupt;
+	sigaction(SIGINT, &act, NULL);
+
 #ifdef __crtplot
 	if (!isatty(fileno(stdout))) {
 		fprintf(stderr, "%s: output must be a terminal\n", getprogname());
 		exit(1);
 	}
-	signal(SIGWINCH, (__sighandler_t *) winresize);
+
+	memset(&act, 0x00, sizeof(act));
+	act.sa_handler = (void(*)(int)) winresize;
+	sigaction(SIGWINCH, &act, NULL);
 #endif
 
 	for (argc--, argv++; argc > 0; argc--, argv++) {
@@ -62,11 +79,26 @@ main(int argc, char *argv[])
 #endif
 		fplt(stdin);
 	}
+
 	exit(0);
 }
 
 static void
-fplt(FILE * fin)
+interrupt(void)
+{
+	struct sigaction	act;
+
+	memset(&act, 0x00, sizeof(act));
+	act.sa_handler = SIG_IGN;
+	sigaction(SIGINT, &act, NULL);
+
+	pl_closevt();
+	fprintf(stderr, "%s: terminal interrupted\n", getprogname());
+	exit(1);
+}
+
+static void
+fplt(FILE *fin)
 {
 	register int	c;
 	char		s[256];
@@ -156,6 +188,7 @@ fplt(FILE * fin)
 			exit(1);
 		}
 	}
+
 	pl_closepl();
 	free(pat);
 }
@@ -189,7 +222,11 @@ getstr(register char *s, register FILE * fin, int len)
 static void
 winresize(void)
 {
-	signal(SIGWINCH, SIG_IGN);
+	struct sigaction	act;
+
+	memset(&act, 0x00, sizeof(act));
+	act.sa_handler = SIG_IGN;
+	sigaction(SIGWINCH, &act, NULL);
 
 	pl_closevt();
 	fprintf(stderr, "%s: terminal resized\n", getprogname());
