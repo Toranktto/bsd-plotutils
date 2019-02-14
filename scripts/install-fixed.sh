@@ -28,22 +28,24 @@
 
 ARGS="$@"
 
-if [ "`whoami`" = "root" ]; then
-	# Check if user is fake root by creating file with random name in / directory.
-	# It's not 100% correct, but should be enough.
-	RANDOM=`head -200 /dev/urandom | cksum | cut -f1 -d " "`
-	touch /$RANDOM > /dev/null 2>&1
+fix_args() {
+	local data="$1"
+	data=`echo "$data" | sed -e "s/-o [a-zA-Z0-9_]*//g"`
+	data=`echo "$data" | sed -e "s/-g [a-zA-Z0-9_]*//g"`
+	data=`echo "$data" | sed -e "s/--owner=[a-zA-Z0-9_]*//g"`
+	data=`echo "$data" | sed -e "s/--group=[a-zA-Z0-9_]*//g"`
+	echo "$data"
+}
 
-	# Fake root don't have permissions (exit code 1) to change file owner to real root
-	# so remove owner and group arguments.
+if [ "`id -u`" = "0" ]; then
+	FILE=bsd-plotutils-`head -200 /dev/urandom | cksum | cut -f1 -d " "`
+	touch /$FILE > /dev/null 2>&1 && chown root:root /$FILE > /dev/null 2>&1
 	if [ $? -eq 1 ]; then
-		ARGS=`echo "$ARGS" | sed -e "s/-o [a-zA-Z0-9_]*//g"`
-		ARGS=`echo "$ARGS" | sed -e "s/-g [a-zA-Z0-9_]*//g"`
-		ARGS=`echo "$ARGS" | sed -e "s/--owner=[a-zA-Z0-9_]*//g"`
-		ARGS=`echo "$ARGS" | sed -e "s/--group=[a-zA-Z0-9_]*//g"`	
-	else
-		rm -rf /$RANDOM
+		ARGS=`fix_args "$ARGS"`
 	fi
+	rm -rf /$FILE
+else
+	ARGS=`fix_args "$ARGS"`
 fi
 
 install $ARGS

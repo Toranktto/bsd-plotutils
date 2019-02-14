@@ -4,20 +4,33 @@ SRCS=	atoplot.c driver.c plottoa.c
 MAN=	plot.1
 MLINKS=	plot.1 plottoa.1 \
 		plot.1 atoplot.1
+
 LDADD=	-L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/hp7221/ \
 		-L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
 		-L../libplot/plot -L../libplot/crt -L${LIBDIR}
 CFLAGS+=	-I../libplot/plot -I${INCLUDEDIR}
 CSTD=c99
-PREFIX?=	/usr/local
+
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib
-MANDIR=	${PREFIX}/man/man
+MANDIR=	${PREFIX}/share/man
 FILESDIR=	${PREFIX}/share/misc
 INCLUDEDIR=	${PREFIX}/include
 LIBEXECDIR=	${PREFIX}/libexec
-INSTALL=	../scripts/install-fakeroot.sh
-MINSTALL=	../scripts/install-fakeroot.sh
+
+UNAME_S!=	uname -s
+.if ${UNAME_S} == "FreeBSD"
+PREFIX?=	/usr/local
+.else
+PREFIX?=	/usr
+.endif
+
+.if ${PREFIX} == "/usr/local"
+MANDIR=	${PREFIX}/man/man
+.endif
+
+INSTALL=	../scripts/install-fixed.sh
+MINSTALL=	../scripts/install-fixed.sh
 
 all: ${PLOT_PROGS} ${PROGS} ${MAN}
 
@@ -58,11 +71,11 @@ clean:
 	rm -rf ${PROGS} ${PLOT_PROGS} ${SRCS:.c=.o} ${MAN:=.gz} crtdriver.o
 
 install: maninstall
-	${INSTALL} ${STRIP} -m ${BINMODE} ${PLOT_PROGS} \
+	${INSTALL} ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PLOT_PROGS} \
 	    ${DESTDIR}${LIBEXECDIR}
-	${INSTALL} ${STRIP} -m ${BINMODE} ${PROGS} \
+	${INSTALL} ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PROGS} \
 	    ${DESTDIR}${BINDIR}
-	${INSTALL} -c -m ${BINMODE} plot.sh \
+	${INSTALL} -c -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} plot.sh \
 	    ${DESTDIR}${BINDIR}/plot
 
 .include <bsd.prog.mk>

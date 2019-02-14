@@ -3,11 +3,7 @@
 #include <plot.h>
 #include <string.h>
 
-#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__bsdi__)
 char	*progname = NULL;
-#define setprogname(x) progname = x
-#define getprogname() progname
-#endif
 
 float		deltx;
 float		delty;
@@ -23,7 +19,8 @@ main(int argc, char **argv)
 	int		std = 1;
 	FILE	       *fin;
 
-	setprogname(argv[0]);
+	progname = argv[0];
+
 	while (argc-- > 1) {
 		if (*argv[1] == '-')
 			switch (argv[1][1]) {
@@ -38,7 +35,7 @@ main(int argc, char **argv)
 		else {
 			std = 0;
 			if ((fin = fopen(argv[1], "r")) == NULL) {
-				fprintf(stderr, "%s: can't open %s\n", getprogname(), argv[1]);
+				fprintf(stderr, "%s: can't open %s\n", progname, argv[1]);
 				exit(1);
 			}
 			fplt(fin);
@@ -138,7 +135,7 @@ fplt(FILE * fin)
 			break;
 		default:
 			pl_closevt();
-			fprintf(stderr, "%s: malformed input\n", getprogname());
+			fprintf(stderr, "%s: malformed input\n", progname);
 			free(pat);
 			exit(1);
 		}
@@ -163,7 +160,7 @@ getsi(FILE *fin)
 
 	if (fscanf(fin, " %d", &i) != 1) {
 		pl_closevt();
-		fprintf(stderr, "%s: malformed input\n", getprogname());
+		fprintf(stderr, "%s: malformed input\n", progname);
 		exit(1);
 	}
 	return (i);
@@ -201,7 +198,7 @@ getstr(register char *s, register FILE * fin, int len)
 {
 	if (fgets(s, len, fin) == NULL) {
 		pl_closevt();
-		fprintf(stderr, "%s: malformed input\n", getprogname());
+		fprintf(stderr, "%s: malformed input\n", progname);
 		exit(1);
 	}
 	s[strlen(s) - 1] = '\0';

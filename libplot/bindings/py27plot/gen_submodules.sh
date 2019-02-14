@@ -74,7 +74,6 @@ for m in $SUBMODULES; do
 
 			data=`echo "$data" | sed -e "s/-L..\/..\/..\/plot/-L..\/..\/..\/$m/g"`
 			echo "$data" > ./`basename $f`
-
 			echo "$f -> ./`basename $f`"
 		else
 			cp -r $f ./`basename $f`

@@ -8,13 +8,25 @@ LDADD=	-L${LIBDIR} -lm
 CSTD=c99
 SHLIB_MAJOR=	1
 SHLIB_MINOR=	0
-PREFIX?=	/usr/local
+
 BINDIR=	${PREFIX}/bin
 LIBDIR=	${PREFIX}/lib
-MANDIR=	${PREFIX}/man/man
+MANDIR=	${PREFIX}/share/man
 FILESDIR=	${PREFIX}/share/misc
 INCLUDEDIR=	${PREFIX}/include
-INSTALL=	../../scripts/install-fakeroot.sh
-MINSTALL=	../../scripts/install-fakeroot.sh
+
+UNAME_S!=	uname -s
+.if ${UNAME_S} == "FreeBSD"
+PREFIX?=	/usr/local
+.else
+PREFIX?=	/usr
+.endif
+
+.if ${PREFIX} == "/usr/local"
+MANDIR=	${PREFIX}/man/man
+.endif
+
+INSTALL=	../../scripts/install-fixed.sh
+MINSTALL=	../../scripts/install-fixed.sh
 
 .include <bsd.lib.mk>

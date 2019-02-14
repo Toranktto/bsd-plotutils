@@ -2,11 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__bsdi__)
 char	*progname = NULL;
-#define setprogname(x) progname = x
-#define getprogname() progname
-#endif
 
 #define NP 250
 #define INF INFINITY
@@ -322,7 +318,7 @@ main(int argc, char *argv[])
 {
 	int		i;
 
-	setprogname(argv[0]);
+	progname = argv[0];
 	x.val_len = NP;
 	x.val = malloc(x.val_len * sizeof(float));
 	y.val_len = NP;
@@ -361,7 +357,7 @@ again:		switch (argv[0][0]) {
 			x.ubf = 1;
 			break;
 		default:
-			fprintf(stderr, "%s: error in arguments\n", getprogname());
+			fprintf(stderr, "%s: error in arguments\n", progname);
 			exit(1);
 		}
 	}
@@ -403,6 +399,6 @@ numb(float *np, int *argcp, char ***argvp)
 static void
 badvalue(void)
 {
-	fprintf(stderr, "%s: malformed input\n", getprogname());
+	fprintf(stderr, "%s: malformed input\n", progname);
 	exit(1);
 }

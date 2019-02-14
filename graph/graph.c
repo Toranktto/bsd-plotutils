@@ -7,11 +7,7 @@
 #define INF     INFINITY
 #define F       .25
 
-#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__) && !defined(__DragonFly__) && !defined(__bsdi__)
 char	*progname = NULL;
-#define setprogname(x) progname = x
-#define getprogname() progname
-#endif
 
 struct xy {
 	int		xlbf;	/* flag:explicit lower bound */
@@ -95,7 +91,7 @@ static int	numb(float *np, int *argcp, register char ***argvp);
 int
 main(int argc, char *argv[])
 {
-	setprogname(argv[0]);
+	progname = argv[0];
 
 	init(&xd);
 	init(&yd);
@@ -730,13 +726,13 @@ axlab(char c, struct xy *p)
 static void
 badarg(void)
 {
-	fprintf(stderr, "%s: error in arguments\n", getprogname());
+	fprintf(stderr, "%s: error in arguments\n", progname);
 	exit(1);
 }
 
 static void
 badvalue(void)
 {
-	fprintf(stderr, "%s: malformed input\n", getprogname());
+	fprintf(stderr, "%s: malformed input\n", progname);
 	exit(1);
 }
