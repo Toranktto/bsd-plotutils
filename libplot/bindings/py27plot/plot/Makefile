@@ -28,8 +28,8 @@ PREFIX?=	/usr
 MANDIR=	${PREFIX}/man/man
 .endif
 
-INSTALL=	../../../../scripts/install-fixed.sh
-MINSTALL=	../../../../scripts/install-fixed.sh
+INSTALL=	../../../../install-fixed.sh
+MINSTALL=	../../../../install-fixed.sh
 
 install: maninstall
 	mkdir -p ${DESTDIR}${LIBDIR}

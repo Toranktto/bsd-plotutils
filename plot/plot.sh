@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/libexec:/usr/libexec
+PATH="$PATH:/bin:/usr/bin:/usr/local/bin:/usr/local/libexec:/usr/libexec"
 
 case $1 in
 -T*)	t=$1
@@ -16,5 +16,6 @@ case $t in
 -Thp7221|-Thp7|-Th7)	exec hp7221plot "$@" ;;
 -Tip|-Timagen)	exec implot "$@" ;;
 -Tdumb|-Tunknown)	exec dumbplot "$@" ;;
+-Tps)	exec psplot "$@" ;;
 *)	exec crtplot "$@" ;;
 esac

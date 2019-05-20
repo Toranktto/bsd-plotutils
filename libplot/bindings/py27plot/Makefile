@@ -1,4 +1,4 @@
-SUBMODULES=	bitgraph dumb gigi hp7221 imagen t4013 t4014 crt
+SUBMODULES!=	find ../../ -maxdepth 1 -mindepth 1 -type d ! -name "bindings" ! -name "plot" | cut -c 7-
 
 .PHONY: all
 

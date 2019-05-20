@@ -12,10 +12,7 @@
 .Nd graphics filters for various plotters
 .Sh SYNOPSIS
 .Nm plot
-.Oo
 .Op Fl T Ar terminal
-.Oo
-.Ar
 .Sh DESCRIPTION
 These commands read plotting instructions (see
 .Xr plot  5  )
@@ -60,6 +57,8 @@ Any crt terminal capable of running vi.
 Dumb terminals without cursor addressing or line printers.
 .It Pa hp2648
 Hewlett Packard 2648 graphics terminal.
+.It Pa ps
+PostScript output.
 .El
 .Sh ENVIRONMENT
 .Bl -tag -width
@@ -75,6 +74,7 @@ Used to determine the terminal type if not given as an argument.
 .It Pa /usr/local/libexec/dumbplot
 .It Pa /usr/local/libexec/gigiplot
 .It Pa /usr/local/libexec/implot
+.It Pa /usr/local/libexec/psplot
 .It Pa /usr/local/bin/plottoa
 .It Pa /usr/local/bin/atoplot
 .It Pa /usr/local/bin/plot

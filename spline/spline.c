@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-char	*progname = NULL;
+#include <err.h>
 
 #define NP 250
 #define INF INFINITY
@@ -21,7 +20,6 @@ float		konst = 0.0;
 float		zero = 0.;
 
 static int	getfloat(float *p);
-static void	badvalue(void);
 static int	numb(float *np, int *argcp, char ***argvp);
 
 /*
@@ -243,12 +241,12 @@ readin(void)
 		else if ((xs = getfloat(&x.val[n])) == EOF)
 			return;
 		else if (!xs)
-			badvalue();
+			errx(1, "malformed input");
 
 		if ((ys = getfloat(&y.val[n])) == EOF)
 			return;
 		else if (!ys)
-			badvalue();
+			errx(1, "malformed input");
 	}
 }
 
@@ -318,7 +316,6 @@ main(int argc, char *argv[])
 {
 	int		i;
 
-	progname = argv[0];
 	x.val_len = NP;
 	x.val = malloc(x.val_len * sizeof(float));
 	y.val_len = NP;
@@ -357,23 +354,23 @@ again:		switch (argv[0][0]) {
 			x.ubf = 1;
 			break;
 		default:
-			fprintf(stderr, "%s: error in arguments\n", progname);
-			exit(1);
+			errx(1, "error in arguments");
 		}
 	}
 
 	if (auta && !x.lbf)
 		x.lb = 0;
+
 	readin();
 	getlim(&x);
 	getlim(&y);
 	i = (n + 1) * sizeof(dx);
 	diag = (float *)malloc((unsigned)i);
 	r = (float *)malloc((unsigned)i);
+
 	if (r == NULL || !spline())
 		for (i = 0; i < n; i++) {
-			printf("%f ", x.val[i]);
-			printf("%f\n", y.val[i]);
+			printf("%f %f\n", x.val[i], y.val[i]);
 		}
 
 	free(x.val);
@@ -394,11 +391,4 @@ numb(float *np, int *argcp, char ***argvp)
 	(*argcp)--;
 	(*argvp)++;
 	return (1);
-}
-
-static void
-badvalue(void)
-{
-	fprintf(stderr, "%s: malformed input\n", progname);
-	exit(1);
 }

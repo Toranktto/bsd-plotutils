@@ -5,9 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <err.h>
 #include <netinet/in.h>
-
-char	*progname = NULL;
 
 float		deltx;
 float		delty;
@@ -39,8 +38,6 @@ main(int argc, char **argv)
 	int		std = 1;
 	FILE	       *fin;
 
-	progname = argv[0];
-
 	while (argc-- > 1) {
 		if (*argv[1] == '-')
 			switch (argv[1][1]) {
@@ -54,8 +51,7 @@ main(int argc, char **argv)
 		else {
 			std = 0;
 			if ((fin = fopen(argv[1], "r")) == NULL) {
-				fprintf(stderr, "%s: can't open %s\n", progname, argv[1]);
-				exit(1);
+				errx(1, "can't open %s", argv[0]);
 			}
 			fplt(fin);
 			fclose(fin);
@@ -144,19 +140,20 @@ fplt(FILE * fin)
 			yi = getsi(fin);
 			dx = getsi(fin);
 			n = getsi(fin);
+
 			if (n > pat_len) {
 				pat_len *= 2;
 				pat = realloc(pat, pat_len * sizeof(int));
 			}
+
 			for (i = 0; i < n; i++)
 				pat[i] = getsi(fin);
 			pl_dot(xi, yi, dx, n, pat);
 			break;
 		default:
 			pl_closevt();
-			fprintf(stderr, "%s: malformed input\n", progname);
 			free(pat);
-			exit(1);
+			errx(1, "malformed input");
 		}
 	}
 
@@ -172,8 +169,7 @@ getsi(register FILE * fin)
 
 	if (fread(&b, sizeof(b), 1, fin) < 1) {
 		pl_closevt();
-		fprintf(stderr, "%s: malformed input\n", progname);
-		exit(1);
+		errx(1, "malformed input");
 	}
 	return ntohs(b);
 }
@@ -183,8 +179,7 @@ getstr(register char *s, register FILE * fin, int len)
 {
 	if (fgets(s, len, fin) == NULL) {
 		pl_closevt();
-		fprintf(stderr, "%s: malformed input\n", progname);
-		exit(1);
+		errx(1, "malformed input");
 	}
 	s[strlen(s) - 1] = '\0';
 }

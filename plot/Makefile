@@ -7,7 +7,7 @@ MLINKS=	plot.1 plottoa.1 \
 
 LDADD=	-L../libplot/bitgraph -L../libplot/dumb -L../libplot/gigi -L../libplot/hp7221/ \
 		-L../libplot/t4014 -L../libplot/t4013 -L../libplot/imagen \
-		-L../libplot/plot -L../libplot/crt -L${LIBDIR}
+		-L../libplot/plot -L../libplot/crt -L../libplot/ps -L${LIBDIR}
 CFLAGS+=	-I../libplot/plot -I${INCLUDEDIR}
 CSTD=c99
 
@@ -29,8 +29,8 @@ PREFIX?=	/usr
 MANDIR=	${PREFIX}/man/man
 .endif
 
-INSTALL=	../scripts/install-fixed.sh
-MINSTALL=	../scripts/install-fixed.sh
+INSTALL=	../install-fixed.sh
+MINSTALL=	../install-fixed.sh
 
 all: ${PLOT_PROGS} ${PROGS} ${MAN}
 

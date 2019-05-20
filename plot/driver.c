@@ -3,10 +3,9 @@
 #include <plot.h>
 #include <unistd.h>
 #include <string.h>
+#include <err.h>
 #include <netinet/in.h>
 #include <signal.h>
-
-char	*progname = NULL;
 
 float		deltx;
 float		delty;
@@ -27,16 +26,13 @@ main(int argc, char *argv[])
 	FILE	       *fin;
 	struct sigaction	act;
 
-	progname = argv[0];
-
 	memset(&act, 0x00, sizeof(act));
 	act.sa_handler = (void(*)(int)) interrupt;
 	sigaction(SIGINT, &act, NULL);
 
 #ifdef __crtplot
 	if (!isatty(fileno(stdout))) {
-		fprintf(stderr, "%s: output must be a terminal\n", progname);
-		exit(1);
+		errx(1, "output must be a terminal");
 	}
 
 	memset(&act, 0x00, sizeof(act));
@@ -59,8 +55,7 @@ main(int argc, char *argv[])
 		std = 0;
 		fin = fopen(argv[0], "r");
 		if (fin == NULL) {
-			fprintf(stderr, "%s: can't open %s\n", progname, argv[0]);
-			exit(1);
+			errx(1, "can't open %s", argv[0]);
 		}
 		fplt(fin);
 		fclose(fin);
@@ -69,8 +64,7 @@ main(int argc, char *argv[])
 	if (std) {
 #ifdef __crtplot
 		if (isatty(fileno(stdin))) {
-			fprintf(stderr, "%s: input cannot be a terminal\n", progname);
-			exit(1);
+			errx(1, "input cannot be a terminal\n");
 		}
 #endif
 		fplt(stdin);
@@ -89,8 +83,7 @@ interrupt(void)
 	sigaction(SIGINT, &act, NULL);
 
 	pl_closevt();
-	fprintf(stderr, "%s: interrupted\n", progname);
-	exit(1);
+	exit(0);
 }
 
 static void
@@ -168,10 +161,12 @@ fplt(FILE *fin)
 			yi = getsi(fin);
 			dx = getsi(fin);
 			n = getsi(fin);
+
 			if (n > pat_len) {
 				pat_len *= 2;
 				pat = realloc(pat, pat_len * sizeof(int));
 			}
+
 			for (i = 0; i < n; i++)
 				pat[i] = getsi(fin);
 
@@ -179,9 +174,8 @@ fplt(FILE *fin)
 			break;
 		default:
 			pl_closevt();
-			fprintf(stderr, "%s: malformed input\n", progname);
 			free(pat);
-			exit(1);
+			errx(1, "malformed input");
 		}
 	}
 
@@ -197,8 +191,7 @@ getsi(register FILE * fin)
 
 	if (fread(&b, sizeof(b), 1, fin) < 1) {
 		pl_closevt();
-		fprintf(stderr, "%s: malformed input\n", progname);
-		exit(1);
+		errx(1, "malformed input");
 	}
 	return ntohs(b);
 }
@@ -208,8 +201,7 @@ getstr(register char *s, register FILE * fin, int len)
 {
 	if (fgets(s, len, fin) == NULL) {
 		pl_closevt();
-		fprintf(stderr, "%s: malformed input\n", progname);
-		exit(1);
+		errx(1, "malformed input");
 	}
 	s[strlen(s) - 1] = '\0';
 }
@@ -225,7 +217,6 @@ winresize(void)
 	sigaction(SIGWINCH, &act, NULL);
 
 	pl_closevt();
-	fprintf(stderr, "%s: terminal resized\n", progname);
-	exit(1);
+	exit(0);
 }
 #endif

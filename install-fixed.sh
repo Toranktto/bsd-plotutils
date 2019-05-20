@@ -43,7 +43,7 @@ if [ "`id -u`" = "0" ]; then
 	if [ $? -eq 1 ]; then
 		ARGS=`fix_args "$ARGS"`
 	fi
-	rm -rf /$FILE
+	rm -f /$FILE
 else
 	ARGS=`fix_args "$ARGS"`
 fi

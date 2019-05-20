@@ -4,10 +4,9 @@
 #include <math.h>
 #include <plot.h>
 #include <string.h>
+#include <err.h>
 #define INF     INFINITY
 #define F       .25
-
-char	*progname = NULL;
 
 struct xy {
 	int		xlbf;	/* flag:explicit lower bound */
@@ -74,7 +73,6 @@ static void	plot(void);
 static void	limread(register struct xy *p, int *argcp, char ***argvp);
 static void	title(void);
 static void	badarg(void);
-static void	badvalue(void);
 static void	setopt(int argc, char *argv[]);
 static void	axlab(char c, struct xy *p);
 static int	conv(float xv, register struct xy *p, int *ip);
@@ -91,8 +89,6 @@ static int	numb(float *np, int *argcp, register char ***argvp);
 int
 main(int argc, char *argv[])
 {
-	progname = argv[0];
-
 	init(&xd);
 	init(&yd);
 	xd.xsize = yd.xsize = 1.;
@@ -107,6 +103,7 @@ main(int argc, char *argv[])
 	transpose();
 
 	pl_space(0, 0, 4096, 4096);
+	pl_move(4096 / 2, 4096 / 2);
 
 	if (erasf)
 		pl_erase();
@@ -289,10 +286,10 @@ readin(void)
 		if (absf)
 			xx[n].xv = n * dx + absbot;
 		else if (!getfloat(&xx[n].xv))
-			badvalue();
+			errx(1, "malformed input");
 
 		if (!getfloat(&xx[n].yv))
-			badvalue();
+			errx(1, "malformed input");
 
 		xx[n].lblptr = -1;
 		t = getstring();
@@ -726,13 +723,5 @@ axlab(char c, struct xy *p)
 static void
 badarg(void)
 {
-	fprintf(stderr, "%s: error in arguments\n", progname);
-	exit(1);
-}
-
-static void
-badvalue(void)
-{
-	fprintf(stderr, "%s: malformed input\n", progname);
-	exit(1);
+	errx(1, "error in arguments");
 }
