@@ -1,5 +1,5 @@
-#ifndef _PLOT_44BSD_H
-#define _PLOT_44BSD_H
+#ifndef _PLOT_COMPAT_H
+#define _PLOT_COMPAT_H
 
 #ifdef __cplusplus
 extern "C" {

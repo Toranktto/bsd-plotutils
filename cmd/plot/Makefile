@@ -4,17 +4,6 @@ SRCS=	atoplot.c driver.c plottoa.c
 MAN=	plot.1
 MLINKS=	plot.1 plottoa.1 \
 		plot.1 atoplot.1
-LDADD+=	-L ../../lib/plot -L ../../lib/tek4014 -L ../../lib/ascii
-CFLAGS+=	-I ../../lib/plot
-CSTD=c99
-
-PREFIX?=	/usr/local
-BINDIR=	${PREFIX}/bin
-LIBDIR=	${PREFIX}/lib
-MANDIR=	${PREFIX}/share/man
-FILESDIR=	${PREFIX}/share/misc
-INCLUDEDIR=	${PREFIX}/include
-LIBEXECDIR=	${PREFIX}/libexec
 
 all: ${PLOT_PROGS} ${PROGS} ${MAN}
 

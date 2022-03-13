@@ -8,18 +8,17 @@
 #define F .25
 
 struct xy {
-	int xlbf; /* flag: explicit lower bound */
-	int xubf; /* flag: explicit upper bound */
-	int xqf;  /* flag: explicit quantum     */
-
-	double const (*xf)(); /* transform function, e.g. log */
-	float xa, xb;	      /* scaling coefficients */
-	float xlb, xub;	      /* lower and upper bound */
-	float xquant;	      /* quantum */
-	float xoff;	      /* screen offset fraction */
-	float xsize;	      /* screen fraction */
-	int xbot, xtop;	      /* screen coords of border */
-	float xmult;	      /* scaling constant */
+	int xlbf;	      /*flag:explicit lower bound*/
+	int xubf;	      /*flag:explicit upper bound*/
+	int xqf;	      /*flag:explicit quantum*/
+	double (*xf)(double); /*transform function, e.g. log*/
+	float xa, xb;	      /*scaling coefficients*/
+	float xlb, xub;	      /*lower and upper bound*/
+	float xquant;	      /*quantum*/
+	float xoff;	      /*screen offset fraction*/
+	float xsize;	      /*screen fraction*/
+	int xbot, xtop;	      /*screen coords of border*/
+	float xmult;	      /*scaling constant*/
 } xd, yd;
 
 struct val {
