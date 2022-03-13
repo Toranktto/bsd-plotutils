@@ -24,11 +24,11 @@ case "$driver" in
 ascii|dumb|crt|un|unknown)
 	exec asciiplot "$@"
 	;;
-tek4014|tek|4014|'')
+tek4014|tek|4014|t4014)
 	exec tek4014plot "$@"
 	;;
 *)
-	echo 1>&2 "plot: invalid driver: $driver"
+	echo 1>&2 "plot: invalid driver"
 	exit 2
 	;;
 esac

@@ -22,8 +22,6 @@ tek4014plot: driver.o
 clean:
 	rm -rf ${PROGS} ${PLOT_PROGS} ${SRCS:.c=.o} ${MAN:=.gz}
 
-LIBEXECDIR_ESCAPED!=	echo ${LIBEXECDIR} | sed 's/\//\\\//g'
-
 install: maninstall
 	${INSTALL} ${STRIP} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${PLOT_PROGS} \
 	    ${DESTDIR}${LIBEXECDIR}
@@ -34,6 +32,7 @@ install: maninstall
 	sed -i "s/@LIBEXEC@/${LIBEXECDIR_ESCAPED}/g" ${DESTDIR}${BINDIR}/plot
 
 .include <bsd.prog.mk>
+LIBEXECDIR_ESCAPED!=	echo ${LIBEXECDIR} | sed 's/\//\\\//g'
 
 # NetBSD make compatibility
 .ifdef STRIPFLAG

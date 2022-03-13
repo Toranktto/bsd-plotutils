@@ -35,7 +35,7 @@ int top = 4000;
 int bot = 200;
 float absbot;
 int n;
-int erasf = 1;
+int erasf = 0;
 int gridf = 2;
 int symbf = 0;
 int absf = 0;
