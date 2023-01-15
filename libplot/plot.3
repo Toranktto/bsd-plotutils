@@ -1,0 +1,149 @@
+.TH PLOT 3 "January 15, 2023"
+.AT 3
+.SH NAME
+plot: pl_open, pl_erase, pl_label, pl_line, pl_circle, pl_arc, pl_move, pl_cont, pl_point, pl_linemod, pl_space, pl_close \- graphics interface
+.SH SYNOPSIS
+.nf
+.B pl_open()
+.PP
+.B pl_erase()
+.PP
+.B pl_label(s)
+.B char s[];
+.PP
+.B pl_line(x1, y1, x2, y2)
+.PP
+.B pl_circle(x, y, r)
+.PP
+.B pl_arc(x, y, x0, y0, x1, y1)
+.PP
+.B pl_move(x, y)
+.PP
+.B pl_cont(x, y)
+.PP
+.B pl_point(x, y)
+.PP
+.B pl_linemod(s)
+.B char s[];
+.PP
+.B pl_space(x0, y0, x1, y1)
+.PP
+.B pl_close()
+.fi
+.PP
+.ft R
+.SH DESCRIPTION
+These subroutines generate graphic output in a relatively
+device-independent manner.  See
+.IR  plot (5)
+for a description of their effect.
+.I pl_open
+must be used before any of the others to open the device for writing.
+.I pl_close
+flushes the output.
+.PP
+String arguments to
+.I pl_label
+and
+.I pl_linemod
+are null-terminated, and do not contain newlines.
+.PP
+Various flavors of these functions exist for different output devices. 
+They are obtained by the following
+.IR ld (1)
+options:
+.TP 8n
+.B \-lplot
+device-independent graphics stream on standard output for 
+.IR plot (1)
+filters
+.br
+.ns
+.TP
+.B \-l300
+GSI 300 terminal
+.br
+.ns
+.TP
+.B \-l300s
+GSI 300S terminal
+.br
+.ns
+.TP
+.B \-l450
+GSI 450 terminal
+.br
+.ns
+.TP
+.B \-l4013
+Tektronix 4013 terminal
+.br
+.ns
+.TP
+.B \-l4014
+Tektronix 4014 and 4015 terminals with the Enhanced Graphics Module (Use
+.B \-l4013
+for 4014's or 4015's without the Enhanced Graphics Module)
+.br
+.ns
+.TP
+.B \-lplotaed
+AED 512 color graphics terminal
+.br
+.ns
+.TP
+.B \-lplotbg
+BBN bitgraph graphics terminal
+.br
+.ns
+.TP
+.B \-lplotdumb
+Dumb terminals without cursor addressing or line printers
+.br
+.ns
+.TP
+.B \-lplot
+DEC Gigi terminals
+.br
+.ns
+.TP
+.B \-lvt0
+DEC vt100 terminals
+.br
+.ns
+.TP
+.B \-lplot2648
+Hewlett Packard 2648 graphics terminal
+.br
+.ns
+.TP
+.B \-lplot7221
+Hewlett Packard 7221 graphics terminal
+.br
+.ns
+.TP
+.B \-lplotimagen
+Imagen laser printer (default 240 dots-per-inch resolution).
+.PP
+On many devices, it is necessary to pause after
+.IR pl_erase (),
+otherwise plotting commands are lost.
+The pause is normally done by the tty driver if at login time,
+.I tset
+found a
+.I df
+field in the
+.IR termcap (5)
+entry for the terminal.
+If a pause is needed but not automatically being generated,
+add
+.RS
+.nf
+flush(stdout);
+sleep(1);
+.fi
+.RE
+after each
+.IR pl_erase ().
+.SH "SEE ALSO"
+plot(5), plot(1), graph(1)

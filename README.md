@@ -1,79 +1,73 @@
 # BSD plotutils
-Standard UNIX plotting utilities ported from 4.4BSD with some improvements and removed obsolete backends.  
+
+Standard UNIX plotting utilities ported from 4.3BSD (and partially from UNIX V7) to modern OSes.
 
 ## Why?
-I initially ported this program in 2018 to learn basics of the C language and UNIX.  
-The current goal is to create an extremely simple library and CLI tools to generate graphs in popular formats such as SVG or even raw ASCII.  
 
-## Available backends (formats)
-Currently available backends in the library:
-* tek4014 (aliases: t4014, tek) — Tektronix 4014 graphics terminal (Enhanced Graphics Mode). It is available as XTerm mode.
-* ascii (aliases: dumb) — Simple ASCII-Art output.
+I initially ported these programs in 2018 to learn basics of the C language and UNIX.  
+The current goal is to create a library and CLI tools to generate simple graphs in popular formats.
+
+## Available drivers
+
+### Historical
+
+* aed — AED 512 color graphics terminal.
+* bitgraph (aliases: bg) — BBN bitgraph terminal.
+* hp7221 (aliases: hp7) — HP 7221 graphics terminal.
+* hp2648 (aliases: hp, hp8) — HP 2648A graphics terminal.
+* imagen (aliases: im) — Imagen laser printer (default 240 dots-per-inch resolution).
+* t300 — DASI 300 or GSI terminal (Diablo mechanism).
+* t300s — DASI 300S terminal (Diablo mechanism).
+* t450 — DASI Hyterm 450 terminal (Diablo mechanism).
+* t4013 — Tektronix 4013 storage scope.
+* vt0 — DEC VT100 graphics terminal.
+* gigi (aliases: vt125) — DEC VT125 graphics terminal.
+
+### Modern
+
+* t4014 (aliases: tek) — Tektronix 4014 or 4015 storage scope with Enhanced Graphics Module. It is available as XTerm
+  mode (`xterm -t -tn tek4014`).
+* dumb (aliases: ascii) — Simple ASCII output.
 
 ## Portability
-This code was originally written in the pre-POSIX era (around 1975 and modified in 1983) and uses BSD extensions for libc, as well as make.  
+
+This code was originally written in the pre-POSIX era and uses some non-portable features.
 Platforms confirmed to work:
+
 * Ubuntu 20.04 LTS x86_64
 * FreeBSD 13.0-RELEASE amd64
-  
-The current and future code should conform to the C99 standard if possible.
+* Darwin 22.2.0 arm64
+
+Future code should conform to the ANSI C and POSIX standards if possible.
 
 ## Backwards compatibility
-CLI tools should be fully compatible with version available in 4.2BSD and System V Release 4, excluding support for most ancient plotters and terminals.  
-Compatibility at the source code level is available through the header `plotcompat.h` instead of `plot.h`.  
+
+Distributed programs and libraries should be compatible with versions available in UNIX V7, 4.3BSD and System V
+flavours (e.g. Solaris, AIX).   
+Compatibility at the source code level can be achieved through the header `plotcompat.h`.  
 Bugs compatibility is not guaranteed.
 
 ## Contents
-This repository contains the `libplot` library and command line tools: `plot`, `atoplot`, `plottoa`, `graph` and `spline`, as well as manpages for them.
-`vplot` is not available now, but may be in the future - as a tool that directly sends a graph to the printer daemon.
 
-## Examples
-```bash
-$ cat << EOF | spline | graph -g 0 | plot -Tdumb
--10.0 10.0
--5.0 5.0
-0.0 0.0
-5.0 5.0
-10.0 10.0
-EOF
-```
+This repository contains the `libplot` library with its drivers and programs:
+
+* `plot` — reads plot in device-independent binary format and draws it on the device.
+* `tplot` — alias to `plot` (for compatibility with SVR4 shell scripts).
+* `graph` — reads points and draws plot in binary format.
+* `vplot` — variant of `plot` that draws only on Versatec plotter (for compatibility with SVR4 shell scripts).
+* `atoplot` — reads plot in text format and converts it to binary (useful for debugging).
+* `plottoa` — reads plot in binary format and converts it to text (useful for debugging).
+* `spline` — reads points and generates more via smooth curve interpolation.
+
+as well as manual pages for them.
+
+## Building from source
+
+You need POSIX-compatible shell and libraries, CMake >= 3.24 and a C compiler (Clang is preferred) which supports both
+ANSI C and old K&R code.
 
 ```
-    *
-     *                                                                             **
-      **                                                                         **
-        **                                                                      *
-         **                                                                   **
-           **                                                               **
-             *                                                             **
-              **                                                         **
-                *                                                       *
-                 *                                                     **
-                  **                                                 **
-                    *                                               *
-                     **                                            **
-                      *                                           *
-                       *                                         *
-                        **                                     **
-                          *                                    *
-                          *                                   *
-                           **                               **
-                             *                             *
-                              *                            *
-                              *                           *
-                               **                       **
-                                 *                     *
-                                  *                   **
-                                   *                 *
-                                    **             **
-                                      *           **
-                                       ***     ***
-                                          ******
+$ ./build.sh -dsp
 ```
 
-## Installation from source
-You need BSD make (installed as `bmake` on Linux systems) and C99 compiler.  
-Makefiles should be compatible between NetBSD and FreeBSD templates.
-```
-# make PREFIX=/opt/bsd-plotutils all hier install clean
-```
+This will build a tarball in the `dist` directory.
