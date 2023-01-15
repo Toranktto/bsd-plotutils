@@ -1,1 +1,1 @@
-pl_circle() {}
+void pl_circle(void) {}

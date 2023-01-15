@@ -1,7 +1,6 @@
 #include "bg.h"
 
-pl_space(x0, y0, x1, y1) int x0, y0, x1, y1;
-{
+void pl_space(int x0, int y0, int x1, int y1) {
   double scalex, scaley;
   lowx = x0;
   lowy = y0;

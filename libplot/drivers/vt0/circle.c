@@ -1,5 +1,5 @@
-extern vti;
-pl_circle(x, y, r) {
+extern int vti;
+void pl_circle(int x, int y, int r) {
   char c;
   c = 5;
   write(vti, &c, 1);

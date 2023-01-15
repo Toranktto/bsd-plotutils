@@ -8,11 +8,11 @@ float scalex = 1.;
 float scaley = 1.;
 int vti = -1;
 
-pl_openvt() {
+void pl_openvt(void) {
   vti = open("/dev/vt0", 1);
   return;
 }
-pl_open() {
+void pl_open(void) {
   vti = open("/dev/vt0", 1);
   return;
 }

@@ -1,7 +1,6 @@
 #include "hp7221.h"
 
-pl_cont(xi, yi) int xi, yi;
-{
+void pl_cont(int xi, int yi) {
   currentx = scaleX(xi);
   currenty = scaleY(yi);
   putchar('q');

@@ -3,8 +3,7 @@
 /*
  * Hack to set font.
  */
-pl_linemod(s) char *s;
-{
+void pl_linemod(char *s) {
   register char *tit;
   register char *nam;
   int siz = 0;

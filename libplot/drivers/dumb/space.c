@@ -1,7 +1,6 @@
 #include "dumb.h"
 
-pl_space(x0, y0, x1, y1) int x0, y0, x1, y1;
-{
+void pl_space(int x0, int y0, int x1, int y1) {
   minX = x0;
   rangeX = x1 - x0;
   minY = y0;

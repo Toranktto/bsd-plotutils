@@ -141,7 +141,7 @@ where
         x- = x-xi
 */
 
-float rhs(i) {
+float rhs(int i) {
   int i_;
   double zz;
   i_ = i == n - 1 ? 0 : i;
@@ -149,7 +149,7 @@ float rhs(i) {
   return (6 * ((y.val[i_ + 1] - y.val[i_]) / (x.val[i + 1] - x.val[i]) - zz));
 }
 
-sppl_line() {
+int spline(void) {
   float d, s, u, v, hi, hi1;
   float h;
   float D2yi, D2yi1, D2yn1, x0, x1, yy, a;
@@ -214,7 +214,7 @@ sppl_line() {
     if (m <= 0)
       m = 1;
     h = hi1 / m;
-    for (j = m; j > 0 || i == 0 && j == 0; j--) { /* interpolate */
+    for (j = m; j > 0 || (i == 0 && j == 0); j--) { /* interpolate */
       x0 = (m - j) * h / hi1;
       x1 = j * h / hi1;
       yy = D2yi * (x0 - x0 * x0 * x0) + D2yi1 * (x1 - x1 * x1 * x1);
@@ -225,7 +225,7 @@ sppl_line() {
   }
   return (1);
 }
-readin() {
+void readin(void) {
   for (n = 0; n < NP; n++) {
     if (auta)
       x.val[n] = n * dx + x.lb;
@@ -236,10 +236,9 @@ readin() {
   }
 }
 
-getfloat(p) float *p;
-{
+int getfloat(float *p) {
   char buf[30];
-  register c;
+  register int c;
   int i;
   extern double atof();
   for (;;) {
@@ -281,8 +280,7 @@ getfloat(p) float *p;
   return (1);
 }
 
-getlim(p) struct proj *p;
-{
+void getlim(struct proj *p) {
   int i;
   for (i = 0; i < n; i++) {
     if (!p->lbf && p->lb > (p->val[i]))
@@ -292,9 +290,7 @@ getlim(p) struct proj *p;
   }
 }
 
-main(argc, argv) char *argv[];
-{
-  extern char *malloc();
+int main(int argc, char *argv[]) {
   int i;
   x.lbf = x.ubf = y.lbf = y.ubf = 0;
   x.lb = INF;
@@ -342,22 +338,19 @@ main(argc, argv) char *argv[];
   i = (n + 1) * sizeof(dx);
   diag = (float *)malloc((unsigned)i);
   r = (float *)malloc((unsigned)i);
-  if (r == NULL || !sppl_line())
+  if (r == NULL || !spline())
     for (i = 0; i < n; i++) {
       printf("%f ", x.val[i]);
       printf("%f\n", y.val[i]);
     }
 }
-numb(np, argcp, argvp) int *argcp;
-float *np;
-char ***argvp;
-{
+int numb(float *np, int *argcp, char ***argvp) {
   double atof();
   char c;
   if (*argcp <= 1)
     return (0);
   c = (*argvp)[1][0];
-  if (!('0' <= c && c <= '9' || c == '-' || c == '.'))
+  if (!(('0' <= c && c <= '9') || c == '-' || c == '.'))
     return (0);
   *np = atof((*argvp)[1]);
   (*argcp)--;

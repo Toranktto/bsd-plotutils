@@ -7,7 +7,7 @@
  *	Side Effects:	The screen is cleared.
  *---------------------------------------------------------
  */
-pl_erase() {
+void pl_erase(void) {
   setcolor("FF");
   putc('\14', stdout);
   putc('\33', stdout);

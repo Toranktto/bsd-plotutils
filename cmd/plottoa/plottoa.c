@@ -7,8 +7,24 @@
 float deltx;
 float delty;
 
-main(argc, argv) char **argv;
-{
+void fplt(FILE *fin);
+int getsi(FILE *fin);
+void getstr(char *s, FILE *fin);
+void pl_space(int x0, int y0, int x1, int y1);
+void pl_open(void);
+void pl_close(void);
+void pl_erase(void);
+void pl_move(int xi, int yi);
+void pl_cont(int xi, int yi);
+void pl_line(int x0, int y0, int x1, int y1);
+void pl_point(int xi, int yi);
+void pl_label(char *s);
+void pl_arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend);
+void pl_circle(int xc, int yc, int r);
+void pl_linemod(char *line);
+void pl_dot(int xi, int yi, int dx, int n, int *pat);
+
+int main(int argc, char **argv) {
   int std = 1;
   FILE *fin;
 
@@ -38,8 +54,7 @@ main(argc, argv) char **argv;
   exit(0);
 }
 
-fplt(fin) FILE *fin;
-{
+void fplt(FILE *fin) {
   int c;
   char s[256];
   int xi, yi, x0, y0, x1, y1, r, dx, n, i;
@@ -118,8 +133,7 @@ fplt(fin) FILE *fin;
 }
 
 /* get an integer stored in 2 ascii bytes. */
-getsi(fin) FILE *fin;
-{
+int getsi(FILE *fin) {
   short a, b;
   if ((b = getc(fin)) == EOF)
     return (EOF);
@@ -129,10 +143,8 @@ getsi(fin) FILE *fin;
   return (a | b);
 }
 
-getstr(s, fin) char *s;
-FILE *fin;
-{
-  for (; *s = getc(fin); s++)
+void getstr(char *s, FILE *fin) {
+  for (; (*s = getc(fin)); s++)
     if (*s == '\n')
       break;
   *s = '\0';
@@ -140,41 +152,38 @@ FILE *fin;
 
 /* Print out the arguments to plot routines. */
 
-pl_space(x0, y0, x1, y1) int x0, y0, x1, y1;
-{ printf("s %d %d %d %d\n", x0, y0, x1, y1); }
+void pl_space(int x0, int y0, int x1, int y1) {
+  printf("s %d %d %d %d\n", x0, y0, x1, y1);
+}
 
-pl_open() {}
+void pl_open(void) {}
 
-pl_close() {}
+void pl_close(void) {}
 
-pl_erase() { printf("e\n"); }
+void pl_erase(void) { printf("e\n"); }
 
-pl_move(xi, yi) int xi, yi;
-{ printf("m %d %d\n", xi, yi); }
+void pl_move(int xi, int yi) { printf("m %d %d\n", xi, yi); }
 
-pl_cont(xi, yi) int xi, yi;
-{ printf("n %d %d\n", xi, yi); }
+void pl_cont(int xi, int yi) { printf("n %d %d\n", xi, yi); }
 
-pl_line(x0, y0, x1, y1) int x0, y0, x1, y1;
-{ printf("l %d %d %d %d\n", x0, y0, x1, y1); }
+void pl_line(int x0, int y0, int x1, int y1) {
+  printf("l %d %d %d %d\n", x0, y0, x1, y1);
+}
 
-pl_point(xi, yi) int xi, yi;
-{ printf("p %d %d\n", xi, yi); }
+void pl_point(int xi, int yi) { printf("p %d %d\n", xi, yi); }
 
-pl_label(s) char *s;
-{ printf("t%s\n\n", s); }
+void pl_label(char *s) { printf("t%s\n\n", s); }
 
-pl_arc(xcent, ycent, xbeg, ybeg, xend, yend) int xcent, ycent, xbeg, ybeg, xend,
-    yend;
-{ printf("a %d %d %d %d %d %d\n", xcent, ycent, xbeg, ybeg, xend, yend); }
+void pl_arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend) {
+  printf("a %d %d %d %d %d %d\n", xcent, ycent, xbeg, ybeg, xend, yend);
+}
 
-pl_circle(xc, yc, r) int xc, yc, r;
-{ printf("c %d %d %d\n", xc, yc, r); }
+void pl_circle(int xc, int yc, int r) { printf("c %d %d %d\n", xc, yc, r); }
 
-pl_linemod(line) char *line;
-{ printf("f%s\n\n", line); }
+void pl_linemod(char *line) { printf("f%s\n\n", line); }
 
 /* don't know what this should do */
-pl_dot(xi, yi, dx, n, pat) int xi, yi, dx, n;
-char *pat;
-{ printf("d %d %d %d %d %s\n\n", xi, yi, dx, n, pat); }
+/* TODO: fix printing pat */
+void pl_dot(int xi, int yi, int dx, int n, int *pat) {
+  printf("d %d %d %d %d\n\n", xi, yi, dx, n);
+}

@@ -11,8 +11,8 @@ double lowx = 0.0;
 double lowy = 0.0;
 double scale = 1.0;
 
-pl_open() {
-  int pl_close();
+void pl_open(void) {
+  void pl_close();
 
   /* catch interupts */
   signal(SIGINT, pl_close);

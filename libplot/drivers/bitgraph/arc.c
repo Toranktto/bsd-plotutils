@@ -4,8 +4,7 @@
 #define side(x, y) (a * (x) + b * (y) + c > 0.0 ? 1 : -1)
 
 /* The beginning and ending points must be distinct. */
-pl_arc(xc, yc, xbeg, ybeg, xend, yend) int xc, yc, xbeg, ybeg, xend, yend;
-{
+void pl_arc(int xc, int yc, int xbeg, int ybeg, int xend, int yend) {
   double r, radius, costheta, sintheta;
   double a, b, c, x, y, tempX;
   int right_side;

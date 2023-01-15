@@ -1,7 +1,6 @@
 #include "dumb.h"
 
-pl_point(x, y) int x, y;
-{
+void pl_point(int x, int y) {
   scale(x, y);
   currentx = x;
   currenty = y;

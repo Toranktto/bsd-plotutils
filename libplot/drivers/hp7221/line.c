@@ -1,7 +1,6 @@
 #include "hp7221.h"
 
-pl_line(x0, y0, x1, y1) int x0, y0, x1, y1;
-{
+void pl_line(int x0, int y0, int x1, int y1) {
   if (scaleX(x0) == currentx && scaleY(y0) == currenty)
     pl_cont(x1, y1);
   else if (scaleX(x1) == currentx && scaleY(y1) == currenty)

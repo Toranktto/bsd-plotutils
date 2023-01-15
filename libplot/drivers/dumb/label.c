@@ -1,7 +1,6 @@
 #include "dumb.h"
 
-pl_label(string) char *string;
-{
+void pl_label(char *string) {
   while (*string != '\0' && currentx < COLS) {
     screenmat[currentx][currenty] = *string++;
     currentx++;

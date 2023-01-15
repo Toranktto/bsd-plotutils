@@ -10,8 +10,7 @@
  *	The point is made the current point.
  *---------------------------------------------------------
  */
-pl_point(x, y) int x, y;
-{
+void pl_point(int x, int y) {
   setcolor("01");
   putc('Q', stdout);
   outxy20(x, y);

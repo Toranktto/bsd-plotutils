@@ -17,8 +17,8 @@ int COLS, LINES;
 /* A very large screen! (probably should use malloc) */
 char screenmat[MAXCOLS][MAXLINES];
 
-pl_open() {
-  int pl_close();
+void pl_open(void) {
+  void pl_close();
   int i, j;
   char *term, *getenv();
   char bp[1024];

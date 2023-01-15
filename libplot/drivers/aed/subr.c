@@ -19,10 +19,10 @@ static char hex[] = "0123456789ABCDEF";
  *	of val, as represented in hexadecimal.  String is zero-filled.
  *---------------------------------------------------------
  */
-chex(val, string, nchars) int val; /* Integer value to be converted. */
-char *string;                      /* Pointer to area for converted result. */
-int nchars;                        /* Number of characters to be converted. */
-{
+void chex(int val,      /* Integer value to be converted. */
+          char *string, /* Pointer to area for converted result. */
+          int nchars    /* Number of characters to be converted. */
+) {
   string = &(string[nchars]);
   *string = '\0';
   for (; nchars > 0; nchars--) {
@@ -44,11 +44,11 @@ int nchars;                        /* Number of characters to be converted. */
  *	Errors:		None.
  *---------------------------------------------------------
  */
-outxy20(x, y) int x, y; /* The coordinates to be output.  Note:
-                         * these are world coordinates, not screen
-                         * ones.  We scale in this routine.
-                         */
-{
+void outxy20(int x, int y /* The coordinates to be output.  Note:
+                           * these are world coordinates, not screen
+                           * ones.  We scale in this routine.
+                           */
+) {
   char s1[4], s2[4], s3[4];
   x = ((x - xbot) * scale) >> 12;
   y = ((y - ybot) * scale) >> 12;
@@ -68,10 +68,10 @@ outxy20(x, y) int x, y; /* The coordinates to be output.  Note:
  *	isn't that already.
  *---------------------------------------------------------
  */
-setcolor(pcolor) char *pcolor; /* Pointer to a string giving the desired
-                                * color in hexadecimal.
-                                */
-{
+void setcolor(char *pcolor /* Pointer to a string giving the desired
+                            * color in hexadecimal.
+                            */
+) {
   static char curcolor[] = "xx";
   if ((pcolor[0] != curcolor[0]) || (pcolor[1] != curcolor[1])) {
     curcolor[0] = pcolor[0];

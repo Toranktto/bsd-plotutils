@@ -13,13 +13,12 @@ char lbl_mv[] = {036, 040, S,  S,  S,  S,  S,  S,  SW,  SW,
                  SW,  SW,  SW, SW, SW, SW, SW, SW, 037, 0};
 char lbl_umv[] = {036, 040, N,  N,  N,  N,  N,  N,  NE,  NE,
                   NE,  NE,  NE, NE, NE, NE, NE, NE, 037, 0};
-pl_label(s) char *s;
-{
-  register i, c;
-  for (i = 0; c = lbl_mv[i]; i++)
+void pl_label(char *s) {
+  register int i, c;
+  for (i = 0; (c = lbl_mv[i]); i++)
     putch(c);
-  for (i = 0; c = s[i]; i++)
+  for (i = 0; (c = s[i]); i++)
     putch(c);
-  for (i = 0; c = lbl_umv[i]; i++)
+  for (i = 0; (c = lbl_umv[i]); i++)
     putch(c);
 }

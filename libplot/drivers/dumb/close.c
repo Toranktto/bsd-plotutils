@@ -1,7 +1,7 @@
 #include "dumb.h"
 #include <signal.h>
 
-pl_close() {
+void pl_close(void) {
   int i, j;
 
   for (j = 0; j < LINES; j++) {

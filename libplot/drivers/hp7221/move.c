@@ -1,7 +1,6 @@
 #include "hp7221.h"
 
-pl_move(xi, yi) int xi, yi;
-{
+void pl_move(int xi, int yi) {
   currentx = scaleX(xi);
   currenty = scaleY(yi);
   putchar('p');

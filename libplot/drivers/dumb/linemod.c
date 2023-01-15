@@ -1,2 +1,1 @@
-pl_linemod(s) char *s;
-{}
+void pl_linemod(char *s) {}

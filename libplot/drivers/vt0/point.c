@@ -1,6 +1,6 @@
-extern vti;
-extern xnow, ynow;
-pl_point(xi, yi) {
+extern int vti;
+extern int xnow, ynow;
+void pl_point(int xi, int yi) {
   struct {
     char pad, c;
     int x, y;

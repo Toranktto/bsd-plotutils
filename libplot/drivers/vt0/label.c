@@ -1,7 +1,6 @@
-extern vti;
+extern int vti;
 
-pl_label(s) char *s;
-{
+void pl_label(char *s) {
   int i, o;
 
   o = 01401;

@@ -1,17 +1,9 @@
 #include "con.h"
-pl_line(x0, y0, x1, y1) {
-  ipl_line(xconv(xsc(x0)), yconv(ysc(y0)), xconv(xsc(x1)), yconv(ysc(y1)));
-  return;
-}
-pl_cont(x0, y0) {
-  ipl_line(xnow, ynow, xconv(xsc(x0)), yconv(ysc(y0)));
-  return;
-}
-ipl_line(cx0, cy0, cx1, cy1) {
-  int maxp, tt, j, np;
+void iline(int cx0, int cy0, int cx1, int cy1) {
+  int maxp, tt, j;
   char chx, chy;
   float xd, yd;
-  float dist2(), sqrt();
+  float dist2();
   movep(cx0, cy0);
   maxp = sqrt(dist2(cx0, cy0, cx1, cy1)) / 2.;
   xd = cx1 - cx0;
@@ -46,5 +38,13 @@ ipl_line(cx0, cy0, cx1, cy1) {
     spew('.');
   }
   outplot();
+  return;
+}
+void pl_line(int x0, int y0, int x1, int y1) {
+  iline(xconv(xsc(x0)), yconv(ysc(y0)), xconv(xsc(x1)), yconv(ysc(y1)));
+  return;
+}
+void pl_cont(int x0, int y0) {
+  iline(xnow, ynow, xconv(xsc(x0)), yconv(ysc(y0)));
   return;
 }

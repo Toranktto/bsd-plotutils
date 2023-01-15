@@ -1,7 +1,6 @@
 #include "hp7221.h"
 
-pl_point(xi, yi) int xi, yi;
-{
+void pl_point(int xi, int yi) {
   if (scaleX(xi) != currentx || scaleY(yi) != currenty)
     pl_move(xi, yi);
   pl_cont(xi, yi);

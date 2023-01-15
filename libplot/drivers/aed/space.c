@@ -11,8 +11,7 @@
  *	Our own variables scale, xbot, and ybot are changed.
  *---------------------------------------------------------
  */
-pl_space(x0, y0, x1, y1) int x0, y0, x1, y1;
-{
+void pl_space(int x0, int y0, int x1, int y1) {
   int xscale, yscale, xsize, ysize;
   xscale = (GRXMAX << 12) / (x1 - x0);
   yscale = (GRYMAX << 12) / (y1 - y0);

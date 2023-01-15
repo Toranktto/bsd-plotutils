@@ -1,6 +1,6 @@
 #include "hp2648.h"
 
-pl_close() {
+void pl_close(void) {
   putchar('Z');
   fflush(stdout);
   if (shakehands == TRUE) {

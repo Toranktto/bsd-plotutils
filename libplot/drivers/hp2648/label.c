@@ -1,7 +1,6 @@
 #include "hp2648.h"
 
-pl_label(s) char *s;
-{
+void pl_label(char *s) {
   handshake();
   putchar(ESC);
   putchar(GRAPHIC);

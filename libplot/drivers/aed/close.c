@@ -10,7 +10,7 @@
  *	The graphics display modes are reset.
  *---------------------------------------------------------
  */
-pl_close() {
+void pl_close(void) {
   fputs("Q00204\6", stdout);
   (void)fflush(stdout);
   (void)stty(fileno(stdout), &sgttyb);

@@ -1,3 +1,3 @@
 #include "gigi.h"
 
-pl_erase() { printf("S(E)"); }
+void pl_erase(void) { printf("S(E)"); }

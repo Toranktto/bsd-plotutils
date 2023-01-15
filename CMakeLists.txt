@@ -5,12 +5,9 @@ if ((NOT CMAKE_C_COMPILER_ID MATCHES "Clang") AND (NOT CMAKE_C_COMPILER_ID MATCH
     message(FATAL_ERROR "This project at the moment supports only Clang and GCC compilers.")
 endif ()
 add_compile_options(
-        -ansi
-        -Wno-incompatible-function-pointer-types
-        -Wno-incompatible-library-redeclaration
-        -Wno-parentheses
-        -Wno-implicit-function-declaration
-        -Wno-return-type
+        -pedantic
+        -Wall
+        -Werror
         -Wno-implicit-function-declaration
 )
 

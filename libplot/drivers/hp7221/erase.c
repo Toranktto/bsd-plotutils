@@ -1,1 +1,1 @@
-pl_erase() {}
+void pl_erase(void) {}

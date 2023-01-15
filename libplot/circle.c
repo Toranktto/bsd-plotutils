@@ -1,5 +1,5 @@
 #include <stdio.h>
-pl_circle(x, y, r) {
+void pl_circle(int x, int y, int r) {
   putc('c', stdout);
   putsi(x);
   putsi(y);

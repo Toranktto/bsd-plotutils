@@ -1,1 +1,1 @@
-pl_linemod() {}
+void pl_linemod(void) {}

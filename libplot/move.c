@@ -1,5 +1,5 @@
 #include <stdio.h>
-pl_move(xi, yi) {
+void pl_move(int xi, int yi) {
   putc('m', stdout);
   putsi(xi);
   putsi(yi);

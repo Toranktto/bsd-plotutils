@@ -1,3 +1,2 @@
-pl_linemod(s) char *s;
-{ /* ignored on 4013 */
+void pl_linemod(char *s) { /* ignored on 4013 */
 }

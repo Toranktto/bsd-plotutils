@@ -1,7 +1,6 @@
 #include "gigi.h"
 
-pl_point(xi, yi) int xi, yi;
-{
+void pl_point(int xi, int yi) {
   if (xsc(xi) != currentx || ysc(yi) != currenty)
     pl_move(xi, yi);
   printf("V[]");

@@ -1,7 +1,6 @@
 #include "dumb.h"
 
-pl_line(x0, y0, x1, y1) int x0, y0, x1, y1;
-{
+void pl_line(int x0, int y0, int x1, int y1) {
   int x, y;
 
   scale(x0, y0);
@@ -11,5 +10,5 @@ pl_line(x0, y0, x1, y1) int x0, y0, x1, y1;
   currentx = x0;
   currenty = y0;
   screenmat[currentx][currenty] = '*';
-  dda_pl_line('*', x0, y0, x1, y1);
+  dda_line('*', x0, y0, x1, y1);
 }

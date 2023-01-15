@@ -12,7 +12,7 @@ float scalex;
 float scaley;
 struct sgttyb sarg;
 
-pl_open() {
+void pl_open(void) {
   if (isatty(fileno(stdout))) {
     shakehands = TRUE;
     fildes = open(TERMINAL, 0);

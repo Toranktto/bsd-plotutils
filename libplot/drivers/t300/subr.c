@@ -1,59 +1,59 @@
 #include "con.h"
 #include <stdio.h>
-abval(q) { return (q >= 0 ? q : -q); }
+int abval(int q) { return (q >= 0 ? q : -q); }
 
-xconv(xp) {
+int xconv(int xp) {
   /* x position input is -2047 to +2047, output must be 0 to PAGSIZ*HORZRES */
   xp += 2048;
   /* the computation is newx = xp*(PAGSIZ*HORZRES)/4096 */
   return (xoffset + xp / xscale);
 }
 
-yconv(yp) {
+int yconv(int yp) {
   /* see description of xconv */
   yp += 2048;
   return (yp / yscale);
 }
 
-inplot() {
+void spew(int ch) {
+  if (ch == UP)
+    putc(ESC, stdout);
+  putc(ch, stdout);
+}
+
+void inplot(void) {
   stty(OUTF, &PTTY);
   spew(ACK);
 }
 
-outplot() {
+void outplot(void) {
   spew(ESC);
   spew(ACK);
   fflush(stdout);
   stty(OUTF, &ITTY);
 }
 
-spew(ch) {
-  if (ch == UP)
-    putc(ESC, stdout);
-  putc(ch, stdout);
-}
+void tobotleft(void) { pl_move(-2048, -2048); }
 
-tobotleft() { pl_move(-2048, -2048); }
-reset() {
+void reset(void) {
   outplot();
   exit(1);
 }
 
-float dist2(x1, y1, x2, y2) {
+float dist2(int x1, int y1, int x2, int y2) {
   float t, v;
   t = x2 - x1;
   v = y1 - y2;
   return (t * t + v * v);
 }
 
-swap(pa, pb) int *pa, *pb;
-{
+void swap(int *pa, int *pb) {
   int t;
   t = *pa;
   *pa = *pb;
   *pb = t;
 }
-movep(xg, yg) {
+void movep(int xg, int yg) {
   int i, ch;
   if ((xg == xnow) && (yg == ynow))
     return;
@@ -94,12 +94,13 @@ movep(xg, yg) {
   ynow = yg;
 }
 
-xsc(xi) {
+int xsc(int xi) {
   int xa;
   xa = (xi - obotx) * scalex + botx;
   return (xa);
 }
-ysc(yi) {
+
+int ysc(int yi) {
   int ya;
   ya = (yi - oboty) * scaley + boty;
   return (ya);

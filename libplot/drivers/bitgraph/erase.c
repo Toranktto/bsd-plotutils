@@ -1,6 +1,6 @@
 #include "bg.h"
 
-pl_erase() {
+void pl_erase(void) {
   putchar(ESC);
   printf("[H");
   putchar(ESC);

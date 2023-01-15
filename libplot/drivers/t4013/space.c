@@ -5,7 +5,7 @@ extern float oboty;
 extern float scalex;
 extern float scaley;
 extern int scaleflag;
-pl_space(x0, y0, x1, y1) {
+void pl_space(int x0, int y0, int x1, int y1) {
   botx = 0.;
   boty = 0.;
   obotx = x0;

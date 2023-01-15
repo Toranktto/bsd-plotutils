@@ -1,1 +1,1 @@
-pl_circle(x, y, r) { pl_arc(x, y, x + r, y, x + r, y); }
+void pl_circle(int x, int y, int r) { pl_arc(x, y, x + r, y, x + r, y); }

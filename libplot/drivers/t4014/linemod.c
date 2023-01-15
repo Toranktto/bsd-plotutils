@@ -1,5 +1,4 @@
-pl_linemod(s) char *s;
-{
+void pl_linemod(char *s) {
   char c;
   putch(033);
   switch (s[0]) {

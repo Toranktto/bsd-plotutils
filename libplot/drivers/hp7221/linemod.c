@@ -1,7 +1,6 @@
 #include "hp7221.h"
 
-pl_linemod(line) char *line;
-{
+void pl_linemod(char *line) {
   /*
    * Note that the bit patterns could be compacted using the
    *  repeat field conventions.  They aren't for clarity.

@@ -1,6 +1,6 @@
 #include "hp2648.h"
 
-pl_erase() {
+void pl_erase(void) {
   buffready(8);
   putchar(ESC);
   putchar(GRAPHIC);

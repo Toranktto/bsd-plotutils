@@ -4,9 +4,11 @@ float deltx;
 float delty;
 
 char *mapLineType();
+void fplt(FILE *fin);
+int getsi(FILE *fin);
+void getstr(char *s, FILE *fin);
 
-main(argc, argv) char **argv;
-{
+int main(int argc, char **argv) {
   int std = 1;
   FILE *fin;
 
@@ -37,8 +39,7 @@ main(argc, argv) char **argv;
   exit(0);
 }
 
-fplt(fin) FILE *fin;
-{
+void fplt(FILE *fin) {
   int c;
   char s[256];
   int xi, yi, x0, y0, x1, y1, r, dx, n, i;
@@ -121,8 +122,7 @@ fplt(fin) FILE *fin;
   }
   pl_close();
 }
-getsi(fin) FILE *fin;
-{ /* get an integer stored in 2 ascii bytes. */
+int getsi(FILE *fin) { /* get an integer stored in 2 ascii bytes. */
   int i;
 
   if (fscanf(fin, " %d", &i) != 1) {
@@ -130,10 +130,8 @@ getsi(fin) FILE *fin;
   }
   return (i);
 }
-getstr(s, fin) char *s;
-FILE *fin;
-{
-  for (; *s = getc(fin); s++)
+void getstr(char *s, FILE *fin) {
+  for (; (*s = getc(fin)); s++)
     if (*s == '\n')
       break;
   *s = '\0';
@@ -151,9 +149,7 @@ char *lineMap[] = {
     "dotdotdash",   /* line type 8 */
 };
 
-char *mapLineType(cp)
-char *cp;
-{
+char *mapLineType(char *cp) {
   int i;
 
   if (sscanf(cp, "%d", &i) == 1) {

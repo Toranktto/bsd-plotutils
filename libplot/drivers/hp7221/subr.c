@@ -1,7 +1,6 @@
 #include "hp7221.h"
 
-putMBP(x, y) int x, y;
-{
+void putMBP(int x, int y) {
   int chr;
 
   chr = (x >> 10) & 017;
@@ -31,8 +30,7 @@ putMBP(x, y) int x, y;
   return;
 }
 
-putMBN(i) int i;
-{
+void putMBN(int i) {
   int chr;
 
   chr = (i >> 12) & 07;
@@ -51,8 +49,7 @@ putMBN(i) int i;
   return;
 }
 
-putSBN(i) int i;
-{
+void putSBN(int i) {
   i &= 077;
   if (i < 32) {
     i += 64;

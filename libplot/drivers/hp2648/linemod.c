@@ -1,7 +1,6 @@
 #include "hp2648.h"
 
-pl_linemod(line) char *line;
-{
+void pl_linemod(char *line) {
   putchar('Z');
   handshake();
   putchar(ESC);

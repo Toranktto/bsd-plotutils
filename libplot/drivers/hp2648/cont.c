@@ -1,7 +1,6 @@
 #include "hp2648.h"
 
-pl_cont(xi, yi) int xi, yi;
-{
+void pl_cont(int xi, int yi) {
   char xb1, xb2, yb1, yb2;
   itoa(xsc(xi), &xb1, &xb2);
   itoa(ysc(yi), &yb1, &yb2);

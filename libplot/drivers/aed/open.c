@@ -33,7 +33,7 @@ static int colors[] = {200, 200, 200, 0, 0, 125, 125, 0, 0, 125, 0, 0};
  *	Errors:		None.
  *---------------------------------------------------------
  */
-pl_open() {
+void pl_open(void) {
   int flags, *p, i;
   char dum[4];
 

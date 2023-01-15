@@ -1,5 +1,5 @@
 #include <stdio.h>
-pl_cont(xi, yi) {
+void pl_cont(int xi, int yi) {
   putc('n', stdout);
   putsi(xi);
   putsi(yi);

@@ -1,9 +1,5 @@
 #include <stdio.h>
-pl_closevt() {
-  putch(037);
-  fflush(stdout);
-}
-pl_close() {
+void pl_close(void) {
   putch(037);
   fflush(stdout);
 }

@@ -7,8 +7,7 @@
  *	Side Effects:	As above.
  *---------------------------------------------------------
  */
-pl_move(x, y) int x, y;
-{
+void pl_move(int x, int y) {
   curx = x;
   cury = y;
 }

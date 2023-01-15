@@ -1,5 +1,5 @@
-frame(n) {
-  extern vti;
-  n = n & 0377 | 02000;
+void frame(int n) {
+  extern int vti;
+  n = (n & 0377) | 02000;
   write(vti, &n, 2);
 }

@@ -1,8 +1,6 @@
 #include "hp2648.h"
 
-pl_arc(xcent, ycent, xbeg, ybeg, xend, yend) int xcent, ycent, xbeg, ybeg, xend,
-    yend;
-{
+void pl_arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend) {
   double costheta, sintheta, x, y, xn, r;
   double x1, y1, x2, y2;
   int xi, yi, crosspflag, crossp;
@@ -33,8 +31,8 @@ pl_arc(xcent, ycent, xbeg, ybeg, xend, yend) int xcent, ycent, xbeg, ybeg, xend,
   } while (crosspflag == 0 || crossp > 0);
 }
 
-cross_product(x1, y1, x2, y2, x3, y3) double x1, x2, x3, y1, y2, y3;
-{
+int cross_product(double x1, double y1, double x2, double y2, double x3,
+                  double y3) {
   double z, a, b;
   a = (y3 - y2) * (x2 - x1);
   b = (x3 - x2) * (y2 - y1);

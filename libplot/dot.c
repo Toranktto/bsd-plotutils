@@ -1,6 +1,5 @@
 #include <stdio.h>
-pl_dot(xi, yi, dx, n, pat) int pat[];
-{
+void pl_dot(int xi, int yi, int dx, int n, int pat[]) {
   int i;
   putc('d', stdout);
   putsi(xi);

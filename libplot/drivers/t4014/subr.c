@@ -11,7 +11,10 @@ int oloy = -1;
 int ohiy = -1;
 int ohix = -1;
 int oextra = -1;
-pl_cont(x, y) {
+
+void putch(int c) { putc(c, stdout); }
+
+void pl_cont(int x, int y) {
   int hix, hiy, lox, loy, extra;
   int n;
   x = (x - obotx) * scalex + botx;
@@ -50,5 +53,3 @@ pl_cont(x, y) {
   while (n--)
     putch(0);
 }
-
-putch(c) { putc(c, stdout); }

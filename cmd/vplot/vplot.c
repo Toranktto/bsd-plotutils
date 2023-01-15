@@ -1,7 +1,7 @@
 /*
  * Reads standard graphics input
  * Makes a plot on a 200 dot-per-inch 11" wide
- * Versatek plotter.
+ * Versatec plotter.
  *
  * Creates and leaves /var/tmp/raster (1000 blocks)
  * which is the bitmap
@@ -20,6 +20,9 @@
 #define LONGDASHED 074
 #define SETSTATE (('v' << 8) + 1)
 
+const int a[][2] = {
+    {0, 0}, {0, 1}, {1, 1}, {1, 0}, {0, 0},
+};
 int linmod = SOLID;
 int again;
 int done1;
@@ -49,10 +52,17 @@ struct buf bufs[NB];
 int in, out;
 char *picture = "/var/tmp/raster";
 
-main(argc, argv) char **argv;
-{
-  extern int onintr();
-  register i;
+void getpict(void);
+void plotch(register int c);
+void putpict(void);
+void pl_line(register int x0, register int y0, int x1, int y1);
+void pl_point(register int x, register int y);
+void getblk(register int b);
+void onintr(int x);
+int zseek(int a, int b);
+
+int main(int argc, char **argv) {
+  register int i;
 
   if (argc > 1) {
     in = open(argv[1], 0);
@@ -78,7 +88,6 @@ another:
   zseek(out, 0);
   for (i = 0; i < 32 * 32; i++)
     write(out, blocks[0], 512);
-  /**/
   getpict();
   for (i = 0; i < NB; i++)
     if (bufs[i].bno != -1) {
@@ -94,8 +103,8 @@ another:
   exit(0);
 }
 
-getpict() {
-  register x1, y1;
+void getpict(void) {
+  register int x1, y1;
 
   again = 0;
   for (;;)
@@ -208,9 +217,8 @@ getpict() {
     }
 }
 
-plotch(c) register c;
-{
-  register j;
+void plotch(register int c) {
+  register int j;
   register char *cp;
   int i;
 
@@ -231,8 +239,8 @@ plotch(c) register c;
 }
 
 int f; /* versatec file number */
-putpict() {
-  register x, *ip, *op;
+void putpict(void) {
+  register int x, *ip, *op;
   int y;
 
   if (f == 0) {
@@ -266,11 +274,10 @@ putpict() {
   }
 }
 
-pl_line(x0, y0, x1, y1) register x0, y0;
-{
+void pl_line(register int x0, register int y0, int x1, int y1) {
   int dx, dy;
   int xinc, yinc;
-  register res1;
+  register int res1;
   int res2;
   int slope;
 
@@ -289,12 +296,13 @@ pl_line(x0, y0, x1, y1) register x0, y0;
   res2 = 0;
   if (dx >= dy)
     while (x0 != x1) {
-      if ((x0 + slope * y0) & linmod)
+      if ((x0 + slope * y0) & linmod) {
         if (((x0 >> 6) + ((y0 & ~077) >> 1)) == bufs[0].bno)
           bufs[0].block[((y0 & 077) << 3) + ((x0 >> 3) & 07)] |=
               1 << (7 - (x0 & 07));
         else
           pl_point(x0, y0);
+      }
       if (res1 > res2) {
         res2 += dx - res1;
         res1 = 0;
@@ -305,12 +313,13 @@ pl_line(x0, y0, x1, y1) register x0, y0;
     }
   else
     while (y0 != y1) {
-      if ((x0 + slope * y0) & linmod)
+      if ((x0 + slope * y0) & linmod) {
         if (((x0 >> 6) + ((y0 & ~077) >> 1)) == bufs[0].bno)
           bufs[0].block[((y0 & 077) << 3) + ((x0 >> 3) & 07)] |=
               1 << (7 - (x0 & 07));
         else
           pl_point(x0, y0);
+      }
       if (res1 > res2) {
         res2 += dy - res1;
         res1 = 0;
@@ -319,17 +328,17 @@ pl_line(x0, y0, x1, y1) register x0, y0;
       res1 += dx;
       y0 += yinc;
     }
-  if ((x1 + slope * y1) & linmod)
+  if ((x1 + slope * y1) & linmod) {
     if (((x1 >> 6) + ((y1 & ~077) >> 1)) == bufs[0].bno)
       bufs[0].block[((y1 & 077) << 3) + ((x1 >> 3) & 07)] |= 1
                                                              << (7 - (x1 & 07));
     else
       pl_point(x1, y1);
+  }
 }
 
-pl_point(x, y) register x, y;
-{
-  register bno;
+void pl_point(register int x, register int y) {
+  register int bno;
 
   bno = ((x & 03700) >> 6) + ((y & 03700) >> 1);
   if (bno != bufs[0].bno) {
@@ -340,8 +349,7 @@ pl_point(x, y) register x, y;
   bufs[0].block[((y & 077) << 3) + ((x >> 3) & 07)] |= 1 << (7 - (x & 07));
 }
 
-getblk(b) register b;
-{
+void getblk(register int b) {
   register struct buf *bp1, *bp2;
   register char *tp;
 
@@ -366,6 +374,6 @@ loop:
   goto loop;
 }
 
-onintr() { exit(1); }
+void onintr(int x) { exit(1); }
 
-zseek(a, b) { return (lseek(a, (long)b * 512, 0)); }
+int zseek(int a, int b) { return (lseek(a, (long)b * 512, 0)); }

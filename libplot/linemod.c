@@ -1,6 +1,5 @@
 #include <stdio.h>
-pl_linemod(s) char *s;
-{
+void pl_linemod(char *s) {
   int i;
   putc('f', stdout);
   for (i = 0; s[i];)

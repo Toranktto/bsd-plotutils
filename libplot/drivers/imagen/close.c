@@ -1,7 +1,7 @@
 #include "imPcodes.h"
 #include "imp.h"
 
-pl_close() {
+void pl_close(void) {
   putch(imP_ENDPAGE);
   fflush(stdout);
 }

@@ -1,5 +1,5 @@
 #include <stdio.h>
-pl_point(xi, yi) {
+void pl_point(int xi, int yi) {
   putc('p', stdout);
   putsi(xi);
   putsi(yi);

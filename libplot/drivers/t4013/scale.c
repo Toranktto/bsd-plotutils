@@ -1,9 +1,7 @@
 extern float scalex;
 extern float scaley;
 extern int scaleflag;
-scale(i, x, y) char i;
-float x, y;
-{
+void scale(int i, double x, double y) {
   switch (i) {
   default:
     return;

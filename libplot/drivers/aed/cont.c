@@ -7,5 +7,4 @@
  *	Side Effects:	As above.
  *---------------------------------------------------------
  */
-pl_cont(x, y) int x, y;
-{ pl_line(curx, cury, x, y); }
+void pl_cont(int x, int y) { pl_line(curx, cury, x, y); }

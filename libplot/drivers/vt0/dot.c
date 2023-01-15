@@ -1,6 +1,5 @@
-extern vti;
-pl_dot(xi, yi, dx, n, pat) int pat[];
-{
+extern int vti;
+void pl_dot(int xi, int yi, int dx, int n, int pat[]) {
   struct {
     char pad, c;
     int xi, yi, dx;

@@ -27,7 +27,7 @@ int xscale, xoffset, yscale;
 float botx = 0., boty = 0., obotx = 0., oboty = 0.;
 float scalex = 1., scaley = 1.;
 
-pl_open() {
+void pl_open(void) {
   int reset();
   xnow = ynow = 0;
   OUTF = 1;
@@ -43,5 +43,3 @@ pl_open() {
   xoffset = OFFSET * HORZRESP;
   return;
 }
-
-pl_openvt() { pl_open(); }

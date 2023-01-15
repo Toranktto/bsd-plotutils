@@ -1,5 +1,5 @@
 #include <stdio.h>
-pl_line(x0, y0, x1, y1) {
+void pl_line(int x0, int y0, int x1, int y1) {
   putc('l', stdout);
   putsi(x0);
   putsi(y0);

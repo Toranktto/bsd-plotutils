@@ -11,8 +11,7 @@
  *	The current position is updated accordingly.
  *---------------------------------------------------------
  */
-pl_label(s) char *s;
-{
+void pl_label(char *s) {
   setcolor("02");
   putc('Q', stdout);
   outxy20(curx + (4096 / scale), cury + (4096 / scale));

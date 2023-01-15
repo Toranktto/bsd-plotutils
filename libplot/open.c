@@ -1,2 +1,1 @@
-pl_openvt() {}
-pl_open() {}
+void pl_open(void) {}

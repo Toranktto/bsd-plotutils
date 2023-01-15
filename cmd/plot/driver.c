@@ -4,9 +4,11 @@ float deltx;
 float delty;
 int PlotRes;
 
-main(argc, argv) int argc;
-char *argv[];
-{
+void fplt(FILE *fin);
+int getsi(register FILE *fin);
+void getstr(register char *s, register FILE *fin);
+
+int main(int argc, char *argv[]) {
   int std = 1;
   char *progname;
   FILE *fin;
@@ -41,8 +43,7 @@ char *argv[];
   exit(0);
 }
 
-fplt(fin) FILE *fin;
-{
+void fplt(FILE *fin) {
   register int c;
   char s[256];
   int xi, yi, x0, y0, x1, y1, r, dx, n, i;
@@ -121,8 +122,7 @@ fplt(fin) FILE *fin;
 }
 
 /* get an integer stored in 2 ascii bytes. */
-getsi(fin) register FILE *fin;
-{
+int getsi(register FILE *fin) {
   short a, b;
 
   if ((b = getc(fin)) == EOF)
@@ -133,11 +133,8 @@ getsi(fin) register FILE *fin;
   return (a | b);
 }
 
-getstr(s, fin) register char *s;
-register FILE *fin;
-{
-
-  for (; *s = getc(fin); s++)
+void getstr(register char *s, register FILE *fin) {
+  for (; (*s = getc(fin)); s++)
     if (*s == '\n')
       break;
   *s = '\0';

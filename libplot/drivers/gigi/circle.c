@@ -1,7 +1,6 @@
 #include "gigi.h"
 
-pl_circle(xc, yc, r) int xc, yc, r;
-{
+void pl_circle(int xc, int yc, int r) {
   if (r < 1) {
     pl_point(xc, yc);
     return;

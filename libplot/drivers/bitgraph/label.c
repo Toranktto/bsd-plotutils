@@ -1,2 +1,1 @@
-pl_label(s) char *s;
-{ printf("%s", s); }
+void pl_label(char *s) { printf("%s", s); }

@@ -12,8 +12,8 @@ double lowy = 0.0;
 double scalex = 1.0;
 double scaley = 1.0;
 
-pl_open() {
-  int pl_close();
+void pl_open(void) {
+  void pl_close();
 
   /* catch interupts */
   signal(SIGINT, pl_close);

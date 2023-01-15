@@ -1,7 +1,6 @@
 #include "hp2648.h"
 
-pl_circle(xc, yc, r) int xc, yc, r;
-{
+void pl_circle(int xc, int yc, int r) {
   double costheta, sintheta, x, y, xn;
   int xi, yi;
 

@@ -1,1 +1,1 @@
-pl_point(xi, yi) { pl_line(xi, yi, xi, yi); }
+void pl_point(int xi, int yi) { pl_line(xi, yi, xi, yi); }

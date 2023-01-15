@@ -1,6 +1,6 @@
-extern vti;
-extern xnow, ynow;
-pl_line(x0, y0, x1, y1) {
+extern int vti;
+extern int xnow, ynow;
+void pl_line(int x0, int y0, int x1, int y1) {
   struct {
     char x, c;
     int x0, y0, x1, y1;
@@ -12,7 +12,7 @@ pl_line(x0, y0, x1, y1) {
   p.y1 = ynow = ysc(y1);
   write(vti, &p.c, 9);
 }
-pl_cont(x0, y0) {
+void pl_cont(int x0, int y0) {
   pl_line(xnow, ynow, xsc(x0), ysc(y0));
   return;
 }

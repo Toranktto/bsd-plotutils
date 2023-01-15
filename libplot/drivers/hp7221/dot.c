@@ -1,1 +1,1 @@
-pl_dot() {}
+void pl_dot(void) {}

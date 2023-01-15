@@ -1,1 +1,1 @@
-pl_arc() {}
+void pl_arc(void) {}

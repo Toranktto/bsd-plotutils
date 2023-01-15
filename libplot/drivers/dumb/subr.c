@@ -1,10 +1,9 @@
 #include "dumb.h"
 
 /* Does not plot first point -- assumed that it is already plotted */
-dda_pl_line(ch, x0, y0, x1, y1) char ch;
-int x0, y0; /* already transformed to screen coords */
-int x1, y1; /* untransformed */
-{
+void dda_line(int ch, int x0, int y0, /* already transformed to screen coords */
+              int x1, int y1          /* untransformed */
+) {
   int length, i;
   double deltaX, deltaY;
   double x, y;

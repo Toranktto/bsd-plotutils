@@ -1,6 +1,6 @@
-extern vti;
-extern xnow, ynow;
-pl_move(xi, yi) {
+extern int vti;
+extern int xnow, ynow;
+void pl_move(int xi, int yi) {
   struct {
     char pad, c;
     int x, y;

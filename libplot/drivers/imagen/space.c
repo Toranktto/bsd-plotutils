@@ -8,7 +8,7 @@ extern float scaley;
 int PlotRes = 100;
 
 int scaleflag;
-pl_space(x0, y0, x1, y1) {
+void pl_space(int x0, int y0, int x1, int y1) {
   botx = 2.;
   boty = 2.;
   obotx = x0;

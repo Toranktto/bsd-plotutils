@@ -1,7 +1,6 @@
 #include "imPcodes.h"
 #include "imp.h"
-pl_erase() {
-  int i;
+void pl_erase(void) {
   putch(imP_ENDPAGE);
   imPx = imPy = 0;
   return;

@@ -1,2 +1,2 @@
 #include <stdio.h>
-pl_erase() { putc('e', stdout); }
+void pl_erase(void) { putc('e', stdout); }

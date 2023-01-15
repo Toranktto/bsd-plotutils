@@ -11,8 +11,7 @@
  *	or "dotdashed".  If s isn't recognized, then "solid" is used.
  *---------------------------------------------------------
  */
-pl_linemod(s) char *s;
-{
+void pl_linemod(char *s) {
   if (strcmp(s, "dotted") == 0)
     fputs("1AAFF", stdout);
   else if (strcmp(s, "longdashed") == 0)

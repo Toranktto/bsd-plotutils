@@ -1,5 +1,5 @@
 #include "imp.h"
-pl_move(xi, yi) {
+void pl_move(int xi, int yi) {
   imPx = xi;
   imPy = yi;
 }

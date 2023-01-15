@@ -1,7 +1,7 @@
 #include "gigi.h"
 #include <signal.h>
 
-pl_close() {
+void pl_close(void) {
   /* recieve interupts */
   signal(SIGINT, SIG_IGN);
 

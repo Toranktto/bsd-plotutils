@@ -1,6 +1,5 @@
 #include <stdio.h>
-pl_label(s) char *s;
-{
+void pl_label(char *s) {
   int i;
   putc('t', stdout);
   for (i = 0; s[i];)

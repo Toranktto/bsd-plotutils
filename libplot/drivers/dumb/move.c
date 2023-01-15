@@ -1,7 +1,6 @@
 #include "dumb.h"
 
-pl_move(x, y) int x, y;
-{
+void pl_move(int x, int y) {
   scale(x, y);
   currentx = x;
   currenty = y;

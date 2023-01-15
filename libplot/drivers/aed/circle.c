@@ -9,8 +9,7 @@
  *	A circle of radius r is drawn at (x,y).
  *---------------------------------------------------------
  */
-pl_circle(x, y, r) int x, y, r;
-{
+void pl_circle(int x, int y, int r) {
   char buf[3];
   setcolor("01");
   putc('Q', stdout);

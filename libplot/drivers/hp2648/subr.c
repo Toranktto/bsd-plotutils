@@ -1,7 +1,7 @@
 #include "hp2648.h"
 #include <sgtty.h>
 
-handshake() {
+void handshake(void) {
   int i;
   char ch;
 
@@ -23,8 +23,7 @@ handshake() {
   }
 }
 
-buffready(n) int n;
-{
+void buffready(int n) {
   buffcount = buffcount + n;
   if (buffcount >= 80) {
     handshake();
@@ -36,9 +35,7 @@ buffready(n) int n;
   }
 }
 
-itoa(num, byte1, byte2) int num;
-char *byte1, *byte2;
-{
+void itoa(int num, char *byte1, char *byte2) {
   *byte1 = (num & 037) | 040;
   *byte2 = ((num >> 5) & 037) | 040;
 }

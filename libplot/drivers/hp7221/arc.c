@@ -16,23 +16,23 @@
 
 #define side(x, y) (a * (x) + b * (y) + c > 0.0 ? 1 : -1)
 
-pl_arc(xcent, ycent, xbeg, ybeg, xend, yend) int xcent, ycent, xbeg, ybeg, xend,
-    yend;
-{
+void pl_arc(int xcent, int ycent, int xbeg, int ybeg, int xend, int yend) {
+  /*
   double radius2, c2;
   double a, b, c;
-  int angle;
+  int angle; */
 
   /* Probably should check that this is really a circular arc.  */
-  radius2 = (xcent - xbeg) * (xcent - xbeg) + (ycent - ybeg) * (ycent - ybeg);
-  c2 = (xend - xbeg) * (xend - xbeg) + (yend - ybeg) * (yend - ybeg);
+  /* radius2 = (xcent - xbeg) * (xcent - xbeg) + (ycent - ybeg) * (ycent -
+  ybeg); c2 = (xend - xbeg) * (xend - xbeg) + (yend - ybeg) * (yend - ybeg);
   angle = (int)(180.0 / PI * acos(1.0 - c2 / (2.0 * radius2)) + 0.5);
 
-  a = (double)(ycent - ybeg);
-  b = (double)(xcent - xbeg);
-  c = (double)(ycent * xbeg - xcent * ybeg);
-  if (side(xbeg + (ycent - ybeg), ybeg - (xcent - xbeg)) != side(xend, yend))
-    angle += 180;
+    a = (double)(ycent - ybeg);
+    b = (double)(xcent - xbeg);
+    c = (double)(ycent * xbeg - xcent * ybeg);
+    if (side(xbeg + (ycent - ybeg), ybeg - (xcent - xbeg)) != side(xend, yend))
+      angle += 180;
+   */
 
   pl_move(xcent, ycent);
   /* Not quite implemented...

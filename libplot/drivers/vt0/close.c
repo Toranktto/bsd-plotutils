@@ -1,3 +1,2 @@
-extern vti;
-pl_closevt() { close(vti); }
-pl_close() { close(vti); }
+extern int vti;
+void pl_close(void) { close(vti); }
