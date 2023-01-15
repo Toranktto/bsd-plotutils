@@ -1,11 +1,3 @@
-/*
- * Copyright (c) 1985 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
- *
- *	@(#)imPcodes.h	5.1 (Berkeley) 9/21/85
- */
-
 #define imP_SP 128
 #define imP_SP1 129
 #define imP_OLD_MMOVE 130
