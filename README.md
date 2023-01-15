@@ -49,7 +49,7 @@ Bugs compatibility is not guaranteed.
 
 ## Contents
 
-This repository contains the `libplot` library with its drivers and programs:
+This repository contains the `libplot` library with its drivers and programs (as well as manual pages for them):
 
 * `plot` — reads plot in device-independent binary format and draws it on the device.
 * `tplot` — alias to `plot` (for compatibility with SVR4 shell scripts).
@@ -58,8 +58,6 @@ This repository contains the `libplot` library with its drivers and programs:
 * `atoplot` — reads plot in text format and converts it to binary (useful for debugging).
 * `plottoa` — reads plot in binary format and converts it to text (useful for debugging).
 * `spline` — reads points and generates more via smooth curve interpolation.
-
-as well as manual pages for them.
 
 ## Building from source
 
