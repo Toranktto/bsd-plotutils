@@ -1,5 +1,5 @@
-#include "imPcodes.h"
 #include "imp.h"
+
 void setfont(char *c, int sz) {
   imPcsize = sz;
   putch(imP_CREATE_FAMILY_TABLE);
@@ -9,8 +9,8 @@ void setfont(char *c, int sz) {
   fprintf(stdout, "%s", c);
   putch(0);
 }
-void pl_open(void) {
 
+void pl_open(void) {
   putch(imP_SET_HV_SYSTEM);
   putch((3 << 3) | 5);
   putch(imP_SET_FAMILY);

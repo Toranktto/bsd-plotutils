@@ -1,10 +1,5 @@
-extern float botx;
-extern float boty;
-extern float obotx;
-extern float oboty;
-extern float scalex;
-extern float scaley;
-extern int scaleflag;
+#include "t4013.h"
+
 void pl_space(int x0, int y0, int x1, int y1) {
   botx = 0.;
   boty = 0.;

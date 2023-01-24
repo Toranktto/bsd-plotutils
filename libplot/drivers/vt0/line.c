@@ -1,5 +1,5 @@
-extern int vti;
-extern int xnow, ynow;
+#include "vt0.h"
+
 void pl_line(int x0, int y0, int x1, int y1) {
   struct {
     char x, c;

@@ -7,6 +7,7 @@
  */
 
 #include <math.h>
+#include <plot.h>
 #include <stdio.h>
 
 #define ESC 033
@@ -25,3 +26,7 @@ extern int currenty;
 extern double lowx;
 extern double lowy;
 extern double scale;
+
+void putSBN(int i);
+void putMBN(int i);
+void putMBP(int x, int y);

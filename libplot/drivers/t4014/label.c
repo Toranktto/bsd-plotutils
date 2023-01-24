@@ -1,3 +1,5 @@
+#include "t4014.h"
+
 #define N 0104
 #define E 0101
 #define NE 0105
@@ -13,6 +15,7 @@ char lbl_mv[] = {036, 040, S,  S,  S,  S,  S,  S,  SW,  SW,
                  SW,  SW,  SW, SW, SW, SW, SW, SW, 037, 0};
 char lbl_umv[] = {036, 040, N,  N,  N,  N,  N,  N,  NE,  NE,
                   NE,  NE,  NE, NE, NE, NE, NE, NE, 037, 0};
+
 void pl_label(char *s) {
   register int i, c;
   for (i = 0; (c = lbl_mv[i]); i++)

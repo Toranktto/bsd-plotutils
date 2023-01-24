@@ -1,4 +1,4 @@
-extern int vti;
+#include "vt0.h"
 
 void pl_label(char *s) {
   int i, o;

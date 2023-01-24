@@ -2,7 +2,7 @@ add_library(4014
         arc.c box.c circle.c close.c
         dot.c erase.c label.c line.c
         linemod.c move.c open.c point.c
-        scale.c space.c subr.c)
+        scale.c space.c subr.c t4014.h)
 set_target_properties(4014 PROPERTIES
         VERSION 1.0.0
         SOVERSION 1)

@@ -1,2 +1,3 @@
-void pl_linemod(char *s) { /* ignored on 4013 */
-}
+#include "t4013.h"
+
+void pl_linemod(char *) {} /* ignored on 4013 */

@@ -1,4 +1,5 @@
-extern int vti;
+#include "vt0.h"
+
 void pl_dot(int xi, int yi, int dx, int n, int pat[]) {
   struct {
     char pad, c;

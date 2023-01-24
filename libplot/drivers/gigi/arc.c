@@ -1,7 +1,7 @@
 #include "gigi.h"
 
 /*
- * gigi requires knowing the anlge of arc.  To do this, the triangle formula
+ * gigi requires knowing the angle of arc.  To do this, the triangle formula
  *	c^2 = a^2 + b^2 - 2*a*b*cos(angle)
  * is used where "a" and "b" are the radius of the circle and "c" is the
  * distance between the beginning point and the end point.

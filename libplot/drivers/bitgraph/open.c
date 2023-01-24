@@ -15,7 +15,7 @@ void pl_open(void) {
   void pl_close();
 
   /* catch interupts */
-  signal(SIGINT, pl_close);
+  signal(SIGINT, (void (*)(int))pl_close);
   currentx = 0;
   currenty = 0;
 

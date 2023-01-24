@@ -15,7 +15,7 @@ void pl_line(int x1, int y1, int x2, int y2) {
   outxy20(x1, y1);
   putc('A', stdout);
   outxy20(x2, y2);
-  (void)fflush(stdout);
+  fflush(stdout);
   curx = x2;
   cury = y2;
 }

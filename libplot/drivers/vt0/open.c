@@ -1,3 +1,5 @@
+#include "vt0.h"
+
 int xnow;
 int ynow;
 float boty = 0.;

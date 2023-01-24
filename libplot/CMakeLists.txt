@@ -1,7 +1,7 @@
 add_library(plot arc.c box.c circle.c close.c
         cont.c dot.c erase.c label.c
         line.c linemod.c move.c open.c
-        point.c putsi.c space.c
+        point.c putsi.c space.c plotinternal.h
         include/plot.h include/plotcompat.h)
 set_target_properties(plot PROPERTIES
         VERSION 1.0.0

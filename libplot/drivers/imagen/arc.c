@@ -1,5 +1,26 @@
+#include "imp.h"
+
 int del = 20;
+
 void step(int d) { del = d; }
+
+int quad(int x, int y, int xp, int yp) {
+  if (x < xp)
+    if (y <= yp)
+      return (1);
+    else
+      return (4);
+  else if (x > xp)
+    if (y < yp)
+      return (2);
+    else
+      return (3);
+  else if (y < yp)
+    return (2);
+  else
+    return (4);
+}
+
 void pl_arc(int x, int y, int x0, int y0, int x1, int y1) {
   double pc;
   int flg, m, xc, yc, xs, ys, qs, qf;
@@ -24,7 +45,7 @@ void pl_arc(int x, int y, int x0, int y0, int x1, int y1) {
     flg = 1;
   qs = quad(x, y, x0, y0);
   qf = quad(x, y, x1, y1);
-  if (abs(x - x1) < abs(y - y1)) {
+  if (labs(x - x1) < abs(y - y1)) {
     use = 'x';
     if (qs == 2 || qs == 3)
       m = -1;
@@ -108,25 +129,4 @@ void pl_arc(int x, int y, int x0, int y0, int x1, int y1) {
         }
     }
   }
-}
-int quad(int x, int y, int xp, int yp) {
-  if (x < xp)
-    if (y <= yp)
-      return (1);
-    else
-      return (4);
-  else if (x > xp)
-    if (y < yp)
-      return (2);
-    else
-      return (3);
-  else if (y < yp)
-    return (2);
-  else
-    return (4);
-}
-int abs(int a) {
-  if (a < 0)
-    return (-a);
-  return (a);
 }

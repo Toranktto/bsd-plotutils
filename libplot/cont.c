@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include "plotinternal.h"
+
 void pl_cont(int xi, int yi) {
   putc('n', stdout);
   putsi(xi);

@@ -13,5 +13,5 @@ void pl_erase(void) {
   putc('\33', stdout);
   putc('Q', stdout);
   outxy20(curx, cury);
-  (void)fflush(stdout);
+  fflush(stdout);
 }

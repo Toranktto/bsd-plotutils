@@ -4,8 +4,13 @@
  * might work for all hp devices capable of plotting.
  */
 
+#include <fcntl.h>
+#include <math.h>
+#include <plot.h>
 #include <sgtty.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 #define TERMINAL "/dev/tty"
 
@@ -18,7 +23,6 @@
 #define DISPLAY 'd'
 #define PENUP 'a'
 #define BINARY 'i'
-#define ASCII 'f'
 #define CR '\n'
 
 #define TRUE 1
@@ -37,3 +41,6 @@ extern float lowy;
 extern float scalex;
 extern float scaley;
 extern struct sgttyb sarg;
+void handshake(void);
+void buffready(int n);
+void itoa(int num, char *byte1, char *byte2);

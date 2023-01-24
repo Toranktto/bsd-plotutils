@@ -1,9 +1,11 @@
+#include <plot.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 float deltx;
 float delty;
 
-char *mapLineType();
+char *mapLineType(char *cp);
 void fplt(FILE *fin);
 int getsi(FILE *fin);
 void getstr(char *s, FILE *fin);
@@ -22,7 +24,6 @@ int main(int argc, char **argv) {
         delty = atoi(&argv[1][2]) - 1;
         break;
       }
-
     else {
       std = 0;
       if ((fin = fopen(argv[1], "r")) == NULL) {

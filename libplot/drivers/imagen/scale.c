@@ -1,6 +1,5 @@
-extern float scalex;
-extern float scaley;
-extern int scaleflag;
+#include "imp.h"
+
 void scale(int i, double x, double y) {
   switch (i) {
   default:

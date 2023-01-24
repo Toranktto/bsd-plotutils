@@ -1,5 +1,5 @@
-extern int vti;
-extern int xnow, ynow;
+#include "vt0.h"
+
 void pl_move(int xi, int yi) {
   struct {
     char pad, c;

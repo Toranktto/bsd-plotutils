@@ -1,1 +1,3 @@
-void pl_linemod(void) {}
+#include "bg.h"
+
+void pl_linemod(char *) {}

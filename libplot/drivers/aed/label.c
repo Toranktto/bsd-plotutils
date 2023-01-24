@@ -1,4 +1,5 @@
 #include "aed.h"
+#include <string.h>
 
 /*---------------------------------------------------------
  *	This routine places a label starting at the current
@@ -18,6 +19,6 @@ void pl_label(char *s) {
   putc('\6', stdout);
   fputs(s, stdout);
   putc('\33', stdout);
-  (void)fflush(stdout);
+  fflush(stdout);
   curx += ((6 * 4096 * strlen(s)) + 4000) / scale;
 }

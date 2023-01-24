@@ -3,7 +3,9 @@
  */
 
 #include <math.h>
+#include <plot.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define ESC 033
 #define PI 3.141592659

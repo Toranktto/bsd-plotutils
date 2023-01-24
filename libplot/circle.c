@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include "plotinternal.h"
+
 void pl_circle(int x, int y, int r) {
   putc('c', stdout);
   putsi(x);

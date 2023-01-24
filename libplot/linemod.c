@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include "plotinternal.h"
+
 void pl_linemod(char *s) {
   int i;
   putc('f', stdout);

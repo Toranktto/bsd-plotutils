@@ -1,6 +1,6 @@
 #include "imPcodes.h"
 #include "imp.h"
-extern int imPcsize;
+
 void pl_label(char *s) {
   register int i, c;
   putch(imP_SET_ABS_H);

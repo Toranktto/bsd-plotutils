@@ -1,21 +1,22 @@
 #include <ctype.h>
 #include <math.h>
+#include <plot.h>
 #include <stdio.h>
-#define INF HUGE
-#define F .25
+#include <stdlib.h>
+#include <string.h>
 
 struct xy {
-  int xlbf;       /*flag:explicit lower bound*/
-  int xubf;       /*flag:explicit upper bound*/
-  int xqf;        /*flag:explicit quantum*/
-  double (*xf)(); /*transform function, e.g. log*/
-  float xa, xb;   /*scaling coefficients*/
-  float xlb, xub; /*lower and upper bound*/
-  float xquant;   /*quantum*/
-  float xoff;     /*screen offset fraction*/
-  float xsize;    /*screen fraction*/
-  int xbot, xtop; /*screen coords of border*/
-  float xmult;    /*scaling constant*/
+  int xlbf;             /*flag:explicit lower bound*/
+  int xubf;             /*flag:explicit upper bound*/
+  int xqf;              /*flag:explicit quantum*/
+  double (*xf)(double); /*transform function, e.g. log*/
+  float xa, xb;         /*scaling coefficients*/
+  float xlb, xub;       /*lower and upper bound*/
+  float xquant;         /*quantum*/
+  float xoff;           /*screen offset fraction*/
+  float xsize;          /*screen fraction*/
+  int xbot, xtop;       /*screen coords of border*/
+  float xmult;          /*scaling constant*/
 } xd, yd;
 struct val {
   float xv;
@@ -23,8 +24,8 @@ struct val {
   int lblptr;
 } *xx;
 
-char *labs_;
-int labs_iz;
+char *labstr;
+int labsize;
 
 int tick = 50;
 int top = 4000;
@@ -40,7 +41,6 @@ int brkf;
 float dx;
 char *plotsymb;
 
-double atof();
 #define BSIZ 80
 char labbuf[BSIZ];
 char titlebuf[BSIZ];
@@ -74,7 +74,6 @@ int symbol(int ix, int iy, int k);
 void title(void);
 void axlab(int c, struct xy *p);
 void badarg(void);
-
 double ident(double x) { return (x); }
 
 int main(int argc, char *argv[]) {
@@ -82,10 +81,10 @@ int main(int argc, char *argv[]) {
   pl_space(0, 0, 4096, 4096);
   init(&xd);
   init(&yd);
-  xd.xsize = yd.xsize = 1.;
+  xd.xsize = yd.xsize = 1.f;
   xx = (struct val *)malloc((unsigned)sizeof(struct val));
-  labs_ = malloc(1);
-  labs_[labs_iz++] = 0;
+  labstr = malloc(1);
+  labstr[labsize++] = 0;
   setopt(argc, argv);
   if (erasf)
     pl_erase();
@@ -110,8 +109,8 @@ void setopt(int argc, char *argv[]) {
   char *p1, *p2;
   float temp;
 
-  xd.xlb = yd.xlb = INF;
-  xd.xub = yd.xub = -INF;
+  xd.xlb = yd.xlb = INFINITY;
+  xd.xub = yd.xub = -INFINITY;
   while (--argc > 0) {
     argv++;
   again:
@@ -290,13 +289,13 @@ int copystring(int k) {
   register int i;
   int q;
 
-  temp = realloc(labs_, (unsigned)(labs_iz + 1 + k));
+  temp = realloc(labstr, (unsigned)(labsize + 1 + k));
   if (temp == 0)
     return (0);
-  labs_ = temp;
-  q = labs_iz;
+  labstr = temp;
+  q = labsize;
   for (i = 0; i <= k; i++)
-    labs_[labs_iz++] = labbuf[i];
+    labstr[labsize++] = labbuf[i];
   return (q);
 }
 
@@ -325,7 +324,8 @@ void getlim(register struct xy *p, struct val *v) {
 
 struct z {
   float lb, ub, mult, quant;
-} setloglim(), setlinlim();
+} setloglim(int lbf, int ubf, double lb, double ub),
+    setlinlim(int lbf, int ubf, double xlb, double xub);
 
 void setlim(register struct xy *p) {
   float t, delta, sign;
@@ -614,7 +614,7 @@ int symbol(int ix, int iy, int k) {
     return (1);
   } else {
     pl_move(ix, iy);
-    pl_label(k >= 0 ? labs_ + k : plotsymb);
+    pl_label(k >= 0 ? labstr + k : plotsymb);
     pl_move(ix, iy);
     return (!brkf | (k < 0));
   }

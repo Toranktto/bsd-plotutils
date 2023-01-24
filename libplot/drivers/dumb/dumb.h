@@ -7,6 +7,9 @@
  */
 
 #include <math.h>
+#include <plot.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define scale(x, y)                                                            \
   y = LINES - 1 - (LINES * y / rangeY + minY);                                 \
@@ -22,3 +25,7 @@ extern int COLS, LINES;
 #define MAXLINES 90
 
 extern char screenmat[MAXCOLS][MAXLINES];
+
+void dda_line(int ch, int x0, int y0, /* already transformed to screen coords */
+              int x1, int y1          /* untransformed */
+);

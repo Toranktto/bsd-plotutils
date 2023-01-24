@@ -1,15 +1,11 @@
 cmake_minimum_required(VERSION 3.24)
-project(bsd-plotutils VERSION 1.4.3)
+project(bsd-plotutils VERSION 1.5.0)
+set(CMAKE_C_STANDARD 23)
 
 if ((NOT CMAKE_C_COMPILER_ID MATCHES "Clang") AND (NOT CMAKE_C_COMPILER_ID MATCHES "GNU"))
     message(FATAL_ERROR "This project at the moment supports only Clang and GCC compilers.")
 endif ()
-add_compile_options(
-        -pedantic
-        -Wall
-        -Werror
-        -Wno-implicit-function-declaration
-)
+add_compile_options(-pedantic -Wall -Werror)
 
 include(GNUInstallDirs)
 include_directories(libplot/include)

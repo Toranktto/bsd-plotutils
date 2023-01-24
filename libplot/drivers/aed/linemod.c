@@ -1,4 +1,5 @@
 #include "aed.h"
+#include <string.h>
 
 /*---------------------------------------------------------
  *	pl_linemod( sets the current line drawing style.
@@ -22,5 +23,5 @@ void pl_linemod(char *s) {
     fputs("1E4FF", stdout);
   else
     fputs("1FFFF", stdout);
-  (void)fflush(stdout);
+  fflush(stdout);
 }

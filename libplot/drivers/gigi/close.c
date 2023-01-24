@@ -2,7 +2,7 @@
 #include <signal.h>
 
 void pl_close(void) {
-  /* recieve interupts */
+  /* receive interrupts */
   signal(SIGINT, SIG_IGN);
 
   /* exit graphics mode */

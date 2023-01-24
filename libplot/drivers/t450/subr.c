@@ -1,6 +1,4 @@
 #include "con.h"
-#include <stdio.h>
-int abval(int q) { return (q >= 0 ? q : -q); }
 
 int xconv(int xp) {
   /* x position input is -2047 to +2047, output must be 0 to PAGSIZ*HORZRES */
@@ -35,8 +33,8 @@ void outplot(void) {
 }
 
 void tobotleft(void) { pl_move(-2048, -2048); }
+
 void reset(void) {
-  signal(2, 1);
   outplot();
   stty(OUTF, &ITTY);
   exit(1);
@@ -70,10 +68,10 @@ void movep(int xg, int yg) {
   else
     ch = LEFT;
   xnow += i * HORZRES;
-  i = abval(i);
+  i = abs(i);
   while (i--)
     spew(ch);
-  i = abval(xg - xnow);
+  i = abs(xg - xnow);
   inplot();
   while (i--)
     spew(ch);
@@ -84,10 +82,10 @@ void movep(int xg, int yg) {
   else
     ch = DOWN;
   ynow += i * VERTRES;
-  i = abval(i);
+  i = abs(i);
   while (i--)
     spew(ch);
-  i = abval(yg - ynow);
+  i = abs(yg - ynow);
   inplot();
   while (i--)
     spew(ch);
@@ -101,6 +99,7 @@ int xsc(int xi) {
   xa = (xi - obotx) * scalex + botx;
   return (xa);
 }
+
 int ysc(int yi) {
   int ya;
   ya = (yi - oboty) * scaley + boty;

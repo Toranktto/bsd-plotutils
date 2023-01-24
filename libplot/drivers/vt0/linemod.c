@@ -1,1 +1,3 @@
-void pl_linemod(char *s) {}
+#include "vt0.h"
+
+void pl_linemod(char *) {}

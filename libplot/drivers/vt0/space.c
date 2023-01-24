@@ -1,11 +1,8 @@
-extern float boty;
-extern float botx;
-extern float oboty;
-extern float obotx;
-extern float scalex;
-extern float scaley;
+#include "vt0.h"
+
 float deltx = 4095.;
 float delty = 4095.;
+
 void pl_space(int x0, int y0, int x1, int y1) {
   botx = -2047.;
   boty = -2047;

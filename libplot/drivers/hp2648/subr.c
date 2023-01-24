@@ -1,5 +1,4 @@
 #include "hp2648.h"
-#include <sgtty.h>
 
 void handshake(void) {
   int i;

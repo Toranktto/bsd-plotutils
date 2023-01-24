@@ -38,11 +38,11 @@ Platforms confirmed to work:
 * FreeBSD 13.0-RELEASE amd64
 * Darwin 22.2.0 arm64
 
-Future code should conform to the ANSI C and POSIX standards if possible.
+Future code should conform to the C23 standard if possible.
 
 ## Backwards compatibility
 
-Distributed programs and libraries should be compatible with versions available in UNIX V7, 4.3BSD and System V
+Programs and libraries should be compatible with versions available in UNIX V7, 4.3BSD and System V
 flavours (e.g. Solaris, AIX).   
 Compatibility at the source code level can be achieved through the header `plotcompat.h`.  
 Bugs compatibility is not guaranteed.
@@ -61,8 +61,7 @@ This repository contains the `libplot` library with its drivers and programs (as
 
 ## Building from source
 
-You need POSIX-compatible shell and libraries, CMake >= 3.24 and a C compiler (Clang is preferred) which supports both
-ANSI C and old K&R code.
+You need POSIX-compatible shell and libraries, CMake >= 3.24 and a C compiler (Clang is preferred) with C23 support.
 
 ```
 $ ./build.sh -dsp

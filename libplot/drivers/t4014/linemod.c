@@ -1,3 +1,5 @@
+#include "t4014.h"
+
 void pl_linemod(char *s) {
   char c;
   putch(033);

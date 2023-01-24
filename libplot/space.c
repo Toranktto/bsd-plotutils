@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include "plotinternal.h"
+
 void pl_space(int x0, int y0, int x1, int y1) {
   putc('s', stdout);
   putsi(x0);

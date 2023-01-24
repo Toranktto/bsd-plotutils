@@ -1,6 +1,4 @@
 #include "con.h"
-#include <stdio.h>
-int abval(int q) { return (q >= 0 ? q : -q); }
 
 int xconv(int xp) {
   /* x position input is -2047 to +2047, output must be 0 to PAGSIZ*HORZRES */
@@ -53,6 +51,7 @@ void swap(int *pa, int *pb) {
   *pa = *pb;
   *pb = t;
 }
+
 void movep(int xg, int yg) {
   int i, ch;
   if ((xg == xnow) && (yg == ynow))
@@ -68,10 +67,10 @@ void movep(int xg, int yg) {
   else
     ch = LEFT;
   xnow += i * HORZRES;
-  i = abval(i);
+  i = abs(i);
   while (i--)
     spew(ch);
-  i = abval(xg - xnow);
+  i = abs(xg - xnow);
   inplot();
   while (i--)
     spew(ch);
@@ -82,10 +81,10 @@ void movep(int xg, int yg) {
   else
     ch = DOWN;
   ynow += i * VERTRES;
-  i = abval(i);
+  i = abs(i);
   while (i--)
     spew(ch);
-  i = abval(yg - ynow);
+  i = abs(yg - ynow);
   inplot();
   while (i--)
     spew(ch);

@@ -6,8 +6,12 @@
  * Creates and leaves /var/tmp/raster (1000 blocks)
  * which is the bitmap
  */
-#include "stdio.h"
+#include <fcntl.h>
 #include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 
 #define NB 88
 #define BSIZ 512
@@ -59,7 +63,7 @@ void pl_line(register int x0, register int y0, int x1, int y1);
 void pl_point(register int x, register int y);
 void getblk(register int b);
 void onintr(int x);
-int zseek(int a, int b);
+int zseek(int a1, int b);
 
 int main(int argc, char **argv) {
   register int i;
@@ -376,4 +380,4 @@ loop:
 
 void onintr(int x) { exit(1); }
 
-int zseek(int a, int b) { return (lseek(a, (long)b * 512, 0)); }
+int zseek(int a1, int b) { return (lseek(a1, (long)b * 512, 0)); }

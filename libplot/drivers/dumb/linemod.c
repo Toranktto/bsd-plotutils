@@ -1,1 +1,3 @@
-void pl_linemod(char *s) {}
+#include "dumb.h"
+
+void pl_linemod(char *) {}

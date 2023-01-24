@@ -7,8 +7,6 @@ void dda_line(int ch, int x0, int y0, /* already transformed to screen coords */
   int length, i;
   double deltaX, deltaY;
   double x, y;
-  double floor();
-  int abs();
 
   scale(x1, y1);
 

@@ -1,4 +1,5 @@
-extern int vti;
+#include "vt0.h"
+
 void pl_circle(int x, int y, int r) {
   char c;
   c = 5;

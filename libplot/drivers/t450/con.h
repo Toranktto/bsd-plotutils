@@ -1,7 +1,9 @@
-/*	con.h	4.1	83/06/27	*/
-
-#
+#include <math.h>
+#include <plot.h>
 #include <sgtty.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 /* gsi plotting output routines */
 #define DOWN 012
 #define UP 013
@@ -28,3 +30,16 @@ extern struct sgttyb ITTY, PTTY;
 extern float HEIGHT, WIDTH, OFFSET;
 extern int xscale, xoffset, yscale;
 extern float botx, boty, obotx, oboty, scalex, scaley;
+
+int xconv(int xp);
+int yconv(int yp);
+void spew(int ch);
+void inplot(void);
+void outplot(void);
+void tobotleft(void);
+void reset(void);
+float dist2(int x1, int y1, int x2, int y2);
+void swap(int *pa, int *pb);
+void movep(int xg, int yg);
+int xsc(int xi);
+int ysc(int yi);

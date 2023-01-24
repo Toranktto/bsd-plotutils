@@ -1,8 +1,10 @@
+#include <plot.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 float deltx;
 float delty;
-int PlotRes;
+int plotres;
 
 void fplt(FILE *fin);
 int getsi(register FILE *fin);
@@ -24,7 +26,7 @@ int main(int argc, char *argv[]) {
         delty = atoi(&argv[0][2]) - 1;
         break;
       case 'r':
-        PlotRes = atoi(&argv[0][2]);
+        plotres = atoi(&argv[0][2]);
         break;
       }
       continue;

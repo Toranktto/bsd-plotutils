@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include "plotinternal.h"
+
 void pl_move(int xi, int yi) {
   putc('m', stdout);
   putsi(xi);

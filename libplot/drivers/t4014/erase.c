@@ -1,7 +1,5 @@
-extern int ohiy;
-extern int ohix;
-extern int oloy;
-extern int oextra;
+#include "t4014.h"
+
 void pl_erase(void) {
   putch(033);
   putch(014);

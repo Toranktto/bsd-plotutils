@@ -1,16 +1,19 @@
-#include "imPcodes.h"
 #include "imp.h"
+
 float obotx = 0.;
 float oboty = 0.;
 float botx = 2.;
 float boty = 2.;
 float scalex = 1.;
 float scaley = 1.;
+
 void putch(int c) { putc(c, stdout); }
+
 void putwd(int w) {
   putch(w >> 8);
   putch(w);
 }
+
 void pl_line(int x0, int y0, int x1, int y1) {
   putch(imP_CREATE_PATH);
   putwd(2); /* two coordinates follow */

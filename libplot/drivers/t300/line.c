@@ -1,9 +1,10 @@
 #include "con.h"
+
 void iline(int cx0, int cy0, int cx1, int cy1) {
   int maxp, tt, j;
   char chx, chy;
   float xd, yd;
-  float dist2();
+
   movep(cx0, cy0);
   maxp = sqrt(dist2(cx0, cy0, cx1, cy1)) / 2.;
   xd = cx1 - cx0;
@@ -27,12 +28,12 @@ void iline(int cx0, int cy0, int cx1, int cy1) {
   for (tt = 0; tt <= maxp; tt++) {
     j = cx0 + xd * tt - xnow;
     xnow += j;
-    j = abval(j);
+    j = abs(j);
     while (j-- > 0)
       spew(chx);
     j = cy0 + yd * tt - ynow;
     ynow += j;
-    j = abval(j);
+    j = abs(j);
     while (j-- > 0)
       spew(chy);
     spew('.');

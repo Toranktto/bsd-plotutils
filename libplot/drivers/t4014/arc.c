@@ -1,8 +1,28 @@
+#include "t4014.h"
+
 int del = 20;
+
 void step(int d) { del = d; }
+
+int quad(int x, int y, int xp, int yp) {
+  if (x < xp)
+    if (y <= yp)
+      return (1);
+    else
+      return (4);
+  else if (x > xp)
+    if (y < yp)
+      return (2);
+    else
+      return (3);
+  else if (y < yp)
+    return (2);
+  else
+    return (4);
+}
+
 void pl_arc(int x, int y, int x0, int y0, int x1, int y1) {
   double pc;
-  double sqrt();
   int flg, m, xc, yc, xs, ys, qs, qf;
   float dx, dy, r;
   char use;
@@ -109,20 +129,4 @@ void pl_arc(int x, int y, int x0, int y0, int x1, int y1) {
         }
     }
   }
-}
-int quad(int x, int y, int xp, int yp) {
-  if (x < xp)
-    if (y <= yp)
-      return (1);
-    else
-      return (4);
-  else if (x > xp)
-    if (y < yp)
-      return (2);
-    else
-      return (3);
-  else if (y < yp)
-    return (2);
-  else
-    return (4);
 }

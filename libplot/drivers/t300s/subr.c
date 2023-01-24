@@ -1,6 +1,4 @@
 #include "con.h"
-#include <stdio.h>
-int abval(int q) { return (q >= 0 ? q : -q); }
 
 int xconv(int xp) {
   /* x position input is -2047 to +2047, output must be 0 to PAGSIZ*HORZRES */
@@ -33,6 +31,7 @@ void outplot(void) {
 }
 
 void tobotleft(void) { pl_move(-2048, -2048); }
+
 void reset(void) {
   outplot();
   exit(1);
@@ -59,6 +58,7 @@ void swap(int *pa, int *pb) {
 #define MAXY 07
 extern int xnow, ynow;
 #define SPACES 7
+
 void movep(int ix, int iy) {
   int dx, dy, remx, remy, pts, i;
   int xd, yd;
@@ -70,8 +70,8 @@ void movep(int ix, int iy) {
   dx = ix - xnow;
   dy = iy - ynow;
   command = COM | PENUP | ((dx < 0) << 1) | (dy < 0);
-  dx = abval(dx);
-  dy = abval(dy);
+  dx = abs(dx);
+  dy = abs(dy);
   xd = dx / (SPACES * 2);
   yd = dy / (SPACES * 2);
   pts = xd < yd ? xd : yd;
@@ -128,11 +128,13 @@ void movep(int ix, int iy) {
   outplot();
   return;
 }
+
 int xsc(int xi) {
   int xa;
   xa = (xi - obotx) * scalex + botx;
   return (xa);
 }
+
 int ysc(int yi) {
   int ya;
   ya = (yi - oboty) * scaley + boty;

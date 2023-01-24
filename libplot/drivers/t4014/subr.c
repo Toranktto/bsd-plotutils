@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include "t4014.h"
+
 float obotx = 0.;
 float oboty = 0.;
 float botx = 0.;

@@ -1,1 +1,3 @@
-void pl_dot(void) {}
+#include "gigi.h"
+
+void pl_dot(int, int, int, int, int *) {}

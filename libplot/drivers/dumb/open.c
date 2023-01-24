@@ -8,6 +8,7 @@
 
 #include "dumb.h"
 #include <signal.h>
+#include <term.h>
 
 int minX, rangeX; /* min and range of x */
 int minY, rangeY; /* min and range of y */
@@ -18,9 +19,8 @@ int COLS, LINES;
 char screenmat[MAXCOLS][MAXLINES];
 
 void pl_open(void) {
-  void pl_close();
   int i, j;
-  char *term, *getenv();
+  char *term;
   char bp[1024];
 
   term = getenv("TERM");
@@ -43,6 +43,6 @@ void pl_open(void) {
     for (j = 0; j < LINES; j++)
       screenmat[i][j] = ' ';
 
-  signal(SIGINT, pl_close);
+  signal(SIGINT, (void (*)(int))pl_close);
   currentx = currenty = 0;
 }

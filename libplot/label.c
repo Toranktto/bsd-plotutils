@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include "plotinternal.h"
+
 void pl_label(char *s) {
   int i;
   putc('t', stdout);

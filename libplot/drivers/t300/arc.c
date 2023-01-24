@@ -1,1 +1,3 @@
-void pl_arc(void) {}
+#include "con.h"
+
+void pl_arc(int, int, int, int, int, int) {}
